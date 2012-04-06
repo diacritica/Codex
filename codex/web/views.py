@@ -15,8 +15,6 @@ from django.template import RequestContext
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
-
-
 from searchviews import *
 
 CHAR_RELATIONSHIP_CHOICES = (
