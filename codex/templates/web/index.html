@@ -1,0 +1,211 @@
+{% extends "base.html" %}
+{% block header %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head> 
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+		<title>El Codex de la Marca del Este</title> 
+		<meta name='title' content=''/> 
+		<meta name='description' content=''/> 
+ 
+		<meta name="author" content=""/> 
+		<meta name="language" content="spanish"/> 
+		<meta name="revisit" content="10 day"/> 
+		<meta name="distribution" content="global"/> 
+ 
+		<meta name="robots" content="All"/> 
+		<meta http-equiv="pragma" content="no-cache"/> 
+		<meta http-equiv="expires" content="-1"/>		
+        <link rel="stylesheet" href="/css/reset.css" type="text/css" media="screen" /> 
+        <link rel="stylesheet" href="/css/estilo.css" type="text/css" media="screen" /> 
+		
+			<script type="text/javascript" src="/js/jquery.js"></script> 
+			<script type="text/javascript" src="/js/easySlider1.7.js"></script> 
+			<script type="text/javascript"> 
+				$(document).ready(function(){	
+					$("#slider").easySlider({
+						auto: true, 
+						continuous: true
+					});
+				});	
+			</script> 
+			
+  <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-27832804-1']);
+  _gaq.push(['_setDomainName', 'codexdelamarca.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+<link rel="alternate" type="application/atom+xml" title="Atom 2.0" href="http://codexdelamarca.com/rss.xml" />		
+
+	</head> 
+{% endblock %}
+{% block content%}		
+		<div id="rotativo">
+			
+<div id="slider" >
+<ul>				
+<!-- personajes. Hay que meter el enlace a categoria --> <li><a
+href="/character"><img src="/rotativo/banner-personaje.jpg" alt="personajes"
+/></a></li>
+<!-- bestiario. Hay que meter el enlace a categoria --> <li><a
+href="/creature"><img src="/rotativo/banner-bestiario.jpg" alt="bestiario"
+/></a></li>
+<!-- lugar. Hay que meter el enlace a categoria --> <li><a
+href="/location"><img src="/rotativo/banner-lugar.jpg" alt="lugares"
+/></a></li>
+<!-- objeto. Hay que meter el enlace a categoria --> <li><a
+href="/object"><img src="/rotativo/banner-objeto.jpg" alt="objetos"
+/></a></li>
+<!-- aventura. Hay que meter el enlace a categoria --> <li><a
+href="/adventure"><img src="/rotativo/banner-aventura.jpg" alt="-aventuras"
+/></a></li>
+<!-- cronicas. Hay que meter el enlace a categoria --> <li><a
+href="/chronicle"><img src="/rotativo/banner-cronica.jpg" alt="cronicas"
+/></a></li>
+</ul>
+</div><!-- fin slider -->
+
+		</div><!-- fin rotativo -->
+
+
+
+  
+
+
+
+		<div id="contenido" >
+			<div id="columna-izq_portada">
+				<h1>El Codex</h1>
+				<p>
+					<img src="/ima/sello.jpg" alt="La Marca del Este" style="float: left;margin: 5px"/> <b>El Codex de la Marca del Este es un vademécum que recoge toda la información referente a la Marca creada tanto por sus autores originales como por todos los aficionados, colaboradores y amigos que han aportado su granito de arena para enriquecer este escenario de campaña. </b> 
+				</p>
+				<p>
+					En esta página, de forma compendiosa y detallada, podréis encontrar personajes, criaturas, objetos, reliquias, aventuras completas, crónicas de leyenda, localizaciones de campaña, y demás, todo ordenado, interrelacionado y clasificado por los autores de la Marca según su importancia y relevancia dentro del escenario.
+				</p>
+				<p>
+					El Codex es un lugar donde todo aquél de vosotros interesado puede participar, aportando de forma libre contenidos y haciendo realidad, a través de la participación abierta y creativa de los aficionados, un mundo de fantasía rico, profundo y en constante movimiento.
+				</p>
+                <p><b>¡Bienvenidos al Codex, bienvenidos a la Marca del Este!</b></p>
+				<p>
+					<a href="http://tesorosdelamarca.com"><img src="/ima/banner-tienda.gif" alt=""  /></a>
+				</p>
+				<p>
+					<a href="http://www.holocubierta.com/index.php?page=shop.product_details&flypage=flypage.tpl&product_id=18&category_id=1&option=com_virtuemart&Itemid=88
+"><img src="/ima/banner-juego.gif" alt=""  /></a>
+					<a href="http://www.lamarcadeleste.com"><img src="/ima/banner-blog.gif" alt=""  /></a>
+				</p>
+				
+				<p>
+				<b><a href="/static/codex_de_marca_banners.zip">Descarga los banners oficiales del Codex de La Marca</a></b>
+				</p>
+			</div><!-- fin columna-izq_portada -->
+			
+			<div id="columna-der_portada">
+				
+				<h1>Novedades</h1>
+				
+				<div class="elemento-portada">
+				<h2><img src="/ima/ico-portada-personaje.png" alt="Personajes"/><a href="/character/">Personajes</a></h2>
+                {% for object in index_list.characters %}				
+                <p><a href="/character/{{object.slug}}">{{object.name}}</a></p>
+                {% if forloop.first %}
+				<p class="intro">{{object.description|safe|truncatechars:100}} </p>
+                {% endif %}
+				<hr/>
+                {% endfor %}
+
+
+				<p class="ver"><a href="/character/">Ver categoría [+]</a></p>
+				</div>
+				
+				<div class="elemento-portada">
+				<h2><img src="/ima/ico-portada-bestiario.png" alt="Bestiario"/><a href="/creature">Bestiario</a></h2>
+                {% for object in index_list.creatures %}				
+                <p><a href="/creature/{{object.slug}}">{{object.name}}</a></p>
+                {% if forloop.first %}
+				<p class="intro">{{object.description|safe|truncatechars:100}} </p>
+                {% endif %}
+				<hr/>
+                {% endfor %}
+
+				<p class="ver"><a href="/creature">Ver categoría [+]</a></p>
+				</div>
+				
+				<div class="elemento-portada">
+				<h2><img src="/ima/ico-portada-lugar.png" alt="Lugares"/><a href="/location">Lugares</a></h2>
+                {% for object in index_list.locations %}				
+                <p><a href="/location/{{object.slug}}">{{object.name}}</a></p>
+                {% if forloop.first %}
+				<p class="intro">{{object.description|safe|truncatechars:100}} </p>
+                {% endif %}
+                <hr/>
+                {% endfor %}
+				<p class="ver"><a href="/location">Ver categoría [+]</a></p>
+				</div>
+				<div style="clear: both"></div>
+
+				<div class="elemento-portada">
+				<h2><img src="/ima/ico-portada-objeto.png" alt="objetos"/><a href="/object">Objetos</a></h2>
+                {% for object in index_list.objects %}				
+                <p><a href="/object/{{object.slug}}">{{object.name}}</a></p>
+                {% if forloop.first %}
+				<p class="intro">{{object.description|safe|truncatechars:100}} </p>
+                {% endif %}
+                <hr/>
+                {% endfor %}
+				<p class="ver"><a href="/object">Ver categoría [+]</a></p>
+				</div>
+				
+				<div class="elemento-portada">
+				<h2><img src="/ima/ico-portada-aventura.png" alt="aventura"/><a href="/adventure">Aventuras</a></h2>
+                {% for object in index_list.adventures %}				
+                <p><a href="/adventure/{{object.slug}}">{{object.name}}</a></p>
+                {% if forloop.first %}
+				<p class="intro">{{object.description|safe|truncatechars:100}} </p>
+                {% endif %}
+                <hr/>
+                {% endfor %}
+
+				<p class="ver"><a href="/adventure">Ver categoría [+]</a></p>
+				</div>
+				
+				<div class="elemento-portada">
+				<h2><img src="/ima/ico-portada-cronica.png" alt="cronica"/><a href="/chronicle">Crónicas</a></h2>
+                {% for object in index_list.chronicles %}				
+                <p><a href="/chronicle/{{object.slug}}">{{object.name}}</a></p>
+                {% if forloop.first %}
+				<p class="intro">{{object.description|safe|truncatechars:100}} </p>
+                {% endif %}
+                <hr/>
+                {% endfor %}
+
+				<p class="ver"><a href="/chronicle">Ver categoría [+]</a></p>
+				</div>
+				
+			</div><!-- fin columna-izq_portada  -->
+		</div><!-- fin contenido -->
+{% endblock %}
+{% block about %}		
+{% endblock %}
+{% block tagrelated %}	
+{% endblock %}				
+{% block ending %}
+
+	</div><!-- fin contenedor -->
+
+	<div id="tapa-arriba"><img src="/rotativo/tapa-rotativo-arriba.gif" alt="" /></div>
+	<div id="tapa-abajo"><img src="/rotativo/tapa-rotativo-abajo.gif" alt="" /></div>
+
+</body>
+</html>	
+{% endblock %}
+

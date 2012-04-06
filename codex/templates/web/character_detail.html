@@ -1,0 +1,367 @@
+{% extends "base.html" %}
+{% block title %}
+<title>Codex de la Marca del Este - Personaje - {{object.name}}</title>
+{% endblock %}
+{% block navigation %}
+		<div id="cabecera">
+			<div id="menu">
+				<ul>	     
+					<li><a href="/">El Codex</a></li>	
+					<li><a href="/character" class="seleccion">Personajes</a></li>	 
+					<li><a href="/creature">Bestiario</a></li>	
+					<li><a href="/location">Lugares</a></li>
+					<li><a href="/object">Objetos</a></li>	
+					<li><a href="/adventure">Aventuras</a></li>	
+					<li><a href="/chronicle">Crónicas</a></li>	
+					<li><a href="/send_info">Enviar info</a></li>	
+					<li><a href="/contact">Contacto</a></li>
+        		</ul>
+			</div><!-- fin menu -->
+			
+			<div id="logo">
+				<a href="/"><img src="/ima/codex-logo.jpg" alt="Codex de las aventuras de la Marca del Este." /></a>
+			</div><!-- fin logo -->
+			
+			<div id="slogan">
+				La recopilación de todo el conocimiento sobre la Marca del Este.
+			</div><!-- fin logo -->
+			
+			<div id="busqueda-simple">
+				<div id="form-busqueda-simple">
+				<form action="/search/" METHOD=GET>
+					<select name="option">					  
+						<option value="all">Todo</option>
+						<option value="character">Personaje</option>
+						<option value="creature">Bestiario</option>
+						<option value="location">Lugar</option>
+						<option value="object">Objeto</option>
+						<option value="adventure">Aventura</option>
+						<option value="chronicle">Crónica</option>					   
+					</select>
+					
+					<input class="barra_busqueda" type="text" name="searchterm" value="" />
+					
+					<input class="boton_buscar" type="submit" value="Buscar" />
+				</form>
+				</div>
+				<div id="ir-busqueda-avanzada"><a href="/advancedsearch">Búsqueda<br/>avanzada</a></div>
+			</div><!-- fin busqueda-simple -->
+
+			
+		</div><!-- fin cabecera -->
+		
+{% endblock %}
+
+{% block content %}
+		<div id="contenido" >
+			<div id="contenido-articulos" >
+			<div id="columna-izq">
+				<div id="volver"><span><a href="/">Volver a inicio</a>&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;</span> <a href="/character">Personaje</a></div>
+				
+				<h1><img src="/ima/ico-portada-personaje.png" alt="personaje"/>{{object.name}}
+                {% if user.is_authenticated and user.is_staff %}
+                <a href="/scriptorium/web/character/{{object.id}}">[editar]</a>
+                {% endif %}
+                </h1>
+                {% if object.quote %}
+                <div id="quote">{{object.quote|safe}}</div>
+                {% endif %}
+				<p>{{object.description|safe}}
+				</p>
+
+                {% if object.strengthstat %}
+				<h2>Características:</h2>
+				
+				<div class="lista3columnas">
+					<ul>
+						<li><b>FUERZA:</b> 
+						  {% if object.strengthstat %}
+						  {{object.strengthstat}}
+						  {% else %}-
+						  {% endif %}
+						</li>
+						<li><b>CONSTITUCIÓN:</b> 
+						  {% if object.constitutionstat %}
+						  {{object.constitutionstat}}
+						  {% else %}-
+						  {% endif %}
+						</li>
+						<li><b>SABIDURÍA:</b>
+						  {% if object.wisdomstat %}
+						  {{object.wisdomstat}}
+						  {% else %}-
+						  {% endif %}
+						  </li>
+						<li><b>DESTREZA:</b>
+						   {% if object.dexteritystat %}
+						  {{object.dexteritystat}}
+						  {% else %}-
+						  {% endif %}
+						  </li>
+						<li><b>INTELIGENCIA:</b>
+						  {% if object.intelligencestat %}
+						  {{object.intelligencestat}}
+						  {% else %}-
+						  {% endif %}
+						  </li>
+						<li><b>CARISMA:</b>
+						  {% if object.charismastat %}
+						  {{object.charismastat}}
+						  {% else %}-
+						  {% endif %}
+						</li>
+	        		</ul>
+				
+				</div><!-- fin caract-->
+				{% endif %}
+
+				<h2>Detalles:</h2>
+
+				<div class="lista3columnas" id="list-detalle">
+					<ul>
+						<li><b>Sexo:</b> {{object.get_gender_display|default_if_none:"--"}}</li>
+						<li><b>Nivel:</b> {{object.level|default_if_none:"--"}}</li>
+						<li><b>Aparición:</b> {{object.startdate|default_if_none:"--"}}</li>
+						<li><b>Edad:</b> {{object.age|default:"--"}}</li>
+						<li><b>CA:</b> {{object.AC|default:"--"}}</li>
+						<li><b>Estado:</b> {{object.get_status_display|default_if_none:"--"}}</li>
+						<li><b>Especie:</b> {{object.get_species_display|default_if_none:"--"}}	</li>
+						<li><b>Movimiento:</b> {{object.move|default:"--"}}</li>
+						<li><b>Tipo:</b> {{object.get_pncorpc_display|default_if_none:"--"}}</li>
+						
+						<li><b>Clase:</b> {{object.get_profession_display|default_if_none:"--"}}</li>
+						<li><b>Moral:</b> {{object.moral|default_if_none:"--"}}</li>
+						<li><b>Idiomas:</b>
+                          {% if object.languages.all%}
+       					  {% for language in object.languages.all %}
+    					   {% if forloop.first %}
+						  {{language.name}}
+					   {% endif %}
+    					   {% if forloop.last and forloop.last != forloop.first %}
+    						 y {{language.name}}
+					   {% endif %}
+    					   {% if not forloop.last and not forloop.first %}
+    						, {{language.name}}{% endif %}
+    					  {% endfor %}
+                        {% else %}
+                            --
+                        {% endif %}
+						</li>
+						<li><b>TS:</b> {{object.get_saveroll_display|default_if_none:"--"}}</li>
+						<li><b>Alineamiento:</b> {{object.get_alignment_display|default_if_none:"--"}}	</li>
+						<!--<li><b>Religión:</b>
+						  {% for religion in object.religion.all %}
+						  {{religion.name }},
+						  {% endfor %}
+						</li>-->
+						<li><b>Puntos de golpe:</b> {{object.hitpoints|default:"--"}}</li>
+						<li style="width: 300px"><b>Lugares:</b>&nbsp;
+                        {% if object.relatedlocation.all %}
+    					  {% for rlocation in object.relatedlocation.all %}
+    					   {% if forloop.first %} 
+    						<a href="/location/{{rlocation.slug}}">{{rlocation.name}}</a>
+    						{% endif %}
+    						{% if forloop.last and forloop.last != forloop.first %}
+    						 y <a href="/location/{{rlocation.slug}}">{{rlocation.name}}</a>
+    						{% endif %}
+    						{% if not forloop.last and not forloop.first %}
+    						, <a href="/location/{{rlocation.slug}}">{{rlocation.name}}</a>
+    						{% endif %}
+    					{% endfor %}
+                        {% else %}
+                            --
+                        {% endif %}
+						  </li>
+						</ul>
+				</div><!-- fin caract-->
+				
+				{% if object.weapons %}				
+				<h2>Ataques:</h2>
+				<p>{{object.weapons|safe}}</p>
+				{% endif %}
+                {% if object.comments %}				
+                <h2>Nota del autor:</h2>
+                <p>{{object.comments|safe}}</p>		
+				{% endif %}
+				
+				
+
+			</div><!-- fin columna-izq -->
+			
+			<div id="columna-der">
+
+<div id="canon">
+					<div id="nivel-canon">Nivel de Canon</div>				
+					<div id="ima-canon"><img src="/ima/canon/canon-{{object.get_canon_level_display}}.jpg" alt="icono" height="68px" width="68px"/></div>			
+
+
+{% block canonlightbox %}
+
+<div id="denominacion-canon"> {{object.get_canon_level_display}} <div id="que"><button
+id="opener" >¿Qué es esto?</button><!-- <a href="#">¿Qué es
+esto?</a>--></div></div>
+										
+	<div id="dialog" title="Nivel de Canon" style="font-family: Georgia;">
+		<p style="font-size: 12px"> <img src="/ima/dialogocanon/sellooro.png"
+alt="icono" height="68px" width="68px" style="float: left;
+margin-right: 10px"/>
+		<span style="font-size: 18px">Canon</span>
+		<br/>  Representa contenido de referencia oficial en La Marca del Este y puede ser empleado como tal en aventuras, relatos u obras artísticas. De este contenido responde, en último término, el equipo de autores de La Marca del Este.
+		</p>
+						
+		<p style="font-size: 12px"> <img
+src="/ima/dialogocanon/selloplata.png" alt="icono" height="68px"
+width="68px" style="float: left; margin-right: 10px"/>
+		<span style="font-size: 18px">Apócrifo</span>
+		<br/>  Representa contenido que, tras un análisis, es perfectamente válido para ser publicado en el Codex de La Marca pero incumple alguna condición para ser considerado parte del canon. Usualmente, un contenido pasa a ser Aprócrifo cuando no hay un interés particular en dedicar el tiempo en hacerlo consonante con el corpus oficial. Con el tiempo, un contenido Apócrifo puede volver a pasar a un estado de "En estudio" si la circunstancias cambian o el contenido es revisado.
+		</p>
+
+
+		<p style="font-size: 12px"> <img
+src="/ima/dialogocanon/sello-nuevo.png" alt="icono" height="68px"
+width="68px" style="float: left; margin-right: 10px"/>
+		<span style="font-size: 18px">Nuevo</span>
+		<br/>  Representa contenido recién dado de alta y que no ha sido aún analizado de ninguna forma. El objetivo del Codex de La Marca es que éste sea un estado de corta duración en todos los casos.
+		</p>
+
+		<p style="font-size: 12px"> <img
+src="/ima/dialogocanon/sello-nuevo.png" alt="icono" height="68px"
+width="68px" style="float: left; margin-right: 10px"/>
+		<span style="font-size: 18px">En estudio</span>
+		<br/>  Representa un estado transitorio entre Nuevo y Canon/Apócrifo. El estudio sobre su adecuación o no al canon lo realizan los autores de La Marca del Este y pueden requerir de información complementaria al autor del contenido para resolver cualquier duda sobre su origen o sugerir algún cambio para poder adoptarlo como canon.
+		</p>
+	</div>			
+</div><!-- fin canon -->
+{% endblock %}
+
+
+
+		
+				
+                {% if object.image.all %}
+				<div id="expo-ima">
+					  {% for image in object.image.all %}
+					    {% if forloop.first %}
+
+					<div id="ima-grande">
+						<img src="{{ MEDIA_URL }}{{image.image.name}}" alt="icono" height="230px" width="350px"/>
+						
+				</div>
+					<!-- 
+					<div id="ima-mini">
+						<a href="#"><img src="ima/ico-portada-item.jpg" alt="icono" height="50px" width="75px"/></a>
+						<a href="#"><img src="ima/ico-portada-item.jpg" alt="icono" height="50px" width="75px"/></a>
+						<a href="#"><img src="ima/ico-portada-item.jpg" alt="icono" height="50px" width="75px"/></a>
+						<a href="#"><img src="ima/ico-portada-item.jpg" alt="icono" height="50px" width="75px"/></a>
+					</div>
+					-->
+				</div><!-- fin expo-ima -->
+				<div id="firma-ima">
+                    
+                    {% if image.author.all %}
+					<b>Autor de la ilustración</b>: 
+                    {% for author in image.author.all%}
+					   {% if forloop.first %} 
+                        <a href="{{author.url}}">{{author.name}}</a>
+						{% endif %}
+						{% if forloop.last and forloop.last != forloop.first %}
+						 y <a href="{{author.url}}">{{author.name}}</a>
+						{% endif %}
+						{% if not forloop.last and not forloop.first %}
+						, <a href="{{author.url}}">{{author.name}}</a>
+						{% endif %}
+					{% endfor %}
+                    {% endif %}
+
+
+				</div><!-- fin expo-ima -->
+					{% endif %}
+
+				{% endfor %}
+
+                {% else %}
+
+				{% endif %}
+                <div style="clear: both"></div>
+                {% if object.relatedobject.all %}
+				<h2>Equipo especial:</h2>
+			   
+			    
+
+				<div class="lista2columnas">
+                
+					<ul>
+                        {% for relatedobject in object.relatedobject.all %}
+						{% if relatedobject.rarity != "C" %}<li><a href="/object/{{relatedobject.slug}}">{{relatedobject.name}}</a></li>{% endif %}
+
+                        {% endfor %}
+					</ul>
+				</div><!-- fin lista2columnas-->
+				{% endif %}
+		
+
+                {% if object.relatedobject.all %}
+       				<h2>Equipo:</h2>
+       				
+				<div class="lista2columnas">
+                
+					<ul>
+                        {% for relatedobject in object.relatedobject.all %}
+						{% if relatedobject.rarity == "C" %}<li><a href="/object/{{relatedobject.slug}}">{{relatedobject.name}}</a></li>{% endif %}
+
+                        {% endfor %}
+					</ul>
+				</div><!-- fin lista2columnas-->
+                {% endif %}
+
+
+				 {% if object.treasurevalue %}
+				<h2>Dinero y gemas:</h2>
+				<p>
+						 
+						  {{object.treasurevalue}}
+						
+						 
+				</p>
+				 {% endif %}
+
+                {% if relatedcharacters2 or relatedcharacters1 %}
+				<h2>Aliados y familiares:</h2>
+				<div class="lista2columnas">
+					<ul>
+					  {% for relation in relatedcharacters2 %}
+					  {% if relation.relation21 in "GROUPSONFATHERBROTHERSUBDITFRIENDMASTERAPPRENTICEFAMILIAREMPLOYEELORDUNDERLINGFELLOW" %}
+						<li>{{relation.get_relation21_display}} de <a href="/character/{{relation.character1.slug}}">{{relation.character1.name}}</a></li>
+						{% endif %}
+					{% endfor %}
+	 				 {% for relation in relatedcharacters1 %}
+					  	{% if relation.relation21 in "GROUPSONFATHERBROTHERSUBDITFRIENDMASTERAPPRENTICEFAMILIAREMPLOYEELORDUNDERLINGFELLOW" %}
+						<li>{{relation.get_relation12_display}} de <a href="/character/{{relation.character2.slug}}">{{relation.character2.name}}</a></li>
+						{% endif %}
+
+					{% endfor %}
+				
+					</ul>
+				</div><!-- fin lista2columnas-->
+                {% endif %}
+				
+                {% if relatedcharacters2 or relatedcharacters1 %}
+				<h2>Enemigos:</h2>
+				<div class="lista2columnas">
+					<ul>
+					  {% for relation in relatedcharacters2 %}
+					  {% if relation.relation21 in "NEMESISENEMY" %}
+						<li>{{relation.get_relation21_display}} de <a href="/character/{{relation.character1.slug}}">{{relation.character1.name}}</a></li>
+						{% endif %}
+					{% endfor %}
+					  {% for relation in relatedcharacters1 %}
+					  	{% if relation.relation21 in "NEMESISENEMY" %}
+						<li>{{relation.get_relation12_display}} de <a href="/character/{{relation.character2.slug}}">{{relation.character2.name}}</a></li>
+						{% endif %}
+
+					{% endfor %}
+						
+					</ul>
+				</div><!-- fin lista2columnas-->
+                {% endif %}
+{% endblock %}		

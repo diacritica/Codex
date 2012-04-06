@@ -1,0 +1,205 @@
+{% extends "base.html" %}
+
+{% block navigation %}
+		<div id="cabecera">
+			<div id="menu">
+				<ul>	     
+					<li><a href="/">El Codex</a></li>	
+					<li><a href="/chars">Personaje</a></li>	 
+					<li><a href="/creatures">Bestiario</a></li>	
+					<li><a href="/locations">Lugar</a></li>
+					<li><a href="/adventures" class="seleccion">Aventura</a></li>	
+					<li><a href="/objects">Objetos</a></li>	
+					<li><a href="/chronicles">Crónica</a></li>	
+					<li><a href="/send_info">Enviar info</a></li>	
+					<li><a href="/contact">Contacto</a></li>
+        		</ul>
+			</div><!-- fin menu -->
+			
+			<div id="logo">
+				<a href="#"><img src="ima/codex-logo.jpg" alt="Codex de las aventuras de la Marca del Este." /></a>
+			</div><!-- fin logo -->
+			
+			<div id="slogan">
+				La recopilación de todo el conocimiento sobre la Marca del Este.
+			</div><!-- fin logo -->
+			
+			<div id="busqueda-simple">
+				<form action="">
+					<select>					  
+						<option value="todo">Todo</option>
+						<option value="Personaje">Personaje</option>
+						<option value="Bestiario">Bestiario</option>
+						<option value="Lugar">Lugar</option>
+						<option value="Aventura">Aventura</option>
+						<option value="Objetos">Objetos</option>
+						<option value="Crónica">Crónica</option>					   
+					</select>
+					
+					<input class="barra_busqueda" type="text" name="LastName" value="texto de ejemplo" />
+					
+					<input class="boton_buscar" type="submit" value="Buscar" />
+					<div id="ir-busqueda-avanzada"><a href="#">Busqueda<br/>avanzada</a></div><!-- fin logo -->
+				</form>
+				
+			</div><!-- fin busqueda-simple -->
+			
+			
+			
+		</div><!-- fin cabecera -->
+		
+{% endblock %}
+{% block content %}		
+
+		<div id="contenido" >
+			<div id="contenido-articulos" >
+			<div id="columna-izq">
+				<div id="volver"><span><a href="#">Volver a inicio</a>&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;</span> <a href="#">Aventura</a></div>
+				
+				<h1>Cantemos junto al fuego en el camino Mantícora</h1>
+				<p>
+					Quisque luctus arcu suscipit est aliquet vulputate. Proin egestas metus ac augue pharetra ultricies. Vivamus at nisi mauris, a rhoncus justo. Nam vitae ullamcorper nulla. In vulputate, elit id luctus varius, lorem tellus adipiscing libero, eget laoreet eros est vitae erat. Nam suscipit tincidunt euismod. Vivamus placerat est at mi iaculis volutpat. Vestibulum euismod scelerisque enim nec egestas. Ut aliquam, felis ut ullamcorper volutpat, nisl nulla laoreet mauris, in posuere nulla purus ut augue. Integer eu arcu vel lorem eleifend mattis quis ultricies augue. Phasellus tempor porttitor libero ac posuere. Suspendisse eu dui id est lobortis varius ac vel nibh. In iaculis faucibus sem, at sodales turpis accumsan eget. Maecenas congue, tellus ut consectetur malesuada, eros felis porta odio, vel egestas nisl arcu ut sapien.
+				</p><p>
+					Quisque luctus arcu suscipit est aliquet vulputate. Proin egestas metus ac augue pharetra ultricies. Vivamus at nisi mauris, a rhoncus justo. Nam vitae ullamcorper nulla. In vulputate, elit id luctus varius, lorem tellus adipiscing libero, eget laoreet eros est vitae erat. Nam suscipit tincidunt euismod. Vivamus placerat est at mi iaculis volutpat. Vestibulum euismod scelerisque enim nec egestas. Ut aliquam, felis ut ullamcorper volutpat, nisl nulla laoreet mauris, in posuere nulla purus ut augue. Integer eu arcu vel lorem eleifend mattis quis ultricies augue. Phasellus tempor porttitor libero ac posuere. Suspendisse eu dui id est lobortis varius ac vel nibh. In iaculis faucibus sem, at sodales turpis accumsan eget. Maecenas congue, tellus ut consectetur malesuada, eros felis porta odio, vel egestas nisl arcu ut sapien.
+				</p>
+
+				<h2>Nota del autor:</h2>
+
+				<p>
+					Quisque luctus arcu suscipit est aliquet vulputate. Proin egestas metus ac augue pharetra ultricies. Vivamus at nisi mauris, a rhoncus justo. Nam vitae ullamcorper nulla. In vulputate, elit id luctus varius, lorem tellus adipiscing libero, eget laoreet eros est vitae erat. Nam suscipit tincidunt euismod. Vivamus placerat est at mi iaculis volutpat. Vestibulum euismod scelerisque enim nec egestas. Ut aliquam, felis ut ullamcorper volutpat, nisl nulla laoreet mauris, in posuere nulla purus ut augue. Integer eu arcu vel lorem eleifend mattis quis ultricies augue. Phasellus tempor porttitor libero ac posuere. Suspendisse eu dui id est lobortis varius ac vel nibh. In iaculis faucibus sem, at sodales turpis accumsan eget. Maecenas congue, tellus ut consectetur malesuada, eros felis porta odio, vel egestas nisl arcu ut sapien.
+				</p>
+
+				
+				
+
+			</div><!-- fin columna-izq -->
+			
+			<div id="columna-der">
+				<div id="canon">
+					<div id="nivel-canon">Nivel de Canon</div>				
+					<div id="ima-canon"><img src="ima/canon/canon-revision.jpg" alt="icono" height="68px" width="68px"/></div>				
+					<div id="denominacion-canon">Nuevo<div id="que"><a href="#">¿Qué es esto?</a></div></div>				
+				</div><!-- fin canon -->
+				<div id="expo-ima">
+					<div id="ima-grande">
+						<a href="#"><img src="ima/aventuras/aventura-01.jpg" alt="icono" height="230px" width="350px"/></a>
+					</div>
+					<!-- 
+					<div id="ima-mini">
+						<a href="#"><img src="ima/ico-portada-item.jpg" alt="icono" height="50px" width="75px"/></a>
+						<a href="#"><img src="ima/ico-portada-item.jpg" alt="icono" height="50px" width="75px"/></a>
+						<a href="#"><img src="ima/ico-portada-item.jpg" alt="icono" height="50px" width="75px"/></a>
+						<a href="#"><img src="ima/ico-portada-item.jpg" alt="icono" height="50px" width="75px"/></a>
+					</div>
+					-->
+				</div><!-- fin expo-ima -->
+				
+				
+				<div id="boton-gordo">
+					
+						<a href="#" class="boton-aventura"> Ir a web de descarga<span><br/>soloeldominio.com</span></a>
+				
+				</div>
+				
+				<h2>Más información:</h2>
+				
+				<div class="lista2columnas">
+					<ul>						
+						<li><b>Precio:</b> Gratis</li>
+						
+						<li><b>Nivel:</b> 4</li>
+
+						<li><b>Sesines de juego:</b> 4</li>
+						
+						<li><b>Nº Jugadores:</b> 4</li>
+					</ul>
+				</div><!-- fin lista2columnas-->
+				
+				
+				<h2>Crónicas sobre la aventura:</h2>
+				
+				<div class="lista1columna">
+					<ul>						
+						<li><a href="#"> Lorem ipsum dolor sit amet, consectetur elit.</a></li>
+						<li><a href="#"> Lorem ipsum dolor sit amet, consectetur elit.</a></li>
+						<li><a href="#"> Lorem ipsum dolor sit amet, consectetur elit.</a></li>
+						<li><a href="#"> Lorem ipsum dolor sit amet, consectetur elit.</a></li>
+						
+						
+					</ul>
+				</div>
+				
+				
+				
+				<!--
+				<h2>Personajes destacados:</h2>
+				
+				<div class="lista2columnas">
+					<ul>
+						
+						<li>Lorem ipsum de <a href="#">Manolito</a>.</li>
+						<li>Lorem ipsum de <a href="#">Manolito</a>.</li>
+						<li>Lorem ipsum de <a href="#">Manolito</a>.</li>
+						<li>Lorem ipsum de <a href="#">Manolito</a>.</li>
+						<li>Lorem ipsum de <a href="#">Manolito</a>.</li>
+						
+					</ul>
+				</div>
+				-->
+				<!-- fin lista2columnas-->
+				<!--
+				<h2>Objetos destacados:</h2>
+				
+				<div class="lista2columnas">
+					<ul>
+						
+						
+						<li><a href="#">Maza demoledora</a></li>
+						<li><a href="#">Fatana</a></li>
+						<li><a href="#">Fatana</a></li>
+						<li><a href="#">Maza demoledora</a></li>
+						
+					</ul>
+				</div>
+				-->
+				<!-- fin lista2columnas-->
+				
+					
+				
+				<div class="resaltado">Sobre el artículo:</div>				
+				<div class="resaltado-cont">
+					<p>
+						<b>Fecha de creación:</b> 11 Diciembre 2011
+					</p>
+					<p>
+						<b>Última actualización:</b> 20 Enero 2012
+					</p>
+					<p>
+						<b>Autor:</b> Steinkel - <a href="#">www.lamarcadeleste.com</a>
+					</p>
+				</div>
+				
+				<div class="resaltado">Lecturas relacionadas:</div>
+				<div class="resaltado-cont">
+					<p>
+						<a href="#"><b>[Personaje]</b> Lorem ipsum dolor amet, consec tetur elit.</a>
+					</p>
+					<p>
+						<a href="#"><b>[Personaje]</b> Lorem ipsum dolor amet, consec tetur elit.</a>
+					</p>
+					<p>
+						<a href="#"><b>[Personaje]</b> Lorem ipsum dolor amet, consec tetur elit.</a>
+					</p>
+				</div>	
+				
+				
+
+				
+				
+		
+			</div><!-- fin columna-izq_portada -->
+			
+			</div><!-- fin contenido-articulos -->
+		</div><!-- fin contenido -->
+{% endblock %}
+

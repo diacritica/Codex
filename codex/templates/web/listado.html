@@ -1,0 +1,243 @@
+{% extends "basebasic.html" %}
+{% block title %}
+<title>Codex de la Marca del Este - Búsqueda</title>
+{% endblock %}
+{% block navigation %}
+		<div id="cabecera">
+			<div id="menu">
+				<ul>	     
+					<li><a href="/">El Codex</a></li>	
+					<li><a href="/character">Personajes</a></li>	 
+					<li><a href="/creature">Bestiario</a></li>	
+					<li><a href="/location">Lugares</a></li>
+					<li><a href="/object">Objetos</a></li>	
+                    <li><a href="/adventure">Aventuras</a></li>	
+					<li><a href="/chronicle">Crónicas</a></li>	
+					<li><a href="/send_info">Enviar info</a></li>	
+					<li><a href="/contact">Contacto</a></li>
+        		</ul>
+			</div><!-- fin menu -->
+			
+			<div id="logo">
+				<a href="/"><img src="/ima/codex-logo.jpg" alt="Codex de las aventuras de la Marca del Este." /></a>
+			</div><!-- fin logo -->
+			
+			<div id="slogan">
+				La recopilación de todo el conocimiento sobre la Marca del Este.
+			</div><!-- fin logo -->
+			
+			<div id="busqueda-simple">
+				<div id="form-busqueda-simple">
+				<form action="/search/" METHOD=GET>
+					<select name="option">					  
+						<option value="all">Todo</option>
+						<option value="character">Personaje</option>
+						<option value="creature">Bestiario</option>
+						<option value="location">Lugar</option>
+						<option value="adventure">Aventura</option>
+						<option value="object">Objeto</option>
+						<option value="chronicle">Crónica</option>					   
+					</select>
+					
+					<input class="barra_busqueda" type="text" name="searchterm" value="" />
+					
+					<input class="boton_buscar" type="submit" value="Buscar" />
+				</form>
+				</div>
+				<div id="ir-busqueda-avanzada"><a href="/advancedsearch">Búsqueda<br/>avanzada</a></div>
+			</div><!-- fin busqueda-simple -->
+			
+			
+			
+		</div><!-- fin cabecera -->
+{% endblock %}
+
+{% block content %}			
+		
+
+		<div id="contenido" >
+			<div id="contenido-listados" >			
+			<div id="columna-der-listados">
+				
+				<div id="volver"><span><a href="/">Volver a inicio</a>&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;</span> Búsqueda<!-- nombre de la categoria si es un resultado de listado de categoria O  palabra "Busqueda" e incluir el H1 de Resultado de busqueda de "El termino que busco"--></div> 
+				
+				<div id="central">
+					<h1>Resultado de búsqueda{% if keywords %} de " {% for k in keywords %}{{k}} {% endfor %}"{% endif %} <!-- solo para listados que sean resultados de busqueda --></h1>
+{% if results|length == 0 %}
+<p>Desafortunadamente, no existen resultados para la búsqueda propuesta.</p>
+{% endif %}					
+{% for object in results %}
+                    <!-- Resultado aventureros -->
+                    {% if object.objecttype == "character" %}
+					<h2>
+						<img src="/ima/ico-portada-personaje.png" alt="{{object.objecttype}}"/><a href="/{{object.objecttype}}/{{object.slug}}">{{object.name}}</a>						
+						<span>
+							<br/>
+							<b>Canon:</b> {{object.get_canon_level_display}} - Publicado en <a href="/{{object.objecttype}}">Personajes</a>. {{object.last_updated.date}}.
+						</span>						
+					</h2>
+					
+					<p class="detalles-listado">
+
+						<b>Especie:</b> {{object.get_species_display}} - <b>Nivel:</b> {{object.level}} - <b>Clase:</b> {{object.get_profession_display}} - <b>Tipo:</b> {{object.get_pncorpc_display}} - <b>Alineamiento:</b> {{object.get_alignment_display}}
+						<br/><b>Lugares:</b>
+
+                        {% for rlocation in object.relatedlocation.all %}
+    					   {% if forloop.first %} 
+    						<a href="/location/{{rlocation.slug}}">{{rlocation.name}}</a>
+    						{% endif %}
+    						{% if forloop.last and forloop.last != forloop.first %}
+    						 y <a href="/location/{{rlocation.slug}}">{{rlocation.name}}</a>
+    						{% endif %}
+    						{% if not forloop.last and not forloop.first %}
+    						, <a href="/location/{{rlocation.slug}}">{{rlocation.name}}</a>
+    						{% endif %}
+    					{% endfor %}
+					</p>
+
+					<p>
+						{{object.description|safe|truncatewords:100}}
+					</p>
+                    {% endif %}
+
+        			<!-- Resultado Bestiario -->
+			        {% if object.objecttype == "creature" %}
+					<h2>
+						<img src="/ima/ico-portada-bestiario.png" alt="{{object.objecttype}}"/><a href="/{{object.objecttype}}/{{object.slug}}">{{object.name}}</a>
+						<span>
+							<br/>
+							<b>Canon:</b> {{object.get_canon_level_display}} - Publicado en <a href="/{{object.objecttype}}">Bestiario</a>. {{object.last_updated.date}}.
+						</span>						
+					</h2>
+					
+					<p class="detalles-listado">
+						<b>Valor PX:</b> {{object.xpvalue}} - <b>CA:</b> {{object.AC}} - <b>DG:</b> {{object.hitdice}} - <b>Movimiento: {{object.move}}</b> 
+					</p>
+
+					<p>
+						{{object.description|safe|truncatewords:100}}
+					</p>
+                    {% endif %}
+
+                    <!-- Resultado Lugar -->
+			        {% if object.objecttype == "location" %}
+					<h2>
+						<img src="/ima/ico-portada-lugar.png" alt="{{object.objecttype}}"/><a href="/{{object.objecttype}}/{{object.slug}}">{{object.name}}</a>
+						<span>
+							<br/>
+							<b>Canon:</b> {{object.get_canon_level_display}} - Publicado en <a href="/{{object.objecttype}}">Lugares</a>. {{object.last_updated.date}}.
+						</span>						
+					</h2>
+					
+					<p class="detalles-listado">
+						<b>Tipo:</b> {{object.get_loctype_display|default_if_none:"Desconocido"}} - <b>Estado:</b>  {{object.get_status_display|default_if_none:"Desconocido"}} - <b>Población:</b> {{object.population|default_if_none:"Desconocido"}} - <b>Alineamiento:</b> {{object.get_alignment_display|default_if_none:"Desconocido"}}
+					</p>
+
+					<p>
+						{{object.description|safe|truncatewords:100}}
+					</p>
+                    {% endif %}
+				
+					<!-- Resultado Aventura -->
+
+					{% if object.objecttype == "adventure" %}
+					<h2>
+						<img src="/ima/ico-portada-aventura.png" alt="{{object.objecttype}}"/><a href="/{{object.objecttype}}/{{object.slug}}">{{object.name}}</a>
+						<span>
+							<br/>
+							<b>Canon:</b> {{object.get_canon_level_display}} - Publicado en <a href="/{{object.objecttype}}">Aventuras</a>. {{object.last_updated.date}}.
+						</span>						
+					</h2>
+					
+					<p class="detalles-listado">
+						<b>Sesiones de juego:</b>  {{object.sessions|default:"*"}} - <b>Nivel:</b>  {{object.minlevel|default:"*"}} a {{object.maxlevel|default:"*"}} - <b>Nº Jugadores:</b>  {{object.minnumplayers|default:"*"}} a {{object.maxnumplayers|default:"*"}} - <b>Precio:</b>  {{object.get_price_display}}
+					</p>
+
+					<p>
+						{{object.description|safe|truncatewords:100}}
+					</p>
+                    {% endif %}
+							
+			        <!-- Resultado Objetos -->
+					{% if object.objecttype == "object" %}
+					<h2>
+						<img src="/ima/ico-portada-objetos.png" alt="{{object.objecttype}}"/><a href="/{{object.objecttype}}/{{object.slug}}">{{object.name}}</a>
+						<span>
+							<br/>
+							<b>Canon:</b> {{object.get_canon_level_display}} - Publicado en <a href="/{{object.objecttype}}">Objetos</a>. {{object.last_updated.date}}.
+						</span>						
+					</h2>
+					
+					<p class="detalles-listado">
+						<b>Tipo:</b> {{object.get_objtype_display}} - <b>Rareza:</b> {{object.get_rarity_display}} - <b>Alineamiento:</b> {{object.get_alignment_display}}</b>
+					</p>
+
+					<p>
+						{{object.description|safe|truncatewords:100}}
+					</p>
+                    {% endif %}
+			
+			        <!-- Resultado Crónica -->
+					{% if object.objecttype == "chronicle" %}
+					<h2>
+						<img src="/ima/ico-portada-cronica.png" alt="{{object.objecttype}}"/><a href="/{{object.objecttype}}/{{object.slug}}">{{object.name}}</a>
+						<span>
+							<br/>
+							<b>Canon:</b> {{object.get_canon_level_display}} - Publicado en <a href="/{{object.objecttype}}">Crónicas</a>. {{object.last_updated.date}}.
+						</span>						
+					</h2>
+					
+					<p class="detalles-listado">
+						<b>Web de la crónica:</b> <a href="{{object.url}}" target="_blank">{{object.url|truncatechars:30}}</a> - <b>Aventura:</b> <a href="/adventure/{{object.adventure.slug}}">{{object.adventure.name}}</a>
+					</p>
+
+					<p>
+						{{object.description|safe|truncatewords:100}}
+					</p>
+                    {% endif %}
+{% endfor %}								
+
+					<div id="navegacion-resultados">
+						
+						<ul id="pagina">
+
+                            {% if results.has_previous %}
+							<li class="siguiente"> <a href="?page=1">« Primero</a></li>
+                            <li class="siguiente"><a href="?page={{ results.previous_page_number }}">« Anterior</a>   </li>
+                            {% else %}
+                            <li class="anterior-off">« Primero</a></li>
+                            <li class="anterior-off">« Anterior</li>
+							{% endif %}
+
+							<li class="activo">Página {{ results.number }} de {{ results.paginator.num_pages }}</li>
+
+                             {% if results.has_next %}
+							<li class="siguiente"> <a href="?page={{ results.next_page_number }}">Siguiente »</a></li>
+                            
+							<li class="siguiente"><a href="?page={{results.paginator.num_pages}}">Último »</a></li>
+                            {% else %}
+                            <li class="anterior-off">Siguiente »</li>
+                            <li class="anterior-off">Último »</li>
+                            {% endif %}
+						</ul> 
+						
+							
+					</div>
+					
+					
+					
+				</div><!-- fin central -->
+			</div><!-- fin columna-der-listados -->			
+			</div><!-- fin contenido-articulos -->
+		</div><!-- fin contenido -->
+		
+		
+		
+
+		<div id="pie"> 
+				<div id="validaciones">	
+					Aventuras de la Marca del este 2011 - Validación: <a href="http://validator.w3.org/check?uri=referer">XHTML</a> | <a href="http://jigsaw.w3.org/css-validator/validator?uri=http://?????/css/estilo.css">CSS</a>
+				</div><!-- fin validaciones -->
+		</div><!-- fin pie -->
+	</div><!-- fin contenedor -->
+{% endblock %}		

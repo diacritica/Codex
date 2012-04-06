@@ -1,0 +1,11 @@
+afilada:2000:En ocasiones es conveniente amolar un arma, especialmente las de filo cortante, para que no pierdan sus cualidades ofensivas. A discreción del Narrador, éste podría aplicar algún tipo de penalizador si un aventurero descuidara su equipo.
++1:2000:+1 al ataque
++2:10000:+2 al ataque
++3:20000:+3 al ataque
++4:40000:+4 al ataque
++5:80000:+5 al ataque
+de Luz:10000:El arma ilumina como si estuviera bajo los efectos del conjuro del mismo nombre.
+detectora de Muertos Vivientes:20000:Se ilumina cuando hay algún muerto viviente en un radio de 15 metros a su alrededor.
+defensiva:40000:Confiere un +2 a la bonificación a la armadura del portador
+Vorpalina:80000:Esta arma dobla el rango de tiradas para un crítico del arma, es decir si el aventurero saca un 19 o un 20 en la tirada de ataque, consigue un golpe crítico automático, además ha de volver a lanzar 1d20 y, si con la tirada vuelve a obtener un resultado un 19 ó 20 cortará la cabeza de la criatura a la que se enfrente y ésta morirá en el acto.
+

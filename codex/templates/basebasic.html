@@ -1,0 +1,348 @@
+{% block header %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title></title>
+		<meta name='title' content=''/>
+		<meta name='description' content=''/>
+ 
+		<meta name="author" content=""/>
+		<meta name="language" content="spanish"/>
+		<meta name="revisit" content="10 day"/>
+		<meta name="distribution" content="global"/>
+
+		<meta name="robots" content="All"/>
+		<meta http-equiv="pragma" content="no-cache"/>
+		<meta http-equiv="expires" content="-1"/>		
+        <link rel="stylesheet" href="/css/reset.css" type="text/css" media="screen" />
+        <link rel="stylesheet" href="/css/estilo.css" type="text/css" media="screen" />
+		
+	<!-- Busqueda avanzada	-->	
+	    <script type="text/javascript" src="/js/jquery.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script type="text/javascript" src="/js/jquery.idTabs.min.js"></script>
+
+
+    <!-- Busqueda avanzada	-->				
+        		<!-- Explicacion de Canon -->
+		<link rel="stylesheet" type="text/css"
+href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/themes/base/jquery-ui.css">
+		
+		<script type="text/javascript"
+src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/jquery-ui.min.js"></script>
+			
+	
+		<script>			
+			$.fx.speeds._default = 1000;
+			$(function() {
+				$( "#dialog" ).dialog({
+					autoOpen: false,
+					show: "blind",
+					hide: "blind",
+					width: 600
+				});
+		
+				$( "#opener" ).click(function() {
+					$( "#dialog" ).dialog( "open" );
+					return false;
+				});
+			});
+		</script>
+
+
+	<!-- Explicacion de Canon -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-27832804-1']);
+  _gaq.push(['_setDomainName', 'codexdelamarca.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+	</head>
+{% endblock %}
+
+<body> 
+<div id="contenedor">
+		{% block navigation %}
+		<div id="cabecera">
+			<div id="menu">
+				<ul>	     
+					<li><a href="/" class="seleccion">El Codex</a></li>	
+					<li><a href="/character">Personajes</a></li>	 
+					<li><a href="/creature">Bestiarios</a></li>	
+					<li><a href="/location">Lugares</a></li>
+					<li><a href="/object">Objetos</a></li>	
+					<li><a href="/adventure">Aventuras</a></li>	
+					<li><a href="/chronicle">Crónicas</a></li>	
+					<li><a href="/send_info">Enviar info</a></li>	
+					<li><a href="/contact">Contacto</a></li>
+        		</ul>
+			</div><!-- fin menu -->
+			
+			<div id="logo">
+				<a href="/"><img src="/ima/codex-logo.jpg" alt="Codex de las aventuras de la Marca del Este." /></a>
+			</div><!-- fin logo -->
+			
+			<div id="slogan">
+				La recopilación de todo el conocimiento sobre la Marca del Este.
+			</div><!-- fin logo -->
+			
+			<div id="busqueda-simple">
+				<div id="form-busqueda-simple">
+		<form action="/search/" method='get'>
+					<select name="option">					  
+						<option value="all">Todo</option>
+						<option value="character">Personaje</option>
+						<option value="creature">Bestiario</option>
+						<option value="location">Lugar</option>
+						<option value="object">Objetos</option>
+						<option value="adventure">Aventura</option>
+						<option value="chronicle">Crónica</option>					   
+					</select>
+					
+					
+					<input class="barra_busqueda" type="text" name="searchterm"
+value="" />
+					
+					<input class="boton_buscar" type="submit" value="Buscar" />
+				</form>
+				</div>
+				<div id="ir-busqueda-avanzada"><a href="/advancedsearch">Búsqueda<br/>avanzada</a></div>
+			</div><!-- fin busqueda-simple -->
+
+			
+			
+			
+		</div><!-- fin cabecera -->
+		
+		{% endblock %}
+
+		{% block content %}
+		<div id="contenido" >
+			<div id="contenido-articulos" >
+			<div id="columna-izq">
+				<div id="volver"><span><a href="/">Volver a inicio</a>&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;</span> <a href="#">Personaje</a></div>
+				
+				<h1>{{object.name}}</h1>
+				<p>{{object.description|safe}}
+				</p>
+				<h2>Características:</h2>
+				
+				<div class="lista3columnas">
+					<ul>
+						<li><b>FUERZA:</b> 
+						  {% if object.strengthstat %}
+						  {{object.strengthstat}}
+						  {% else %}-
+						  {% endif %}
+						</li>
+						<li><b>CONSTITUCIÓN:</b> 
+						  {% if object.constitutionstat %}
+						  {{object.constitutionstat}}
+						  {% else %}-
+						  {% endif %}
+						</li>
+						<li><b>SABIDURÍA:</b>
+						  {% if object.wisdomstat %}
+						  {{object.wisdomstat}}
+						  {% else %}-
+						  {% endif %}
+						  </li>
+						<li><b>DESTREZA:</b>
+						   {% if object.dexteritystat %}
+						  {{object.dexteritystat}}
+						  {% else %}-
+						  {% endif %}
+						  </li>
+						<li><b>INTELIGENCIA:</b>
+						  {% if object.intelligencestat %}
+						  {{object.intelligencestat}}
+						  {% else %}-
+						  {% endif %}
+						  </li>
+						<li><b>CARISMA:</b>
+						  {% if object.charismastat %}
+						  {{object.charismastat}}
+						  {% else %}-
+						  {% endif %}
+						</li>
+	        		</ul>
+				
+				</div><!-- fin caract-->
+				
+				
+				
+				<h2>Detalles:</h2>
+
+				<div class="lista3columnas" id="list-detalle">
+					<ul>
+						<li><b>Sexo:</b> {{object.get_gender_display}}</li>
+						<li><b>Nivel:</b> {{object.level}}</li>
+						<li><b>Aparición:</b> {{object.startdate}}</li>
+						<li><b>Edad:</b> {{object.age}}</li>
+						<li><b>CA:</b> {{object.AC}}</li>
+						<li><b>Estado:</b> {{object.get_status_display}}</li>
+						<li><b>Especie:</b> {{object.species}}	</li>
+						<li><b>Movimiento:</b> {{object.move}}</li>
+						<li><b>Tipo:</b> {{object.get_pncorpc_display}}</li>
+						
+						<li><b>Clase:</b> {{object.get_profession_display}}</li>
+						<li><b>Moral:</b> {{object.moral}}</li>
+						<li><b>Idiomas:</b> 
+						  {% for language in object.languages.all %}
+						  {{language.name }},
+						  {% endfor %}
+						</li>
+						<li><b>TS:</b> {{object.get_saveroll_display}}</li>
+						<li><b>Alineamiento:</b> {{object.get_alignment_display}}	</li>
+						<li><b>Religión:</b>
+						  {% for religion in object.religion.all %}
+						  {{religion.name }},
+						  {% endfor %}
+						</li>
+						<li><b>Puntos de golpe:</b> {{object.hitpoints}}</li>
+						<li style="width: 300px"><b>Lugares:</b> 
+						  {% for rlocation in object.relatedlocation.all %}
+                                                  {{rlocation.name }},
+                                                  {% endfor %}
+						  </li>
+						</ul>
+				</div><!-- fin caract-->
+				
+				
+				<h2>Ataques: <span>(Entre parentesis el daño)</span></h2>
+
+				<p>{{object.weapons|safe}}</p>
+
+				<h2>Nota del autor:</h2>
+
+				<p>
+					{{object.comments}}
+
+				</p>
+				
+				
+
+			</div><!-- fin columna-izq -->
+			
+			<div id="columna-der">
+				<div id="canon">
+					<div id="nivel-canon">Nivel de Canon</div>				
+					<div id="ima-canon"><img src="/ima/canon/canon-{{object.get_canon_level_display}}.jpg" alt="icono" height="68px" width="68px"/></div>				
+					<div id="denominacion-canon">{{object.get_canon_level_display}}<div id="que"><a href="#">¿Qué es esto?</a></div></div>				
+				</div><!-- fin canon -->
+				
+				<div id="expo-ima">
+					  {% for image in object.image.all %}
+					    {% if forloop.first %}
+
+					<div id="ima-grande">
+						<a href="#"><img src="{{ MEDIA_URL }}{{image.image.name}}" alt="icono" height="230px" width="350px"/></a>
+						
+				</div>
+					<!-- 
+					<div id="ima-mini">
+						<a href="#"><img src="ima/ico-portada-item.jpg" alt="icono" height="50px" width="75px"/></a>
+						<a href="#"><img src="ima/ico-portada-item.jpg" alt="icono" height="50px" width="75px"/></a>
+						<a href="#"><img src="ima/ico-portada-item.jpg" alt="icono" height="50px" width="75px"/></a>
+						<a href="#"><img src="ima/ico-portada-item.jpg" alt="icono" height="50px" width="75px"/></a>
+					</div>
+					-->
+				</div><!-- fin expo-ima -->
+				
+				<div id="firma-ima">
+					<b>Autor de la ilustración</b>: {{image.author.all}} <a href="{{image.author.web_url}}">{{image.author.web_url}}</a>
+				</div><!-- fin expo-ima -->
+					{% endif %}
+
+
+
+
+				{% endfor %}
+				
+				<h2>Equipo especial:</h2>
+				
+				<div class="lista2columnas">
+					<ul>
+					  {% for relatedobject in object.relatedobject.all %}
+					  {% if relatedobject.rarity != "C" %}
+					  
+						<li>{{relatedobject.name}}</li>
+					{% endif %}
+					{% endfor %}
+
+					</ul>
+				</div><!-- fin lista2columnas-->
+				
+				
+				<h2>Equipo:</h2>
+				<p>
+					  {% for relatedobject in object.relatedobject.all %}
+					  {% if relatedobject.rarity == "C" %}
+					  
+						{{relatedobject.name}},
+					{% endif %}
+					{% endfor %}
+				</p>
+				
+				<h2>Dinero y gemas:</h2>
+				<p>
+						  {% if object.treasurevalue %}
+						  {{object.treasurevalue}}
+						  {% else %}-
+						  {% endif %}
+				</p>
+				
+			
+				<h2>Aliados y familiares:</h2>
+				<div class="lista2columnas">
+					<ul>
+					  {% for relation in relatedcharacters2 %}
+					  {% if relation.relation21 in "GROUPSONFATHERBROTHERSUBDITFRIENDMASTERAPPRENTICEFAMILIAREMPLOYEE" %}
+						<li>{{relation.get_relation21_display}} de <a href="/chars/{{relation.character1.slug}}">{{relation.character1.name}}</a></li>
+						{% endif %}
+					{% endfor %}
+	 				 {% for relation in relatedcharacters1 %}
+					  	{% if relation.relation21 in "GROUPSONFATHERBROTHERSUBDITFRIENDMASTERAPPRENTICEFAMILIAREMPLOYEE" %}
+						<li>{{relation.get_relation12_display}} de <a href="/chars/{{relation.character2.slug}}">{{relation.character2.name}}</a></li>
+						{% endif %}
+
+					{% endfor %}
+						
+					
+					</ul>
+				</div><!-- fin lista2columnas-->
+				
+				<h2>Enemigos:</h2>
+				<div class="lista2columnas">
+					<ul>
+					  {% for relation in relatedcharacters2 %}
+					  {% if relation.relation21 not in "GROUPSONFATHERBROTHERSUBDITFRIENDMASTERAPPRENTICEFAMILIAREMPLOYEE" %}
+						<li>{{relation.get_relation21_display}} de <a href="/chars/{{relation.character1.slug}}">{{relation.character1.name}}</a></li>
+						{% endif %}
+					{% endfor %}
+					  {% for relation in relatedcharacters1 %}
+					  	{% if relation.relation21 not in "GROUPSONFATHERBROTHERSUBDITFRIENDMASTERAPPRENTICEFAMILIAREMPLOYEE" %}
+						<li>{{relation.get_relation12_display}} de <a href="/chars/{{relation.character2.slug}}">{{relation.character2.name}}</a></li>
+						{% endif %}
+
+					{% endfor %}
+						
+					</ul>
+				</div><!-- fin lista2columnas-->
+				
+{% endblock %}
+
+
+	</div><!-- fin contenedor -->
+</body>
+</html>		
+

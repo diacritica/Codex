@@ -1,0 +1,96 @@
+{% extends "basebasic.html" %}
+{% block title %}
+<title>Codex de la Marca del Este - Búsqueda Avanzada</title>
+{% endblock %}
+		<div id="cabecera">
+			<div id="menu">
+				<ul>	     
+					<li><a href="index.html">El Codex</a></li>	
+					<li><a href="personaje.html">Personajes</a></li>	 
+					<li><a href="bestiario.html" >Bestiario</a></li>	
+					<li><a href="lugar.html">Lugares</a></li>
+					<li><a href="aventura.html">Aventuras</a></li>	
+					<li><a href="objeto.html" >Objetos</a></li>	
+					<li><a href="cronica.html" >Crónicas</a></li>	
+					<li><a href="enviar-info.html">Enviar info</a></li>	
+					<li><a href="contactar.html">Contacto</a></li>
+        		</ul>
+			</div><!-- fin menu -->
+			
+			<div id="logo">
+				<a href="/"><img src="/ima/codex-logo.jpg" alt="Codex de las aventuras de la Marca del Este." /></a>
+			</div><!-- fin logo -->
+			
+			<div id="slogan">
+				La recopilación de todo el conocimiento sobre la Marca del Este.
+			</div><!-- fin logo -->
+			
+			<div id="busqueda-simple">
+				<div id="form-busqueda-simple">
+				<form action="/search/" METHOD=GET>
+					<select name="option">					  
+						<option value="ALL">Todo</option>
+						<option value="character">Personaje</option>
+						<option value="creature">Bestiario</option>
+						<option value="location">Lugar</option>
+						<option value="adventure">Aventura</option>
+						<option value="object">Objeto</option>
+						<option value="chronicle">Crónica</option>					   
+					</select>
+					
+					<input class="barra_busqueda" type="text" name="searchterm" value="" />
+					
+					<input class="boton_buscar" type="submit" value="Buscar" />
+				</form>
+				</div>
+				<div id="ir-busqueda-avanzada"><a href="/advancedsearch">Búsqueda<br/>avanzada</a></div>
+			</div><!-- fin busqueda-simple -->
+			
+		</div><!-- fin cabecera -->
+
+
+{% block content %}
+		<div id="contenido" >
+			<div id="contenido-listados" >			
+			<div id="columna-der-listados">
+				
+				<div id="volver"><span><a href="/">Volver a inicio</a>&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;</span> Contacto</a></div> 
+				
+				<div id="central">
+			
+				
+					<div class="formulario-avanzado-2-columnas" style="width: 800px;text-align: center">
+					<br/>Puedes contactar con nosotros enviandonos un mail a: <h2>lamarcadeleste[@]gmail[.]com</h2><br/>
+					En nuestro blog:  <h2><a href="http://lamarcadeleste.com">lamarcadeleste.com</a></h2><br/>
+					o visitando nuestra tienda online:  <h2><a href="http://tesorosdelamarca.com">tesorosdelamarca.com</a></h2><br/>
+					</div>
+
+					<div class="formulario-avanzado-2-columnas" style="width: 800px;text-align: center">
+					<br/>Puedes contactar con nosotros enviandonos un mail a: <h2>lamarcadeleste[@]gmail[.]com</h2><br/>
+					En nuestro blog:  <h2><a href="http://lamarcadeleste.com">lamarcadeleste.com</a></h2><br/>
+					o visitando nuestra tienda online:  <h2><a href="http://tesorosdelamarca.com">tesorosdelamarca.com</a></h2><br/>
+					</div>
+
+					
+					<div style="clear: both"></div>
+					<div style="clear: both"></div>
+					<div style="clear: both"></div>
+					<div style="clear:all;float:none; width:850px;">
+			  <br /><br />
+	</div> 				
+				</div><!-- fin central -->
+			</div><!-- fin columna-der-listados -->			
+			</div><!-- fin contenido-articulos -->
+		</div><!-- fin contenido -->
+		
+		
+		
+
+		<div id="pie"> 
+				<div id="validaciones">	
+					Aventuras de la Marca del este 2011 - Validación: <a href="http://validator.w3.org/check?uri=referer">XHTML</a> | <a href="http://jigsaw.w3.org/css-validator/validator?uri=http://codex.ithilien.eu/css/estilo.css">CSS</a>
+				</div><!-- fin validaciones -->
+		</div><!-- fin pie -->
+	</div><!-- fin contenedor -->
+{% endblock %}
+

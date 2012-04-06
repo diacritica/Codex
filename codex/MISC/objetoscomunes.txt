@@ -1,0 +1,40 @@
+Arco Largo 
+Arco Corto 
+Ballesta Pesada 
+Ballesta Ligera 
+Bastón 
+Cachiporra 
+Cimitarra 
+Daga de Plata 
+Dardo 
+Espada Corta 
+Espada Larga 
+Espada Bastarda 
+Espada de dos manos 
+Garrote 
+Hacha de Combate 
+Hacha de Mano 
+Honda 
+Jabalina 
+Lanza 
+Látigo 
+Látigo Pesado 
+Lucero del Alba 
+Martillo Ligero 
+Martillo de Guerra 
+Maza 
+Pica Pesada 
+Pica Ligera 
+Tridente 
+Armadura de Bandas
+Armadura de Cuero
+Armadura de Escamas
+Armadura de Placas
+Armadura de Varillas
+Barda para Montura
+Cota de Mallas
+Cuero
+Tachonado
+Escudo
+Sin Armadura
+

@@ -1,0 +1,193 @@
+{% extends "basebasic.html" %}
+{% block title %}
+<title>Codex de la Marca del Este - Aventuras</title>
+{% endblock %}
+{% block navigation %}
+		<div id="cabecera">
+			<div id="menu">
+				<ul>	     
+					<li><a href="/">El Codex</a></li>	
+					<li><a href="/character">Personajes</a></li>	 
+					<li><a href="/creature">Bestiario</a></li>	
+					<li><a href="/location">Lugares</a></li>
+					<li><a href="/object">Objetos</a></li>	
+					<li><a href="/adventure">Aventuras</a></li>	
+					<li><a href="/chronicle"  class="seleccion">Crónica</a></li>	
+					<li><a href="/send_info">Enviar info</a></li>	
+					<li><a href="/contact">Contacto</a></li>
+        		</ul>
+			</div><!-- fin menu -->
+			
+			<div id="logo">
+				<a href="/"><img src="/ima/codex-logo.jpg" alt="Codex de Aventuras de la Marca del Este." /></a>
+			</div><!-- fin logo -->
+			
+			<div id="slogan">
+				La recopilación de todo el conocimiento sobre la Marca del Este.
+			</div><!-- fin logo -->
+			
+			<div id="busqueda-simple">
+				<div id="form-busqueda-simple">
+				<form action="/search/" METHOD=GET>
+					<select name="option">					  
+						<option value="all">Todo</option>
+						<option value="character">Personaje</option>
+						<option value="creature">Bestiario</option>
+						<option value="location">Lugar</option>
+						<option value="object">Objeto</option>
+						<option value="adventure">Aventura</option>
+						<option value="chronicle"  selected>Crónica</option>					   
+					</select>
+					
+					<input class="barra_busqueda" type="text" name="searchterm" value="" />
+					
+					<input class="boton_buscar" type="submit" value="Buscar" />
+				</form>
+				</div>
+				<div id="ir-busqueda-avanzada"><a href="/advancedsearch">Búsqueda<br/>avanzada</a></div>
+			</div><!-- fin busqueda-simple -->
+			
+			
+			
+		</div><!-- fin cabecera -->
+{% endblock %}
+
+{% block content %}			
+		
+
+		<div id="contenido" >
+			<div id="contenido-articulos" >	
+
+			<div id="columna-izq_portada" style="padding-top:0px;">
+					<div id="volver">
+					<span>
+					<a href="/">Volver a inicio</a>
+					&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;
+					</span>
+					Crónicas
+					</div>
+				
+				<div id="quote">Esta sección contiene las crónicas o relatos inspirados en el mundo de La Marca del Este o las aventuras publicadas sobre ella. </div>
+				<p>
+					Os presentamos las últimas tres crónicas que fueron añadidas al Codex, una crónica destacada de entre un subconjunto del total y el buscador avanzado para que sea sencillo encontrar exactamente lo que uno necesita. Las crónicas suelen estar relacionadas con aventuras también presentes en el Codex.
+				</p>
+				<div id="novedades-categorias">
+					Novedades
+				</div>
+                <div class="elemento-portada-categoria">
+                {% for object in results|slice:":3" %}
+
+				
+				<h2><img src="/ima/ico-portada-cronica.png" alt="crónicas"/><a href="/chronicle/{{object.slug}}">{{object.name}}</a></h2>
+				<p class="sub-text">{{object.last_updated.date}}. Canon: {{object.get_canon_level_display}}</p>
+				<p class="intro">{{object.description|safe|truncatewords:70}}</p>
+
+                {% endfor %}
+				
+
+				<p class="ver"><a href="/chronicle/all">Ver todas [+]</a></p>
+				</div>
+				
+			</div><!-- fin columna-izq_portada -->
+
+			<div id="columna-der_portada" style="padding-top:0px;">
+				<div>
+					<img src="/ima/banner-categoria-cronica.jpg" alt="lugares"  style="float:none;"/>
+					<br/><br/>
+				</div>
+				
+
+				<div>
+				<h1>Destacado</h1>
+				</div>
+				<div class="elemento-portada-categoria">					
+				<h2>
+				<img alt="crónicas" src="/ima/ico-portada-cronica.png" />
+				<a href="/chronicle/{{highlightedresult.slug}}">{{highlightedresult.name}}</a>
+				</h2>
+				<p class="sub-text">{{highlightedresult.last_updated.date}}. Canon: {{highlightedresult.get_canon_level_display}}</p>
+				<p class="intro">
+                {% for image in highlightedresult.image.all %}
+					    {% if forloop.first %}
+					<a href="#"><img width="290px" height="190px" alt="icono" src="{{ MEDIA_URL }}{{image.image.name}}" /></a>
+                        {% endif %}
+                {% endfor %}
+				{{highlightedresult.description|safe|truncatewords:200}}
+				</p>
+								
+								
+				<p class="ver"><a href="/chronicle/{{highlightedresult.slug}}">Seguir leyendo [+]</a></p>
+				</div>			
+				
+				<div style="clear: both"></div>
+				
+				<div>
+				<h1>Búsqueda avanzada</h1>
+				</div>
+				<div id="elemento-formulario-categoria">
+			<form action="/resadvancedsearch/" METHOD=GET>
+
+<!-- Separador-->	<div style="clear: both"><br/></div>
+
+				<h2 class="titulo-formulario-avanzado" >			
+						Palabras clave:						
+					</h2>
+						
+					<div class="formulario-avanzado" >
+						<input style="padding: 5px 5px; font-size:16px;width:380px;" type="text" name="searchterm" />
+					</div>
+					
+<!-- Separador-->	<div style="clear: both"><br/></div>
+					
+				<h2 class="titulo-formulario-avanzado">	
+                    
+							<input type="hidden" name="option" value="location">
+										Evaluación:						
+										</h2>
+										<div class="formulario-avanzado-2-columnas">
+											<select name="canon_level">
+	    					  <option value="ALL">Cualquiera</option>
+	    					  <option value="NEW">Nuevo</option>
+	    					  <option value="AP">Apócrifo</option>
+	    					  <option value="APC">En estudio</option>
+	    					  <option value="C">Canon</option>
+	    				</select> </div>
+											<!-- Separador-->	<div style="clear: both"><br/></div>
+			<h2 class="titulo-formulario-avanzado">			
+										Aventuras:						
+										</h2>
+										<div class="formulario-avanzado-1-columnas">
+										<select name="chr_adventure">
+											  <option value="ALL">Todas</option>
+                                              {% for adventure in adventures %}
+											  <option value="{{adventure.id}}">{{adventure.name}}</option>
+                                              {% endfor %}
+											 </select> 
+										</div>
+										
+<!-- Separador-->	<div style="clear: both"><br/></div>
+					<div style="text-align: center">
+						<input class="boton_buscar" type="submit" value="Buscar" style="font-size: 22px;height: 38px;"/>
+					</div>
+				</form>
+			</div> <!-- fin elemento-formulario-categoria  -->
+			</div><!-- fin columna-der_portada  -->
+	</div><!-- fin contenido-artuculos -->
+		</div><!-- fin contenido -->
+		
+		
+		
+
+		<div id="pie">
+				<div id="validaciones">	
+					Aventuras de la Marca del este 2011 - Validación: <a
+href="http://validator.w3.org/check?uri=referer">XHTML</a> | <a
+href="http://jigsaw.w3.org/css-validator/validator?uri=http://?????/css/estilo.css">CSS</a>
+					<br/><br/>
+					<span style="font-size: 10px"> Desarrollo y mantenimiento: Angela
+Rivera Campos @ghilbrae y Pablo Ruiz Múzquiz @diacritica	 - Diseño: <a
+href="http://jagvalverde.com/">Jose Valverde</a></span>
+				</div><!-- fin validaciones -->
+		</div><!-- fin pie -->
+	</div><!-- fin contenedor -->
+{% endblock %}		
