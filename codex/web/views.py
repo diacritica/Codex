@@ -106,7 +106,7 @@ def CharacterSectionView(request):
 def CharacterListingView(request):
     allobjects = Character.objects.all()
 
-    paginator = Paginator(allobjects, 10) # Show 25 contacts per page
+    paginator = Paginator(allobjects, 10) # Show 10 contacts per page
 
     page = request.GET.get('page')
     try:
@@ -164,7 +164,7 @@ def CreatureSectionView(request):
 def CreatureListingView(request):
     allobjects = Creature.objects.all()
 
-    paginator = Paginator(allobjects, 10) # Show 25 contacts per page
+    paginator = Paginator(allobjects, 10) # Show 10 contacts per page
 
     page = request.GET.get('page')
     try:
@@ -203,7 +203,7 @@ def LocationSectionView(request):
 def LocationListingView(request):
     allobjects = Location.objects.all()
 
-    paginator = Paginator(allobjects, 10) # Show 25 contacts per page
+    paginator = Paginator(allobjects, 10) # Show 10 contacts per page
 
     page = request.GET.get('page')
     try:
@@ -239,7 +239,7 @@ def ObjectSectionView(request):
 def ObjectListingView(request):
     allobjects = Object.objects.all()
 
-    paginator = Paginator(allobjects, 10) # Show 25 contacts per page
+    paginator = Paginator(allobjects, 10) # Show 10 contacts per page
 
     page = request.GET.get('page')
     try:
@@ -277,7 +277,7 @@ def AdventureSectionView(request):
 def AdventureListingView(request):
     allobjects = Adventure.objects.all()
 
-    paginator = Paginator(allobjects, 10) # Show 25 contacts per page
+    paginator = Paginator(allobjects, 10) # Show 10 contacts per page
 
     page = request.GET.get('page')
     try:
@@ -313,7 +313,7 @@ def ChronicleSectionView(request):
 def ChronicleListingView(request):
     allobjects = Chronicle.objects.all()
 
-    paginator = Paginator(allobjects, 10) # Show 25 contacts per page
+    paginator = Paginator(allobjects, 10) # Show 10 contacts per page
 
     page = request.GET.get('page')
     try:
@@ -350,7 +350,7 @@ def LocationDetailView(request, slug):
     charlocs = CharacterLocationRelationship.objects.filter(location__name = location.name).order_by('relation')
     oc = [o.character for o in charlocs]
     location.orderedchars = oc
-    
+
 
 
     return render_to_response('web/location_detail.html', {
@@ -445,9 +445,9 @@ def SimpleSearchView(request, searchfilter, searchterm="", canonlvl="ALL"):
 
     else:
         if canonlvl=="ALL":
-            allobjects = {'object':Object.objects.all(),'character':Character.objects.all(),'creature':Creature.objects.all(),'chronicle':Chronicle.objects.all(),'adventure':Adventure.objects.all(),'location':Location.objects.all()}        
+            allobjects = {'object':Object.objects.all(),'character':Character.objects.all(),'creature':Creature.objects.all(),'chronicle':Chronicle.objects.all(),'adventure':Adventure.objects.all(),'location':Location.objects.all()}
         else:
-            allobjects = {'object':Object.objects.filter(canon_level=canonlvl),'character':Character.objects.filter(canon_level=canonlvl),'creature':Creature.objects.filter(canon_level=canonlvl),'chronicle':Chronicle.objects.filter(canon_level=canonlvl),'adventure':Adventure.objects.filter(canon_level=canonlvl),'location':Location.objects.filter(canon_level=canonlvl)}        
+            allobjects = {'object':Object.objects.filter(canon_level=canonlvl),'character':Character.objects.filter(canon_level=canonlvl),'creature':Creature.objects.filter(canon_level=canonlvl),'chronicle':Chronicle.objects.filter(canon_level=canonlvl),'adventure':Adventure.objects.filter(canon_level=canonlvl),'location':Location.objects.filter(canon_level=canonlvl)}
 
 
 
@@ -457,12 +457,12 @@ def SimpleSearchView(request, searchfilter, searchterm="", canonlvl="ALL"):
 
             for ob in objectlist:
                 ks = 0
-                
+
                 for keyword in keywords:
                     if keyword.lower() in ob.searchText().lower():
                         ks+=5
                         ks+=ob.searchText().lower().count(keyword.lower())
-                
+
                     if ks>0:
                         if ob in results:
                             ob.hits += ks
@@ -474,7 +474,7 @@ def SimpleSearchView(request, searchfilter, searchterm="", canonlvl="ALL"):
     else: sresults = allobjects.items()
 
     object_list = sresults
-    paginator = Paginator(object_list, 10) # Show 25 contacts per page
+    paginator = Paginator(object_list, 10) # Show 10 contacts per page
 
     page = request.GET.get('page')
     try:
@@ -569,7 +569,7 @@ def ResultsAdvancedSearchView(request):
                     if keyword.lower() in ob.searchText().lower():#.split(" "):
                         ks+=5
                         ks+=ob.searchText().lower().count(keyword.lower())
-                      
+
                     if ks>0:
                         if ob in results:
                             ob.hits += ks
@@ -589,7 +589,7 @@ def ResultsAdvancedSearchView(request):
                                 objecttype="adventure"
                             ob.objecttype = objecttype
                             results.append(ob)
-                
+
         else:
             results = []
             for ob in objects:
@@ -608,8 +608,8 @@ def ResultsAdvancedSearchView(request):
                  ob.objecttype = objecttype
                  results.append(ob)
 
-        
-        
+
+
 
         return render_to_response("web/listado.html",{'objecttype':'none','keywords':keywords,'results':results})
 
@@ -617,7 +617,7 @@ def ResultsAdvancedSearchView(request):
     if objecttype == 'chronicle':
 
         chr_adventure = request.GET.get('chr_adventure') or None
-        
+
         objects = Chronicle.objects.all()
 
         if chr_adventure!="ALL" and chr_adventure:
@@ -637,7 +637,7 @@ def ResultsAdvancedSearchView(request):
                     if keyword.lower() in ob.searchText().lower():#.split(" "):
                         ks+=5
                         ks+=ob.searchText().lower().count(keyword.lower())
-                        
+
                     if ks>0:
                         if ob in results:
                             ob.hits += ks
@@ -645,9 +645,9 @@ def ResultsAdvancedSearchView(request):
                             ob.hits = ks
                             ob.objecttype = objecttype
                             results.append(ob)
-                
+
         else: results = objects
- 
+
 
     if objecttype == 'adventure':
 
@@ -655,7 +655,7 @@ def ResultsAdvancedSearchView(request):
         adv_numplayers = request.GET.get('adv_numplayers') or None
         adv_price = request.GET.get('adv_price') or None
         adv_numsessions = request.GET.get('adv_numsessions') or None
-        
+
         objects = Adventure.objects.all()
 
         if adv_level!="ALL" and adv_level:
@@ -683,7 +683,7 @@ def ResultsAdvancedSearchView(request):
                     if keyword.lower() in ob.searchText().lower():#.split(" "):
                         ks+=5
                         ks+=ob.searchText().lower().count(keyword.lower())
-                        
+
                     if ks>0:
                         if ob in results:
                             ob.hits += ks
@@ -691,9 +691,9 @@ def ResultsAdvancedSearchView(request):
                             ob.hits = ks
                             ob.objecttype = objecttype
                             results.append(ob)
-                
+
         else: results = objects
- 
+
 
     if objecttype == 'object':
 
@@ -703,7 +703,7 @@ def ResultsAdvancedSearchView(request):
         obj_alignment = request.GET.get('obj_alignment') or None
         obj_location = request.GET.get('obj_location') or None
 
-        
+
         objects = Object.objects.all()
 
         if obj_type!="ALL" and obj_type:
@@ -731,7 +731,7 @@ def ResultsAdvancedSearchView(request):
                     if keyword.lower() in ob.searchText().lower():#.split(" "):
                         ks+=5
                         ks+=ob.searchText().lower().count(keyword.lower())
-                        
+
                     if ks>0:
                         if ob in results:
                             ob.hits += ks
@@ -739,7 +739,7 @@ def ResultsAdvancedSearchView(request):
                             ob.hits = ks
                             ob.objecttype = objecttype
                             results.append(ob)
-                
+
         else: results = objects
 
     if objecttype == 'creature':
@@ -750,7 +750,7 @@ def ResultsAdvancedSearchView(request):
         crea_alignment = request.GET.get('crea_alignment') or None
         crea_location = request.GET.get('crea_location') or None
 
-        
+
         objects = Creature.objects.all()
 
         if crea_ac!="ALL" and crea_ac:
@@ -778,7 +778,7 @@ def ResultsAdvancedSearchView(request):
                     if keyword.lower() in ob.searchText().lower():#.split(" "):
                         ks+=5
                         ks+=ob.searchText().lower().count(keyword.lower())
-                        
+
                     if ks>0:
                         if ob in results:
                             ob.hits += ks
@@ -786,9 +786,9 @@ def ResultsAdvancedSearchView(request):
                             ob.hits = ks
                             ob.objecttype = objecttype
                             results.append(ob)
-                
+
         else: results = objects
- 
+
 
 
     if objecttype == 'character':
@@ -801,7 +801,7 @@ def ResultsAdvancedSearchView(request):
 
         filterdict = {'specie':char_species,'level':char_minlevel,'alignment':char_alignment, 'profession':char_profession, 'location':char_location}
 
-        
+
         objects = Character.objects.all()
 
         if char_species!="ALL" and char_species:
@@ -829,7 +829,7 @@ def ResultsAdvancedSearchView(request):
                     if keyword.lower() in ob.searchText().lower():#.split(" "):
                         ks+=5
                         ks+=ob.searchText().lower().count(keyword.lower())
-                        
+
                     if ks>0:
                         if ob in results:
                             ob.hits += ks
@@ -837,9 +837,9 @@ def ResultsAdvancedSearchView(request):
                             ob.hits = ks
                             ob.objecttype = objecttype
                             results.append(ob)
-                
+
         else: results = objects
- 
+
 
     if objecttype == 'location':
 
@@ -850,7 +850,7 @@ def ResultsAdvancedSearchView(request):
 
         filterdict = {'loctype':loc_type,'status':loc_status,'alignment':loc_alignment}
 
-        
+
         objects = Location.objects.all()
 
         if loc_type!="ALL" and loc_type:
@@ -874,7 +874,7 @@ def ResultsAdvancedSearchView(request):
                     if keyword.lower() in ob.searchText().lower():#.split(" "):
                         ks+=5
                         ks+=ob.searchText().lower().count(keyword.lower())
-                        
+
                     if ks>0:
                         if ob in results:
                             ob.hits += ks
@@ -882,7 +882,7 @@ def ResultsAdvancedSearchView(request):
                             ob.hits = ks
                             ob.objecttype = objecttype
                             results.append(ob)
-                
+
         else: results = objects
 
 
