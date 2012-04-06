@@ -8,12 +8,9 @@ from codex.web.models import *
 from django.utils.translation import ugettext_lazy as _
 
 
-<<<<<<< HEAD
-from django.http import HttpResponseRedirect
-from codex.settings import MEDIA_URL,STATIC_URL
-=======
+
 from codex.settings import MEDIA_URL, STATIC_URL
->>>>>>> refactor
+
 from decimal import *
 
 from django.template import RequestContext
