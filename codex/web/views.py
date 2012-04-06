@@ -1,23 +1,26 @@
 # -*- coding: utf-8 -*-
 # Create your views here.
-from django.http import HttpResponse
+
 from django.shortcuts import render_to_response, get_object_or_404
-from django.forms.models import modelformset_factory
+
 from codex.web.models import *
 
 from django.utils.translation import ugettext_lazy as _
 
 
+<<<<<<< HEAD
 from django.http import HttpResponseRedirect
 from codex.settings import MEDIA_URL,STATIC_URL
+=======
+from codex.settings import MEDIA_URL, STATIC_URL
+>>>>>>> refactor
 from decimal import *
 
 from django.template import RequestContext
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
-import re
-import tools.stopwords
+from searchviews import *
 
 CHAR_RELATIONSHIP_CHOICES = (
         ('SON', _(u'Hijo')),
@@ -60,7 +63,7 @@ def IndexView(request):
     locations = Location.objects.all().order_by('-last_updated')[:3]
     adventures = Adventure.objects.all().order_by('-last_updated')[:3]
     index_list = {'characters':chars, 'objects':objects, 'creatures':creatures, 'chronicles':chronicles, 'locations':locations, 'adventures':adventures}
-    return render_to_response('web/index.html', {'index_list':index_list})
+    return render_to_response('web/index.html', {'index_list': index_list})
 
 def NotFoundView(request):
     return render_to_response('web/404.html')
@@ -396,6 +399,7 @@ def ObjectDetailView(request, slug):
 
     return render_to_response("web/object_detail.html",{"object":obj, "relatedobjectsbytags":relatedobjectsbytags,"relatedobjects1":relatedobjects[0],"relatedobjects2":relatedobjects[1], 'MEDIA_URL':MEDIA_URL,'STATIC_URL':STATIC_URL,},context_instance=RequestContext(request))
 
+<<<<<<< HEAD
 def SearchRedirectView(request):
 
     searchfilter = request.GET.get('option')
@@ -888,6 +892,8 @@ def ResultsAdvancedSearchView(request):
 
 
     return render_to_response("web/advancedlisting.html",{'objecttype':objecttype,'keywords':keywords,'results':results})
+=======
+>>>>>>> refactor
 
 
 
