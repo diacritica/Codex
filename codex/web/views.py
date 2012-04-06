@@ -7,12 +7,12 @@ from codex.web.models import *
 
 from django.utils.translation import ugettext_lazy as _
 
-from django.core import validators
+
 from django.http import HttpResponseRedirect
 from codex.settings import MEDIA_URL,STATIC_URL
 from decimal import *
 
-from django.template import Context, Template, RequestContext
+from django.template import RequestContext
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
