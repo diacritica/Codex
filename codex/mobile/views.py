@@ -20,6 +20,11 @@ mobile_uas = [
 mobile_ua_hints = [ 'SymbianOS', 'Opera Mini', 'iPhone' ]
 
 
+
+def MobileIndex(request):
+
+    return HttpResponse("Mobile OK")
+
 def mobileBrowser(request):
     ''' Super simple device detection, returns True for mobile devices '''
 

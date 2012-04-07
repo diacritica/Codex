@@ -4,9 +4,9 @@
 from django.db import models
 
 from django.utils.translation import ugettext_lazy as _
-from django.utils.translation import ugettext
-from django.contrib.auth.models import User, UserManager
-from django.template.defaultfilters import slugify
+#from django.utils.translation import ugettext
+#from django.contrib.auth.models import User, UserManager
+#from django.template.defaultfilters import slugify
 #from tagging.fields import TagField
 #from tagging.utils import parse_tag_input
 #from djangoratings.fields import RatingField
@@ -14,6 +14,8 @@ from taggit.managers import TaggableManager
 from twitter import Api
 
 from django.utils.encoding import force_unicode
+
+from django.utils import simplejson
 
 # Create your models here.
 
@@ -433,7 +435,7 @@ PRICE_RANGES = (
 
 
 class Character(models.Model):
-    
+
     name = models.CharField(max_length=100, blank=False, null=False, verbose_name=_('Nombre completo'))
     gender = models.CharField(max_length=2, blank=True, null=True, choices=GENDER_CHOICES, verbose_name=_('Sexo'))
     level = models.CharField(max_length=3, blank=True, null=True, choices=LEVEL_CHOICES, verbose_name=_('Nivel'))
@@ -458,7 +460,7 @@ class Character(models.Model):
     wisdomstat = models.SmallIntegerField(blank=True, null=True,verbose_name=_('Sabiduria'))
     charismastat = models.SmallIntegerField(blank=True, null=True,verbose_name=_('Carisma'))
 
-    religion = models.ManyToManyField("Religion", blank=True, null=True, related_name=_("Character's Religions"))    
+    religion = models.ManyToManyField("Religion", blank=True, null=True, related_name=_("Character's Religions"))
 
     treasurevalue = models.CharField(max_length=100, blank=True, null=True, verbose_name=_("Character's Treasure value"))
 
@@ -471,7 +473,7 @@ class Character(models.Model):
 
     relatedlocation = models.ManyToManyField('Location', blank=True, null=True, related_name=_('Ubicacion'))
     relatedobject = models.ManyToManyField('Object', blank=True, null=True, related_name=_('Objetos'))
-    
+
     deactivated = models.BooleanField(blank=True,  verbose_name=_('Desactivado'))
 
     image = models.ManyToManyField('Image', blank=True, null=True,  related_name=_("Character's image"))
@@ -483,13 +485,13 @@ class Character(models.Model):
     #Generic to all objects
 
     slug = models.SlugField(blank=True,null=True,max_length=200,help_text="A short label, generally used in URLs. AUTOMATICALLY ADDED!")
-    
+
     comments = models.TextField(blank=True, null=True, verbose_name=_('Comments'))
     author = models.ManyToManyField("Author", blank=True, null=True,  verbose_name=_("Character's authorship"))
     canon_level = models.CharField(max_length=5, blank=True, null=True, choices=CANON_LEVEL_CHOICES, verbose_name=_('Canon Level'))
     highlight = models.BooleanField(blank=True, verbose_name=_(u'Destacado en categoría'))
     send_tweet = models.BooleanField(blank=True, verbose_name=_('Tweet nuevo personaje'))
-    
+
     creation_date = models.DateTimeField(null=True, verbose_name=_('Creation date'))
     last_updated = models.DateTimeField(null=True, verbose_name=_('Last updated'))
 
@@ -521,7 +523,7 @@ class Character(models.Model):
 
 
 class Creature(models.Model):
-    
+
     name = models.CharField(max_length=100, blank=False, null=False, verbose_name=_('Nombre completo'))
     gender = models.CharField(max_length=2, blank=True, null=True, choices=GENDER_CHOICES, verbose_name=_('Sexo'))
     hitdice = models.CharField(max_length=100, blank=True, null=True, verbose_name=_('Dados de golpe'))
@@ -539,7 +541,7 @@ class Creature(models.Model):
 
     relatedlocation = models.ManyToManyField('Location', blank=True, null=True, related_name=_('Ubicacion de la criatura'))
     relatedobject = models.ManyToManyField('Object', blank=True, null=True, related_name=_('Objetos de la criatura'))
-    
+
     deactivated = models.BooleanField(blank=True,  verbose_name=_('Desactivado'))
 
     image = models.ManyToManyField('Image', blank=True, null=True,  related_name=_("Creature's image"))
@@ -562,7 +564,7 @@ class Creature(models.Model):
 
     def save(self, *args, **kwargs):
         unique_slug(self, slug_source='name', slug_field='slug')
-        
+
         if self.send_tweet:
             twitter_config = TwitterConfig.objects.filter(isActive=True)
             for tc in twitter_config:
@@ -618,7 +620,7 @@ class CharacterRelationship(models.Model):
     #Generic to all objects
 
     slug = models.SlugField(blank=True,null=True,max_length=200,help_text="A short label, generally used in URLs. AUTOMATICALLY ADDED!")
-    
+
     comments = models.TextField(blank=True, null=True, verbose_name=_(u'Comments'))
     author = models.ManyToManyField("Author", blank=True, null=True,  verbose_name=_(u"Character's authroship"))
     canon_level = models.CharField(max_length=5, blank=True, null=True, choices=CANON_LEVEL_CHOICES, verbose_name=_(u'Canon Level'))
@@ -669,9 +671,9 @@ class Location(models.Model):
     alignment = models.CharField(max_length=3, blank=True, null=True, choices=ALIGN_CHOICES, verbose_name=_('Alineamiento'))
     loctype = models.CharField(max_length=5, blank=True, null=True, choices=LOC_TYPE_CHOICES, verbose_name=_('Tipo'))
     population = models.IntegerField(blank=True, null=True, verbose_name=_('Population'))
-    languages = models.ManyToManyField("Language", blank=True, null=True, related_name=_("Spoken languages"))    
-    religion = models.ManyToManyField("Religion", blank=True, null=True, related_name=_("Wordshipped Religions"))    
-    
+    languages = models.ManyToManyField("Language", blank=True, null=True, related_name=_("Spoken languages"))
+    religion = models.ManyToManyField("Religion", blank=True, null=True, related_name=_("Wordshipped Religions"))
+
 
     relatedobject = models.ManyToManyField('Object', blank=True, null=True, related_name=_('Objetos en la localizacion'))
 
@@ -700,11 +702,20 @@ class Location(models.Model):
             for tc in twitter_config:
                 text = tc.createTweet(self)
                 status = tc.sendTweet(text)
-        self.send_tweet = False        
+        self.send_tweet = False
         super(Location, self).save(*args, **kwargs)
 
     def searchText(self):
         return unicode(u"%s %s %s" % (self.name, self.description, self.comments))
+
+    def toJSON(self):
+        d = vars(self)
+        d.pop("_state")
+        d.pop("last_updated")
+        d.pop("creation_date")
+        d.pop("send_tweet")
+        result = simplejson.dumps(d, sort_keys=True, indent=4)
+        return result
 
     def __unicode__(self):
         return unicode(u"%s -%s-%s-%s" % (self.name, self.loctype, self.status, self.alignment))
@@ -763,7 +774,7 @@ class Object(models.Model):
     relatedobject = models.ManyToManyField("Object", through='ObjectRelationship')
 
     tags = TaggableManager(blank=True)
-    
+
     #Generic to all objects
 
     slug = models.SlugField(blank=True,null=True,max_length=200,help_text="A short label, generally used in URLs. AUTOMATICALLY ADDED!")
@@ -785,7 +796,7 @@ class Object(models.Model):
                 text = tc.createTweet(self)
                 status = tc.sendTweet(text)
         self.send_tweet = False
-        
+
         super(Object, self).save(*args, **kwargs)
 
     def searchText(self):
@@ -860,20 +871,20 @@ class Adventure(models.Model):
     author = models.ManyToManyField("Author", blank=True, null=True,  verbose_name=_("Adventure's authorship"))
     canon_level = models.CharField(max_length=5, blank=True, null=True, choices=CANON_LEVEL_CHOICES, verbose_name=_('Canon Level'))
     highlight = models.BooleanField(blank=True, verbose_name=_(u'Destacado en categoría'))
-    send_tweet = models.BooleanField(blank=True, verbose_name=_('Tweet nueva aventura'))    
+    send_tweet = models.BooleanField(blank=True, verbose_name=_('Tweet nueva aventura'))
     creation_date = models.DateTimeField(null=True, verbose_name=_('Creation date'))
     last_updated = models.DateTimeField(null=True, verbose_name=_('Last updated'))
 
     def save(self, *args, **kwargs):
         unique_slug(self, slug_source='name', slug_field='slug')
-        
+
         if self.send_tweet:
             twitter_config = TwitterConfig.objects.filter(isActive=True)
             for tc in twitter_config:
                 text = tc.createTweet(self)
                 status = tc.sendTweet(text)
-        self.send_tweet = False        
-        
+        self.send_tweet = False
+
         super(Adventure, self).save(*args, **kwargs)
 
     def searchText(self):
@@ -901,7 +912,7 @@ class Chronicle(models.Model):
     attachments = models.ManyToManyField('AttachFile', blank=True, null=True,  related_name=_("Chronicle's attachments"))
 
     tags = TaggableManager(blank=True)
-    
+
     #Generic to all objects
 
     slug = models.SlugField(blank=True,null=True,max_length=200,help_text="A short label, generally used in URLs. AUTOMATICALLY ADDED!")
@@ -921,8 +932,8 @@ class Chronicle(models.Model):
             for tc in twitter_config:
                 text = tc.createTweet(self)
                 status = tc.sendTweet(text)
-        self.send_tweet = False        
-        
+        self.send_tweet = False
+
         super(Chronicle, self).save(*args, **kwargs)
 
     def searchText(self):
@@ -1042,27 +1053,27 @@ class TwitterConfig(models.Model):
     access_token_key = models.CharField(max_length=100, blank=False, null=False, verbose_name=_("Twitter Access Token key"))
     access_token_secret = models.CharField(max_length=100, blank=False, null=False, verbose_name=_("Twitter Access Token secret"))
     forward_user = models.CharField(max_length=100, blank=True, null=True, verbose_name=_("User to add to Tweet"))
-    
+
     #Config message structure
     tweet_template = models.CharField(max_length=96, blank=False, null=False, default= "Nueva entrada: %s http://codexdelamarca.com%s/ @%s", verbose_name=_(u"Mensaje para Twitter"))
-    
+
     def __unicode__(self):
         return unicode(u"%s" % (self.name,))
-    
+
     class Meta:
         db_table = u'twitterconfig'
         verbose_name = _(u'twitterconfig')
-    
+
     def validate(self):
         try:
             return Api(consumer_key=self.consumer_key, consumer_secret=self.consumer_secret, access_token_key=self.access_token_key, access_token_secret=self.access_token_secret)
         except Exception, e:
             return e
-    
+
     def createTweet(self, obj):
         tweet = self.tweet_template % (obj.name, obj.get_absolute_url(), self.forward_user)
         return tweet
-    
+
     def sendTweet(self, tweet_text):
         api = self.validate()
 
@@ -1071,15 +1082,15 @@ class TwitterConfig(models.Model):
         except Exception, e:
             status = e
         return status
-    
+
 
 def unique_slug(item,slug_source,slug_field):
   """Ensures a unique slug field by appending an integer counter to duplicate slugs.
-  
+
   The item's slug field is first prepopulated by slugify-ing the source field. If that value already exists, a counter is appended to the slug, and the counter incremented upward until the value is unique.
-  
+
   For instance, if you save an object titled Daily Roundup, and the slug daily-roundup is already taken, this function will try daily-roundup-2, daily-roundup-3, daily-roundup-4, etc, until a unique value is found.
-  
+
   Call from within a model's custom save() method like so:
   unique_slug(item, slug_source='field1', slug_field='field2')
   where the value of field slug_source will be used to prepopulate the value of slug_field.
@@ -1099,4 +1110,4 @@ def unique_slug(item,slug_source,slug_field):
               slug = re.sub(counterFinder,"-%i" % counter, slug)
               counter += 1
       setattr(item,slug_field,slug)
-    
+

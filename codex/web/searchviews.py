@@ -14,16 +14,17 @@ def SearchRedirectView(request):
     searchfilter = request.GET.get('option')
     searchterm = request.GET.get('searchterm')
 
-    return HttpResponseRedirect("/search/%s/%s"%(searchfilter, searchterm))
+    return HttpResponseRedirect("/search/%s/%s" % (searchfilter, searchterm))
 
 
 def SimpleSearchView(request, searchfilter, searchterm="", canonlvl="ALL"):
 
-
     if searchterm in ["ALL","NEW","AP","APC","C"]: searchterm=""
 
-    if searchterm!="": keywords = split_query_into_keywords(searchterm)
-    else: keywords = []
+    if searchterm != "":
+        keywords = split_query_into_keywords(searchterm)
+    else:
+        keywords = []
     results = []
     allobjects = {}
 
