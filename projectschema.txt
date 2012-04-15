@@ -8,3 +8,4 @@ codex/ #the django project container
      /api #general API for the rest of apps
      /mobile #the mobile version of web
      /map #atlas and citysystem maps
+     /qr #qr manager (FUTURE)
