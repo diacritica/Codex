@@ -5,4 +5,5 @@ from encounter import views as encounterviews
 
 urlpatterns = patterns('',
     (r'^$', encounterviews.EncounterIndex),
+    (r'^test/$', encounterviews.EncounterTest),
     )
