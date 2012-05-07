@@ -31,9 +31,28 @@ def EncounterTest():
     canon = "C"
     align = "C"
     players_level = 40
+    arbitrary_num = 4
     difficulty = 1.5 #normal
+   
+    #probs = {1:range(20), 2:range(20,30), 3:range(30,45), 4:range(45,70), 5:range(70,85), 6:range(85,100)}
+    
+    dungeon_probs = {20:{'numrange':(1,1)}, 30:{'numrange':(2,2)}, 45:{'numrange':(3,3)}, 70:{'numrange':(4,4)}, 85:{'numrange':(5,5)}, \
+                                   96:{'numrange':(6,7)}, 100:{'numrange':(8,20)}}
 
-    probs = {1:range(20), 2:range(20,30), 3:range(30,45), 4:range(45,70), 5:range(70,85), 6:range(85,100)}
+    region = dungeon_probs
+
+    # Select range creatures
+    #selection = randint(0,99)
+    #i = 0
+    #probs = dungeon_probs.keys().sort()
+    #for k in probs:
+        #if selection > k:
+            #selected = region[probs[i]]
+            #break
+        #i += 1
+        
+    # Select num creatures
+    #numcreatures = randint(selected['numrange'][0], selected['numrange'][-1])
 
     # 1. filter available creatures by canon level
     creature_list = Creature.objects.filter(canon_level = canon)
@@ -41,8 +60,9 @@ def EncounterTest():
     creature_list = creature_list.filter(alignment = align)
     # 3. Possible encounters
     encounter_list = {}
-    base_encounterHD = players_level/4
+    base_encounterHD = players_level/arbitrary_num
 
+    
     # One creature
     creature = getCreature(creature_list, base_encounterHD)
     if creature:
@@ -51,7 +71,7 @@ def EncounterTest():
     # Group of creatures
     encounterHD = int(base_encounterHD * difficulty)
 
-    for ncreatures in range(2,7):
+    for ncreatures in range(2,20):
         print "encounterHD/ncreatures: ", encounterHD, ncreatures
         hitdice = encounterHD/ncreatures #rounded, two ints
         # To ensure that for low levels it does not continue
@@ -63,15 +83,38 @@ def EncounterTest():
         else:
             break
 
-    selection = randint(0,99)
-    
-    for ncreatures, prob in probs.items():
-        if selection in prob:
-            try:
-                encounter = ncreatures, encounter_list[ncreatures]
+    probs = dungeon_probs.keys()
+    probs.sort()
+    found = False
+    print 'probs: ', probs
+    while found == False:
+        selection = randint(1,100)
+        print 'selection: ', selection
+        i = 0
+        for k in probs:
+            if selection < k:
+                selected = region[probs[i]]
                 break
-            except:
-                selection = randint(0,99)
+            i += 1
+        numcreatures = randint(selected['numrange'][0], selected['numrange'][-1])
+        print 'numcreatures, selected: ', numcreatures, selected
+        try:
+            encounter = encounter_list[numcreatures]
+            
+            found = True
+            #print 'encounter: ', encounter
+        except:
+            #print 'Except'
+            pass
+            
+    
+    #for ncreatures, prob in probs.items():
+        #if selection in prob:
+            #try:
+                #encounter = ncreatures, encounter_list[ncreatures]
+            #except:
+                #selection = randint(0,99)
+            #break
 
     #return HttpResponse(encounter)
     return encounter
