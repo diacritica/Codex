@@ -99,7 +99,7 @@
 		         {% if object.comments %}
 				<h2>Nota del autor:</h2>
 				<p>
-					{{object.comments}}
+					{{object.comments|safe}}
 				</p>
 				{% endif %}
 				
