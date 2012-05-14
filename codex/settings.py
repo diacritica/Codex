@@ -3,7 +3,7 @@ import os
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
-ENVIRONMENT = "TEST"
+ENVIRONMENT = "PRO"
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
