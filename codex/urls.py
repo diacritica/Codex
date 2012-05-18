@@ -88,6 +88,8 @@ urlpatterns = patterns('',
     (r'^advancedsearch/$',views.AdvancedSearchView),
     (r'^resadvancedsearch/$',views.ResultsAdvancedSearchView),
 
+    (r'^dicegen/$',views.DiceGeneratorView),
+
     (r'^$', views.IndexView),
     (r'^rss.xml$', LatestEntriesFeed()),
 
@@ -96,22 +98,22 @@ urlpatterns = patterns('',
 if settings.ENVIRONMENT=="TEST":
     urlpatterns += patterns('',
         url(r'^css/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': "/home/elfo/SVN/codex-svn/codex/templates/web/css/",
+            'document_root': "/home/elfo/GIT/CODEX/codex/templates/web/css/",
         }),
         url(r'^ima/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': "/home/elfo/SVN/codex-svn/codex/templates/web/ima/",
+            'document_root': "/home/elfo/GIT/CODEX/codex/templates/web/ima/",
         }),
         url(r'^js/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': "/home/elfo/SVN/codex-svn/codex/templates/web/js/",
+            'document_root': "/home/elfo/GIT/CODEX/codex/templates/web/js/",
         }),
         url(r'^rotativo/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': "/home/elfo/SVN/codex-svn/codex/templates/web/rotativo/",
+            'document_root': "/home/elfo/GIT/CODEX/codex/templates/web/rotativo/",
         }),
         url(r'^media/img/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': "/home/elfo/SVN/codex-svn/codex/media/img/",
+            'document_root': "/home/elfo/GIT/CODEX/codex/media/img/",
         }),
         url(r'^media/files/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': "/home/elfo/SVN/codex-svn/codex/media/files/",
+            'document_root': "/home/elfo/GIT/CODEX/codex/media/files/",
         }),
    )
 
