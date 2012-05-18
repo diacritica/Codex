@@ -45,6 +45,11 @@ def ContactView(request):
 
     return render_to_response('web/contact.html',{})
 
+def DiceGeneratorView(request):
+
+    return render_to_response('web/dice-generator.html',{})
+
+
 def SendinfoView(request):
 
     return render_to_response('web/sendinfo.html',{})
