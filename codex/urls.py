@@ -88,6 +88,8 @@ urlpatterns = patterns('',
     (r'^advancedsearch/$',views.AdvancedSearchView),
     (r'^resadvancedsearch/$',views.ResultsAdvancedSearchView),
 
+   (r'^dicegen/$',views.DiceGeneratorView),
+
     (r'^$', views.IndexView),
     (r'^rss.xml$', LatestEntriesFeed()),
 
