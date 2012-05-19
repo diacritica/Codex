@@ -27,14 +27,14 @@ def getTreasure():
     pass
 
 #def EncounterTest(request):
-def EncounterTest(dif):
+def EncounterTest(chosen_difficulty):
     canon = "C"
     align = "C"
     players_level = 40
-    arbitrary_num = 4
-    difficulty = dif #normal
-   
-    #probs = {1:range(20), 2:range(20,30), 3:range(30,45), 4:range(45,70), 5:range(70,85), 6:range(85,100)}
+    arbitrary_num = 4.0
+    
+    # Difficulty is based on the number of creatures
+    difficulty = {"one": [0.5, 1, 1.5, 2], "n": [1, 1.5, 2, 3]}
     
     dungeon_probs = {20:{'numrange':(1,1)}, 30:{'numrange':(2,2)}, 45:{'numrange':(3,3)}, 70:{'numrange':(4,4)}, 85:{'numrange':(5,5)}, \
                                    96:{'numrange':(6,7)}, 100:{'numrange':(8,20)}}
@@ -44,22 +44,33 @@ def EncounterTest(dif):
     # 1. filter available creatures by canon level
     creature_list = Creature.objects.filter(canon_level = canon)
     # 2. filter available creatures by alignment
-    creature_list = creature_list.filter(alignment = align)
+    creature_list = creature_list.filter(alignment = align)    
+  
+    # We first create a list of the possible encounters. The reason is to
+    # have the list ready not to repeat everything if the roll yields an
+    # invalid encounter
+    
     # 3. Possible encounters
     encounter_list = {}
     base_encounterHD = players_level/arbitrary_num
-  
+    
     # One creature
-    creature = getCreature(creature_list, base_encounterHD)
-    if creature:
-        encounter_list[1] = [base_encounterHD,creature]
+    #creature = getCreature(creature_list, base_encounterHD)
+    #if creature:
+        #encounter_list[1] = [base_encounterHD,creature]
     #print "encounter_list: ", encounter_list
+    
     # Group of creatures
-    encounterHD = int(base_encounterHD * difficulty)
-
-    for ncreatures in range(2,20):
+    
+    
+    for ncreatures in range(1,20):
+        
+        if ncreatures == 1:
+            encounterHD = base_encounterHD * difficulty["one"][chosen_difficulty]
+        else:
+            encounterHD = base_encounterHD * difficulty["n"][chosen_difficulty]
         print "encounterHD/ncreatures: ", encounterHD, ncreatures
-        hitdice = encounterHD/ncreatures #rounded, two ints
+        hitdice = int(round(encounterHD/ncreatures)) #rounded, two ints
         # To ensure that for low levels it does not continue
         if hitdice >= 1:
             creature = getCreature(creature_list, hitdice)
@@ -72,14 +83,14 @@ def EncounterTest(dif):
     probs = dungeon_probs.keys()
     probs.sort()
     found = False
-    #print 'probs: ', probs
+    
     while found == False:
         # Select range creatures
         selection = randint(1,100)
-        #print 'selection: ', selection
+        print 'selection: ', selection
         i = 0
         for k in probs:
-            if selection < k:
+            if selection <= k:
                 selected = region[probs[i]]
                 break
             i += 1
