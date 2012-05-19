@@ -498,10 +498,21 @@ class Character(models.Model):
 
     def toJSON(self):
         d = vars(self)
+        rclist =  [(g.name,g.get_absolute_url()) for g in self.relatedcharacter.all()]
+        d["relatedcharacter"]=rclist
+        rllist =  [(g.name,g.get_absolute_url()) for g in self.relatedlocation.all()]
+        d["relatedlocation"]=rllist
+        rolist =  [(g.name,g.get_absolute_url()) for g in self.relatedobject.all()]
+        d["relatedobject"]=rolist
+        authorlist =  [g.name for g in self.author.all()]
+        d["author"]=authorlist
+
+
         d.pop("_state")
         d.pop("last_updated")
         d.pop("creation_date")
         d.pop("send_tweet")
+
         result = simplejson.dumps(d, sort_keys=True, indent=4)
         return result
 
@@ -575,6 +586,17 @@ class Creature(models.Model):
 
     def toJSON(self):
         d = vars(self)
+
+        rclist =  [(g.name,g.get_absolute_url()) for g in self.relatedcreature.all()]
+        d["relatedcreature"]=rclist
+        rllist =  [(g.name,g.get_absolute_url()) for g in self.relatedlocation.all()]
+        d["relatedlocation"]=rllist
+        rolist =  [(g.name,g.get_absolute_url()) for g in self.relatedobject.all()]
+        d["relatedobject"]=rolist
+        authorlist =  [g.name for g in self.author.all()]
+        d["author"]=authorlist
+
+
         d.pop("_state")
         d.pop("last_updated")
         d.pop("creation_date")
@@ -697,6 +719,8 @@ class Location(models.Model):
 
     relatedobject = models.ManyToManyField('Object', blank=True, null=True, related_name=_('Objetos en la localizacion'))
 
+    relatedcharacter = models.ManyToManyField("Character", blank=True, null=True,  verbose_name=_("Character Relationship"), through='CharacterLocationRelationship')
+
     deactivated = models.BooleanField(blank=True, verbose_name=_('Desactivado'))
     image = models.ManyToManyField('Image', blank=True, null=True,  related_name=_("Location's photos"))
     attachments = models.ManyToManyField('AttachFile', blank=True, null=True,  related_name=_("Location's attachments"))
@@ -730,6 +754,14 @@ class Location(models.Model):
 
     def toJSON(self):
         d = vars(self)
+
+        rclist =  [(g.name,g.get_absolute_url()) for g in self.relatedcharacter.all()]
+        d["relatedcharacter"]=rclist
+        rolist =  [(g.name,g.get_absolute_url()) for g in self.relatedobject.all()]
+        d["relatedobject"]=rolist
+        authorlist =  [g.name for g in self.author.all()]
+        d["author"]=authorlist
+
         d.pop("_state")
         d.pop("last_updated")
         d.pop("creation_date")
@@ -790,7 +822,6 @@ class Object(models.Model):
     image = models.ManyToManyField('Image', blank=True, null=True,  related_name=_("Object's photos"))
     attachments = models.ManyToManyField('AttachFile', blank=True, null=True,  related_name=_("Object's attachments"))
 
-
     relatedobject = models.ManyToManyField("Object", through='ObjectRelationship')
 
     tags = TaggableManager(blank=True)
@@ -809,6 +840,15 @@ class Object(models.Model):
 
     def toJSON(self):
         d = vars(self)
+
+#        rclist =  [(g.name,g.get_absolute_url()) for g in self.relatedcharacter.all()]
+#        d["relatedcharacter"]=rclist
+        rolist =  [(g.name,g.get_absolute_url()) for g in self.relatedobject.all()]
+        d["relatedobject"]=rolist
+        authorlist =  [g.name for g in self.author.all()]
+        d["author"]=authorlist
+
+
         d.pop("_state")
         d.pop("last_updated")
         d.pop("creation_date")
@@ -906,6 +946,9 @@ class Adventure(models.Model):
 
     def toJSON(self):
         d = vars(self)
+        authorlist =  [g.name for g in self.author.all()]
+        d["author"]=authorlist
+
         d.pop("_state")
         d.pop("last_updated")
         d.pop("creation_date")
@@ -966,6 +1009,10 @@ class Chronicle(models.Model):
 
     def toJSON(self):
         d = vars(self)
+        authorlist =  [g.name for g in self.author.all()]
+        d["author"]=authorlist
+#        d["adventure"]=(self.adventure.name, self.adventure.get_absolute_url())
+
         d.pop("_state")
         d.pop("last_updated")
         d.pop("creation_date")
