@@ -20,6 +20,8 @@ from searchviews import *
 CHAR_RELATIONSHIP_CHOICES = (
         ('SON', _(u'Hijo')),
         ('FATHER', _(u'Padre')),
+        ('STEPSON', _(u'Hijastro')),
+        ('STEPFATHER', _(u'Padrastro')),
         ('BROTHER', _(u'Hermano')),
         ('SUBDIT', _(u'Súbdito')),
         ('GROUP', _(u'Grupo')),
