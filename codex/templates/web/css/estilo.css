@@ -17,7 +17,7 @@ body {
 	}
 	
 h1 { font-size: 30px; font-weight:100;}
-h2 { font-size: 22px;	font-weight:100;}
+h2 { font-size: 22px;	}
 h3 {	}
 
 a {
@@ -338,7 +338,7 @@ hr {
 
 #contenido-articulos {
 	/*margin: 0 auto;*/
-	background: url(/ima/fondo-contenido-articulo.jpg) no-repeat -1px top;
+	background: url(/ima/fondo-contenido-articulo.jpg) no-repeat center top;
     width: 959px;	
 	padding: 0px 0px 0px 0px;
 	float: right;
@@ -782,63 +782,6 @@ hr {
 
 /* Fin busqueda avanzada ...............*/
 
-/* generador */
-
-
-#generador-encuentros p{
-    font-size:16px;
-    line-height: 18px;
-}
-#generador-encuentros .titulo-formulario-avanzado{
-    width:250px;
-}
-#resultado-generador{
-     float: left;
-    margin: 0;
-    padding: 0;
-    width: 950px;
-}
-
-#resultado-generador h2{
-    background: url("/ima/h1-izq-portada.jpg") no-repeat scroll -1px top transparent;
-    color: #F1E6C6;
-    height: 57px;
-    padding: 15px 0 0 45px;
-    width: 335px;
-    font-size: 30px;
-    font-weight: 100;
-}
-#resultado-generador h3{
-    padding: 5px 0 10px 45px;
-    font-size: 24px;
-    font-weight: 100;
-}
-#resultado-generador p{
-    padding-left:45px;
-}
-/* impresion */
-
-.para-impresion{
-    display: none;
-}
-/*generador dados*/
-
-.tirada {
-    padding: 15px 0 10px 45px;
-    float: left;
-}
-
-.tirada h3 {
-    padding: 0px !important;
-    
-}
-
-.resultado_tirada{
-    padding: 10px 0 0 0;
-    text-align: center;
-    font-weight:bolder;
-    
-}
 		
  /* pie -------------------------------- */
 
@@ -1092,19 +1035,19 @@ select:hover {
 			display:block;		
 		width:77px;
 		height:31px;		
-		background: url(../rotativo/btnanterior_on.gif) no-repeat 0 0;	
+		background: url(..//btnanterior_on.gif) no-repeat 0 0;	
 		}	
 	#nextBtn a, #slider1next a{ 
-		background: url(../rotativo/btnsiguiente_on.gif) no-repeat 0 0;	
+		background: url(..//btnsiguiente_on.gif) no-repeat 0 0;	
 		}
 		
 		
 	#prevBtn a:hover, #nextBtn a:hover,
 	#slider1next a:hover, #slider1prev a:hover{  
-		background: url(../rotativo/btnanterior_off.gif) no-repeat 0 0;	
+		background: url(..//btnanterior_off.gif) no-repeat 0 0;	
 		}	
 	#nextBtn a:hover, #slider1next a:hover{ 
-		background: url(../rotativo/btnsiguiente_off.gif) no-repeat 0 0;	
+		background: url(..//btnsiguiente_off.gif) no-repeat 0 0;	
 		}	
 	
 /* Dialogos ------------------------------ */

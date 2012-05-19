@@ -15,6 +15,8 @@ from twitter import Api
 
 from django.utils.encoding import force_unicode
 
+from django.utils import simplejson
+
 # Create your models here.
 
 GENDER_CHOICES = (
@@ -269,7 +271,6 @@ PROFESSION_CHOICES = (
         ('Wr', _(u'Guerrero')),
         ('Hf', _(u'Halfling')),
         ('El', _(u'Elfo')),
-        ('Dwf', _(u'Enano')),
         ('NA', _(u'N/A')),
 )
 
@@ -333,7 +334,6 @@ LOC_TYPE_CHOICES = (
         ('Hm', _(u'Vivienda')),
         ('Prt', _(u'Puerto')),
         ('Scn', _(u'Paraje')),
-        ('Tow', _(u'Torre')),
         ('Unk', _(u'Desconocido')),
 )
 
@@ -360,7 +360,6 @@ OBJ_TYPE_CHOICES = (
         ('Pot', _(u'Poción')),
         ('Ani', _(u'Animal')),
         ('Rcp', _(u'Recipiente')),
-        ('Mus', _(u'Instrumento musical')),
         ('N/A', _(u'N/A')),
 
 )
@@ -375,9 +374,7 @@ OBJ_RARITY_CHOICES = (
 
 CHAR_RELATIONSHIP_CHOICES = (
         ('SON', _(u'Hijo')),
-        ('STEPSON', _(u'Hijastro')),
         ('FATHER', _(u'Padre')),
-        ('STEPFATHER', _(u'Padrastro')),
         ('BROTHER', _(u'Hermano')),
         ('SUBDIT', _(u'Súbdito')),
         ('GROUP', _(u'Grupo')),
@@ -402,8 +399,6 @@ CRE_RELATIONSHIP_CHOICES = (
         ('GROUP', _(u'Grupo')),
         ('NEMESIS', _(u'Némesis')),
         ('CREATOR', _(u'Creador')),
-        ('LEADER', _(u'Líder')),
-        ('FOLLOWER', _(u'Seguidor')),
 )
 
 
@@ -500,6 +495,17 @@ class Character(models.Model):
     creation_date = models.DateTimeField(null=True, verbose_name=_('Creation date'))
     last_updated = models.DateTimeField(null=True, verbose_name=_('Last updated'))
 
+
+    def toJSON(self):
+        d = vars(self)
+        d.pop("_state")
+        d.pop("last_updated")
+        d.pop("creation_date")
+        d.pop("send_tweet")
+        result = simplejson.dumps(d, sort_keys=True, indent=4)
+        return result
+
+
     def save(self, *args, **kwargs):
         unique_slug(self, slug_source='name', slug_field='slug')
         if self.send_tweet:
@@ -566,6 +572,15 @@ class Creature(models.Model):
     send_tweet = models.BooleanField(blank=True, verbose_name=_('Tweet nueva criatura'))
     creation_date = models.DateTimeField(null=True, verbose_name=_('Creation date'))
     last_updated = models.DateTimeField(null=True, verbose_name=_('Last updated'))
+
+    def toJSON(self):
+        d = vars(self)
+        d.pop("_state")
+        d.pop("last_updated")
+        d.pop("creation_date")
+        d.pop("send_tweet")
+        result = simplejson.dumps(d, sort_keys=True, indent=4)
+        return result
 
     def save(self, *args, **kwargs):
         unique_slug(self, slug_source='name', slug_field='slug')
@@ -713,6 +728,15 @@ class Location(models.Model):
     def searchText(self):
         return unicode(u"%s %s %s" % (self.name, self.description, self.comments))
 
+    def toJSON(self):
+        d = vars(self)
+        d.pop("_state")
+        d.pop("last_updated")
+        d.pop("creation_date")
+        d.pop("send_tweet")
+        result = simplejson.dumps(d, sort_keys=True, indent=4)
+        return result
+
     def __unicode__(self):
         return unicode(u"%s -%s-%s-%s" % (self.name, self.loctype, self.status, self.alignment))
     def get_absolute_url(self):
@@ -782,6 +806,15 @@ class Object(models.Model):
     send_tweet = models.BooleanField(blank=True, verbose_name=_('Tweet nuevo objeto'))
     creation_date = models.DateTimeField(null=True, verbose_name=_('Creation date'))
     last_updated = models.DateTimeField(null=True, verbose_name=_('Last updated'))
+
+    def toJSON(self):
+        d = vars(self)
+        d.pop("_state")
+        d.pop("last_updated")
+        d.pop("creation_date")
+        d.pop("send_tweet")
+        result = simplejson.dumps(d, sort_keys=True, indent=4)
+        return result
 
 
     def save(self, *args, **kwargs):
@@ -871,6 +904,16 @@ class Adventure(models.Model):
     creation_date = models.DateTimeField(null=True, verbose_name=_('Creation date'))
     last_updated = models.DateTimeField(null=True, verbose_name=_('Last updated'))
 
+    def toJSON(self):
+        d = vars(self)
+        d.pop("_state")
+        d.pop("last_updated")
+        d.pop("creation_date")
+        d.pop("send_tweet")
+        result = simplejson.dumps(d, sort_keys=True, indent=4)
+        return result
+
+
     def save(self, *args, **kwargs):
         unique_slug(self, slug_source='name', slug_field='slug')
 
@@ -920,6 +963,16 @@ class Chronicle(models.Model):
     send_tweet = models.BooleanField(blank=True, verbose_name=_(u'Tweet nueva crónica'))
     creation_date = models.DateTimeField(null=True, verbose_name=_('Creation date'))
     last_updated = models.DateTimeField(null=True, verbose_name=_('Last updated'))
+
+    def toJSON(self):
+        d = vars(self)
+        d.pop("_state")
+        d.pop("last_updated")
+        d.pop("creation_date")
+        d.pop("send_tweet")
+        result = simplejson.dumps(d, sort_keys=True, indent=4)
+        return result
+
 
     def save(self, *args, **kwargs):
         unique_slug(self, slug_source='name', slug_field='slug')
