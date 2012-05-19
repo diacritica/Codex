@@ -1,0 +1,195 @@
+{% extends "basebasic.html" %}
+{% block head %}
+
+<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+{% block title %}
+<title>Codex de la Marca del Este - City System - Marvalar</title>
+{% endblock %}
+
+		<meta name='title' content=''/>
+		<meta name='description' content=''/>
+ 
+		<meta name="author" content=""/>
+		<meta name="language" content="spanish"/>
+		<meta name="revisit" content="10 day"/>
+		<meta name="distribution" content="global"/>
+
+		<meta name="robots" content="All"/>
+		<meta http-equiv="pragma" content="no-cache"/>
+		<meta http-equiv="expires" content="-1"/>		
+        <link rel="stylesheet" href="/css/reset.css" type="text/css" media="screen" />
+        <link rel="stylesheet" href="/css/estilo.css" type="text/css" media="screen" />
+		
+
+    <script src="/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+    <script src="/js/jquery.maphilight.min.js" type="text/javascript"></script>
+    <script src="/js/jquery-ui.js" type="text/javascript"></script>
+    <script src="/js/jquery.mousewheel.js" type="text/javascript"></script>
+    <script src="/js/marcamaps.js" type="text/javascript"></script>
+    <style type="text/css">
+        #container{
+            width:800px;
+            height:500px;
+            overflow:hidden;
+            border:1px solid #ccc;
+            border-radius:5px;
+            position: relative;
+            background:#f0f0f0;
+        }
+        #controls{position:absolute; bottom: 5px; right: 4px; width: 24px;}
+        #controls div{width: 24px; height: 24px; text-align: center; line-height: 24px; background-color: #FFF; berder-radius: 3px; margin-bottom: 5px; cursor: pointer;}
+    </style>   
+
+	
+		<script>			
+			$.fx.speeds._default = 1000;
+			$(function() {
+				$( "#dialog" ).dialog({
+					autoOpen: false,
+					show: "blind",
+					hide: "blind",
+					width: 600
+				});
+		
+				$( "#opener" ).click(function() {
+					$( "#dialog" ).dialog( "open" );
+					return false;
+				});
+			});
+		</script>
+
+
+	<!-- Explicacion de Canon -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-27832804-1']);
+  _gaq.push(['_setDomainName', 'codexdelamarca.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+	</head>
+
+{% endblock %}
+
+
+{% block navigation %}
+		<div id="cabecera">
+			<div id="menu">
+				<ul>
+					<li><a href="/">El Codex</a></li>	
+					<li><a href="/character">Personajes</a></li>
+					<li><a href="/creature">Bestiario</a></li>	
+					<li><a href="/location">Lugares</a></li>
+					<li><a href="/object">Objetos</a></li>	
+					<li><a href="/adventure">Aventuras</a></li>	
+					<li><a href="/chronicle">Crónicas</a></li>	
+					<li><a href="/send_info">Enviar info</a></li>	
+					<li><a href="/contact">Contacto</a></li>
+        		</ul>
+			</div><!-- fin menu -->
+			
+			<div id="logo">
+				<a href="/"><img src="/ima/codex-logo.jpg" alt="Codex de las aventuras de la Marca del Este." /></a>
+			</div><!-- fin logo -->
+			
+			<div id="slogan">
+				La recopilación de todo el conocimiento sobre la Marca del Este.
+			</div><!-- fin logo -->
+			
+			<div id="busqueda-simple">
+				<div id="form-busqueda-simple">
+				<form action="/search/" METHOD=GET>
+					<select name="option">
+						<option value="all">Todo</option>
+						<option value="character">Personaje</option>
+						<option value="creature">Bestiario</option>
+						<option value="location">Lugar</option>
+						<option value="object">Objeto</option>
+						<option value="adventure">Aventura</option>
+						<option value="chronicle">Crónica</option>
+					</select>
+					
+					<input class="barra_busqueda" type="text" name="searchterm" value="" />
+					
+					<input class="boton_buscar" type="submit" value="Buscar" />
+				</form>
+				</div>
+				<div id="ir-busqueda-avanzada"><a href="/advancedsearch">Búsqueda<br/>avanzada</a></div>
+			</div><!-- fin busqueda-simple -->
+
+			
+			
+			
+		</div><!-- fin cabecera -->
+{% endblock %}
+
+
+{% block content %}
+	<div id="contenido" >
+		<div id="contenido-listados" >			
+		<div id="columna-der-listados">
+			
+			<div id="volver"><span><a href="/">Volver a inicio</a>&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;</span>Marvalar</a></div>
+			
+			<div id="central">
+		
+<div id="container">
+    <div id="drag">
+        <figure>
+            <img src="/map/data/t.jpg" alt="" title="A part of the processed map" id="kaartimg"  class="maphilighted" />
+        </figure>
+        <map name="zoom0" data-ajaxsource="false"></map>
+        <map name="zoom1" data-ajaxsource="false"></map>
+        <map name="zoom2" data-ajaxsource="false"></map>
+        <map name="zoom3" data-ajaxsource="/map/data/ajax.html"></map>
+    </div>
+</div>
+
+
+
+                
+			</div><!-- fin central -->
+		</div><!-- fin columna-der-listados -->			
+		</div><!-- fin contenido-articulos -->
+	</div><!-- fin contenido -->
+		
+		
+		
+
+        <div id="pie">
+                <div id="validaciones">
+                    Aventuras de la Marca del este 2011 - Validación: <a
+href="http://validator.w3.org/check?uri=referer">XHTML</a> | <a
+href="http://jigsaw.w3.org/css-validator/validator?uri=http://?????/css/estilo.css">CSS</a>
+                    <br/><br/>
+                    <span style="font-size: 10px"> Desarrollo y mantenimiento: Angela
+Rivera Campos @ghilbrae y Pablo Ruiz Múzquiz @diacritica     - Diseño: <a
+href="http://jagvalverde.com/">Jose Valverde</a></span>
+                </div><!-- fin validaciones -->
+        </div><!-- fin pie -->
+    </div><!-- fin contenedor -->
+    <script type="text/javascript">
+<!--
+$(document).ready(function(){
+    $.fn.marcaMap({
+        'img': $('#kaartimg'),
+        'drag': $("#drag"),
+        'container': $("#container"),
+        'zoomlevels': 3,
+        'initialzoom': 0,
+        'animatezoom': true
+    });
+})
+-->
+</script>
+{% endblock %}
+
+
