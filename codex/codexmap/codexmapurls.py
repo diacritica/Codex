@@ -13,7 +13,7 @@ urlpatterns = patterns('',
 if settings.ENVIRONMENT=="TEST":
     urlpatterns += patterns('',
         url(r'^data/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': "/home/elfo/GIT/CODEX/codex/codexmap/data/",
+            'document_root': "/srv/codex/Codex.git/codex/codexmap/data/",
         }),
 
    )
