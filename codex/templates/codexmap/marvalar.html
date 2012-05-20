@@ -26,55 +26,10 @@
     <script src="/js/jquery.maphilight.min.js" type="text/javascript"></script>
     <script src="/js/jquery-ui.js" type="text/javascript"></script>
     <script src="/js/jquery.mousewheel.js" type="text/javascript"></script>
-    <script src="/js/marcamaps.js" type="text/javascript"></script>
-    <style type="text/css">
-        #container{
-            width:800px;
-            height:500px;
-            overflow:hidden;
-            border:1px solid #ccc;
-            border-radius:5px;
-            position: relative;
-            background:#f0f0f0;
-        }
-        #controls{position:absolute; bottom: 5px; right: 4px; width: 24px;}
-        #controls div{width: 24px; height: 24px; text-align: center; line-height: 24px; background-color: #FFF; berder-radius: 3px; margin-bottom: 5px; cursor: pointer;}
-    </style>   
+  <style>
+    #iframe{width: 802px; height: 502px; margin: 50px auto 0 auto; border: 0; overflow: hidden; display: block;}
+    </style>
 
-	
-		<script>			
-			$.fx.speeds._default = 1000;
-			$(function() {
-				$( "#dialog" ).dialog({
-					autoOpen: false,
-					show: "blind",
-					hide: "blind",
-					width: 600
-				});
-		
-				$( "#opener" ).click(function() {
-					$( "#dialog" ).dialog( "open" );
-					return false;
-				});
-			});
-		</script>
-
-
-	<!-- Explicacion de Canon -->
-<script type="text/javascript">
-
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-27832804-1']);
-  _gaq.push(['_setDomainName', 'codexdelamarca.com']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-
-</script>
 	</head>
 
 {% endblock %}
@@ -141,20 +96,8 @@
 			
 			<div id="central">
 		
-<div id="container">
-    <div id="drag">
-        <figure>
-            <img src="/map/data/t.jpg" alt="" title="A part of the processed map" id="kaartimg"  class="maphilighted" />
-        </figure>
-        <map name="zoom0" data-ajaxsource="false"></map>
-        <map name="zoom1" data-ajaxsource="false"></map>
-        <map name="zoom2" data-ajaxsource="false"></map>
-        <map name="zoom3" data-ajaxsource="/map/data/ajax.html"></map>
-    </div>
-</div>
 
-
-
+<iframe id="iframe" src="/map/data/iframe.html"></iframe>
                 
 			</div><!-- fin central -->
 		</div><!-- fin columna-der-listados -->			
@@ -177,18 +120,7 @@ href="http://jagvalverde.com/">Jose Valverde</a></span>
         </div><!-- fin pie -->
     </div><!-- fin contenedor -->
     <script type="text/javascript">
-<!--
-$(document).ready(function(){
-    $.fn.marcaMap({
-        'img': $('#kaartimg'),
-        'drag': $("#drag"),
-        'container': $("#container"),
-        'zoomlevels': 3,
-        'initialzoom': 0,
-        'animatezoom': true
-    });
-})
--->
+
 </script>
 {% endblock %}
 
