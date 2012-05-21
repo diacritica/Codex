@@ -40,7 +40,7 @@ urlpatterns = patterns('',
     # url(r'^$', 'codex.views.home', name='home'),
     url(r'^encounter/', include('codex.encounter.encounterurls')),
     url(r'^api/', include('codex.api.apiurls')),
-    url(r'^mobile/', include('codex.mobile.mobileurls')),
+    #url(r'^mobile/', include('codex.mobile.mobileurls')),
     url(r'^map/', include('codex.codexmap.codexmapurls')),
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
@@ -88,6 +88,8 @@ urlpatterns = patterns('',
     (r'^advancedsearch/$',views.AdvancedSearchView),
     (r'^resadvancedsearch/$',views.ResultsAdvancedSearchView),
 
+#   (r'^dicegen/$',views.DiceGeneratorView),
+
     (r'^$', views.IndexView),
     (r'^rss.xml$', LatestEntriesFeed()),
 
@@ -96,22 +98,22 @@ urlpatterns = patterns('',
 if settings.ENVIRONMENT=="TEST":
     urlpatterns += patterns('',
         url(r'^css/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': "/home/elfo/SVN/codex-svn/codex/templates/web/css/",
+            'document_root': "/home/elwen/cortex-elwen/git/Codex/codex/templates/web/css/",
         }),
         url(r'^ima/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': "/home/elfo/SVN/codex-svn/codex/templates/web/ima/",
+            'document_root': "/home/elwen/cortex-elwen/git/Codex/codex/templates/web/ima/",
         }),
         url(r'^js/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': "/home/elfo/SVN/codex-svn/codex/templates/web/js/",
+            'document_root': "/home/elwen/cortex-elwen/git/Codex/codex/templates/web/js/",
         }),
         url(r'^rotativo/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': "/home/elfo/SVN/codex-svn/codex/templates/web/rotativo/",
+            'document_root': "/home/elwen/cortex-elwen/git/Codex/codex/templates/web/rotativo/",
         }),
         url(r'^media/img/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': "/home/elfo/SVN/codex-svn/codex/media/img/",
+            'document_root': "/home/elwen/cortex-elwen/git/Codex/codex/media/img/",
         }),
         url(r'^media/files/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': "/home/elfo/SVN/codex-svn/codex/media/files/",
+            'document_root': "/home/elwen/cortex-elwen/git/Codex/codex/media/files/",
         }),
    )
 

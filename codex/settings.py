@@ -3,6 +3,8 @@ import os
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
+ENVIRONMENT = "TEST"
+
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
@@ -45,7 +47,7 @@ USE_L10N = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = '/home/elfo/SVN/codex-svn/codex/media/'
+MEDIA_ROOT = '/home/elwen/cortex-elwen/git/Codex/codex/media/'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -67,7 +69,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    '/home/elfo/django_svn/django-trunk/django/contrib/admin/static/admin/',
+    '/srv/django_svn/django-trunk/django/contrib/admin/static/admin/',
 )
 
 # List of finder classes that know how to find static files in
@@ -104,7 +106,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    "/home/elfo/SVN/codex-svn/codex/templates/",
+    '/home/elwen/cortex-elwen/git/Codex/codex/templates/',
 )
 
 INSTALLED_APPS = (
@@ -192,4 +194,4 @@ LOGGING = {
 
 #}
 
-ENVIRONMENT = "TEST"
+

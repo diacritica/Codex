@@ -13,7 +13,7 @@ from random import randint
 
 def EncounterIndex(request):
 
-    return HttpResponse("Encounter OK")
+    return render_to_response('encounters/encounter_gen.html')
 
 def getCreature(creature_list, hitdice):
     new_creature_list = creature_list.filter(hitdice = hitdice)
@@ -30,7 +30,8 @@ def EncounterTest(request, canon, align, players_level, chosen_difficulty):
     #def EncounterTest(chosen_difficulty):
     
     # FIXME: It is needed to control when the result is an empty list
-    
+    players_level = int(players_level)
+    chosen_difficulty = int(chosen_difficulty)
     arbitrary_num = 4.0
     
     # Difficulty is based on the number of creatures
@@ -42,11 +43,17 @@ def EncounterTest(request, canon, align, players_level, chosen_difficulty):
     region = dungeon_probs
 
     # Create a list with all the creatures available:
-    creature_list = Creature.object.all()
+    creature_list = Creature.objects.all()
     # 1. filter available creatures by canon level
-    creature_list = Ccreature_listfilter(canon_level = canon)
+    if canon == 'ALL':
+        pass
+    else:
+        creature_list = creature_list.filter(canon_level = canon)
     # 2. filter available creatures by alignment
-    creature_list = creature_list.filter(alignment = align)
+    if align == 'ALL':
+        pass
+    else:
+        creature_list = creature_list.filter(alignment = align)
   
     # We first create a list of the possible encounters. The reason is to
     # have the list ready not to repeat everything if the roll yields an
@@ -106,6 +113,6 @@ def EncounterTest(request, canon, align, players_level, chosen_difficulty):
         except:
             #print 'Except'
             pass
-            
-    return HttpResponse(encounter)
+    return render_to_response('encounters/encounter_gen.html', {'encounter':encounter[1]})
+#    return HttpResponse(encounter)
     #return encounter
