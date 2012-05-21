@@ -26,11 +26,11 @@ def getCreature(creature_list, hitdice):
 def getTreasure():
     pass
 
-#def EncounterTest(request):
-def EncounterTest(chosen_difficulty):
-    canon = "C"
-    align = "C"
-    players_level = 40
+def EncounterTest(request, canon, align, players_level, chosen_difficulty):
+    #def EncounterTest(chosen_difficulty):
+    
+    # FIXME: It is needed to control when the result is an empty list
+    
     arbitrary_num = 4.0
     
     # Difficulty is based on the number of creatures
@@ -41,10 +41,12 @@ def EncounterTest(chosen_difficulty):
 
     region = dungeon_probs
 
+    # Create a list with all the creatures available:
+    creature_list = Creature.object.all()
     # 1. filter available creatures by canon level
-    creature_list = Creature.objects.filter(canon_level = canon)
+    creature_list = Ccreature_listfilter(canon_level = canon)
     # 2. filter available creatures by alignment
-    creature_list = creature_list.filter(alignment = align)    
+    creature_list = creature_list.filter(alignment = align)
   
     # We first create a list of the possible encounters. The reason is to
     # have the list ready not to repeat everything if the roll yields an
@@ -53,15 +55,6 @@ def EncounterTest(chosen_difficulty):
     # 3. Possible encounters
     encounter_list = {}
     base_encounterHD = players_level/arbitrary_num
-    
-    # One creature
-    #creature = getCreature(creature_list, base_encounterHD)
-    #if creature:
-        #encounter_list[1] = [base_encounterHD,creature]
-    #print "encounter_list: ", encounter_list
-    
-    # Group of creatures
-    
     
     for ncreatures in range(1,20):
         
@@ -79,6 +72,15 @@ def EncounterTest(chosen_difficulty):
             #print "encounter_list: ", encounter_list
         else:
             break
+
+    # Check if there is something inside the encounter_list
+    # important for low level characters
+
+    if encounter_list.keys():
+        pass
+    else:
+        encounter = 'No encounter'
+        return HttpResponse(encounter)
 
     probs = dungeon_probs.keys()
     probs.sort()
@@ -105,5 +107,5 @@ def EncounterTest(chosen_difficulty):
             #print 'Except'
             pass
             
-    #return HttpResponse(encounter)
-    return encounter
+    return HttpResponse(encounter)
+    #return encounter
