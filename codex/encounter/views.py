@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # Create your views here.
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404
 from codex.web.models import *
 
@@ -12,8 +12,14 @@ from django.template import Context, Template, RequestContext
 from random import randint
 
 def EncounterIndex(request):
-
-    return render_to_response('encounters/encounter_gen.html')
+    try:
+        canon = request.GET['canon']
+        align = request.GET['align']
+        players_level = request.GET['players_level']
+        chosen_difficulty = request.GET['chosen_difficulty']
+        return HttpResponseRedirect('/encounter/test/%s/%s/%s/%s' % (canon, align, players_level, chosen_difficulty))
+    except:    
+        return render_to_response('encounters/encounter_gen.html')
 
 def getCreature(creature_list, hitdice):
     new_creature_list = creature_list.filter(hitdice = hitdice)
@@ -83,36 +89,37 @@ def EncounterTest(request, canon, align, players_level, chosen_difficulty):
     # Check if there is something inside the encounter_list
     # important for low level characters
 
-    if encounter_list.keys():
-        pass
-    else:
-        encounter = 'No encounter'
-        return HttpResponse(encounter)
+    print "encounter_list: ", encounter_list
 
-    probs = dungeon_probs.keys()
-    probs.sort()
-    found = False
+    if encounter_list.keys():
+        probs = dungeon_probs.keys()
+        probs.sort()
+        found = False
     
-    while found == False:
-        # Select range creatures
-        selection = randint(1,100)
-        print 'selection: ', selection
-        i = 0
-        for k in probs:
-            if selection <= k:
-                selected = region[probs[i]]
-                break
-            i += 1
-        # Select num creatures
-        numcreatures = randint(selected['numrange'][0], selected['numrange'][-1])
-        print 'numcreatures, selected: ', numcreatures, selected
-        try:
-            encounter = encounter_list[numcreatures]
-            found = True
-            #print 'encounter: ', encounter
-        except:
-            #print 'Except'
-            pass
-    return render_to_response('encounters/encounter_gen.html', {'encounter':encounter[1]})
-#    return HttpResponse(encounter)
-    #return encounter
+        while found == False:
+            # Select range creatures
+            selection = randint(1,100)
+            print 'selection: ', selection
+            i = 0
+            for k in probs:
+                if selection <= k:
+                    selected = region[probs[i]]
+                    break
+                i += 1
+            # Select num creatures
+            numcreatures = randint(selected['numrange'][0], selected['numrange'][-1])
+            print 'numcreatures, selected: ', numcreatures, selected
+            try:
+                encounter = encounter_list[numcreatures][1]
+                found = True
+                #print 'encounter: ', encounter
+            except:
+                #print 'Except'
+                pass
+    else:
+        # if the encounters list is empty. Might happen (feature)
+        numcreatures = False
+        encounter = ''
+    
+    return render_to_response('encounters/encounter_gen.html', {'numcreatures': numcreatures, 'encounter':encounter})
+
