@@ -19,7 +19,7 @@ def EncounterIndex(request):
         chosen_difficulty = request.GET['chosen_difficulty']
         return HttpResponseRedirect('/encounter/test/%s/%s/%s/%s' % (canon, align, players_level, chosen_difficulty))
     except:    
-        return render_to_response('encounter/encounter_gen.html')
+        return render_to_response('encounter/encounter_index.html')
 
 def getCreature(creature_list, hitdice):
     new_creature_list = creature_list.filter(hitdice = hitdice)
