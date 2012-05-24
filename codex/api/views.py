@@ -11,57 +11,28 @@ from django.template import Context, Template, RequestContext
 
 from apisearchviews import *
 
+m = __import__("web")
+
+def GenericDetailView(request, category, slug):
+
+    validcategories = ["object","location","character","creature","adventure","chronicle"]
+    
+    if category in validcategories:
+
+        try:
+            result = getattr(m.models, category.capitalize()).objects.get(slug=slug)
+            resultjson = result.toJSON()
+        
+        except:
+            resultjson = '{ "success": false }'
+
+    else:
+        resultjson = '{ "success": false }'
+
+    return HttpResponse(resultjson, content_type="application/json")
+
+
 def APIIndex(request):
 
     return HttpResponse("API OK")
-
-
-def LocationDetailView(request, slug):
-
-    result = Location.objects.get(slug=slug)
-    resultjson = result.toJSON()
-
-    return HttpResponse(resultjson, content_type="text/plain")
-
-
-def ObjectDetailView(request, slug):
-
-    result = Object.objects.get(slug=slug)
-    resultjson = result.toJSON()
-
-    return HttpResponse(resultjson, content_type="text/plain")
-
-
-def CharacterDetailView(request, slug):
-
-    result = Character.objects.get(slug=slug)
-    resultjson = result.toJSON()
-
-    return HttpResponse(resultjson, content_type="text/plain")
-
-
-def CreatureDetailView(request, slug):
-
-    result = Creature.objects.get(slug=slug)
-    resultjson = result.toJSON()
-
-    return HttpResponse(resultjson, content_type="text/plain")
-
-
-def ChronicleDetailView(request, slug):
-
-    result = Chronicle.objects.get(slug=slug)
-    resultjson = result.toJSON()
-
-    return HttpResponse(resultjson, content_type="text/plain")
-
-
-def AdventureDetailView(request, slug):
-
-    result = Adventure.objects.get(slug=slug)
-    resultjson = result.toJSON()
-
-    return HttpResponse(resultjson, content_type="text/plain")
-
-
 

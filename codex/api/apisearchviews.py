@@ -8,6 +8,7 @@ from codex.web import tools
 import re
 from django.shortcuts import render_to_response
 
+m = __import__("web")
 
 def SimpleSearchView(request, searchfilter, searchterm=""):
 
@@ -16,43 +17,34 @@ def SimpleSearchView(request, searchfilter, searchterm=""):
     results = []
     allobjects = {}
 
-    if searchfilter == 'object':
-        allobjects[searchfilter] = Object.objects.all()
+    validsearchfilters = ["object","location","character","creature","adventure","chronicle"]
 
-    elif searchfilter == 'character':
-        allobjects[searchfilter] = Character.objects.all()
+    if searchfilter in validsearchfilters:
 
-    elif searchfilter == 'creature':
-        allobjects[searchfilter] = Creature.objects.all()
+        allobjects[searchfilter] = getattr(m.models,searchfilter.capitalize()).objects.all()
 
-    elif searchfilter == 'chronicle':
-        allobjects[searchfilter] = Chronicle.objects.all()
+        if len(keywords) != 0:
+            for objecttype, objectlist in allobjects.items():
+                
+                for ob in objectlist:
+                    ks = 0
+                    for keyword in keywords:
+                        if keyword.lower() in ob.searchText().lower():
+                            ks+=5
+                            ks+=ob.searchText().lower().count(keyword.lower())
+                        if ks>0:
+                            if ob in results:
+                                ob.hits += ks
+                            else:
+                                ob.hits = ks
+                                ob.objecttype = objecttype
+                                results.append(ob)
+            sresults = sorted(results, key=lambda anobject: anobject.hits, reverse=True)
+        else:
+            sresults = allobjects[searchfilter]
 
-    elif searchfilter == 'adventure':
-        allobjects[searchfilter] = Adventure.objects.all()
-
-    elif searchfilter == 'location':
-        allobjects[searchfilter] = Location.objects.all()
-
-    if len(keywords) != 0:
-        for objecttype, objectlist in allobjects.items():
-
-            for ob in objectlist:
-                ks = 0
-                for keyword in keywords:
-                    if keyword.lower() in ob.searchText().lower():
-                        ks+=5
-                        ks+=ob.searchText().lower().count(keyword.lower())
-                    if ks>0:
-                        if ob in results:
-                            ob.hits += ks
-                        else:
-                            ob.hits = ks
-                            ob.objecttype = objecttype
-                            results.append(ob)
-        sresults = sorted(results, key=lambda anobject: anobject.hits, reverse=True)
     else:
-        sresults = allobjects[searchfilter]
+        sresults = []
 
     object_list = sresults
 
@@ -60,7 +52,7 @@ def SimpleSearchView(request, searchfilter, searchterm=""):
 
     resultjson = "".join(jsonobject_list)
 
-    return HttpResponse(resultjson, content_type="text/plain")
+    return HttpResponse(resultjson, content_type="application/json")
 
 
 def split_query_into_keywords(query):
