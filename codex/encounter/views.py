@@ -19,7 +19,7 @@ def EncounterIndex(request):
         chosen_difficulty = request.GET['chosen_difficulty']
         return HttpResponseRedirect('/encounter/test/%s/%s/%s/%s' % (canon, align, players_level, chosen_difficulty))
     except:    
-        return render_to_response('encounters/encounter_gen.html')
+        return render_to_response('encounter/encounter_index.html')
 
 def getCreature(creature_list, hitdice):
     new_creature_list = creature_list.filter(hitdice = hitdice)
@@ -33,9 +33,9 @@ def getTreasure():
     pass
 
 def EncounterTest(request, canon, align, players_level, chosen_difficulty):
-    #def EncounterTest(chosen_difficulty):
+    # Store the values of the incoming request to populate the form with the current search
+    form = {'canon': canon, 'align': align, 'players_level': str(players_level), 'chosen_difficulty': str(chosen_difficulty)}
     
-    # FIXME: It is needed to control when the result is an empty list
     players_level = int(players_level)
     chosen_difficulty = int(chosen_difficulty)
     arbitrary_num = 4.0
@@ -121,5 +121,5 @@ def EncounterTest(request, canon, align, players_level, chosen_difficulty):
         numcreatures = False
         encounter = ''
     
-    return render_to_response('encounters/encounter_gen.html', {'numcreatures': numcreatures, 'encounter':encounter})
+    return render_to_response('encounter/encounter_gen.html', {'numcreatures': numcreatures, 'encounter':encounter, 'form':form})
 
