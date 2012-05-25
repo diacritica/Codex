@@ -10,7 +10,7 @@
             "send_tweet": false,
             "constitutionstat": 17,
             "profession": "Dwf",
-            "canon_level": "AP",
+            "canon_level": "C",
             "creation_date": "2012-05-08T23:42:45",
             "moral": "10",
             "pncorpc": "NPC",
@@ -41,7 +41,7 @@
             "move": "20m",
             "description": "Se trata de un Enano ya mayor, con el rostro y el cuerpo cubiertos de cicatrices, tuerto, al que le falta media oreja, de barba ya gris por la edad y manos fuertes y callosas.\r\n<br>\r\n<br>\r\nViste de forma c\u00f3moda y sencilla, y cualquiera que no le preste demasiada atenci\u00f3n podr\u00eda pensar que es un simple enano jubilado que ha venido a pasar sus \u00faltimos d\u00edas al llano. Pero su inquieto ojo brilla con la experiencia del guerrero curtido, por no hablar de la magn\u00edfica hacha que lleva al cinto y acaricia con regularidad. En su juventud fue un aventurero que alcanz\u00f3 cierto renombre, y que tras mucho tiempo de mazmorra en mazmorra decidi\u00f3 retirarse, hace ya 30 a\u00f1os. Se cuenta que en su haber se encuentran algunos objetos m\u00e1gicos de gran valor, hallados durante sus aventuras, y muchos de los mapas que vende son de mazmorras y lugares que \u00e9l mismo ha visitado.\r\n<br>\r\n<br>\r\nDe un modo u otro, casi todo lo que ocurre en la ciudad acaba llegando a sus o\u00eddos, y El Feo Aigor est\u00e1 dispuesto a vender esa informaci\u00f3n, aunque el precio nunca es poco. Maneja su particular mercanc\u00eda con destreza, sin dar nunca m\u00e1s de lo estipulado, picando la curiosidad de aquellos que acuden a \u00e9l, en ocasiones regal\u00e1ndola para obtener el favor de alguien m\u00e1s poderoso o si lo considera adecuado. Pocas cosas ocurren en Robleda sin que \u00e9l se entere.\r\n<br>\r\n<br>\r\nCuriosamente, no parece hacerlo por codicia, sino simplemente como si de un pasatiempo se tratara.\r\n<br>\r\n<br>\r\nEntre sus principales actividades se encuentran la venta de mapas y planos. En ocasiones hace tambi\u00e9n de intermediario, asegurando el anonimato de ambas partes si as\u00ed se desea. Es tambi\u00e9n un buen m\u00fasico con el la\u00fad, y a veces acompa\u00f1a a Lidia, su ahijada, para amenizar la velada.\r\n<br>\r\n<br>\r\nA pesar de todo, es un enano bastante agradable, que trata educadamente a todos los que deseen hablar con \u00e9l, aunque siempre de forma directa (en ocasiones amenazadoramente directa). Recompensa justamente un trabajo bien hecho y se atiene a su palabra (por lo que rara vez promete nada). Huelga decir que cualquiera que sea un problema para \u00e9l o para su ahijada no tardar\u00e1 en tener serios problemas, aunque probablemente Aigor le invite antes a una copa y trate de convencerle de que lo mejor es que deje el asunto tranquilo.\r\n<br>\r\n<br>\r\nSuele pasarse las tardes bebiendo en La Jarra de Oro.\r\n",
             "intelligencestat": 12,
-            "quote": " \u00bfQue si no hablo... qu\u00e9? Chico, he matado gigantes m\u00e1s grandes que esta casa y he aplastado demonios bajo mi bota, \u00bfQu\u00e9 podr\u00edas hacerme?",
+            "quote": "\u00bfQue si no hablo... qu\u00e9? Chico, he matado gigantes m\u00e1s grandes que esta casa y he aplastado demonios bajo mi bota, \u00bfQu\u00e9 podr\u00edas hacerme?\r\n",
             "relatedlocation": [
                 5
             ],
@@ -59,6 +59,7 @@
             "strengthstat": 15,
             "highlight": false,
             "relatedobject": [
+                769,
                 766,
                 768,
                 767,
@@ -82,7 +83,7 @@
             "send_tweet": false,
             "constitutionstat": 12,
             "profession": "Wr",
-            "canon_level": "NEW",
+            "canon_level": "C",
             "creation_date": "2012-05-13T11:14:35",
             "moral": "10",
             "pncorpc": "NPC",
@@ -106,7 +107,7 @@
             "move": "30m",
             "description": "Ahijada de &quot;El Feo&quot; Aigor, se trata de una en\u00e9rgica y atractiva guerrera pelirroja de formas rotundas y ojos verdes. A pesar de su atractivo aspecto, es muy ruda, por lo que intentar algo con ella suele acabar con el aspirante a Casanova retorci\u00e9ndose por el suelo, si es que &quot;El Feo&quot; Aigor no lo ha arrastrado a\u00fan a la barra donde intenta convencerle de que le queda muy bien la cabeza sobre los hombros y que ser\u00eda una l\u00e1stima verla ensuci\u00e1ndose en el suelo.\r\n<br>\r\n<br>\r\n&quot;El Feo&quot; Aigor encontr\u00f3 a Lidia hace casi ya 15 a\u00f1os, cuando esta era tan solo una chiquilla en la calle, y la cri\u00f3 y entren\u00f3 como si fuera su propia hija. Y como tal no permite (ni permitir\u00e1) que se le acerque ning\u00fan hombre hasta que cumpla los 30, cuando se llega a la mayor\u00eda de edad enana. Lidia no comparte la opini\u00f3n de Aigor respecto a este punto, por lo que discuten con bastante frecuencia. A menudo se une a grupos de aventureros intentando alejarse para conseguir m\u00e1s independencia, y cuando vuelve cuenta emocionada sus aventuras a &quot;El Feo&quot; Aigor, que la interroga implacablemente sobre sus compa\u00f1eros masculinos.\r\n<br>\r\n<br>\r\nCuriosamente, tiene una voz preciosa y es muy buena tocando la flauta, por lo que suele llevar una siempre consigo, y de vez en cuando ameniza la velada con su actuaci\u00f3n.\r\n<br>\r\n<br>\r\nAltura: 1.73m\r\n<br>\r\nPeso: 68kg&nbsp;\r\n<br>\r\n",
             "intelligencestat": 10,
-            "quote": "\u00a1Y pap\u00e1, tendr\u00edas que haber visto c\u00f3mo en ese momento cort\u00e9 la cabeza de...! No pap\u00e1, no me estaban mirando nada, estaban bastante ocupados con los dos trolls que ten\u00edan enfrente.",
+            "quote": "\u00a1Y pap\u00e1, tendr\u00edas que haber visto c\u00f3mo en ese momento cort\u00e9 la cabeza de...! No pap\u00e1, no me estaban mirando nada, estaban bastante ocupados con los dos trolls que ten\u00edan enfrente.\r\n",
             "relatedlocation": [],
             "saveroll": "G5",
             "slug": "lidia",
@@ -122,6 +123,7 @@
             "strengthstat": 14,
             "highlight": false,
             "relatedobject": [
+                770,
                 763,
                 44,
                 52,
@@ -2261,6 +2263,652 @@
         }
     },
     {
+        "pk": 60,
+        "model": "web.creature",
+        "fields": {
+            "last_updated": "2012-05-25T23:56:14",
+            "hitdice": "1",
+            "deactivated": false,
+            "send_tweet": false,
+            "move": "3 metros / vuelo 18 metros",
+            "canon_level": "C",
+            "creation_date": "2012-05-25T23:56:13",
+            "moral": "09",
+            "alignment": "N",
+            "attachments": [],
+            "XPvalue": 13,
+            "author": [
+                3
+            ],
+            "comments": "",
+            "languages": [],
+            "image": [],
+            "AC": "7",
+            "description": "Las estirges son criaturas similares a murci\u00e9lagos que se\r\nalimentan de la sangre de otros seres vivos. Se re\u00fanen en\r\ngrandes enjambres, aguardando en el interior de oscuras\r\ncuevas y pasadizos, a la espera de poder atravesar con\r\nsus afilados picos la carne de sus v\u00edctimas y extraerlas la\r\nsangre. La picadura de una estirge causa 1d4 puntos de\r\nda\u00f1o e indica que se ha adherido a su v\u00edctima. Durante los sucesivos asaltos, la estirge seguir\u00e1 causando 1d4\r\npuntos de da\u00f1o hasta que su v\u00edctima consiga liberarse o\r\ntermine por morir desangrada. Si est\u00e1 en vuelo, gana un\r\nbonificador +2 en su primer ataque por la rapidez de sus\r\nmovimientos.\r\n",
+            "relatedlocation": [],
+            "saveroll": "G1",
+            "slug": "estirge",
+            "treasurevalue": "250 mo",
+            "name": "Estirge",
+            "attacks": "1 picadura\r\n<br>Da\u00f1o: 1d4\r\n",
+            "gender": "N",
+            "relatedobject": [],
+            "highlight": false
+        }
+    },
+    {
+        "pk": 59,
+        "model": "web.creature",
+        "fields": {
+            "last_updated": "2012-05-25T23:48:39",
+            "hitdice": "6",
+            "deactivated": false,
+            "send_tweet": false,
+            "move": "12 metros",
+            "canon_level": "C",
+            "creation_date": "2012-05-25T23:48:38",
+            "moral": "09",
+            "alignment": "N",
+            "attachments": [],
+            "XPvalue": 250,
+            "author": [
+                3
+            ],
+            "comments": "",
+            "languages": [],
+            "image": [],
+            "AC": "6",
+            "description": "Los ents son \u00e1rboles animados que presentan rasgos\r\nhumanos en sus arrugados troncos. Si se quedan inm\u00f3viles, pasan f\u00e1cilmente desapercibidos a los ojos inquisitivos. Sin embargo, pueden caminar y comunicarse con el\r\nresto de criaturas que habitan los bosques.\r\n\r\n\r\nA los ents se les considera los guardianes del bosque.\r\nDeambulan por sus fronteras cuidando que nada perturbe sus dominios. En general toleran bien la presencia de\r\nextra\u00f1os en el bosque, a menos que \u00e9stos porten materiales sensibles para los \u00e1rboles, como hachas o antorchas\r\nencendidas. Aunque no toleran la presencia de criaturas\r\nmalignas, como orcos u ogros en sus fronteras. Su dura\r\nconstituci\u00f3n les convierte en enemigos formidables. Atacan utilizando sus ramas rugosas como si fueran dos brazos y con sus ra\u00edces pueden aplastar a un enemigo. Sin\r\nembargo, son especialmente d\u00e9biles ante el fuego y reciben el doble de da\u00f1o cuando son atacados por medio de\r\neste elemento.\r\n",
+            "relatedlocation": [],
+            "saveroll": "G8",
+            "slug": "ent",
+            "treasurevalue": "2.000 mo",
+            "name": "Ent",
+            "attacks": "2 manotazos / 2 aplastar\r\n<br>Da\u00f1o: 1d8 / 1d8 / 2d8 / 2d8\r\n",
+            "gender": "N",
+            "relatedobject": [],
+            "highlight": false
+        }
+    },
+    {
+        "pk": 58,
+        "model": "web.creature",
+        "fields": {
+            "last_updated": "2012-05-25T23:44:19",
+            "hitdice": "2",
+            "deactivated": false,
+            "send_tweet": false,
+            "move": "36 metros",
+            "canon_level": "C",
+            "creation_date": "2012-05-25T23:44:18",
+            "moral": "06",
+            "alignment": "N",
+            "attachments": [],
+            "XPvalue": 25,
+            "author": [
+                3
+            ],
+            "comments": "",
+            "languages": [],
+            "image": [],
+            "AC": "5",
+            "description": "Las driadas son los esp\u00edritus de los \u00e1rboles que pueblan\r\nlos bosques. Su apariencia f\u00edsica es la de bellas mujeres\r\nvestidas con ramas y hojas que extraen de los \u00e1rboles que\r\nhabitan. En general, son seres de una timidez extrema\r\nque raramente se dejan ver y s\u00f3lo son discernibles cuando\r\ntienen que defender su \u00e1rbol. Pueden utilizar el conjuro\r\nHechizar Persona o Hechizar Monstruo tantas veces al d\u00eda\r\ncomo necesiten y nunca portan armas. Las dr\u00edadas sienten\r\nuna fuerte simbiosis con el \u00e1rbol que habitan. Tal es as\u00ed,\r\nque mueren cuando su \u00e1rbol tambi\u00e9n muere.\r\n",
+            "relatedlocation": [],
+            "saveroll": "E3",
+            "slug": "driada",
+            "treasurevalue": "225 mo",
+            "name": "Driada",
+            "attacks": "1 conjuro\r\n<br>Da\u00f1o: Ver descripci\u00f3n\r\n",
+            "gender": "F",
+            "relatedobject": [],
+            "highlight": false
+        }
+    },
+    {
+        "pk": 57,
+        "model": "web.creature",
+        "fields": {
+            "last_updated": "2012-05-25T23:38:42",
+            "hitdice": "4 + 2",
+            "deactivated": false,
+            "send_tweet": false,
+            "move": "12 metros / vuelo 15 metros",
+            "canon_level": "C",
+            "creation_date": "2012-05-25T23:38:41",
+            "moral": "07",
+            "alignment": "N",
+            "attachments": [],
+            "XPvalue": 125,
+            "author": [
+                3
+            ],
+            "comments": "",
+            "languages": [],
+            "image": [],
+            "AC": "5",
+            "description": "Los dracos son enormes criaturas primitivas similares a\r\ngrandes lagartos. Existen diferentes versiones de estos\r\ngrandes saurios, algunos se desplazan sobre sus dos patas\r\ntraseras y otros presentan dos enormes alas, por lo que a\r\nveces se les ha confundido con dragones. Aunque a diferencia de \u00e9stos, los dracos no pueden lanzar bocanadas de\r\nfuego por sus fauces, aunque si realizar peque\u00f1os vuelos,\r\na modo de planeo, por el aire. Los dracos son carn\u00edvoros\r\nque necesitan grandes cantidades de alimento para saciar\r\nsu voraz apetito. No dudan en atacar cuando detectan una\r\nposible presa cercana. Poseen un poderoso veneno que\r\npueden inocular al golpear con su cola. Cualquier criatura\r\nafectada por este veneno, deber\u00e1 realizar una tirada de salvaci\u00f3n contra veneno o morir\u00e1 en 1d6 asaltos.\r\n",
+            "relatedlocation": [],
+            "saveroll": "G4",
+            "slug": "draco",
+            "treasurevalue": "1.100 mo",
+            "name": "Draco",
+            "attacks": "1 mordedura + especial\r\n<br>Da\u00f1o: 1d10\r\n",
+            "gender": "N",
+            "relatedobject": [],
+            "highlight": false
+        }
+    },
+    {
+        "pk": 56,
+        "model": "web.creature",
+        "fields": {
+            "last_updated": "2012-05-25T23:35:34",
+            "hitdice": "4",
+            "deactivated": false,
+            "send_tweet": false,
+            "move": "9 metros",
+            "canon_level": "C",
+            "creation_date": "2012-05-25T23:35:34",
+            "moral": "08",
+            "alignment": "C",
+            "attachments": [],
+            "XPvalue": 125,
+            "author": [
+                3
+            ],
+            "comments": "",
+            "languages": [],
+            "image": [],
+            "AC": "5",
+            "description": "Un doppelganger es una especie extra\u00f1a de humanoide\r\ncon la facultad innata de adoptar la apariencia de cualquier criatura de forma humana (de hasta 2 metros) que\r\nvea, lo que le convierte en un consumado maestro del\r\ndisfraz. Su metamorfosis es tan perfecta que nadie, ni aun\r\nlos m\u00e1s allegados al suplantado, son capaces de descubrir\r\nel enga\u00f1o. El doppelganger es inmune a los conjuros de\r\ndormir y hechizar monstruo, y sus tiradas de salvaci\u00f3n\r\nson las mismas que las de un guerrero de nivel 10. Una\r\nvez que un doppelganger muere, vuelve a adoptar su forma originaria.\r\n",
+            "relatedlocation": [],
+            "saveroll": "G10",
+            "slug": "doppelganger-2",
+            "treasurevalue": "1.500 mo (1.100 mo)",
+            "name": "Doppelganger",
+            "attacks": "1\r\n<br>Da\u00f1o: 1d12\r\n",
+            "gender": "N",
+            "relatedobject": [],
+            "highlight": false
+        }
+    },
+    {
+        "pk": 55,
+        "model": "web.creature",
+        "fields": {
+            "last_updated": "2012-05-25T23:31:19",
+            "hitdice": "4",
+            "deactivated": false,
+            "send_tweet": false,
+            "move": "6 metros",
+            "canon_level": "C",
+            "creation_date": "2012-05-25T23:31:17",
+            "moral": "12",
+            "alignment": "N",
+            "attachments": [],
+            "XPvalue": 125,
+            "author": [
+                3
+            ],
+            "comments": "",
+            "languages": [],
+            "image": [],
+            "AC": "8",
+            "description": "Los cubos gelatinosos son masas enormes compuestas de un extra\u00f1o l\u00edquido pegajoso, normalmente en forma de cubo, que se arrastran por los oscuros pasadizos de las cavernas sorprendiendo a sus posibles v\u00edctimas, a las cuales atrapa encerr\u00e1ndolas en su estructura gelatinosa donde las disuelve y devora. Atacar\u00e1 a cualquier criatura viva con la que tropiece. Simplemente roz\u00e1ndola o acertando en su ataque, la infortunada v\u00edctima quedar\u00e1 inmovilizada si no logra superar con \u00e9xito una tirada de salvaci\u00f3n contra par\u00e1lisis. El efecto de paralizaci\u00f3n suele durar 2d4 asaltos y s\u00f3lo puede ser curada mediante la magia. De lo contrario, durante el siguiente asalto la criatura ser\u00e1 engullida autom\u00e1ticamente por la masa gelatinosa, sin necesidad de tirada de ataque, y comenzar\u00e1 a sufrir el da\u00f1o correspondiente. El cubo gelatinoso es especialmente sensible a los ataques con fuego y las armas convencionales, pero resulta inmune a las armas y hechizos que causen fr\u00edo o lancen rayos. Suelen agruparse en torno a 2-4 criaturas y act\u00faan en grupo.\r\n",
+            "relatedlocation": [],
+            "saveroll": "G3",
+            "slug": "cubo-gelatinoso",
+            "treasurevalue": "1.100 mo",
+            "name": "Cubo Gelatinoso",
+            "attacks": "1\r\n<br>Da\u00f1o: 2d4 + Especial\r\n",
+            "gender": "N",
+            "relatedobject": [],
+            "highlight": false
+        }
+    },
+    {
+        "pk": 54,
+        "model": "web.creature",
+        "fields": {
+            "last_updated": "2012-05-25T23:26:58",
+            "hitdice": "5",
+            "deactivated": false,
+            "send_tweet": false,
+            "move": "27 metros / vuelo 54 metros",
+            "canon_level": "C",
+            "creation_date": "2012-05-25T23:26:57",
+            "moral": "07",
+            "alignment": "N",
+            "attachments": [],
+            "XPvalue": 425,
+            "author": [
+                3
+            ],
+            "comments": "",
+            "languages": [],
+            "image": [],
+            "AC": "6",
+            "description": "La cocatriz es una monstruosa criatura muy similar a un\r\nave de granja, por lo cual suele pasar desapercibida, aunque su pico dentado y sus alas como de \u00e1guila delatan\r\nsu naturaleza m\u00e1gica y peligrosa. De hecho, la cocatriz se\r\ntrata de una criatura procedente de otro plano que puede petrificar a un enemigo si \u00e9ste recibe un picotazo del\r\nextra\u00f1o ser. La v\u00edctima debe superar una tirada de salvaci\u00f3n contra par\u00e1lisis al recibir un ataque o terminar\u00e1\r\npetrificada.\r\n",
+            "relatedlocation": [],
+            "saveroll": "G5",
+            "slug": "cocatriz",
+            "treasurevalue": "1.300 mo",
+            "name": "Cocatriz",
+            "attacks": "1 picotazo\r\n<br>Da\u00f1o: 1d6 + Petrificaci\u00f3n\r\n",
+            "gender": "N",
+            "relatedobject": [],
+            "highlight": false
+        }
+    },
+    {
+        "pk": 53,
+        "model": "web.creature",
+        "fields": {
+            "last_updated": "2012-05-25T23:22:28",
+            "hitdice": "3",
+            "deactivated": false,
+            "send_tweet": false,
+            "move": "1 metro",
+            "canon_level": "C",
+            "creation_date": "2012-05-25T23:22:28",
+            "moral": "12",
+            "alignment": "N",
+            "attachments": [],
+            "XPvalue": 50,
+            "author": [
+                3
+            ],
+            "comments": "",
+            "languages": [],
+            "image": [],
+            "AC": "8",
+            "description": "Esta extra\u00f1a criatura gelatinosa es muy dif\u00edcil de detectar a simple vista, pues su aspecto es el de una masa amorfa que rezuma \u00e1cido. Su contacto con la piel desnuda produce 2d8 puntos de da\u00f1o. Adem\u00e1s el \u00e1cido corroer\u00e1 todas las armas y armaduras del infortunado aventurero de manera fulminante. Las armas u objetos m\u00e1gicos quedar\u00e1n destruidos en un turno completo. Durante cada asalto que el cieno gris permanezca en contacto con su v\u00edctima, seguir\u00e1 causando 2d8 puntos de da\u00f1o. De hecho, su t\u00e1ctica consiste en abalanzarse sobre sus enemigos y pegarse a ellos mientras los va devorando lentamente. El cieno gris es inmune a los ataques por fuego o fr\u00edo, y s\u00f3lo pueden ser heridos por armas m\u00e1gicas o conjuros de rayos. Habitualmente pueden ser encontrados en h\u00famedas guaridas formando grupos de entre 1 a 4 individuos (a elecci\u00f3n del Narrador).\r\n",
+            "relatedlocation": [],
+            "saveroll": "G4",
+            "slug": "cieno-gris",
+            "treasurevalue": "",
+            "name": "Cieno Gris",
+            "attacks": "1\r\n<br>Da\u00f1o: 2d8\r\n",
+            "gender": "N",
+            "relatedobject": [],
+            "highlight": false
+        }
+    },
+    {
+        "pk": 52,
+        "model": "web.creature",
+        "fields": {
+            "last_updated": "2012-05-25T23:20:31",
+            "hitdice": "3",
+            "deactivated": false,
+            "send_tweet": false,
+            "move": "1 metro",
+            "canon_level": "C",
+            "creation_date": "2012-05-25T23:20:30",
+            "moral": "12",
+            "alignment": "N",
+            "attachments": [],
+            "XPvalue": 35,
+            "author": [
+                3
+            ],
+            "comments": "",
+            "languages": [],
+            "image": [],
+            "AC": "7",
+            "description": "Los chillones son criaturas similares a hongos repugnan\r\ntes que habitan en oscuras mazmorras. Su escaso tama\u00f1o,\r\nas\u00ed como su debilidad estructural, no les hace especial\r\nmente peligrosos, si bien son temidas criaturas para todo\r\namante del sigilo, pues los chillones son alarmas natura\r\nles que pueden alertar a enemigos m\u00e1s poderosos que\r\nse encuentren en las inmediaciones. Los chillones reaccionan ante la luz (a 20 metros) y al movimiento (a 10\r\nmetros) emitiendo un agudo sonido similar al grito de un\r\nni\u00f1o que puede alertar a monstruos errantes o patrullas.\r\nDetermina el resultado arrojando 1d6 durante cada asalto\r\nque los aventureros permanezcan pr\u00f3ximos a una de estas\r\ncriaturas. Una puntuaci\u00f3n de entre 4-6 revelar\u00e1 la presen\r\ncia de los invasores a o\u00eddos no deseados y un monstruo\r\nerrante se presentar\u00e1 en 2d6 asaltos.\r\n",
+            "relatedlocation": [],
+            "saveroll": "G1",
+            "slug": "chillon",
+            "treasurevalue": "",
+            "name": "Chill\u00f3n",
+            "attacks": "Ninguno",
+            "gender": "N",
+            "relatedobject": [],
+            "highlight": false
+        }
+    },
+    {
+        "pk": 51,
+        "model": "web.creature",
+        "fields": {
+            "last_updated": "2012-05-25T23:15:25",
+            "hitdice": "5",
+            "deactivated": false,
+            "send_tweet": false,
+            "move": "6 metros",
+            "canon_level": "C",
+            "creation_date": "2012-05-25T23:15:24",
+            "moral": "09",
+            "alignment": "C",
+            "attachments": [],
+            "XPvalue": 385,
+            "author": [
+                3
+            ],
+            "comments": "",
+            "languages": [],
+            "image": [],
+            "AC": "7",
+            "description": "El boc\u00f3n barbotante es una masa informe de carne gelatinosa que se arrastra penosamente. Mientras se mueve, su\r\ncuerpo se va amasando en un sinsentido de ojos y fauces\r\nde aspecto terrible que constantemente est\u00e1n murmurando sonidos grotescos al tiempo que lanzan escupitajos\r\n\u00e1cidos a sus v\u00edctimas. En total, puede lanzar 6 de estas\r\nflemas durante cada asalto. Adem\u00e1s tiene la habilidad de\r\natrapar con su carne pastosa a criaturas que se le acerquen\r\ndemasiado mediante un mordisco. Quienes caigan presa\r\nde su cuerpo, ser\u00e1n engullidas en la masa de bocas recibiendo el da\u00f1o correspondiente a 5 mordiscos durante\r\ncada asalto, hasta que consigan liberarse.\r\n",
+            "relatedlocation": [],
+            "saveroll": "G5",
+            "slug": "bocon-barbotante",
+            "treasurevalue": "",
+            "name": "Bocon Barbotante",
+            "attacks": "6 escupir / mordisco\r\n<br>Da\u00f1o: 1d6 cada escupitajo / 1d8\r\n",
+            "gender": "N",
+            "relatedobject": [],
+            "highlight": false
+        }
+    },
+    {
+        "pk": 50,
+        "model": "web.creature",
+        "fields": {
+            "last_updated": "2012-05-25T23:13:44",
+            "hitdice": "1 + 1",
+            "deactivated": false,
+            "send_tweet": false,
+            "move": "12 metros",
+            "canon_level": "C",
+            "creation_date": "2012-05-25T23:13:42",
+            "moral": "12",
+            "alignment": "N",
+            "attachments": [],
+            "XPvalue": 19,
+            "author": [
+                3
+            ],
+            "comments": "",
+            "languages": [],
+            "image": [],
+            "AC": "7",
+            "description": "El berserker es un arquetipo de b\u00e1rbaro que vive para guerrear y saquear sin compasi\u00f3n. Su furia adormecida des-\r\npierta cuando entra en combate, en una especie de salvaje\r\nexplosi\u00f3n que convierten al berserker en una bestia incontrolada capaz de atacar a todo cuanto le rodea, incluso a\r\nsus propios camaradas. Una vez que comienza la batalla\r\nson capaces de pelear hasta la muerte y nada, sino su propia destrucci\u00f3n, puede detenerle. Cuando se enfrenta con\r\nhumanos, o criaturas de tipo humanoide, recibe un +2\r\nextra al da\u00f1o.\r\n",
+            "relatedlocation": [],
+            "saveroll": "G3",
+            "slug": "berserker",
+            "treasurevalue": "100 mo (150 mo)",
+            "name": "Berserker",
+            "attacks": "1 arma\r\n<br>Da\u00f1o: Causado por arma\r\n",
+            "gender": "M",
+            "relatedobject": [],
+            "highlight": false
+        }
+    },
+    {
+        "pk": 49,
+        "model": "web.creature",
+        "fields": {
+            "last_updated": "2012-05-25T23:11:54",
+            "hitdice": "6 + 1",
+            "deactivated": false,
+            "send_tweet": false,
+            "move": "20 metros",
+            "canon_level": "C",
+            "creation_date": "2012-05-25T23:11:53",
+            "moral": "09",
+            "alignment": "N",
+            "attachments": [],
+            "XPvalue": 950,
+            "author": [
+                3
+            ],
+            "comments": "",
+            "languages": [],
+            "image": [],
+            "AC": "4",
+            "description": "El basilisco es una poderosa criatura de origen m\u00e1gico cuya apariencia se asemeja a la de un gran reptil de piel escamosa y afilados colmillos. Su tama\u00f1o es de 3 metros y suele habitar en fr\u00edas y oscuras mazmorras, donde el sol no pueda afectarle. Todo aventurero que tenga la desdicha de ser sorprendido por la presencia de un basilisco, deber\u00e1 superar una tirada de salvaci\u00f3n contra par\u00e1lisis o quedar\u00e1 petrificado, incluyendo todo su equipo. Durante un enfrentamiento contra un basilisco, los aventureros deber\u00e1n rehuir en todo momento su mirada o tendr\u00e1n que superar la prueba de petrificaci\u00f3n al principio de cada asalto. Combatir de esta manera implica que el aventurero sufrir\u00e1 un penalizador -4 a todas sus tiradas de ataque contra el monstruo, mientras que el basilisco obtendr\u00e1 un +2 a su propio ataque.\r\n",
+            "relatedlocation": [],
+            "saveroll": "G6",
+            "slug": "basilisco",
+            "treasurevalue": "1.100 mo",
+            "name": "Basilisco",
+            "attacks": "1 mordisco / 1 mirada\r\n<br>Da\u00f1o: 1d10 + petrificaci\u00f3n\r\n",
+            "gender": "N",
+            "relatedobject": [],
+            "highlight": false
+        }
+    },
+    {
+        "pk": 48,
+        "model": "web.creature",
+        "fields": {
+            "last_updated": "2012-05-25T22:55:24",
+            "hitdice": "8 + 7",
+            "deactivated": false,
+            "send_tweet": false,
+            "move": "20 metros / vuelo 50 metros",
+            "canon_level": "C",
+            "creation_date": "2012-05-25T22:55:23",
+            "moral": "10",
+            "alignment": "C",
+            "attachments": [],
+            "XPvalue": 1890,
+            "author": [
+                3
+            ],
+            "comments": "",
+            "languages": [],
+            "image": [],
+            "AC": "2",
+            "description": "De entre el amplio espectro que presentan los demonios, los Balor son sin duda los m\u00e1s temibles de todos ellos. Son los se\u00f1ores del Averno. Los m\u00e1s fieros en el combate y a quienes rinden pleites\u00eda los dem\u00e1s demonios inferiores por miedo a su furia.\r\n<br>\r\n<br>\r\nSu aspecto es estremecedor y cualquiera que se halle ante su presencia pavorosa deber\u00e1 superar una tirada de salvaci\u00f3n contra par\u00e1lisis o estar\u00e1 tan aterrado por el miedo que quedar\u00e1 inmovilizado durante 1d4 asaltos.\r\n<br>\r\n<br>\r\nSon demonios gigantes, que suelen sobrepasar f\u00e1cilmente los 3 metros de altura. Su piel es roja y negra surcada por m\u00faltiples marcas y runas m\u00e1gicas. Suelen ir armados con una gran espada m\u00e1gica en una mano y un l\u00e1tigo de fuego en la otra con el que azotar a sus huestes y castigar a sus enemigos. Siempre ocupan puestos de mando y suelen ser los encargados de dirigir grandes ej\u00e9rcitos de demonios. Tienen la capacidad de lanzar conjuros como si de un mago se tratara en base a sus dados de golpe. Por ejemplo, un Balor con ocho dados de golpe, como el aqu\u00ed reflejado, lanzar\u00e1 conjuros como si fuera un mago de nivel 8.\r\n",
+            "relatedlocation": [],
+            "saveroll": "G10",
+            "slug": "balor-demonio",
+            "treasurevalue": "6.000 mo",
+            "name": "Balor (Demonio)",
+            "attacks": "1 (Espada o L\u00e1tigo)\r\n<br>\r\nDa\u00f1o: 1d8+1 \u00f3 1d6 + 3d6 por fuego\r\n",
+            "gender": "N",
+            "relatedobject": [],
+            "highlight": false
+        }
+    },
+    {
+        "pk": 47,
+        "model": "web.creature",
+        "fields": {
+            "last_updated": "2012-05-25T22:52:05",
+            "hitdice": "3",
+            "deactivated": false,
+            "send_tweet": false,
+            "move": "6 metros / vuelo 15 metros",
+            "canon_level": "C",
+            "creation_date": "2012-05-25T22:52:04",
+            "moral": "07",
+            "alignment": "C",
+            "attachments": [],
+            "XPvalue": 50,
+            "author": [
+                3
+            ],
+            "comments": "",
+            "languages": [],
+            "image": [],
+            "AC": "7",
+            "description": "Las arp\u00edas son inteligentes criaturas capaces de atraer a los incautos con dulces melod\u00edas para despu\u00e9s desgarrarlos con sus poderosas garras. Sus extremidades se asemejan a las de un murci\u00e9lago con dos enormes alas en lugar de brazos. Su torso y cabeza suelen representar a los de una bella mujer de aspecto siniestro. Toda criatura que escuche el canto de una arp\u00eda, debe superar una tirada de salvaci\u00f3n contra conjuros o caer\u00e1 presa de un encantamiento. Si una criatura supera con \u00e9xito la tirada de salvaci\u00f3n, no podr\u00e1 volver a ser hechizado por la arp\u00eda durante el combate.\r\n",
+            "relatedlocation": [],
+            "saveroll": "G5",
+            "slug": "arpia",
+            "treasurevalue": "800 mo",
+            "name": "Arp\u00eda",
+            "attacks": "2 garras / 1 arma + Especial\r\n<br>Da\u00f1o: 1d4 / 1d4 / 1d6\r\n",
+            "gender": "F",
+            "relatedobject": [],
+            "highlight": false
+        }
+    },
+    {
+        "pk": 46,
+        "model": "web.creature",
+        "fields": {
+            "last_updated": "2012-05-25T22:47:43",
+            "hitdice": "4",
+            "deactivated": false,
+            "send_tweet": false,
+            "move": "12 metros",
+            "canon_level": "C",
+            "creation_date": "2012-05-25T22:47:43",
+            "moral": "08",
+            "alignment": "N",
+            "attachments": [],
+            "XPvalue": 125,
+            "author": [
+                3
+            ],
+            "comments": "",
+            "languages": [],
+            "image": [],
+            "AC": "5",
+            "description": "Al igual que la viuda negra, la tar\u00e1ntula puede alcanzar los 2 metros de altura, lo que la convierte en una peligrosa criatura. Su naturaleza es m\u00e1gica y su picadura no mata, en lugar de ello, las v\u00edctimas que reciban su veneno caer\u00e1n presa de unos terribles espasmos musculares que los dejar\u00e1n incapacitado de inmediato. Esta especie de frenes\u00ed es m\u00e1gico y contagioso. Quienes contemplen a una v\u00edctima de este extra\u00f1o veneno deber\u00e1n, a su vez, superar una tirada de salvaci\u00f3n contra conjuros o caer\u00e1n presa del mismo frenes\u00ed. El efecto de la picadura dura de 2d6 asaltos y quienes est\u00e9n presos de este conjuro sufrir\u00e1n un penalizador -4 en sus tiradas de ataque. Al tiempo que quienes les ataquen a ellos obtendr\u00e1n +4 en sus tiradas de ataque. Tras 5 asaltos en estado de frenes\u00ed, quedar\u00e1n inmovilizados.\r\n",
+            "relatedlocation": [],
+            "saveroll": "G1",
+            "slug": "tarantula",
+            "treasurevalue": "1.100 mo",
+            "name": "Tar\u00e1ntula",
+            "attacks": "1 picadura\r\n<br>Da\u00f1o: 1d8 + Veneno\r\n",
+            "gender": "N",
+            "relatedobject": [],
+            "highlight": false
+        }
+    },
+    {
+        "pk": 45,
+        "model": "web.creature",
+        "fields": {
+            "last_updated": "2012-05-25T22:44:34",
+            "hitdice": "3",
+            "deactivated": false,
+            "send_tweet": false,
+            "move": "6 metros",
+            "canon_level": "C",
+            "creation_date": "2012-05-25T22:44:33",
+            "moral": "08",
+            "alignment": "N",
+            "attachments": [],
+            "XPvalue": 50,
+            "author": [
+                3
+            ],
+            "comments": "",
+            "languages": [],
+            "image": [],
+            "AC": "6",
+            "description": "Esta ara\u00f1a puede llegar a alcanzar los 2 metros de altura y tiene una marca roja en forma de reloj de arena en el vien- tre. Cuando atrapa a una presa en su red, hay que tratar la tela como si se tratara del conjuro de mago Telara\u00f1a para poder liberarse. Una v\u00edctima de la picadura de una ara\u00f1a viuda negra, debe superar una tirada de salvaci\u00f3n contra veneno o morir\u00e1 en un turno.\r\n",
+            "relatedlocation": [],
+            "saveroll": "G1",
+            "slug": "viuda-negra",
+            "treasurevalue": "800 mo",
+            "name": "Viuda Negra",
+            "attacks": "Telara\u00f1a: 12 metros\r\n<br>1 picadura\r\n<br>Da\u00f1o: 2d6 + Veneno\r\n",
+            "gender": "N",
+            "relatedobject": [],
+            "highlight": false
+        }
+    },
+    {
+        "pk": 44,
+        "model": "web.creature",
+        "fields": {
+            "last_updated": "2012-05-25T22:38:30",
+            "hitdice": "2",
+            "deactivated": false,
+            "send_tweet": false,
+            "move": "12 metros",
+            "canon_level": "C",
+            "creation_date": "2012-05-25T22:38:28",
+            "moral": "07",
+            "alignment": "N",
+            "attachments": [],
+            "XPvalue": 25,
+            "author": [
+                3
+            ],
+            "comments": "",
+            "languages": [],
+            "image": [],
+            "AC": "7",
+            "description": "Este tipo de ara\u00f1a suelen medir aproximadamente 1 metro de longitud y tiene la habilidad de mimetizarse con el entorno como si fuera un camale\u00f3n, de tal forma que es muy dif\u00edcil de detectar. Su t\u00e1ctica favorita consiste en colgarse del techo, o las paredes, y saltar sobre su presa. Antes de realizar el ataque, se lanza 1d6 y si se obtiene un resultado entre 1-4, el objetivo es sorprendido. Despu\u00e9s del primer ataque de la ara\u00f1a, su presencia queda delatada durante el resto del combate. La v\u00edctima de su picadura debe superar una tirada de salvaci\u00f3n contra veneno o morir\u00e1 en 1d4 asaltos. Sin embargo, el aguij\u00f3n de la ara\u00f1a cangrejo es poco consistente y la v\u00edctima suma +2 a su tirada de salvaci\u00f3n.\r\n",
+            "relatedlocation": [],
+            "saveroll": "G1",
+            "slug": "arana-cangrejo",
+            "treasurevalue": "500 mo",
+            "name": "Ara\u00f1a cangrejo",
+            "attacks": "1 picadura\r\n<br>Da\u00f1o: 1d8 + Veneno\r\n",
+            "gender": "N",
+            "relatedobject": [],
+            "highlight": false
+        }
+    },
+    {
+        "pk": 43,
+        "model": "web.creature",
+        "fields": {
+            "last_updated": "2012-05-25T22:34:58",
+            "hitdice": "4 + 2",
+            "deactivated": false,
+            "send_tweet": false,
+            "move": "12 metros",
+            "canon_level": "C",
+            "creation_date": "2012-05-25T22:34:57",
+            "moral": "07",
+            "alignment": "C",
+            "attachments": [],
+            "XPvalue": 200,
+            "author": [
+                3
+            ],
+            "comments": "",
+            "languages": [],
+            "image": [],
+            "AC": "5",
+            "description": "Los ankhegs son monstruosas criaturas que se desplazan por el interior de la tierra y sorprenden a sus v\u00edctimas emergiendo del subsuelo. Su apariencia f\u00edsica recuerda a la de un enorme saurio, aunque en lugar de garras delan- teras, posee dos grandes pinzas con las que horadan el subsuelo y pueden atenazar a sus enemigos. Su cabeza es ligeramente m\u00e1s alargada que la de un drag\u00f3n y su hocico m\u00e1s duro y consistente.\r\n<br>\r\n<br>\r\nLa t\u00e1ctica que emplean estos monstruos consiste en camuflarse bajo el suelo y sorprender a los incautos. Su presencia queda delatada cuando comienza a temblar el suelo y aparecen las dos enormes pinzas del monstruo. Mientras utilizan esta t\u00e1ctica, los ankhegs siempre sor- prenden y ganan la iniciativa en un eventual ataque.\r\n<br>\r\n<br>\r\nLas tenazas de los ankhegs son de una dureza extraordinaria. Cuando un ankheg golpea a un enemigo con ellas, adem\u00e1s del da\u00f1o recibido, el aventurero queda atrapado en la pinza y ser\u00e1 seccionado por la mitad a menos que consiga librarse de la presa en 2d8 asaltos. Mientras el aventurero permanezca atrapado en la pinza sufrir\u00e1 da\u00f1o autom\u00e1tico cada asalto, sin necesidad de que la criatura realice tirada de ataque.\r\n",
+            "relatedlocation": [],
+            "saveroll": "G3",
+            "slug": "ankheg",
+            "treasurevalue": "1.100 mo",
+            "name": "Ankheg",
+            "attacks": "2 pinzas / 1 mordedura\r\n<br>\r\nDa\u00f1o: 1d10 / 1d10 / 1d8\r\n",
+            "gender": "N",
+            "relatedobject": [],
+            "highlight": false
+        }
+    },
+    {
+        "pk": 42,
+        "model": "web.creature",
+        "fields": {
+            "last_updated": "2012-05-25T22:30:28",
+            "hitdice": "6",
+            "deactivated": false,
+            "send_tweet": false,
+            "move": "40 metros ",
+            "canon_level": "C",
+            "creation_date": "2012-05-25T22:30:27",
+            "moral": "07",
+            "alignment": "C",
+            "attachments": [],
+            "XPvalue": 600,
+            "author": [
+                3
+            ],
+            "comments": "",
+            "languages": [],
+            "image": [],
+            "AC": "5",
+            "description": "El Aboleth es una monstruosa criatura malvada que reina en el submundo de la oscuridad marina. Su cuerpo se ase- meja a un enorme pez prehist\u00f3rico y algunos ejemplares pueden llegar a medir hasta 10 metros de largo y sobrepasar los 3.000 kg de peso.\r\n<br>\r\n<br>\r\nSe trata de un ser inteligente que odia a toda criatura no acu\u00e1tica. De hecho, es capaz de inducir a un enemigo a un estado similar al conjuro <i>Hechizar Persona</i> si la v\u00edctima no supera una tirada de salvaci\u00f3n contra conjuros. Este ataque especial lo puede realizar tres veces al d\u00eda.\r\n<br>\r\n<br>\r\nSu cuerpo posee cuatro largos tent\u00e1culos con los que pue- de golpear a sus enemigos y, adem\u00e1s del da\u00f1o causado, la presa debe superar una tirada de salvaci\u00f3n contra veneno, o sufrir\u00e1 una ag\u00f3nica transformaci\u00f3n en una especie de moho purulento (espumario). Durante los siguientes\r\n",
+            "relatedlocation": [],
+            "saveroll": "G8",
+            "slug": "aboleth",
+            "treasurevalue": "",
+            "name": "Aboleth",
+            "attacks": "4 tent\u00e1culos + especial\r\n<br>\r\nDa\u00f1o: 1d6 / 1d6 / 1d6 / 1d6\r\n",
+            "gender": "N",
+            "relatedobject": [],
+            "highlight": false
+        }
+    },
+    {
         "pk": 41,
         "model": "web.creature",
         "fields": {
@@ -3867,6 +4515,18 @@
         }
     },
     {
+        "pk": 54,
+        "model": "web.author",
+        "fields": {
+            "name": "Juan Carlos Morell\u00f3",
+            "url": "http://greciajdr.blogspot.com.es/",
+            "photo": [],
+            "otherdata": "",
+            "nickname": "More",
+            "slug": ""
+        }
+    },
+    {
         "pk": 47,
         "model": "web.author",
         "fields": {
@@ -4631,12 +5291,12 @@
             "author": [
                 52
             ],
-            "relation21": "FATHER",
+            "relation21": "STEPFATHER",
             "character2": 70,
             "canon_level": "NEW",
-            "comments": "",
+            "comments": "<br>\r\n",
             "character1": 71,
-            "relation12": "SON",
+            "relation12": "STEPSON",
             "slug": ""
         }
     },
@@ -6836,17 +7496,45 @@
         }
     },
     {
-        "pk": 32,
+        "pk": 37,
         "model": "web.characterlocationrelationship",
         "fields": {
             "author": [
                 1
             ],
-            "character": 67,
-            "canon_level": "NEW",
+            "character": 9,
+            "canon_level": "C",
             "comments": "",
-            "relation": "1",
-            "location": 5
+            "relation": "3",
+            "location": 53
+        }
+    },
+    {
+        "pk": 36,
+        "model": "web.characterlocationrelationship",
+        "fields": {
+            "author": [
+                1
+            ],
+            "character": 9,
+            "canon_level": "C",
+            "comments": "",
+            "relation": "3",
+            "location": 9
+        }
+    },
+    {
+        "pk": 35,
+        "model": "web.characterlocationrelationship",
+        "fields": {
+            "author": [
+                1
+            ],
+            "character": 9,
+            "canon_level": "C",
+            "comments": "",
+            "relation": "3",
+            "location": 2
         }
     },
     {
@@ -6864,6 +7552,20 @@
         }
     },
     {
+        "pk": 32,
+        "model": "web.characterlocationrelationship",
+        "fields": {
+            "author": [
+                1
+            ],
+            "character": 67,
+            "canon_level": "NEW",
+            "comments": "",
+            "relation": "1",
+            "location": 5
+        }
+    },
+    {
         "pk": 34,
         "model": "web.characterlocationrelationship",
         "fields": {
@@ -6875,6 +7577,68 @@
             "comments": "",
             "relation": "2",
             "location": 5
+        }
+    },
+    {
+        "pk": 770,
+        "model": "web.object",
+        "fields": {
+            "last_updated": "2012-05-16T22:58:12",
+            "attachments": [],
+            "deactivated": false,
+            "send_tweet": false,
+            "ppvalue": 0,
+            "canon_level": "C",
+            "creation_date": "2012-05-16T22:58:11",
+            "alignment": "NA",
+            "cpvalue": 0,
+            "author": [
+                3
+            ],
+            "comments": "",
+            "properties": "",
+            "image": [],
+            "status": "Cr",
+            "description": "Antiguo instrumento musical de aire, sencillo en su concepto. Se trata de un cilindro de madera (aunque hay raros ejemplares fabricados con metales preciosos) provisto de varios agujeros y una boquilla. Soplando por la boquilla y obturando seg\u00fan que agujeros, se consiguen notas diversas y estupendas melod\u00edas. Las flautas roble\u00f1as se fabrican con las mejores maderas de roble, especialmente seleccionadas y destacan por su c\u00e1lido sonido caracter\u00edstico.\r\n<br>\r\n<br>\r\nEs un instrumento popular, gracias a su sencillo manejo,\r\n<br>\r\n",
+            "gpvalue": 10,
+            "spvalue": 0,
+            "slug": "flauta-roblena",
+            "fabvalue": false,
+            "name": "Flauta roble\u00f1a",
+            "rarity": "C",
+            "objtype": "Tls",
+            "highlight": false
+        }
+    },
+    {
+        "pk": 769,
+        "model": "web.object",
+        "fields": {
+            "last_updated": "2012-05-16T22:52:07",
+            "attachments": [],
+            "deactivated": false,
+            "send_tweet": false,
+            "ppvalue": 0,
+            "canon_level": "C",
+            "creation_date": "2012-05-16T22:52:06",
+            "alignment": "NA",
+            "cpvalue": 0,
+            "author": [
+                3
+            ],
+            "comments": "",
+            "properties": "",
+            "image": [],
+            "status": "Cr",
+            "description": "El la\u00fad es un instrumento musical de cuerda, parecido a una guitarra, pero de cuerpo m\u00e1s rotundo y achatado. De hecho, la caja de resonancia es abombada y el m\u00e1stil m\u00e1s corto y ancho que aquel de una guitarra. Este intrumento, generalmente fabricado con maderas nobles, como arce, haya o incluso roble, produce un sonido muy caracter\u00edstico, apreciado por bardos y tunantes.\r\n<br>\r\n",
+            "gpvalue": 50,
+            "spvalue": 0,
+            "slug": "laud",
+            "fabvalue": false,
+            "name": "La\u00fad",
+            "rarity": "R",
+            "objtype": "Tls",
+            "highlight": false
         }
     },
     {
@@ -7150,18 +7914,18 @@
             "deactivated": false,
             "send_tweet": false,
             "ppvalue": 0,
-            "canon_level": "NEW",
+            "canon_level": "C",
             "creation_date": "2012-05-09T18:05:44",
             "alignment": "NA",
             "cpvalue": 0,
             "author": [
                 52
             ],
-            "comments": "",
-            "properties": "",
+            "comments": "<br>\r\n",
+            "properties": "<br>\r\n",
             "image": [],
             "status": "Cr",
-            "description": "Una pipa de fumar, generalmente de unos 10/15 cm de largo, hecha en madera. Distintos materiales pueden hacer variara su precio. Permite fumar.",
+            "description": "Una pipa de fumar, generalmente de unos 10/15 cm de largo, hecha en madera. Distintos materiales pueden hacer variara su precio. Permite fumar.\r\n",
             "gpvalue": 0,
             "spvalue": 5,
             "slug": "pipa",
@@ -7181,15 +7945,15 @@
             "deactivated": false,
             "send_tweet": false,
             "ppvalue": 0,
-            "canon_level": "NEW",
+            "canon_level": "C",
             "creation_date": "2012-05-09T18:05:02",
             "alignment": "NA",
             "cpvalue": 0,
             "author": [
                 52
             ],
-            "comments": "",
-            "properties": "",
+            "comments": "<br>\r\n",
+            "properties": "<br>\r\n",
             "image": [],
             "status": "Cr",
             "description": "Hierba seca de aroma penetrante tra\u00edda desde las Frondas de los Medianos. Su aroma suele relajar y mejorar la concentraci\u00f3n.\r\n<br>\r\n<br>\r\n1 mp por cada 20g (1 carga), un paquete suele traer 20 cargas (2 mo)\r\n",
@@ -7212,18 +7976,18 @@
             "deactivated": false,
             "send_tweet": false,
             "ppvalue": 0,
-            "canon_level": "NEW",
+            "canon_level": "C",
             "creation_date": "2012-05-09T18:00:53",
             "alignment": "NA",
             "cpvalue": 0,
             "author": [
                 52
             ],
-            "comments": "",
-            "properties": "",
+            "comments": "<br>\r\n",
+            "properties": "<br>\r\n",
             "image": [],
             "status": "Cr",
-            "description": "Peque\u00f1o frasco de 50cl que contiene un l\u00edquido ambarino, una poci\u00f3n m\u00e1gica capaz de neutralizar la mayor\u00eda de los venenos conocidos. Muy popular entre reyes y otras gentes susceptibles de ser traicionadas.",
+            "description": "Peque\u00f1o frasco de 50cl que contiene un l\u00edquido ambarino, una poci\u00f3n m\u00e1gica capaz de neutralizar la mayor\u00eda de los venenos conocidos. Muy popular entre reyes y otras gentes susceptibles de ser traicionadas.\r\n",
             "gpvalue": 750,
             "spvalue": 0,
             "slug": "antidoto-mayor",
@@ -7243,7 +8007,7 @@
             "deactivated": false,
             "send_tweet": false,
             "ppvalue": 0,
-            "canon_level": "NEW",
+            "canon_level": "C",
             "creation_date": "2012-05-08T23:47:52",
             "alignment": "NA",
             "cpvalue": 0,
@@ -7254,7 +8018,7 @@
             "properties": "Parche para el ojo encantado, cualquiera que lo lleve puesto mantendr\u00e1 el hechizo Detectar Magia continuamente activo. Si se pone sobre un ojo, este (el ojo) se perder\u00e1 al instante, Sin Tirada de Salvaci\u00f3n posible.\r\n",
             "image": [],
             "status": "Cr",
-            "description": "Un simple parche negro. En el interior est\u00e1 dibujada la runa arcana de \"Visi\u00f3n\".",
+            "description": "Un simple parche negro. En el interior est\u00e1 dibujada la runa arcana de &quot;Visi\u00f3n&quot;.\r\n",
             "gpvalue": 25000,
             "spvalue": 0,
             "slug": "parche-del-cazamaravillas",
@@ -7274,7 +8038,7 @@
             "deactivated": false,
             "send_tweet": false,
             "ppvalue": 0,
-            "canon_level": "NEW",
+            "canon_level": "C",
             "creation_date": "2012-05-08T23:45:46",
             "alignment": "NA",
             "cpvalue": 0,
@@ -7283,7 +8047,7 @@
             "properties": "Reduce en 2 la CA del portador\r\n<br>\r\n",
             "image": [],
             "status": "Cr",
-            "description": "Se trata de un sencillo anillo de oro que reluce de un modo curioso.",
+            "description": "Se trata de un sencillo anillo de oro que reluce de un modo curioso.\r\n",
             "gpvalue": 8000,
             "spvalue": 0,
             "slug": "anillo-de-proteccion-2",
@@ -7303,14 +8067,14 @@
             "deactivated": false,
             "send_tweet": false,
             "ppvalue": 0,
-            "canon_level": "NEW",
+            "canon_level": "C",
             "creation_date": "2012-05-08T23:44:45",
             "alignment": "NA",
             "cpvalue": 0,
             "author": [
                 52
             ],
-            "comments": "",
+            "comments": "<br>\r\n",
             "properties": "Hacha m\u00e1gica +2\r\n<br>\r\nEn manos de &quot;El Feo&quot; Aigor se considera un Hacha de mano m\u00e1gica +3\r\n<br>\r\n",
             "image": [],
             "status": "Cr",
@@ -20379,6 +21143,64 @@
         }
     },
     {
+        "pk": 37,
+        "model": "web.adventure",
+        "fields": {
+            "maxnumplayers": 6,
+            "last_updated": "2012-05-26T00:08:53",
+            "name": "La estirpe perdida",
+            "sessions": 2,
+            "url": "http://frikisymazmorras.blogspot.com.es/2012/05/concurso-1er-aniversario-de-frikis-y.html",
+            "price": "FREE",
+            "description": "Ad\u00e9ntrate de nuevo en Vermigor, el t\u00e9trico escenario de campa\u00f1a para Aventuras en La Marca del Este, convive con los Szgani, El Pueblo del Camino, los Gitanos de Vermigor y enfr\u00e9ntate a criaturas de pesadilla mientras exploras las ruinas de Vasarob en esta fant\u00e1stica aventura. \r\n<br><br>\r\n\r\n*Necesitaras la Ayuda creada por Frikis y Mazmorras Szgani, El Pueblo del Camino para Jugar, desc\u00e1rgala desde aqu\u00ed: http://frikisymazmorras.blogspot.com.es/2012/02/szgani-el-pueblo-del-camino-adentrate.html",
+            "canon_level": "NEW",
+            "minlevel": 3,
+            "creation_date": "2012-05-26T00:08:53",
+            "attachments": [],
+            "image": [
+                129
+            ],
+            "comments": "La Estirpe Perdida, es una aventura de terror para el escenario de campa\u00f1a Vermigor. Esta aventura creada por Juan Carlos Morell\u00f3 (More), <a href=\"http://greciajdr.blogspot.com.es/\">http://greciajdr.blogspot.com.es/</a> ha sido galardonada con el Premio Primer Aniversario de Frikis y Mazmorras<a href=\"http://frikisymazmorras.blogspot.com.es\">http://frikisymazmorras.blogspot.com.es</a>\r\n",
+            "send_tweet": false,
+            "highlight": true,
+            "author": [
+                54
+            ],
+            "maxlevel": 5,
+            "slug": "la-estirpe-perdida",
+            "minnumplayers": 4
+        }
+    },
+    {
+        "pk": 36,
+        "model": "web.adventure",
+        "fields": {
+            "maxnumplayers": 6,
+            "last_updated": "2012-05-23T22:38:25",
+            "name": "El Tesoro de los Faraones",
+            "sessions": 3,
+            "url": "http://norkak.wordpress.com/2012/05/23/ame-el-tesoro-de-los-faraones/",
+            "price": "FREE",
+            "description": "Se dice que Sennefer, cuando se alz\u00f3 con la victoria sobre sus hermanos, mand\u00f3 construir un templo en el que se guardasen todas las riquezas que pose\u00eda y que en un futuro pudiera acumular. Un lugar oculto en mitad del desierto que s\u00f3lo \u00e9l y unos pocos allegados de su confianza conocieran. Muchos creen que todo esto no es m\u00e1s que un mito, pero yo, que llevo estudiando la historia de Neferu desde hace muchos a\u00f1os, puedo asegurar que se trata de algo m\u00e1s que una simple leyenda. Les hablo de un tesoro much\u00edsimo mayor del que jam\u00e1s hayan podido imaginar. Las grandes riquezas de todos los Grandes Faraones del Antiguo Imperio, acumulados en un \u00fanico lugar... [Fragmento extra\u00eddo de la aventura]",
+            "canon_level": "NEW",
+            "minlevel": 2,
+            "creation_date": "2012-05-23T22:38:25",
+            "attachments": [],
+            "image": [
+                128
+            ],
+            "comments": "El Tesoro de los Faraones es la primera parte de una campa\u00f1a titulada \u201cEl Despertar\u201d. Esta primera parte se desarrolla en La Marca del Este, donde los aventureros ser\u00e1n contratados por el antiguo secretario de un Bar\u00f3n de Robleda, para que le ayuden a encontrar un Tesoro oculto en tierras Nefer\u00eds.\r\n<br><br>\r\nEl motivo por el que esta primera parte sea en La Marca del Este es porque la gran mayor\u00eda de los aventureros se encuentran, habitualmente, en esa regi\u00f3n del mundo. Con esta aventura, el Master no tiene que inventarse motivos para que sus jugadores aparezcan de repente en una localizaci\u00f3n nueva como lo puede ser Neferu. Adem\u00e1s, en ella hay algunos datos importantes que pueden ser de utilidad a los jugadores durante su estancia por tierras Nefer\u00eds.",
+            "send_tweet": false,
+            "highlight": true,
+            "author": [
+                43
+            ],
+            "maxlevel": 4,
+            "slug": "el-tesoro-de-los-faraones",
+            "minnumplayers": 3
+        }
+    },
+    {
         "pk": 35,
         "model": "web.adventure",
         "fields": {
@@ -22355,6 +23177,22 @@
         }
     },
     {
+        "pk": 129,
+        "model": "web.image",
+        "fields": {
+            "name": "Portada de La Estirpe Perdida",
+            "author": [
+                54
+            ],
+            "image": "img/la_estirpeperdida.jpg",
+            "canon_level": "NEW",
+            "comments": "",
+            "date": "2012-05-26",
+            "slug": "",
+            "description": ""
+        }
+    },
+    {
         "pk": 104,
         "model": "web.image",
         "fields": {
@@ -22394,6 +23232,22 @@
             "canon_level": "NEW",
             "comments": "",
             "date": "2012-04-01",
+            "slug": "",
+            "description": ""
+        }
+    },
+    {
+        "pk": 128,
+        "model": "web.image",
+        "fields": {
+            "name": "Portada de El tesoro de los faraones",
+            "author": [
+                43
+            ],
+            "image": "img/eltesorodelosfaraones.jpg",
+            "canon_level": "NEW",
+            "comments": "",
+            "date": "2012-05-23",
             "slug": "",
             "description": ""
         }
