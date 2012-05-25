@@ -1,152 +1,62 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-
-<head>
-
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
-        <title></title>
-
-        <meta name='title' content=''/>
-
-        <meta name='description' content=''/>
-
- 
-
-        <meta name="author" content=""/>
-
-        <meta name="language" content="spanish"/>
-
-        <meta name="revisit" content="10 day"/>
-
-        <meta name="distribution" content="global"/>
-
-
-
-        <meta name="robots" content="All"/>
-
-        <meta http-equiv="pragma" content="no-cache"/>
-
-        <meta http-equiv="expires" content="-1"/>       
-
-        
-
-        <link rel="stylesheet" href="/css/reset.css" type="text/css" media="screen" />
-
-        <link rel="stylesheet" href="/css/estilo.css" type="text/css" media="screen" />
-
-        <link rel="stylesheet" href="/css/impresion.css" type="text/css"  media="print" />
-
-        
-
-            
-
-    </head>
-
-
-
-<body> 
-
-<div id="contenedor">
-
+{% extends "basebasic.html" %}
+{% block title %}
+    <title>Codex de la Marca del Este - Generador de Encuentros</title>
+    {% endblock %}
+    {% block navigation %}
         <div id="cabecera">
-
             <div id="menu">
-
                 <ul>         
-
-                    <li><a href="index.html">El Codex</a></li>  
-
-                    <li><a href="personaje.html">Personaje</a></li>  
-
-                    <li><a href="bestiario.html" >Bestiario</a></li>    
-
-                    <li><a href="lugar.html">Lugar</a></li>
-
-                    <li><a href="aventura.html">Aventura</a></li>   
-
-                    <li><a href="objeto.html" >Objetos</a></li> 
-
-                    <li><a href="cronica.html" >Crónica</a></li>    
-
-                    <li><a href="enviar-info.html">Enviar info</a></li> 
-
-                    <li><a href="contactar.html">Contacto</a></li>
-
+                    <li><a href="/">El Codex</a></li>  
+                    <li><a href="/character">Personajes</a></li>     
+                    <li><a href="/creature">Bestiario</a></li>    
+                    <li><a href="/location">Lugares</a></li>
+                    <li><a href="/object">Objetos</a></li>  
+                    <li><a href="/adventure">Aventuras</a></li> 
+                    <li><a href="/chronicle">Crónicas</a></li>  
+                    <li><a href="/send_info">Enviar info</a></li>   
+                    <li><a href="/contact">Contacto</a></li>
                 </ul>
 
             </div><!-- fin menu -->
-
             
-
             <div id="logo">
-
-                <a href="#"><img src="/ima/codex-logo.jpg" alt="Codex de las aventuras de la Marca del Este." /></a>
-
+                <a href="/"><img src="/ima/codex-logo.jpg" alt="Codex de las aventuras de la Marca del Este." /></a>
             </div><!-- fin logo -->
-
-            
 
             <div id="slogan">
-
                 La recopilación de todo el conocimiento sobre la Marca del Este.
-
             </div><!-- fin logo -->
 
-            
-
             <div id="busqueda-simple">
-
                 <div id="form-busqueda-simple">
-
-                <form action="">
-
-                    <select>                      
-
-                        <option value="todo">Todo</option>
-
-                        <option value="Personaje">Personaje</option>
-
-                        <option value="Bestiario">Bestiario</option>
-
-                        <option value="Lugar">Lugar</option>
-
-                        <option value="Aventura">Aventura</option>
-
-                        <option value="Objetos">Objetos</option>
-
-                        <option value="Crónica">Crónica</option>                       
-
+                <form action="/search/" METHOD=GET>
+                    <select name="option">
+                        <option value="all">Todo</option>
+                        <option value="character">Personaje</option>
+                        <option value="creature">Bestiario</option>
+                        <option value="location">Lugar</option>
+                        <option value="object">Objeto</option>
+                        <option value="adventure">Aventura</option>
+                        <option value="chronicle">Crónica</option>                        
                     </select>
 
-                    
-
-                    <input class="barra_busqueda" type="text" name="LastName" value="texto de ejemplo" />
-
-                    
+                    <input class="barra_busqueda" type="text" name="searchterm" value="" />
 
                     <input class="boton_buscar" type="submit" value="Buscar" />
-
                 </form>
-
                 </div>
-
-                <div id="ir-busqueda-avanzada"><a href="#">Busqueda<br/>avanzada</a></div>
-
+                <div id="ir-busqueda-avanzada"><a href="/advancedsearch">Búsqueda<br/>avanzada</a></div>
             </div><!-- fin busqueda-simple -->
-
         </div><!-- fin cabecera -->
-
+        {% endblock %}
+        
+        {% block content %}
 
         <div id="contenido" >
-
             <div id="contenido-listados" >          
-
             <div id="columna-der-listados">
 
-
-                <div id="volver"><span><a href="#">Volver a inicio</a>&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;</span> <a href="#">Encuentros<!-- nombre de la categoria si es un resultado de listado de categoria O  palabra "Busqueda" e incluir el H1 de Resultado de busqueda de "El termino que busco"--></a></div> 
+                <div id="volver"><span><a href="/">Volver a inicio</a>&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;</span> <a href="/encounter">Encuentros<!-- nombre de la categoria si es un resultado de listado de categoria O  palabra "Busqueda" e incluir el H1 de Resultado de busqueda de "El termino que busco"--></a></div> 
 
                 <div id="central">
                 <form action="/encounter/test">   
@@ -161,7 +71,13 @@
                                         </h2>
 
                                         <div class="formulario-avanzado-2-columnas">
-                                        <input style="padding: 5px 5px; font-size:16px;width:110px;" value= 10 type="text" name="players_level" />
+                                        <input style="padding: 5px 5px; font-size:16px;width:110px;"
+                                            {% if form.players_level %}
+                                                value = {{form.players_level}}
+                                            {% else %}
+                                                 value = 10
+                                            {% endif %}
+                                            type="text" name="players_level" />
                                         </div>
 
 
@@ -171,10 +87,10 @@
 
                                         <div class="formulario-avanzado-2-columnas">
                                             <select  name="chosen_difficulty">
-                                              <option value="0">Fácil</option>
-                                              <option value="1">Normal</option>
-                                              <option value="2">Difícil</option>
-                                              <option value="3">Épico</option>
+                                            <option value="0" {% if form.chosen_difficulty == '0' %}selected{% endif %}>Fácil</option>
+                                            <option value="1" {% if form.chosen_difficulty == '1' %}selected{% endif %}>Normal</option>
+                                            <option value="2" {% if form.chosen_difficulty == '2' %}selected{% endif %}>Difícil</option>
+                                            <option value="3" {% if form.chosen_difficulty == '3' %}selected{% endif %}>Épico</option>
                                              </select> 
                                         </div>
 
@@ -186,10 +102,10 @@
 
                                         <div class="formulario-avanzado-2-columnas">
                                             <select  name="canon">
-                                              <option value="ALL">Todas</option>
-                                              <option value="C">Cánon</option>
-                                              <option value="AP">Apócrifo</option>
-                                              <option value="APC">Nuevo</option>
+                                              <option value="ALL" {% if form.canon == 'ALL' %}selected{% endif %}>Todas</option>
+                                              <option value="C" {% if form.canon == 'C' %}selected{% endif %}>Cánon</option>
+                                              <option value="AP" {% if form.canon == 'AP' %}selected{% endif %}>Apócrifo</option>
+                                              <option value="APC" {% if form.canon == 'APC' %}selected{% endif %}>Nuevo</option>
                                              </select> 
                                         </div>
 
@@ -199,10 +115,10 @@
 
                                         <div class="formulario-avanzado-2-columnas">
                                             <select name="align">
-                                              <option value="ALL">Todos</option>
-                                              <option value="L">Legal</option>
-                                              <option value="N">Neutral</option>
-                                              <option value="C">Caótico</option>
+                                              <option value="ALL" {% if form.align == 'ALL' %}selected{% endif %}>Todos</option>
+                                              <option value="L" {% if form.align == 'L' %}selected{% endif %}>Legal</option>
+                                              <option value="N" {% if form.align == 'N' %}selected{% endif %}>Neutral</option>
+                                              <option value="C" {% if form.align == 'C' %}selected{% endif %}>Caótico</option>
                                              </select> 
                                         </div>
 
@@ -225,14 +141,14 @@
                     <div id="resultado-generador">
 
                        <div class="para-impresion">
-                           <h1>Codex de la marca del Este<h1>
+                           <h1>Codex de la marca del Este</h1>
                           <a href="http://codexdelamarca.com">URL:</a>
                         </div>
 
                             <h2>Encuentro generado </h2>
                             
                             {% if numcreatures %}
-                            <h3>{{ encounter.name }}  [<a href="/creature/{{encounter.slug}}"">+ info</a>] </h3>
+                            <h3>{{ encounter.name }}  [<a href="/creature/{{encounter.slug}}">+ info</a>] </h3>
                             <p><b>Número</b>: {{numcreatures}} </p>
                             <p><b>DG</b>: {{encounter.hitdice|default:"--"}} - <b>CA</b>: {{encounter.AC|default:"--"}} - <b>TS</b>: {{encounter.get_saveroll_display|default_if_none:"--"}} - <b>Mov</b>: {{encounter.move|default:"--"}} - <b>Moral</b>: {{encounter.get_moral_display|default_if_none:"--"}} - <b>Alineamiento</b>: {{encounter.get_alignment_display|default_if_none:"--"}} - <b>Px</b>: {{encounter.XPvalue|default_if_none:"--"}}  </p>  
 
@@ -267,33 +183,19 @@
             </div><!-- fin contenido-articulos -->
 
         </div><!-- fin contenido -->
+        
+        <div id="pie">
+        <div id="validaciones"> 
+        Aventuras de la Marca del este 2011 - Validación: <a
+        href="http://validator.w3.org/check?uri=referer">XHTML</a> | <a
+        href="http://jigsaw.w3.org/css-validator/validator?uri=http://?????/css/estilo.css">CSS</a>
+        <br/><br/>
+        <span style="font-size: 10px"> Desarrollo y mantenimiento: Angela
+        Rivera Campos @ghilbrae y Pablo Ruiz Múzquiz @diacritica     - Diseño: <a
+        href="http://jagvalverde.com/">Jose Valverde</a></span>
+        </div><!-- fin validaciones -->
+        </div><!-- fin pie -->
+        </div><!-- fin contenedor -->
+        {% endblock %}  
 
         
-
-        <div id="pie">
-
-                <div id="validaciones"> 
-
-                    Aventuras de la Marca del este 2011 - Validación: <a href="http://validator.w3.org/check?uri=referer">XHTML</a> | <a href="http://jigsaw.w3.org/css-validator/validator?uri=http://codexdelamarca.com/css/estilo.css">CSS</a>
-
-                    <br/><br/>
-
-
-
-                    <span style="font-size: 10px"> Desarrollo y mantenimiento: Angela
-
-Rivera Campos @ghilbrae y Pablo Ruiz Múzquiz @diacritica - Diseño: <a href="http://jagvalverde.com/">Jose Valverde</a></span>
-
-
-
-                </div><!-- fin validaciones -->
-
-        </div><!-- fin pie -->
-
-    </div><!-- fin contenedor -->
-
-
-
-</body>
-
-</html>     
