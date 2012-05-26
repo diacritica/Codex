@@ -1,8 +1,8 @@
 import datetime
 
 import os, sys
-sys.path.append('/srv/codex/Codex.git/')
-sys.path.append('/srv/codex/Codex.git/codex/')
+sys.path.append('/srv/codex_virtualenv/Codex.git/codex/')
+sys.path.append('/srv/codex_virtualenv/Codex.git/')
 os.environ['DJANGO_SETTINGS_MODULE'] = 'codex.settings'
 from web.models import *
 armaduras= [a[:-1] for a in open("MISC/armaduras.csv","r").readlines()]
