@@ -2,6 +2,7 @@
 # Create your views here.
 
 from django.shortcuts import render_to_response, get_object_or_404
+from django.http import Http404
 
 from codex.web.models import *
 
@@ -20,8 +21,6 @@ from searchviews import *
 CHAR_RELATIONSHIP_CHOICES = (
         ('SON', _(u'Hijo')),
         ('FATHER', _(u'Padre')),
-        ('STEPSON', _(u'Hijastro')),
-        ('STEPFATHER', _(u'Padrastro')),
         ('BROTHER', _(u'Hermano')),
         ('SUBDIT', _(u'Súbdito')),
         ('GROUP', _(u'Grupo')),
@@ -58,11 +57,11 @@ def SendinfoView(request):
 
 
 def IndexView(request):
-    chars = Character.objects.all().order_by('-last_updated')[:3]
-    objects = Object.objects.all().order_by('-last_updated')[:3]
-    creatures = Creature.objects.all().order_by('-last_updated')[:3]
+    chars = Character.objects.exclude(deactivated=True).order_by('-last_updated')[:3]
+    objects = Object.objects.exclude(deactivated=True).order_by('-last_updated')[:3]
+    creatures = Creature.objects.exclude(deactivated=True).order_by('-last_updated')[:3]
     chronicles = Chronicle.objects.all().order_by('-last_updated')[:3]
-    locations = Location.objects.all().order_by('-last_updated')[:3]
+    locations = Location.objects.exclude(deactivated=True).order_by('-last_updated')[:3]
     adventures = Adventure.objects.all().order_by('-last_updated')[:3]
     index_list = {'characters':chars, 'objects':objects, 'creatures':creatures, 'chronicles':chronicles, 'locations':locations, 'adventures':adventures}
     return render_to_response('web/index.html', {'index_list': index_list})
@@ -83,6 +82,9 @@ def getCharacterRelations(character):
 def CharacterDetailView(request, slug):
     character = get_object_or_404(Character, slug=slug)
 
+    if character.deactivated:
+        raise Http404
+
     relatedobjectsbytags = getRelatedByTags(character)
 
 
@@ -91,11 +93,11 @@ def CharacterDetailView(request, slug):
             "object": character, "relatedcharacters1":relatedcharacters[0],"relatedcharacters2":relatedcharacters[1],"relatedobjectsbytags":relatedobjectsbytags,'MEDIA_URL':MEDIA_URL,'STATIC_URL':STATIC_URL},context_instance=RequestContext(request))
 
 def CharacterSectionView(request):
-    objects = Character.objects.all()[:3]
+    objects = Character.objects.exclude(deactivated=True)[:3]
     highlightedresult = Character.objects.filter(highlight=True).order_by('?')[0]
 
     characterSectionView_dict = {}
-    locations_options = {'locations':Location.objects.all()}
+    locations_options = {'locations':Location.objects.exclude(deactivated=True)}
     character_options = {"ALIGN_CHOICES":ALIGN_CHOICES, "PROFESSION_CHOICES":PROFESSION_CHOICES, "SPECIES_CHOICES":SPECIES_CHOICES, "LEVEL_CHOICES":LEVEL_CHOICES}
     range_options = {"lownum":range(1,11),"highnum":range(1,26)}
 
@@ -109,7 +111,7 @@ def CharacterSectionView(request):
 
 
 def CharacterListingView(request):
-    allobjects = Character.objects.all()
+    allobjects = Character.objects.exclude(deactivated=True)
 
     paginator = Paginator(allobjects, 10) # Show 10 contacts per page
 
@@ -138,6 +140,9 @@ def getCreatureRelations(creature):
 def CreatureDetailView(request, slug):
     creature = get_object_or_404(Creature, slug=slug)
 
+    if creature.deactivated:
+        raise Http404
+
 
     relatedobjectsbytags = getRelatedByTags(creature)
 
@@ -148,11 +153,11 @@ def CreatureDetailView(request, slug):
     },context_instance=RequestContext(request))
 
 def CreatureSectionView(request):
-    objects = Creature.objects.all()[:3]
+    objects = Creature.objects.exclude(deactivated=True)[:3]
     highlightedresult = Creature.objects.filter(highlight=True).order_by('?')[0]
 
     creatureSectionView_dict = {}
-    locations_options = {'locations':Location.objects.all()}
+    locations_options = {'locations':Location.objects.exclude(deactivated=True)}
     creature_options = {"CRE_ALIGN_CHOICES":CRE_ALIGN_CHOICES}
     range_options = {"lownum":range(1,11),"highnum":range(1,26)}
 
@@ -167,7 +172,7 @@ def CreatureSectionView(request):
 
 
 def CreatureListingView(request):
-    allobjects = Creature.objects.all()
+    allobjects = Creature.objects.exclude(deactivated=True)
 
     paginator = Paginator(allobjects, 10) # Show 10 contacts per page
 
@@ -187,11 +192,11 @@ def CreatureListingView(request):
     return render_to_response("web/creature_listing.html",{'results':objects})
 
 def LocationSectionView(request):
-    objects = Location.objects.all()[:3]
+    objects = Location.objects.exclude(deactivated=True)[:3]
     highlightedresult = Location.objects.filter(highlight=True).order_by('?')[0]
 
     locationSectionView_dict = {}
-    locations_options = {'locations':Location.objects.all()}
+    locations_options = {'locations':Location.objects.exclude(deactivated=True)}
     location_options = {"LOC_STATUS_CHOICES":LOC_STATUS_CHOICES,"ALIGN_CHOICES":ALIGN_CHOICES,"LOC_TYPE_CHOICES":LOC_TYPE_CHOICES}
     range_options = {"lownum":range(1,11),"highnum":range(1,26)}
 
@@ -206,7 +211,7 @@ def LocationSectionView(request):
 
 
 def LocationListingView(request):
-    allobjects = Location.objects.all()
+    allobjects = Location.objects.exclude(deactivated=True)
 
     paginator = Paginator(allobjects, 10) # Show 10 contacts per page
 
@@ -226,7 +231,7 @@ def LocationListingView(request):
     return render_to_response("web/location_listing.html",{'results':objects})
 
 def ObjectSectionView(request):
-    objects = Object.objects.all()[:3]
+    objects = Object.objects.exclude(deactivated=True)[:3]
     highlightedresult = Object.objects.filter(highlight=True).order_by('?')[0]
 
     objectSectionView_dict = {}
@@ -242,7 +247,7 @@ def ObjectSectionView(request):
 
 
 def ObjectListingView(request):
-    allobjects = Object.objects.all()
+    allobjects = Object.objects.exclude(deactivated=True)
 
     paginator = Paginator(allobjects, 10) # Show 10 contacts per page
 
@@ -349,6 +354,9 @@ def getRelatedByTags(anObject):
 def LocationDetailView(request, slug):
     location = get_object_or_404(Location, slug=slug)
 
+    if location.deactivated:
+        raise Http404
+
 
     relatedobjectsbytags = getRelatedByTags(location)
 
@@ -395,6 +403,10 @@ def getObjectRelations(anObject):
 
 def ObjectDetailView(request, slug):
     obj = get_object_or_404(Object, slug=slug)
+
+    if obj.deactivated:
+        raise Http404
+
 
     relatedobjectsbytags = getRelatedByTags(obj)
     relatedobjects = getObjectRelations(obj)
