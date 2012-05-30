@@ -29,19 +29,19 @@ def SimpleSearchView(request, searchfilter, searchterm="", canonlvl="ALL"):
     allobjects = {}
 
     if searchfilter == 'object' and canonlvl=="ALL":
-        allobjects[searchfilter] = Object.objects.all()
+        allobjects[searchfilter] = Object.objects.exclude(deactivated=True)
     elif searchfilter == 'object' and canonlvl!="ALL":
-        allobjects[searchfilter] = Object.objects.filter(canon_level=canonlvl)
+        allobjects[searchfilter] = Object.objects.exclude(deactivated=True).filter(canon_level=canonlvl)
 
     elif searchfilter == 'character' and canonlvl=="ALL":
-        allobjects[searchfilter] = Character.objects.all()
+        allobjects[searchfilter] = Character.objects.exclude(deactivated=True)
     elif searchfilter == 'character' and canonlvl!="ALL":
-        allobjects[searchfilter] = Character.objects.filter(canon_level=canonlvl)
+        allobjects[searchfilter] = Character.objects.exclude(deactivated=True).filter(canon_level=canonlvl)
 
     elif searchfilter == 'creature'  and canonlvl=="ALL":
-        allobjects[searchfilter] = Creature.objects.all()
+        allobjects[searchfilter] = Creature.objects.exclude(deactivated=True)
     elif searchfilter == 'creature'  and canonlvl!="ALL":
-        allobjects[searchfilter] = Creature.objects.filter(canon_level=canonlvl)
+        allobjects[searchfilter] = Creature.objects.exclude(deactivated=True).filter(canon_level=canonlvl)
 
     elif searchfilter == 'chronicle' and canonlvl=="ALL":
         allobjects[searchfilter] = Chronicle.objects.all()
@@ -54,16 +54,16 @@ def SimpleSearchView(request, searchfilter, searchterm="", canonlvl="ALL"):
         allobjects[searchfilter] = Adventure.objects.filter(canon_level=canonlvl)
 
     elif searchfilter == 'location' and canonlvl=="ALL":
-        allobjects[searchfilter] = Location.objects.all()
+        allobjects[searchfilter] = Location.objects.exclude(deactivated=True)
     elif searchfilter == 'location'  and canonlvl!="ALL":
-        allobjects[searchfilter] = Location.objects.filter(canon_level=canonlvl)
+        allobjects[searchfilter] = Location.objects.exclude(deactivated=True).filter(canon_level=canonlvl)
 
 
     else:
         if canonlvl=="ALL":
-            allobjects = {'object':Object.objects.all(),'character':Character.objects.all(),'creature':Creature.objects.all(),'chronicle':Chronicle.objects.all(),'adventure':Adventure.objects.all(),'location':Location.objects.all()}
+            allobjects = {'object':Object.objects.exclude(deactivated=True),'character':Character.objects.exclude(deactivated=True),'creature':Creature.objects.exclude(deactivated=True),'chronicle':Chronicle.objects.all(),'adventure':Adventure.objects.all(),'location':Location.objects.exclude(deactivated=True)}
         else:
-            allobjects = {'object':Object.objects.filter(canon_level=canonlvl),'character':Character.objects.filter(canon_level=canonlvl),'creature':Creature.objects.filter(canon_level=canonlvl),'chronicle':Chronicle.objects.filter(canon_level=canonlvl),'adventure':Adventure.objects.filter(canon_level=canonlvl),'location':Location.objects.filter(canon_level=canonlvl)}
+            allobjects = {'object':Object.objects.exclude(deactivated=True).filter(canon_level=canonlvl),'character':Character.objects.exclude(deactivated=True).filter(canon_level=canonlvl),'creature':Creature.objects.exclude(deactivated=True).filter(canon_level=canonlvl),'chronicle':Chronicle.objects.filter(canon_level=canonlvl),'adventure':Adventure.objects.filter(canon_level=canonlvl),'location':Location.objects.exclude(deactivated=True).filter(canon_level=canonlvl)}
 
 
 
@@ -132,7 +132,7 @@ def split_query_into_keywords(query):
 
 def AdvancedSearchView(request):
     choices_dict = {}
-    locations_options = {'locations': Location.objects.all()}
+    locations_options = {'locations': Location.objects.exclude(deactivated=True)}
     character_options = {"ALIGN_CHOICES": ALIGN_CHOICES, "PROFESSION_CHOICES":PROFESSION_CHOICES, "SPECIES_CHOICES":SPECIES_CHOICES, "LEVEL_CHOICES":LEVEL_CHOICES}
     creature_options = {"CRE_ALIGN_CHOICES": CRE_ALIGN_CHOICES}
     location_options = {"LOC_STATUS_CHOICES": LOC_STATUS_CHOICES,"ALIGN_CHOICES":ALIGN_CHOICES,"LOC_TYPE_CHOICES":LOC_TYPE_CHOICES}
@@ -159,7 +159,7 @@ def ResultsAdvancedSearchView(request):
     #searchfilter = request.GET.get('option') #HERE WE WILL KNOW THE SPECIFIC OBJECT TYPE
     searchterm = request.GET.get('searchterm') #FIXME cuando null
     keywords = split_query_into_keywords(searchterm) or []
-    objects = Location.objects.all()
+    objects = Location.objects.exclude(deactivated=True)
     objecttype = request.GET.get('option') #FIXME cuando null
     objectcanon = request.GET.get('canon_level') #FIXME cuando null
 
@@ -169,12 +169,12 @@ def ResultsAdvancedSearchView(request):
         if objectcanon=="ALL":
 
             objects = sorted(
-            chain(Object.objects.all() , Character.objects.all() , Creature.objects.all() , Chronicle.objects.all() , Adventure.objects.all() , Location.objects.all()),key=lambda instance: instance.last_updated)
+            chain(Object.objects.exclude(deactivated=True) , Character.objects.exclude(deactivated=True) , Creature.objects.exclude(deactivated=True) , Chronicle.objects.all() , Adventure.objects.all() , Location.objects.exclude(deactivated=True)),key=lambda instance: instance.last_updated)
             objects.reverse()
         else:
 
             objects = sorted(
-            chain(Object.objects.filter(canon_level=objectcanon) , Character.objects.filter(canon_level=objectcanon) , Creature.objects.filter(canon_level=objectcanon) , Chronicle.objects.filter(canon_level=objectcanon) , Adventure.objects.filter(canon_level=objectcanon) , Location.objects.filter(canon_level=objectcanon)),key=lambda instance: instance.last_updated)
+            chain(Object.objects.exclude(deactivated=True).filter(canon_level=objectcanon) , Character.objects.exclude(deactivated=True).filter(canon_level=objectcanon) , Creature.objects.exclude(deactivated=True).filter(canon_level=objectcanon) , Chronicle.objects.filter(canon_level=objectcanon) , Adventure.objects.filter(canon_level=objectcanon) , Location.objects.exclude(deactivated=True).filter(canon_level=objectcanon)),key=lambda instance: instance.last_updated)
 
         if len(keywords) != 0:
             results = []
@@ -319,7 +319,7 @@ def ResultsAdvancedSearchView(request):
         obj_location = request.GET.get('obj_location') or None
 
 
-        objects = Object.objects.all()
+        objects = Object.objects.exclude(deactivated=True)
 
         if obj_type!="ALL" and obj_type:
             objects = objects.filter(objtype=obj_type)
@@ -366,7 +366,7 @@ def ResultsAdvancedSearchView(request):
         crea_location = request.GET.get('crea_location') or None
 
 
-        objects = Creature.objects.all()
+        objects = Creature.objects.exclude(deactivated=True)
 
         if crea_ac!="ALL" and crea_ac:
             objects = objects.filter(AC__icontains=crea_ac)
@@ -417,7 +417,7 @@ def ResultsAdvancedSearchView(request):
         filterdict = {'specie':char_species,'level':char_minlevel,'alignment':char_alignment, 'profession':char_profession, 'location':char_location}
 
 
-        objects = Character.objects.all()
+        objects = Character.objects.exclude(deactivated=True)
 
         if char_species!="ALL" and char_species:
             objects = objects.filter(species=char_species)
@@ -466,7 +466,7 @@ def ResultsAdvancedSearchView(request):
         filterdict = {'loctype':loc_type,'status':loc_status,'alignment':loc_alignment}
 
 
-        objects = Location.objects.all()
+        objects = Location.objects.exclude(deactivated=True)
 
         if loc_type!="ALL" and loc_type:
             objects = objects.filter(loctype=loc_type)
