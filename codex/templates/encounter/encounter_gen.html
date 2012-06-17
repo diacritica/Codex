@@ -148,16 +148,25 @@
                             <h2>Encuentro generado </h2>
                             
                             {% if numcreatures %}
-                            <h3>{{ encounter.name }}  [<a href="/creature/{{encounter.slug}}">+ info</a>] </h3>
-                            <p><b>Número</b>: {{numcreatures}} </p>
-                            <p><b>DG</b>: {{encounter.hitdice|default:"--"}} - <b>CA</b>: {{encounter.AC|default:"--"}} - <b>TS</b>: {{encounter.get_saveroll_display|default_if_none:"--"}} - <b>Mov</b>: {{encounter.move|default:"--"}} - <b>Moral</b>: {{encounter.get_moral_display|default_if_none:"--"}} - <b>Alineamiento</b>: {{encounter.get_alignment_display|default_if_none:"--"}} - <b>Px</b>: {{encounter.XPvalue|default_if_none:"--"}}  </p>  
-
-                            {% if encounter.attacks %}             
-                            <p><b>Ataque</b>: {{encounter.attacks|safe}}  </p> 
-                            {% endif %}
-                            <p>
-                            {{encounter.description|safe}}
-                            </p>
+                                {% if leader %}
+                                <h3>{{ leader.name }} (líder)  [<a href="/creature/{{leader.slug}}">+ info</a>] </h3>
+                                <p><b>DG</b>: {{leader.hitdice|default:"--"}} - <b>CA</b>: {{leader.AC|default:"--"}} - <b>TS</b>: {{leader.get_saveroll_display|default_if_none:"--"}} - <b>Mov</b>: {{leader.move|default:"--"}} - <b>Moral</b>: {{leader.get_moral_display|default_if_none:"--"}} - <b>Alineamiento</b>: {{leader.get_alignment_display|default_if_none:"--"}} - <b>Px</b>: {{leader.XPvalue|default_if_none:"--"}}  </p>  
+                                    {% if leader.attacks %}             
+                                    <p><b>Ataque</b>: {{leader.attacks|safe}}  </p> 
+                                    {% endif %}
+                                    <p>
+                                    {{leader.description|safe}}
+                                    </p>
+                                {% endif %}
+                                <h3>{{ encounter.name }}  [<a href="/creature/{{encounter.slug}}">+ info</a>] </h3>
+                                <p><b>Número</b>: {{numcreatures}} </p>
+                                <p><b>DG</b>: {{encounter.hitdice|default:"--"}} - <b>CA</b>: {{encounter.AC|default:"--"}} - <b>TS</b>: {{encounter.get_saveroll_display|default_if_none:"--"}} - <b>Mov</b>: {{encounter.move|default:"--"}} - <b>Moral</b>: {{encounter.get_moral_display|default_if_none:"--"}} - <b>Alineamiento</b>: {{encounter.get_alignment_display|default_if_none:"--"}} - <b>Px</b>: {{encounter.XPvalue|default_if_none:"--"}}  </p>  
+                                    {% if encounter.attacks %}             
+                                    <p><b>Ataque</b>: {{encounter.attacks|safe}}  </p> 
+                                    {% endif %}
+                                <p>
+                                {{encounter.description|safe}}
+                                </p>
                             {% else %}
                             <p>No hay encuentro, los aventureros pueden vivir unas horas más.</p>
                             <p>...o revisa tus criterios de selección.</p>

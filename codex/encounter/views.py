@@ -32,6 +32,23 @@ def getCreature(creature_list, hitdice):
 def getTreasure():
     pass
 
+def getParty(encounter):
+    # Two possibilities: the chosen creature is a leader or it is leader
+    # no difference in treatment
+    try:
+        # get all the creatures with a leadership relation 
+        creatureleaderrelation = encounter.getAllRelationTitles('LEADER')
+        # prev returns a tuple where creature1 is LEADER of creature2
+        if creatureleaderrelation:
+            new_encounter = creatureleaderrelation[randint(0, len(creatureleaderrelation) - 1)]
+            return new_encounter
+        else:
+            return False
+    except Exception, e:
+        print "exception ", e
+        return False
+
+
 def EncounterTest(request, canon, align, players_level, chosen_difficulty):
     # Store the values of the incoming request to populate the form with the current search
     form = {'canon': canon, 'align': align, 'players_level': str(players_level), 'chosen_difficulty': str(chosen_difficulty)}
@@ -87,31 +104,41 @@ def EncounterTest(request, canon, align, players_level, chosen_difficulty):
             break
 
     # Check if there is something inside the encounter_list
-    # important for low level characters
+    # (important for low level characters)
 
     print "encounter_list: ", encounter_list
 
     if encounter_list.keys():
-        probs = dungeon_probs.keys()
+        probs = dungeon_probs.keys() #FIXME!
         probs.sort()
         found = False
     
         while found == False:
-            # Select range creatures
+            # Select range for number of creatures
             selection = randint(1,100)
             print 'selection: ', selection
             i = 0
             for k in probs:
-                if selection <= k:
+                if selection < k:
+                    selected = region[probs[i-1]]
+                    break
+                elif selection == k:
                     selected = region[probs[i]]
                     break
                 i += 1
             # Select num creatures
             numcreatures = randint(selected['numrange'][0], selected['numrange'][-1])
-            print 'numcreatures, selected: ', numcreatures, selected
             try:
                 encounter = encounter_list[numcreatures][1]
                 found = True
+                leader = False
+                # generate an encounter with a party leader
+                if numcreatures > 2 and randint(0,4) < 1:
+                    encounter_with_leader = getParty(encounter)
+                    if encounter_with_leader:
+                        numcreatures -= 1
+                        leader = True
+                        encounter = encounter_with_leader
                 #print 'encounter: ', encounter
             except:
                 #print 'Except'
@@ -120,6 +147,9 @@ def EncounterTest(request, canon, align, players_level, chosen_difficulty):
         # if the encounters list is empty. Might happen (feature)
         numcreatures = False
         encounter = ''
-    
-    return render_to_response('encounter/encounter_gen.html', {'numcreatures': numcreatures, 'encounter':encounter, 'form':form})
+    print 'encounter: ', numcreatures, encounter, leader
+    if leader:
+        return render_to_response('encounter/encounter_gen.html', {'numcreatures': numcreatures, 'leader': encounter[0], 'encounter':encounter[1], 'form':form})
+    else:
+        return render_to_response('encounter/encounter_gen.html', {'numcreatures': numcreatures, 'leader': False, 'encounter':encounter, 'form':form})
 
