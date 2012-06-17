@@ -399,6 +399,7 @@ CRE_RELATIONSHIP_CHOICES = (
         ('GROUP', _(u'Grupo')),
         ('NEMESIS', _(u'Némesis')),
         ('CREATOR', _(u'Creador')),
+        ('CHIEF', _(u'Líder')),
 )
 
 
