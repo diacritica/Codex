@@ -39,7 +39,7 @@ urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'codex.views.home', name='home'),
 #    url(r'^encounter/', include('codex.encounter.encounterurls')),
-#    url(r'^api/', include('codex.api.apiurls')),
+    url(r'^api/', include('codex.api.apiurls')),
 #    url(r'^mobile/', include('codex.mobile.mobileurls')),
 #    url(r'^map/', include('codex.codexmap.codexmapurls')),
     # Uncomment the admin/doc line below to enable admin documentation:
