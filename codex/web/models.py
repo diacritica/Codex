@@ -612,6 +612,7 @@ class Creature(models.Model):
             else:
                 creature_query[crearelationship.relation21] = [(crearelationship.creature1, self)]
         
+        print "CREATURE_QUERY>>",creature_query
         if title == 'ALL':
             return creature_query
         else:
