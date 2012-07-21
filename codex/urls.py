@@ -38,7 +38,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'codex.views.home', name='home'),
-    url(r'^encounter/', include('codex.encounter.encounterurls')),
+    #url(r'^encounter/', include('codex.encounter.encounterurls')),
     url(r'^api/', include('codex.api.apiurls')),
     #url(r'^mobile/', include('codex.mobile.mobileurls')),
     url(r'^map/', include('codex.codexmap.codexmapurls')),
@@ -78,7 +78,7 @@ urlpatterns = patterns('',
     (r'^search/all/$', redirect_to, {'url': '/advancedsearch/'}),
     (r'^search/$',views.SearchRedirectView),
     (r'^search/None/None/$',redirect_to, {'url': '/advancedsearch/'}),
-    (r'^search/(?P<searchfilter>all|object|character|creature|location|adventure|chronicle)/(?P<canonlvl>ALL|NEW|AP|APC|C)/(?P<searchterm>.*)/$',views.SimpleSearchView),
+#    (r'^search/(?P<searchfilter>all|object|character|creature|location|adventure|chronicle)/(?P<canonlvl>ALL|NEW|AP|APC|C)/(?P<searchterm>.*)/$',views.SimpleSearchView),
     (r'^search/(?P<searchfilter>all|object|character|creature|location|adventure|chronicle)/(?P<searchterm>.*)/$',views.SimpleSearchView),
     (r'^search/(?P<searchfilter>all|object|character|creature|location|adventure|chronicle)/$',views.SimpleSearchView),
     (r'^contact/$',views.ContactView),
@@ -90,6 +90,7 @@ urlpatterns = patterns('',
 
     (r'^dicegen/$',views.DiceGeneratorView),
 
+
     (r'^$', views.IndexView),
     (r'^rss.xml$', LatestEntriesFeed()),
 
@@ -98,22 +99,22 @@ urlpatterns = patterns('',
 if settings.ENVIRONMENT=="TEST":
     urlpatterns += patterns('',
         url(r'^css/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': "/srv/codex/Codex.git/codex/templates/web/css/",
+            'document_root': "/home/elfo/GIT/CODEX/codex/templates/web/css/",
         }),
         url(r'^ima/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': "/srv/codex/Codex.git/codex/templates/web/ima/",
+            'document_root': "/home/elfo/GIT/CODEX/codex/templates/web/ima/",
         }),
         url(r'^js/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': "/srv/codex/Codex.git/codex/templates/web/js/",
+            'document_root': "/home/elfo/GIT/CODEX/codex/templates/web/js/",
         }),
         url(r'^rotativo/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': "/srv/codex/Codex.git/codex/templates/web/rotativo/",
+            'document_root': "/home/elfo/GIT/CODEX/codex/templates/web/rotativo/",
         }),
         url(r'^media/img/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': "/srv/codex/Codex.git/codex/media/img/",
+            'document_root': "/home/elfo/GIT/CODEX/codex/media/img/",
         }),
         url(r'^media/files/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': "/srv/codex/Codex.git/codex/media/files/",
+            'document_root': "/home/elfo/GIT/CODEX/codex/media/files/",
         }),
    )
 
