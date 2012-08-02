@@ -1,64 +1,73 @@
 {% extends "basebasic.html" %}
 {% block title %}
-<title>Codex de la Marca del Este - 500 - Error de sistema</title>
+<title>Codex de la Marca del Este - 500 - Error interno</title>
 {% endblock %}
 {% block navigation %}
-		<div id="cabecera">
-			<div id="menu">
-				<ul>
-					<li><a href="/">El Codex</a></li>	
-					<li><a href="/character">Personajes</a></li>
-					<li><a href="/creature">Bestiario</a></li>	
-					<li><a href="/location">Lugares</a></li>
-					<li><a href="/object">Objetos</a></li>	
-					<li><a href="/adventure">Aventuras</a></li>	
-					<li><a href="/chronicle">Crónica</a></li>	
-					<li><a href="/send_info">Enviar info</a></li>	
-					<li><a href="/contact">Contacto</a></li>
-        		</ul>
-			</div><!-- fin menu -->
-			
-			<div id="logo">
-				<a href="/"><img src="/ima/codex-logo.jpg" alt="Codex de las aventuras de la Marca del Este." /></a>
-			</div><!-- fin logo -->
-			
-			<div id="slogan">
-				La recopilación de todo el conocimiento sobre la Marca del Este.
-			</div><!-- fin logo -->
-			
-			
+<div id="cabecera">
+ <div id="menu">
+ <ul>
+  <li><a href="/">El Codex</a></li>	
+
+  <li><a href="/character">Personajes</a></li>
+  <li><a href="/creature">Bestiario</a></li>	
+  <li><a href="/location">Lugares</a></li>
+  <li><a href="/object">Objetos</a></li>
+  <li><a href="/adventure">Aventuras</a></li>
+  <li><a href="/chronicle">Crónicas</a></li>	
+  <li><a href="/spell">Conjuros</a></li>
+  <li><a href="/rule">Reglas</a></li>
+  <li><a href="/fanart">Fan Art</a></li>
+
+  <li><a href="/send_info">Enviar info</a></li>
+  <li><a href="/contact">Contacto</a></li>
+ </ul>
+ </div><!-- fin menu -->
+
+ <div id="logo">
+  <a href="/"><img src="/ima/codex-logo.jpg" alt="Codex de las aventuras de la Marca del Este." /></a>
+ </div><!-- fin logo -->
+
+ <div id="slogan">
+  La recopilación de todo el conocimiento sobre la Marca del Este.
+ </div><!-- fin slogan -->
+
 {% endblock %}
 
-{% block content %}			
-		
+{% block content %}
 
-		<div id="contenido" >
-			<div id="contenido-listados" >			
-			<div id="columna-der-listados">
-				
-				<div id="volver"><span><a href="/">Volver a inicio</a>&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;</span>Error interno</div>
-				
-				<div id="central">
-				
-                <p>Lo sentimos, hemos cometido una pifia y se ha producido un error interno del sistema. Hemos mirado en la tabla de pifias y ya se ha enviado el correo al administrador con la descripción pertinente.</p>
-				</div><!-- fin central -->
-			</div><!-- fin columna-der-listados -->			
-			</div><!-- fin contenido-articulos -->
-		</div><!-- fin contenido -->
-		
-		
-		
+<div id="contenido" >
+ <div id="contenido-listados" >
+  <div id="columna-der-listados">
+   <div id="volver"><span><a href="#">Volver a inicio</a>&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;</span>Error interno</a></div>
 
-		<div id="pie">
-				<div id="validaciones">	
-					Aventuras de la Marca del este 2011 - Validación: <a
-href="http://validator.w3.org/check?uri=referer">XHTML</a> | <a
-href="http://jigsaw.w3.org/css-validator/validator?uri=http://?????/css/estilo.css">CSS</a>
-					<br/><br/>
-					<span style="font-size: 10px"> Desarrollo y mantenimiento: Angela
-Rivera Campos @ghilbrae y Pablo Ruiz Múzquiz @diacritica	 - Diseño: <a
-href="http://jagvalverde.com/">Jose Valverde</a></span>
-				</div><!-- fin validaciones -->
-		</div><!-- fin pie -->
-	</div><!-- fin contenedor -->
-{% endblock %}		
+    <div id="central">
+     <div class="formulario-avanzado-2-columnas" style="width: 800px;text-align: center">
+     <h2>Lo sentimos, hemos tenido una pifia interna del servidor y se ha producido un error.</h2>
+     <br/>
+     <img src="/ima/404.jpg" alt="Nada por aquí." />
+     <br/>
+     </div>
+     <div style="clear: both"></div>
+     <div style="clear: both"></div>
+     <div style="clear: both"></div>
+     <div style="clear:all;float:none; width:850px;">
+     <br /><br />
+     </div>
+   </div><!-- fin volver -->
+  </div><!-- fin columna-der-listados -->
+ </div><!-- fin contenido-listados -->
+</div><!-- fin contenido -->
+
+<div id="pie">
+ <div id="validaciones">	
+  Aventuras de la Marca del este 2011 -
+  Validación: <a href="http://validator.w3.org/check?uri=referer">XHTML</a>
+  | <a href="http://jigsaw.w3.org/css-validator/validator?uri=http://?????/css/estilo.css">CSS</a>
+  <br/><br/>
+  <span style="font-size: 10px"> Desarrollo y mantenimiento: Angela
+  Rivera Campos @ghilbrae y Pablo Ruiz Múzquiz @diacritica -
+  Diseño: <a href="http://jagvalverde.com/">Jose Valverde</a></span>
+ </div><!-- fin validaciones -->
+</div><!-- fin pie -->
+</div><!-- fin contenedor -->
+{% endblock %}
