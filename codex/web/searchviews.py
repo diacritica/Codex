@@ -21,11 +21,8 @@ def SearchRedirectView(request):
 
 def SimpleSearchView(request, searchfilter="", searchterm=""):
 
-<<<<<<< HEAD
-    validsearchfilters = ["object","location","character","creature","adventure","chronicle"]
-=======
+
     validsearchfilters = ["object","location","character","creature","adventure","chronicle","rule", "spell",]
->>>>>>> newcats
 
     results = []
     allobjects = {}
@@ -35,11 +32,7 @@ def SimpleSearchView(request, searchfilter="", searchterm=""):
 
         allobjects[searchfilter] = getattr(m.models,searchfilter.capitalize()).objects.all()
 
-<<<<<<< HEAD
-    elif searchfilter == "all":
 
-        allobjects = {'object':Object.objects.all(),'character':Character.objects.all(),'creature':Creature.objects.all(),'chronicle':Chronicle.objects.all(),'adventure':Adventure.objects.all(),'location':Location.objects.all()}
-=======
     elif searchfilter == "fanart": allobjects["fanart"] = FanArt.objects.all() #OH PLEASE FIX THIS MESS!
     elif searchfilter == "all":
 
@@ -47,7 +40,6 @@ def SimpleSearchView(request, searchfilter="", searchterm=""):
         'creature':Creature.objects.all(),'chronicle':Chronicle.objects.all(), \
         'adventure':Adventure.objects.all(),'location':Location.objects.all(),'rule':Rule.objects.all(),\
         'spell':Spell.objects.all(),'fanart':FanArt.objects.all()}
->>>>>>> newcats
 
 
     if searchterm != "":
@@ -165,20 +157,16 @@ def ResultsAdvancedSearchView(request):
         if objectcanon=="ALL":
 
             objects = sorted(
-<<<<<<< HEAD
-            chain(Object.objects.all() , Character.objects.all() , Creature.objects.all() , Chronicle.objects.all() , Adventure.objects.all() , Location.objects.all()),key=lambda instance: instance.last_updated)
-=======
+
             chain(Object.objects.all() , Character.objects.all() , Creature.objects.all() , Chronicle.objects.all() , Adventure.objects.all() , Location.objects.all(), Rule.objects.all(), FanArt.objects.all()), key=lambda instance: instance.last_updated)
->>>>>>> newcats
+
             objects.reverse()
         else:
 
             objects = sorted(
-<<<<<<< HEAD
-            chain(Object.objects.filter(canon_level=objectcanon) , Character.objects.filter(canon_level=objectcanon) , Creature.objects.filter(canon_level=objectcanon) , Chronicle.objects.filter(canon_level=objectcanon) , Adventure.objects.filter(canon_level=objectcanon) , Location.objects.filter(canon_level=objectcanon)),key=lambda instance: instance.last_updated)
-=======
+
             chain(Object.objects.filter(canon_level=objectcanon) , Character.objects.filter(canon_level=objectcanon) , Creature.objects.filter(canon_level=objectcanon) , Chronicle.objects.filter(canon_level=objectcanon) , Adventure.objects.filter(canon_level=objectcanon) , Location.objects.filter(canon_level=objectcanon),Rule.objects.filter(canon_level=objectcanon),FanArt.objects.filter(canon_level=objectcanon)),key=lambda instance: instance.last_updated)
->>>>>>> newcats
+
 
         if len(keywords) != 0:
             results = []

@@ -92,18 +92,11 @@ urlpatterns = patterns('',
     (r'^search/all/$', redirect_to, {'url': '/advancedsearch/'}),
     (r'^search/$',views.SearchRedirectView),
     (r'^search/None/None/$',redirect_to, {'url': '/advancedsearch/'}),
-<<<<<<< HEAD
+
 #    (r'^search/(?P<searchfilter>all|object|character|creature|location|adventure|chronicle)/(?P<canonlvl>ALL|NEW|AP|APC|C)/(?P<searchterm>.*)/$',views.SimpleSearchView),
     (r'^search/(?P<searchfilter>all|object|character|creature|location|adventure|chronicle)/(?P<searchterm>.*)/$',views.SimpleSearchView),
     (r'^search/(?P<searchfilter>all|object|character|creature|location|adventure|chronicle)/$',views.SimpleSearchView),
-=======
 
-    (r'^search/(?P<searchfilter>all|object|character|creature|location|\
-        adventure|chronicle|rule|spell|fanart)/(?P<searchterm>.*)/$',views.SimpleSearchView),
-    (r'^search/(?P<searchfilter>all|object|character|creature|location|\
-        adventure|chronicle|rule|spell|fanart)/$',views.SimpleSearchView),
-
->>>>>>> newcats
     (r'^contact/$',views.ContactView),
     (r'^send_info/$',views.SendinfoView),
 
