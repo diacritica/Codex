@@ -7,7 +7,7 @@
 {% block title %}		<title></title> {% endblock %}
 		<meta name='title' content=''/>
 		<meta name='description' content=''/>
- 
+
 		<meta name="author" content=""/>
 		<meta name="language" content="spanish"/>
 		<meta name="revisit" content="10 day"/>
@@ -71,19 +71,22 @@ src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/jquery-ui.min.js"></scr
 {% endblock %}
 {% endblock %}
 
-<body> 
+<body>
 <div id="contenedor">
 		{% block navigation %}
 		<div id="cabecera">
 			<div id="menu">
-				<ul>	     
+				<ul>
 					<li><a href="/" class="seleccion">El Codex</a></li>	
-					<li><a href="/character">Personajes</a></li>	 
+					<li><a href="/character">Personajes</a></li>
 					<li><a href="/creature">Bestiarios</a></li>	
 					<li><a href="/location">Lugares</a></li>
 					<li><a href="/object">Objetos</a></li>	
 					<li><a href="/adventure">Aventuras</a></li>	
-					<li><a href="/chronicle">Crónicas</a></li>	
+					<li><a href="/chronicle">Crónicas</a></li>
+					<li><a href="/spell" >Conjuros</a></li>
+					<li><a href="/rule" >Reglas</a></li>
+					<li><a href="/fanart" >Fan Art</a></li>			
 					<li><a href="/send_info">Enviar info</a></li>	
 					<li><a href="/contact">Contacto</a></li>
         		</ul>
@@ -96,18 +99,23 @@ src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/jquery-ui.min.js"></scr
 			<div id="slogan">
 				La recopilación de todo el conocimiento sobre la Marca del Este.
 			</div><!-- fin logo -->
+			{% endblock %}
 			
+			{% block simplesearch %}
 			<div id="busqueda-simple">
 				<div id="form-busqueda-simple">
-		<form action="/search/" method='get'>
-					<select name="option">					  
+		                <form action="/search/" method='get'>
+					<select name="option">
 						<option value="all">Todo</option>
 						<option value="character">Personaje</option>
 						<option value="creature">Bestiario</option>
 						<option value="location">Lugar</option>
 						<option value="object">Objetos</option>
 						<option value="adventure">Aventura</option>
-						<option value="chronicle">Crónica</option>					   
+						<option value="chronicle">Crónica</option>	
+						<option value="spell">Conjuro</option>
+						<option value="rule">Regla</option>
+						<option value="fanart">FanArt</option>
 					</select>
 					
 					
@@ -140,13 +148,13 @@ value="" />
 				
 				<div class="lista3columnas">
 					<ul>
-						<li><b>FUERZA:</b> 
+						<li><b>FUERZA:</b>
 						  {% if object.strengthstat %}
 						  {{object.strengthstat}}
 						  {% else %}-
 						  {% endif %}
 						</li>
-						<li><b>CONSTITUCIÓN:</b> 
+						<li><b>CONSTITUCIÓN:</b>
 						  {% if object.constitutionstat %}
 						  {{object.constitutionstat}}
 						  {% else %}-
@@ -198,7 +206,7 @@ value="" />
 						
 						<li><b>Clase:</b> {{object.get_profession_display}}</li>
 						<li><b>Moral:</b> {{object.moral}}</li>
-						<li><b>Idiomas:</b> 
+						<li><b>Idiomas:</b>
 						  {% for language in object.languages.all %}
 						  {{language.name }},
 						  {% endfor %}
@@ -211,7 +219,7 @@ value="" />
 						  {% endfor %}
 						</li>
 						<li><b>Puntos de golpe:</b> {{object.hitpoints}}</li>
-						<li style="width: 300px"><b>Lugares:</b> 
+						<li style="width: 300px"><b>Lugares:</b>
 						  {% for rlocation in object.relatedlocation.all %}
                                                   {{rlocation.name }},
                                                   {% endfor %}
@@ -250,7 +258,7 @@ value="" />
 						<a href="#"><img src="{{ MEDIA_URL }}{{image.image.name}}" alt="icono" height="230px" width="350px"/></a>
 						
 				</div>
-					<!-- 
+					<!--
 					<div id="ima-mini">
 						<a href="#"><img src="ima/ico-portada-item.jpg" alt="icono" height="50px" width="75px"/></a>
 						<a href="#"><img src="ima/ico-portada-item.jpg" alt="icono" height="50px" width="75px"/></a>
@@ -276,7 +284,7 @@ value="" />
 					<ul>
 					  {% for relatedobject in object.relatedobject.all %}
 					  {% if relatedobject.rarity != "C" %}
-					  
+
 						<li>{{relatedobject.name}}</li>
 					{% endif %}
 					{% endfor %}
@@ -289,7 +297,7 @@ value="" />
 				<p>
 					  {% for relatedobject in object.relatedobject.all %}
 					  {% if relatedobject.rarity == "C" %}
-					  
+
 						{{relatedobject.name}},
 					{% endif %}
 					{% endfor %}

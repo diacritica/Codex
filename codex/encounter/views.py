@@ -133,7 +133,7 @@ def EncounterTest(request, canon, align, players_level, chosen_difficulty):
                 found = True
                 leader = False
                 # generate an encounter with a party leader
-                if numcreatures > 2 and randint(0,4) < 1:
+                if numcreatures > 2 and randint(0,4) < 5:
                     encounter_with_leader = getParty(encounter)
                     if encounter_with_leader:
                         numcreatures -= 1

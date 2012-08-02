@@ -5,9 +5,9 @@
 {% block navigation %}
 		<div id="cabecera">
 			<div id="menu">
-				<ul>	     
+				<ul>
 					<li><a href="/">El Codex</a></li>	
-					<li><a href="/character">Personajes</a></li>	 
+					<li><a href="/character">Personajes</a></li>
 					<li><a href="/creature">Bestiario</a></li>	
 					<li><a href="/location">Lugares</a></li>
 					<li><a href="/object">Objetos</a></li>	
@@ -26,30 +26,7 @@
 				La recopilación de todo el conocimiento sobre la Marca del Este.
 			</div><!-- fin logo -->
 			
-			<div id="busqueda-simple">
-				<div id="form-busqueda-simple">
-				<form action="/search/" METHOD=GET>
-					<select name="option">					  
-						<option value="all">Todo</option>
-						<option value="character">Personaje</option>
-						<option value="creature">Bestiario</option>
-						<option value="location">Lugar</option>
-						<option value="object">Objeto</option>
-						<option value="adventure" selected>Aventura</option>
-						<option value="chronicle">Crónica</option>					   
-					</select>
-					
-					<input class="barra_busqueda" type="text" name="searchterm" value="" />
-					
-					<input class="boton_buscar" type="submit" value="Buscar" />
-				</form>
-				</div>
-				<div id="ir-busqueda-avanzada"><a href="/advancedsearch">Búsqueda<br/>avanzada</a></div>
-			</div><!-- fin busqueda-simple -->
 			
-			
-			
-		</div><!-- fin cabecera -->
 {% endblock %}
 
 {% block content %}			
@@ -59,7 +36,7 @@
 			<div id="contenido-listados" >			
 			<div id="columna-der-listados">
 				
-				<div id="volver"><span><a href="/">Volver a inicio</a>&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;</span>Error interno</div> 
+				<div id="volver"><span><a href="/">Volver a inicio</a>&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;</span>Error interno</div>
 				
 				<div id="central">
 				

@@ -16,8 +16,8 @@ urlpatterns = patterns('',
 #    (r'^adventure/(?P<slug>.+)/$', apiviews.AdventureDetailView),
 
 
-    (r'^search/(?P<searchfilter>all|object|character|creature|location|adventure|chronicle)/(?P<searchterm>.*)/$',apiviews.SimpleSearchView),
-    (r'^search/(?P<searchfilter>all|object|character|creature|location|adventure|chronicle)/$',apiviews.SimpleSearchView),
+    (r'^search/(?P<searchfilter>all|object|character|creature|location|adventure|chronicle|rule|spell|fanart)/(?P<searchterm>.*)/$',apiviews.SimpleSearchView),
+    (r'^search/(?P<searchfilter>all|object|character|creature|location|adventure|chronicle|rule|spell|fanart)/$',apiviews.SimpleSearchView),
 
     (r'^(?P<category>.+)/(?P<slug>.+)/$', apiviews.GenericDetailView),
 

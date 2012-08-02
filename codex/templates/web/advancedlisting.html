@@ -2,55 +2,7 @@
 {% block title %}
 <title>Codex de la Marca del Este - Búsqueda</title>
 {% endblock %}
-{% block navigation %}
-		<div id="cabecera">
-			<div id="menu">
-				<ul>	     
-					<li><a href="/">El Codex</a></li>	
-					<li><a href="/character">Personajes</a></li>	 
-					<li><a href="/creature">Bestiario</a></li>	
-					<li><a href="/location">Lugares</a></li>
-					<li><a href="/object">Objetos</a></li>	
-					<li><a href="/adventure">Aventuras</a></li>	
-					<li><a href="/chronicle">Crónicas</a></li>	
-					<li><a href="/send_info">Enviar info</a></li>	
-					<li><a href="/contact">Contacto</a></li>
-        		</ul>
-			</div><!-- fin menu -->
-			
-			<div id="logo">
-				<a href="/"><img src="/ima/codex-logo.jpg" alt="Codex de las aventuras de la Marca del Este." /></a>
-			</div><!-- fin logo -->
-			
-			<div id="slogan">
-				La recopilación de todo el conocimiento sobre la Marca del Este.
-			</div><!-- fin logo -->
-			
-			<div id="busqueda-simple">
-				<div id="form-busqueda-simple">
-				<form action="/search/" METHOD=GET>
-					<select name="option">					  
-						<option value="all">Todo</option>
-						<option value="character">Personaje</option>
-						<option value="creature">Bestiario</option>
-						<option value="location">Lugar</option>
-						<option value="object">Objeto</option>
-						<option value="adventure">Aventura</option>
-						<option value="chronicle">Crónica</option>					   
-					</select>
-					
-					<input class="barra_busqueda" type="text" name="searchterm" value="" />
-					
-					<input class="boton_buscar" type="submit" value="Buscar" />
-				</form>
-				</div>
-				<div id="ir-busqueda-avanzada"><a href="/advancedsearch">Búsqueda<br/>avanzada</a></div>
-			</div><!-- fin busqueda-simple -->
-			
-			
-			
-		</div><!-- fin cabecera -->
-{% endblock %}
+
 
 {% block content %}			
 		
@@ -59,7 +11,7 @@
 			<div id="contenido-listados" >			
 			<div id="columna-der-listados">
 				
-				<div id="volver"><span><a href="/">Volver a inicio</a>&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;</span> <a href="#">Búsqueda<!-- nombre de la categoria si es un resultado de listado de categoria O  palabra "Busqueda" e incluir el H1 de Resultado de busqueda de "El termino que busco"--></a></div> 
+				<div id="volver"><span><a href="/">Volver a inicio</a>&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;</span> <a href="#">Búsqueda<!-- nombre de la categoria si es un resultado de listado de categoria O  palabra "Busqueda" e incluir el H1 de Resultado de busqueda de "El termino que busco"--></a></div>
 				
 				<div id="central">
 					<h1>Resultado de búsqueda{% if keywords %} de " {% for k in keywords %}{{k}} {% endfor %}"{% endif %} <!-- solo para listados que sean resultados de busqueda --></h1>
@@ -81,9 +33,9 @@
                     <p class="detalles-listado">
 
 						<b>Especie:</b> {{object.get_species_display}} - <b>Nivel:</b> {{object.level}} - <b>Clase:</b> {{object.get_profession_display}} - <b>Tipo:</b> {{object.get_pncorpc_display}} - <b>Alineamiento:</b> {{object.get_alignment_display}}
-						<br/><b>Lugares:</b> 
+						<br/><b>Lugares:</b>
                             {% for rlocation in object.relatedlocation.all %}
-    					   {% if forloop.first %} 
+    					   {% if forloop.first %}
     						<a href="/location/{{rlocation.id}}">{{rlocation.name}}</a>
     						{% endif %}
     						{% if forloop.last and forloop.last != forloop.first %}
@@ -111,7 +63,7 @@
 					</h2>
 					
 					<p class="detalles-listado">
-						<b>Valor PX:</b> {{object.XPvalue}} - <b>CA:</b> {{object.AC}} - <b>DG:</b> {{object.hitdice}} - <b>Movimiento: {{object.move}}</b> 
+						<b>Valor PX:</b> {{object.XPvalue}} - <b>CA:</b> {{object.AC}} - <b>DG:</b> {{object.hitdice}} - <b>Movimiento: {{object.move}}</b>
 					</p>
 
 					<p>
@@ -195,6 +147,89 @@
 						{{object.description|safe|truncatewords:100}}
 					</p>
                     {% endif %}
+
+                    <!-- Resultado Regla -->
+		{% if objecttype == "rule" %}
+					<h2>
+						<img src="/ima/ico-portada-regla.png" alt="{{objecttype}}"/><a href="/{{objecttype}}/{{object.slug}}">{{object.name}}</a>
+						<span>
+							<br/>
+							<b>Canon:</b> {{object.get_canon_level_display}} - Publicado en <a href="/{{objecttype}}">Reglas</a>. {{object.last_updated.date}}.
+						</span>						
+					</h2>
+					
+					<p class="detalles-listado">
+						<b>Web de la regla:</b> <a href="{{object.url}}" target="_blank">{{object.url}}</a> -  <b>Secciones:</b> {% for section in object.affectedsections.all %}{{section}} {% endfor %}
+					
+					</p>
+
+					<p>
+						{{object.description|safe|truncatewords:100}}
+					</p>
+                    {% endif %}
+
+                     <!-- Resultado Conjuro -->
+	        	{% if objecttype == "spell" %}
+					<h2>
+						<img src="/ima/ico-portada-conjuros.png" alt="{{objecttype}}"/><a href="/{{objecttype}}/{{object.slug}}">{{object.name}}</a>
+						<span>
+							<br/>
+							<b>Canon:</b> {{object.get_canon_level_display}} - Publicado en <a href="/{{objecttype}}">Conjuros</a>. {{object.last_updated.date}}.
+						</span>						
+					</h2>
+					
+					<p class="detalles-listado">
+						<b>Nivel:</b> {{object.level}} -
+						<b>Clases:</b>
+						{% if object.affectedclassrace.all %}
+                         {% for classrace in object.affectedclassrace.all %}
+                             {% if forloop.first %}
+                             {{classrace.name}}
+                             {% endif %}
+                             {% if forloop.last and forloop.last != forloop.first %}
+                             y {{classrace.name}}
+                             {% endif %}
+                             {% if not forloop.last and not forloop.first %}
+                             , {{classrace.name}}{% endif %}
+                             {% endfor %}
+                             {% else %}
+                               --
+                             {% endif %}
+ 				       -
+ 				       <b>Reversible:</b> {% if object.reversible %}Sí{% else %}No{% endif %} -
+ 				       <b>Alcance: </b>{{object.reach}}</li> -
+ 				       <b>Duración: </b>{{object.duration}}
+					</p>
+
+					<p>
+						{{object.description|safe|truncatewords:100}}
+					</p>
+                    {% endif %}
+
+
+ <!-- Resultado Fan Art -->
+	        	{% if objecttype == "fanart" %}
+					<h2>
+					
+               <img src="/ima/ico-portada-fanart.png" alt="fanart"/><a href="/fanart/{{object.slug}}">{{object.name}}</a>
+               <span>
+               	<br/>
+               	<b>Canon:</b> {{object.get_canon_level_display}} - Publicado en <a href="/fanart/">Fan Art</a>. {{object.last_updated.date}}.
+               </span>
+          	</h2>
+          	<p class="detalles-listado">
+
+                        <b>Tipo:</b> {{object.get_chosentype_display}} - <b>Categoría:</b> {{object.get_chosencategory_display}} -
+                        <b>Licencia:</b> {{object.get_chosenlicense_display}}
+
+                    </p>
+                    <p>
+
+                    {{object.description|safe|truncatewords:100}}
+                     </p>
+                    {% endif %}
+
+
 {% endfor %}								
 					
 					
@@ -214,13 +249,13 @@
 
                              {% if results.has_next %}
 							<li class="siguiente"> <a href="?page={{ results.next_page_number }}">Siguiente »</a></li>
-                            
+
 							<li class="siguiente"><a href="?page={{results.paginator.num_pages}}">Último »</a></li>
                             {% else %}
                             <li class="anterior-off">Siguiente »</li>
                             <li class="anterior-off">Último »</li>
                             {% endif %}
-						</ul> 
+						</ul>
 						
 							
 					</div>

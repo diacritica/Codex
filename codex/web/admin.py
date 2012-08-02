@@ -54,26 +54,55 @@ class ChronicleAdmin(admin.ModelAdmin):
      list_filter = ['canon_level','author']
      Media = CommonMedia
 
+class RuleAdmin(admin.ModelAdmin):
+     filter_horizontal = ("attachments","author","affectedsections")
+     list_display = ('name', 'url','canon_level')
+     list_filter = ['canon_level','author']
+     Media = CommonMedia
+
+class FanArtAdmin(admin.ModelAdmin):
+     filter_horizontal = ("attachments","author")
+     list_display = ('name', 'chosenlicense','chosencategory','chosentype','canon_level')
+     list_filter = ['canon_level','chosenlicense','chosencategory','chosentype','author']
+     Media = CommonMedia
+
+class ClassRaceAdmin(admin.ModelAdmin):
+     list_display = ('name','canon_level')
+     list_filter = ['canon_level','author']
+     Media = CommonMedia
+
+class SpellAdmin(admin.ModelAdmin):
+     filter_horizontal = ("attachments","author","affectedclassrace")
+     list_display = ('name', 'level','canon_level')
+     list_filter = ['level','canon_level',"affectedclassrace"]
+     Media = CommonMedia
+
+
+class RuleSectionAdmin(admin.ModelAdmin):
+     list_display = ('name','canon_level')
+     list_filter = ['canon_level','author']
+     Media = CommonMedia
+
 class CharacterLocationRelationshipAdmin(admin.ModelAdmin):
-     
+
      list_display = ('character', 'location', 'relation','canon_level')
      list_filter = ('character', 'location', 'relation','canon_level','author')
      Media = CommonMedia
 
 class CharacterRelationshipAdmin(admin.ModelAdmin):
-     
+
      list_display = ('character1', 'character2', 'relation12','relation21','canon_level')
      list_filter = ('character1', 'character2', 'relation12','relation21','canon_level','author')
      Media = CommonMedia
 
 class CreatureRelationshipAdmin(admin.ModelAdmin):
-     
+
      list_display = ('creature1', 'creature2', 'relation12','relation21','canon_level')
      list_filter = ('creature1', 'creature2', 'relation12','relation21','canon_level','author')
      Media = CommonMedia
 
 class ObjectRelationshipAdmin(admin.ModelAdmin):
-     
+
      list_display = ('object1', 'object2', 'relation12','relation21','canon_level')
      list_filter = ('object1', 'object2', 'relation12','relation21','canon_level','author')
      Media = CommonMedia
@@ -93,7 +122,7 @@ class ImageAdmin(admin.ModelAdmin):
 class AttachFileAdmin(admin.ModelAdmin):
      list_display = ('name', 'description')
      Media = CommonMedia
-     
+
 class TwitterConfigAdmin(admin.ModelAdmin):
      list_display = ('name', 'twitter_user', 'consumer_key', 'consumer_secret', 'access_token_key', 'access_token_secret', 'forward_user')
      Media= CommonMedia
@@ -114,3 +143,8 @@ admin.site.register(Religion, ReligionAdmin)
 admin.site.register(Image, ImageAdmin)
 admin.site.register(AttachFile, AttachFileAdmin)
 admin.site.register(TwitterConfig, TwitterConfigAdmin)
+admin.site.register(Rule, RuleAdmin)
+admin.site.register(RuleSection, RuleSectionAdmin)
+admin.site.register(Spell, SpellAdmin)
+admin.site.register(ClassRace, ClassRaceAdmin)
+admin.site.register(FanArt, FanArtAdmin)

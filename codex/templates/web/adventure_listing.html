@@ -5,14 +5,17 @@
 {% block navigation %}
 		<div id="cabecera">
 			<div id="menu">
-				<ul>	     
+				<ul>
 					<li><a href="/">El Codex</a></li>	
-					<li><a href="/character">Personajes</a></li>	 
+					<li><a href="/character">Personajes</a></li>
 					<li><a href="/creature">Bestiario</a></li>	
 					<li><a href="/location">Lugares</a></li>
 					<li><a href="/object">Objetos</a></li>	
 					<li><a href="/adventure" class="seleccion">Aventuras</a></li>	
-					<li><a href="/chronicle">Crónica</a></li>	
+					<li><a href="/chronicle">Crónica</a></li>
+					<li><a href="/spell" >Conjuros</a></li>
+					<li><a href="/rule" >Reglas</a></li>
+					<li><a href="/fanart" >Fan Art</a></li>
 					<li><a href="/send_info">Enviar info</a></li>	
 					<li><a href="/contact">Contacto</a></li>
         		</ul>
@@ -26,30 +29,7 @@
 				La recopilación de todo el conocimiento sobre la Marca del Este.
 			</div><!-- fin logo -->
 			
-			<div id="busqueda-simple">
-				<div id="form-busqueda-simple">
-				<form action="/search/" METHOD=GET>
-					<select name="option">					  
-						<option value="all">Todo</option>
-						<option value="character">Personaje</option>
-						<option value="creature">Bestiario</option>
-						<option value="location">Lugar</option>
-						<option value="object">Objeto</option>
-						<option value="adventure" selected>Aventura</option>
-						<option value="chronicle">Crónica</option>					   
-					</select>
-					
-					<input class="barra_busqueda" type="text" name="searchterm" value="" />
-					
-					<input class="boton_buscar" type="submit" value="Buscar" />
-				</form>
-				</div>
-				<div id="ir-busqueda-avanzada"><a href="/advancedsearch">Búsqueda<br/>avanzada</a></div>
-			</div><!-- fin busqueda-simple -->
 			
-			
-			
-		</div><!-- fin cabecera -->
 {% endblock %}
 
 {% block content %}			
@@ -59,7 +39,7 @@
 			<div id="contenido-listados" >			
 			<div id="columna-der-listados">
 				
-				<div id="volver"><span><a href="/">Volver a inicio</a>&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;</span> <a href="/adventure">Aventuras<!-- nombre de la categoria si es un resultado de listado de categoria O  palabra "Busqueda" e incluir el H1 de Resultado de busqueda de "El termino que busco"--></a></div> 
+				<div id="volver"><span><a href="/">Volver a inicio</a>&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;</span> <a href="/adventure">Aventuras<!-- nombre de la categoria si es un resultado de listado de categoria O  palabra "Busqueda" e incluir el H1 de Resultado de busqueda de "El termino que busco"--></a></div>
 				
 				<div id="central">
 					<h1>Listado de aventuras</h1>
@@ -102,13 +82,13 @@
 
                              {% if results.has_next %}
 							<li class="siguiente"> <a href="?page={{ results.next_page_number }}">Siguiente »</a></li>
-                            
+
 							<li class="siguiente"><a href="?page={{results.paginator.num_pages}}">Último »</a></li>
                             {% else %}
                             <li class="anterior-off">Siguiente »</li>
                             <li class="anterior-off">Último »</li>
                             {% endif %}
-						</ul> 
+						</ul>
 						
 							
 					</div>

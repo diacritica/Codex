@@ -5,14 +5,17 @@
 {% block navigation %}
 		<div id="cabecera">
 			<div id="menu">
-				<ul>	     
+				<ul>
 					<li><a href="/">El Codex</a></li>	
-					<li><a href="/character">Personajes</a></li>	 
+					<li><a href="/character">Personajes</a></li>
 					<li><a href="/creature">Bestiario</a></li>	
 					<li><a href="/location">Lugares</a></li>
 					<li><a href="/object">Objetos</a></li>	
 					<li><a href="/adventure">Aventuras</a></li>	
-					<li><a href="/chronicle">Crónicas</a></li>	
+					<li><a href="/chronicle">Crónicas</a></li>
+					<li><a href="/spell" >Conjuros</a></li>
+					<li><a href="/rule" >Reglas</a></li>
+					<li><a href="/fanart" >Fan Art</a></li>
 					<li><a href="/send_info">Enviar info</a></li>	
 					<li><a href="/contact" class="seleccion">Contacto</a></li>
         		</ul>
@@ -26,31 +29,7 @@
 				La recopilación de todo el conocimiento sobre la Marca del Este.
 			</div><!-- fin logo -->
 			
-			<div id="busqueda-simple">
-				<div id="form-busqueda-simple">
-				<form action="/search/" METHOD=GET>
-					<select name="option">					  
-						<option value="all">Todo</option>
-						<option value="character">Personaje</option>
-						<option value="creature">Bestiario</option>
-						<option value="location">Lugar</option>
-						<option value="object">Objeto</option>
-						<option value="adventure">Aventura</option>
-						<option value="chronicle">Crónica</option>					   
-					</select>
-					
-					<input class="barra_busqueda" type="text" name="searchterm" value="" />
-					
-					<input class="boton_buscar" type="submit" value="Buscar" />
-				</form>
-				</div>
-				<div id="ir-busqueda-avanzada"><a href="/advancedsearch">Busqueda<br/>avanzada</a></div>
-			</div><!-- fin busqueda-simple -->
 
-			
-			
-			
-		</div><!-- fin cabecera -->
 {% endblock %}
 
 
@@ -59,7 +38,7 @@
 			<div id="contenido-listados" >			
 			<div id="columna-der-listados">
 				
-				<div id="volver"><span><a href="/">Volver a inicio</a>&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;</span> Contacto</a></div> 
+				<div id="volver"><span><a href="/">Volver a inicio</a>&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;</span> Contacto</a></div>
 				
 				<div id="central">
 			
@@ -91,7 +70,7 @@
 		
 
         <div id="pie">
-                <div id="validaciones"> 
+                <div id="validaciones">
                     Aventuras de la Marca del este 2011 - Validación: <a
 href="http://validator.w3.org/check?uri=referer">XHTML</a> | <a
 href="http://jigsaw.w3.org/css-validator/validator?uri=http://?????/css/estilo.css">CSS</a>
@@ -102,4 +81,4 @@ href="http://jagvalverde.com/">Jose Valverde</a></span>
                 </div><!-- fin validaciones -->
         </div><!-- fin pie -->
     </div><!-- fin contenedor -->
-{% endblock %}      
+{% endblock %}

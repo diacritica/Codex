@@ -2,33 +2,33 @@
 {% block header %}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head> 
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
-		<title>El Codex de la Marca del Este</title> 
-		<meta name='title' content=''/> 
-		<meta name='description' content=''/> 
- 
-		<meta name="author" content=""/> 
-		<meta name="language" content="spanish"/> 
-		<meta name="revisit" content="10 day"/> 
-		<meta name="distribution" content="global"/> 
- 
-		<meta name="robots" content="All"/> 
-		<meta http-equiv="pragma" content="no-cache"/> 
+<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>El Codex de la Marca del Este</title>
+		<meta name='title' content=''/>
+		<meta name='description' content=''/>
+
+		<meta name="author" content=""/>
+		<meta name="language" content="spanish"/>
+		<meta name="revisit" content="10 day"/>
+		<meta name="distribution" content="global"/>
+
+		<meta name="robots" content="All"/>
+		<meta http-equiv="pragma" content="no-cache"/>
 		<meta http-equiv="expires" content="-1"/>		
-        <link rel="stylesheet" href="/css/reset.css" type="text/css" media="screen" /> 
-        <link rel="stylesheet" href="/css/estilo.css" type="text/css" media="screen" /> 
+        <link rel="stylesheet" href="/css/reset.css" type="text/css" media="screen" />
+        <link rel="stylesheet" href="/css/estilo.css" type="text/css" media="screen" />
 		
-			<script type="text/javascript" src="/js/jquery.js"></script> 
-			<script type="text/javascript" src="/js/easySlider1.7.js"></script> 
-			<script type="text/javascript"> 
+			<script type="text/javascript" src="/js/jquery.js"></script>
+			<script type="text/javascript" src="/js/easySlider1.7.js"></script>
+			<script type="text/javascript">
 				$(document).ready(function(){	
 					$("#slider").easySlider({
-						auto: true, 
+						auto: true,
 						continuous: true
 					});
 				});	
-			</script> 
+			</script>
 			
   <script type="text/javascript">
 
@@ -46,9 +46,9 @@
 </script>
 <link rel="alternate" type="application/atom+xml" title="Atom 2.0" href="http://codexdelamarca.com/rss.xml" />		
 
-	</head> 
+	</head>
 {% endblock %}
-{% block content%}		
+{% block leftcontent%}		
 		<div id="rotativo">
 			
 <div id="slider" >
@@ -71,22 +71,25 @@ href="/adventure"><img src="/rotativo/banner-aventura.jpg" alt="-aventuras"
 <!-- cronicas. Hay que meter el enlace a categoria --> <li><a
 href="/chronicle"><img src="/rotativo/banner-cronica.jpg" alt="cronicas"
 /></a></li>
+<!-- reglas. Hay que meter el enlace a categoria --> <li><a
+href="/chronicle"><img src="/rotativo/banner-reglas.jpg" alt="reglas"
+/></a></li>
+<!-- conjuros. Hay que meter el enlace a categoria --> <li><a
+href="/spell"><img src="/rotativo/banner-conjuros.jpg" alt="conjuros"
+/></a></li>
+<!-- fanart. Hay que meter el enlace a categoria --> <li><a
+href="/fanart"><img src="/rotativo/banner-fanart.jpg" alt="fanart"
+/></a></li>
 </ul>
 </div><!-- fin slider -->
 
 		</div><!-- fin rotativo -->
 
-
-
-  
-
-
-
 		<div id="contenido" >
 			<div id="columna-izq_portada">
 				<h1>El Codex</h1>
 				<p>
-					<img src="/ima/sello.jpg" alt="La Marca del Este" style="float: left;margin: 5px"/> <b>El Codex de la Marca del Este es un vademécum que recoge toda la información referente a la Marca creada tanto por sus autores originales como por todos los aficionados, colaboradores y amigos que han aportado su granito de arena para enriquecer este escenario de campaña. </b> 
+					<img src="/ima/sello.jpg" alt="La Marca del Este" style="float: left;margin: 5px"/> <b>El Codex de la Marca del Este es un vademécum que recoge toda la información referente a la Marca creada tanto por sus autores originales como por todos los aficionados, colaboradores y amigos que han aportado su granito de arena para enriquecer este escenario de campaña. </b>
 				</p>
 				<p>
 					En esta página, de forma compendiosa y detallada, podréis encontrar personajes, criaturas, objetos, reliquias, aventuras completas, crónicas de leyenda, localizaciones de campaña, y demás, todo ordenado, interrelacionado y clasificado por los autores de la Marca según su importancia y relevancia dentro del escenario.
@@ -119,7 +122,9 @@ href="/chronicle"><img src="/rotativo/banner-cronica.jpg" alt="cronicas"
 				<b><a href="/static/codex_de_marca_banners.zip">Descarga los banners oficiales del Codex de La Marca</a></b>
 				</p>
 			</div><!-- fin columna-izq_portada -->
-			
+{% endblock %}
+{% block canonlightbox %}{% endblock %}
+{% block rightcontent%}	
 			<div id="columna-der_portada">
 				
 				<h1>Novedades</h1>
@@ -202,8 +207,50 @@ href="/chronicle"><img src="/rotativo/banner-cronica.jpg" alt="cronicas"
 				<p class="ver"><a href="/chronicle">Ver categoría [+]</a></p>
 				</div>
 				
+				<div class="elemento-portada">
+				<h2><img src="/ima/ico-portada-conjuros.png" alt="spell"/><a href="/spell">Conjuros</a></h2>
+                {% for object in index_list.spells %}				
+                <p><a href="/spell/{{object.slug}}">{{object.name}}</a></p>
+                {% if forloop.first %}
+				<p class="intro">{{object.description|safe|truncatechars:100}} </p>
+                {% endif %}
+                <hr/>
+                {% endfor %}
+
+				<p class="ver"><a href="/spell">Ver categoría [+]</a></p>
+				</div>
+				
+				
+				<div class="elemento-portada">
+				<h2><img src="/ima/ico-portada-regla.png" alt="rule"/><a href="/rule">Reglas</a></h2>
+                {% for object in index_list.rules %}				
+                <p><a href="/rule/{{object.slug}}">{{object.name}}</a></p>
+                {% if forloop.first %}
+				<p class="intro">{{object.description|safe|truncatechars:100}} </p>
+                {% endif %}
+                <hr/>
+                {% endfor %}
+
+				<p class="ver"><a href="/rule">Ver categoría [+]</a></p>
+				</div>
+				
+				
+					<div class="elemento-portada">
+				<h2><img src="/ima/ico-portada-fanart.png" alt="fanart"/><a href="/fanart">Fan Art</a></h2>
+                {% for object in index_list.fanarts %}				
+                <p><a href="/fanart/{{object.slug}}">{{object.name}}</a></p>
+                {% if forloop.first %}
+				<p class="intro">{{object.description|safe|truncatechars:100}} </p>
+                {% endif %}
+                <hr/>
+                {% endfor %}
+
+				<p class="ver"><a href="/fanart">Ver categoría [+]</a></p>
+				</div>
+				
 			</div><!-- fin columna-izq_portada  -->
 		</div><!-- fin contenido -->
+		
 {% endblock %}
 {% block about %}		
 {% endblock %}

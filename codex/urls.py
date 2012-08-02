@@ -30,6 +30,7 @@ databrowse.site.register(Language)
 databrowse.site.register(Religion)
 databrowse.site.register(Adventure)
 databrowse.site.register(Chronicle)
+databrowse.site.register(Rule)
 #databrowse.site.register(Tags)
 #databrowse.site.register(TaggableManager)
 
@@ -71,6 +72,19 @@ urlpatterns = patterns('',
     (r'^chronicle/(?P<slug>.+)/$',views.ChronicleDetailView),
     (r'^chronicle/$',views.ChronicleSectionView),
 
+    (r'^rule/all/$',views.RuleListingView),
+    (r'^rule/(?P<slug>.+)/$',views.RuleDetailView),
+    (r'^rule/$',views.RuleSectionView),
+
+    (r'^spell/all/$',views.SpellListingView),
+    (r'^spell/(?P<slug>.+)/$',views.SpellDetailView),
+    (r'^spell/$',views.SpellSectionView),
+
+    (r'^fanart/all/$',views.FanArtListingView),
+    (r'^fanart/(?P<slug>.+)/$',views.FanArtDetailView),
+    (r'^fanart/$',views.FanArtSectionView),
+
+
     (r'^object/all/$',views.ObjectListingView),
     (r'^object/(?P<slug>.+)/$',views.ObjectDetailView),
     (r'^object/$',views.ObjectSectionView),
@@ -78,9 +92,18 @@ urlpatterns = patterns('',
     (r'^search/all/$', redirect_to, {'url': '/advancedsearch/'}),
     (r'^search/$',views.SearchRedirectView),
     (r'^search/None/None/$',redirect_to, {'url': '/advancedsearch/'}),
+<<<<<<< HEAD
 #    (r'^search/(?P<searchfilter>all|object|character|creature|location|adventure|chronicle)/(?P<canonlvl>ALL|NEW|AP|APC|C)/(?P<searchterm>.*)/$',views.SimpleSearchView),
     (r'^search/(?P<searchfilter>all|object|character|creature|location|adventure|chronicle)/(?P<searchterm>.*)/$',views.SimpleSearchView),
     (r'^search/(?P<searchfilter>all|object|character|creature|location|adventure|chronicle)/$',views.SimpleSearchView),
+=======
+
+    (r'^search/(?P<searchfilter>all|object|character|creature|location|\
+        adventure|chronicle|rule|spell|fanart)/(?P<searchterm>.*)/$',views.SimpleSearchView),
+    (r'^search/(?P<searchfilter>all|object|character|creature|location|\
+        adventure|chronicle|rule|spell|fanart)/$',views.SimpleSearchView),
+
+>>>>>>> newcats
     (r'^contact/$',views.ContactView),
     (r'^send_info/$',views.SendinfoView),
 

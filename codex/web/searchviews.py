@@ -21,7 +21,11 @@ def SearchRedirectView(request):
 
 def SimpleSearchView(request, searchfilter="", searchterm=""):
 
+<<<<<<< HEAD
     validsearchfilters = ["object","location","character","creature","adventure","chronicle"]
+=======
+    validsearchfilters = ["object","location","character","creature","adventure","chronicle","rule", "spell",]
+>>>>>>> newcats
 
     results = []
     allobjects = {}
@@ -31,9 +35,19 @@ def SimpleSearchView(request, searchfilter="", searchterm=""):
 
         allobjects[searchfilter] = getattr(m.models,searchfilter.capitalize()).objects.all()
 
+<<<<<<< HEAD
     elif searchfilter == "all":
 
         allobjects = {'object':Object.objects.all(),'character':Character.objects.all(),'creature':Creature.objects.all(),'chronicle':Chronicle.objects.all(),'adventure':Adventure.objects.all(),'location':Location.objects.all()}
+=======
+    elif searchfilter == "fanart": allobjects["fanart"] = FanArt.objects.all() #OH PLEASE FIX THIS MESS!
+    elif searchfilter == "all":
+
+        allobjects = {'object':Object.objects.all(),'character':Character.objects.all(), \
+        'creature':Creature.objects.all(),'chronicle':Chronicle.objects.all(), \
+        'adventure':Adventure.objects.all(),'location':Location.objects.all(),'rule':Rule.objects.all(),\
+        'spell':Spell.objects.all(),'fanart':FanArt.objects.all()}
+>>>>>>> newcats
 
 
     if searchterm != "":
@@ -114,6 +128,10 @@ def AdvancedSearchView(request):
     adventure_options = {"PRICE_RANGES": PRICE_RANGES}
     range_options = {"lownum": range(1,11),"highnum": range(1,26)}
     adventures_options = {'adventures':Adventure.objects.all()}
+    rules_options = {'rulesections':RuleSection.objects.all()}
+    spell_options = {'classraces':ClassRace.objects.all()}
+    fanart_options = {'fanart_authors':Author.objects.all(),"FANART_LICENSE_CHOICES":FANART_LICENSE_CHOICES,\
+    "FANART_CATEGORY_CHOICES":FANART_CATEGORY_CHOICES, "FANART_TYPE_CHOICES":FANART_TYPE_CHOICES}
 
     choices_dict.update(character_options)
     choices_dict.update(creature_options)
@@ -123,6 +141,10 @@ def AdvancedSearchView(request):
     choices_dict.update(adventure_options)
     choices_dict.update(range_options)
     choices_dict.update(adventures_options)
+    choices_dict.update(rules_options)
+    choices_dict.update(spell_options)
+    choices_dict.update(fanart_options)
+
     return render_to_response("web/advanced-search.html", choices_dict)
 
 
@@ -143,12 +165,20 @@ def ResultsAdvancedSearchView(request):
         if objectcanon=="ALL":
 
             objects = sorted(
+<<<<<<< HEAD
             chain(Object.objects.all() , Character.objects.all() , Creature.objects.all() , Chronicle.objects.all() , Adventure.objects.all() , Location.objects.all()),key=lambda instance: instance.last_updated)
+=======
+            chain(Object.objects.all() , Character.objects.all() , Creature.objects.all() , Chronicle.objects.all() , Adventure.objects.all() , Location.objects.all(), Rule.objects.all(), FanArt.objects.all()), key=lambda instance: instance.last_updated)
+>>>>>>> newcats
             objects.reverse()
         else:
 
             objects = sorted(
+<<<<<<< HEAD
             chain(Object.objects.filter(canon_level=objectcanon) , Character.objects.filter(canon_level=objectcanon) , Creature.objects.filter(canon_level=objectcanon) , Chronicle.objects.filter(canon_level=objectcanon) , Adventure.objects.filter(canon_level=objectcanon) , Location.objects.filter(canon_level=objectcanon)),key=lambda instance: instance.last_updated)
+=======
+            chain(Object.objects.filter(canon_level=objectcanon) , Character.objects.filter(canon_level=objectcanon) , Creature.objects.filter(canon_level=objectcanon) , Chronicle.objects.filter(canon_level=objectcanon) , Adventure.objects.filter(canon_level=objectcanon) , Location.objects.filter(canon_level=objectcanon),Rule.objects.filter(canon_level=objectcanon),FanArt.objects.filter(canon_level=objectcanon)),key=lambda instance: instance.last_updated)
+>>>>>>> newcats
 
         if len(keywords) != 0:
             results = []
@@ -176,6 +206,12 @@ def ResultsAdvancedSearchView(request):
                                 objecttype="chronicle"
                             elif type(ob)==type(Adventure()):
                                 objecttype="adventure"
+                            elif type(ob)==type(Rule()):
+                                objecttype="rule"
+                            elif type(ob)==type(Spell()):
+                                objecttype="spell"
+                            elif type(ob)==type(FanArt()):
+                                objecttype="fanart"
                             ob.objecttype = objecttype
                             results.append(ob)
 
@@ -194,6 +230,12 @@ def ResultsAdvancedSearchView(request):
                             objecttype="chronicle"
                  elif type(ob)==type(Adventure()):
                             objecttype="adventure"
+                 elif type(ob)==type(Rule()):
+                            objecttype="rule"
+                 elif type(ob)==type(Spell()):
+                            objecttype="spell"
+                 elif type(ob)==type(FanArt()):
+                            objecttype="fanart"
                  ob.objecttype = objecttype
                  results.append(ob)
 
@@ -202,6 +244,129 @@ def ResultsAdvancedSearchView(request):
 
         return render_to_response("web/listado.html",{'objecttype':'none','keywords':keywords,'results':results})
 
+    if objecttype == 'fanart':
+
+
+        chosencategory = request.GET.get('chosencategory') or None
+        chosentype = request.GET.get('chosentype') or None
+        chosenlicense = request.GET.get('chosenlicense') or None
+        author = request.GET.get('author') or None
+
+        objects = FanArt.objects.all()
+
+        if chosencategory!="ALL" and chosencategory:
+            objects = objects.filter(chosencategory=chosencategory)
+        if chosentype!="ALL" and chosentype:
+            objects = objects.filter(chosentype=chosentype)
+        if chosenlicense!="ALL" and chosenlicense:
+            objects = objects.filter(chosenlicense=chosenlicense)
+        if author!="ALL" and author:
+            objects = objects.filter(author=author)
+
+
+        if objectcanon!="ALL" and objectcanon:
+            objects = objects.filter(canon_level=objectcanon)
+
+#        for f,ft in filterdict.items():
+#            if ft!=None: objects = objects.filter(f=ft)
+
+        if len(keywords) != 0:
+            results = []
+            for ob in objects:
+                ks = 0
+                for keyword in keywords:
+                    if keyword.lower() in ob.searchText().lower():#.split(" "):
+                        ks+=5
+                        ks+=ob.searchText().lower().count(keyword.lower())
+
+                    if ks>0:
+                        if ob in results:
+                            ob.hits += ks
+                        else:
+                            ob.hits = ks
+                            ob.objecttype = objecttype
+                            results.append(ob)
+
+        else: results = objects
+
+    if objecttype == 'spell':
+
+        classrace = request.GET.get('classrace') or None
+
+        level = request.GET.get('level') or None
+        reversible = request.GET.get('reversible') or None #FIXME!
+
+
+        objects = Spell.objects.all()
+
+        if classrace!="ALL" and classrace:
+            objects = objects.filter(affectedclassrace=classrace)
+
+        if level!="ALL" and level:
+            objects = objects.filter(level=level)
+
+        if reversible!="ALL" and reversible:
+            objects = objects.filter(reversible=reversible)
+
+
+        if objectcanon!="ALL" and objectcanon:
+            objects = objects.filter(canon_level=objectcanon)
+
+#        for f,ft in filterdict.items():
+#            if ft!=None: objects = objects.filter(f=ft)
+
+        if len(keywords) != 0:
+            results = []
+            for ob in objects:
+                ks = 0
+                for keyword in keywords:
+                    if keyword.lower() in ob.searchText().lower():#.split(" "):
+                        ks+=5
+                        ks+=ob.searchText().lower().count(keyword.lower())
+
+                    if ks>0:
+                        if ob in results:
+                            ob.hits += ks
+                        else:
+                            ob.hits = ks
+                            ob.objecttype = objecttype
+                            results.append(ob)
+
+        else: results = objects
+
+    if objecttype == 'rule':
+
+        affectedsection = request.GET.get('affectedsection') or None
+
+        objects = Rule.objects.all()
+
+        if affectedsection!="ALL" and affectedsection:
+            objects = objects.filter(affectedsections=affectedsection)
+
+        if objectcanon!="ALL" and objectcanon:
+            objects = objects.filter(canon_level=objectcanon)
+
+#        for f,ft in filterdict.items():
+#            if ft!=None: objects = objects.filter(f=ft)
+
+        if len(keywords) != 0:
+            results = []
+            for ob in objects:
+                ks = 0
+                for keyword in keywords:
+                    if keyword.lower() in ob.searchText().lower():#.split(" "):
+                        ks+=5
+                        ks+=ob.searchText().lower().count(keyword.lower())
+
+                    if ks>0:
+                        if ob in results:
+                            ob.hits += ks
+                        else:
+                            ob.hits = ks
+                            ob.objecttype = objecttype
+                            results.append(ob)
+
+        else: results = objects
 
     if objecttype == 'chronicle':
 
