@@ -5,14 +5,17 @@
 {% block navigation %}
 		<div id="cabecera">
 			<div id="menu">
-				<ul>	     
+				<ul>
 					<li><a href="/">El Codex</a></li>	
-					<li><a href="/character">Personajes</a></li>	 
+					<li><a href="/character">Personajes</a></li>
 					<li><a href="/creature">Bestiario</a></li>	
 					<li><a href="/location">Lugares</a></li>
 					<li><a href="/object" class="seleccion">Objetos</a></li>	
 					<li><a href="/adventure">Aventuras</a></li>	
-					<li><a href="/chronicle">Crónicas</a></li>	
+					<li><a href="/chronicle">Crónicas</a></li>
+					<li><a href="/spell" >Conjuros</a></li>
+					<li><a href="/rule" >Reglas</a></li>
+					<li><a href="/fanart" >Fan Art</a></li>
 					<li><a href="/send_info">Enviar info</a></li>	
 					<li><a href="/contact">Contacto</a></li>
         		</ul>
@@ -26,34 +29,9 @@
 				La recopilación de todo el conocimiento sobre la Marca del Este.
 			</div><!-- fin logo -->
 			
-			<div id="busqueda-simple">
-				<div id="form-busqueda-simple">
-				<form action="/search/" METHOD=GET>
-					<select name="option">					  
-						<option value="all">Todo</option>
-						<option value="character">Personaje</option>
-						<option value="creature">Bestiario</option>
-						<option value="location">Lugar</option>
-						<option value="object">Objeto</option>
-						<option value="adventure">Aventura</option>
-						<option value="chronicle">Crónica</option>					   
-					</select>
-					
-					<input class="barra_busqueda" type="text" name="searchterm" value="" />
-					
-					<input class="boton_buscar" type="submit" value="Buscar" />
-				</form>
-				</div>
-				<div id="ir-busqueda-avanzada"><a href="/advancedsearch">Búsqueda<br/>avanzada</a></div>
-			</div><!-- fin busqueda-simple -->
-
-			
-			
-			
-		</div><!-- fin cabecera -->
 {% endblock %}
 
-{% block content %}		
+{% block leftcontent %}		
 
 		<div id="contenido" >
 			<div id="contenido-articulos" >
@@ -81,48 +59,9 @@
 
 			</div><!-- fin columna-izq -->
 			
-			<div id="columna-der">
-				<div id="canon">
-					<div id="nivel-canon">Nivel de Canon</div>				
-					<div id="ima-canon"><img src="/ima/canon/canon-{{object.get_canon_level_display}}.jpg" alt="icono" height="68px" width="68px"/></div>				
-{% block canonlightbox %}
 
-<div id="denominacion-canon"> {{object.get_canon_level_display}} <div id="que"><button
-id="opener" >¿Qué es esto?</button><!-- <a href="#">¿Qué es
-esto?</a>--></div></div>
-										
-	<div id="dialog" title="Nivel de Canon" style="font-family: Georgia;">
-		<p style="font-size: 12px"> <img src="/ima/dialogocanon/sellooro.png"
-alt="icono" height="68px" width="68px" style="float: left;
-margin-right: 10px"/>
-		<span style="font-size: 18px">Canon</span>
-		<br/>  Representa contenido de referencia oficial en La Marca del Este y puede ser empleado como tal en aventuras, relatos u obras artísticas. De este contenido responde, en último término, el equipo de autores de La Marca del Este.
-		</p>
-						
-		<p style="font-size: 12px"> <img
-src="/ima/dialogocanon/selloplata.png" alt="icono" height="68px"
-width="68px" style="float: left; margin-right: 10px"/>
-		<span style="font-size: 18px">Apócrifo</span>
-		<br/>  Representa contenido que, tras un análisis, es perfectamente válido para ser publicado en el Codex de La Marca pero incumple alguna condición para ser considerado parte del canon. Usualmente, un contenido pasa a ser Aprócrifo cuando no hay un interés particular en dedicar el tiempo en hacerlo consonante con el corpus oficial. Con el tiempo, un contenido Apócrifo puede volver a pasar a un estado de "En estudio" si la circunstancias cambian o el contenido es revisado.
-		</p>
-
-
-		<p style="font-size: 12px"> <img
-src="/ima/dialogocanon/sello-nuevo.png" alt="icono" height="68px"
-width="68px" style="float: left; margin-right: 10px"/>
-		<span style="font-size: 18px">Nuevo</span>
-		<br/>  Representa contenido recién dado de alta y que no ha sido aún analizado de ninguna forma. El objetivo del Codex de La Marca es que éste sea un estado de corta duración en todos los casos.
-		</p>
-
-		<p style="font-size: 12px"> <img
-src="/ima/dialogocanon/sello-nuevo.png" alt="icono" height="68px"
-width="68px" style="float: left; margin-right: 10px"/>
-		<span style="font-size: 18px">En estudio</span>
-		<br/>  Representa un estado transitorio entre Nuevo y Canon/Apócrifo. El estudio sobre su adecuación o no al canon lo realizan los autores de La Marca del Este y pueden requerir de información complementaria al autor del contenido para resolver cualquier duda sobre su origen o sugerir algún cambio para poder adoptarlo como canon.
-		</p>
-	</div>			
-</div><!-- fin canon -->
-{% endblock %}
+{% endblock %}				
+{% block rightcontent %}	
 
 				{% if object.image.all %}
 				<div id="expo-ima">
@@ -132,7 +71,7 @@ width="68px" style="float: left; margin-right: 10px"/>
 					<div id="ima-grande">
 						<a href="#"><img src="{{ MEDIA_URL }}{{image.image.name}}" alt="icono" height="230px" width="350px"/></a>
 					</div>
-					<!-- 
+					<!--
 					<div id="ima-mini">
 						<a href="#"><img src="ima/ico-portada-item.jpg" alt="icono" height="50px" width="75px"/></a>
 						<a href="#"><img src="ima/ico-portada-item.jpg" alt="icono" height="50px" width="75px"/></a>
@@ -144,9 +83,9 @@ width="68px" style="float: left; margin-right: 10px"/>
 				
 		<div id="firma-ima">
 		            {% if image.author.all %}
-					<b>Autor(es) de la ilustración</b>: 
+					<b>Autor(es) de la ilustración</b>:
                     {% for author in image.author.all%}
-					   {% if forloop.first %} 
+					   {% if forloop.first %}
                         <a href="{{author.url}}">{{author.name}}</a>
 						{% endif %}
 						{% if forloop.last and forloop.last != forloop.first %}
@@ -186,7 +125,7 @@ width="68px" style="float: left; margin-right: 10px"/>
 					<ul>
                         {% for character in object.Objetos.all %}
 						
-						{% if character.canon_level == "C" %}<li><a href="/character/{{character.slug}}">{{character.name}}</a></li>{% endif %}
+						{% if character.get_canon_level == "C" %}<li><a href="/character/{{character.slug}}">{{character.name}}</a></li>{% endif %}
                         {% endfor %}						
 					</ul>
 				</div><!-- fin lista2columnas-->

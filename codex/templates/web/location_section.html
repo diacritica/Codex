@@ -5,14 +5,17 @@
 {% block navigation %}
 		<div id="cabecera">
 			<div id="menu">
-				<ul>	     
+				<ul>
 					<li><a href="/">El Codex</a></li>	
-					<li><a href="/character">Personajes</a></li>	 
+					<li><a href="/character">Personajes</a></li>
 					<li><a href="/creature">Bestiario</a></li>	
 					<li><a href="/location"  class="seleccion">Lugares</a></li>
 					<li><a href="/object">Objetos</a></li>	
 					<li><a href="/adventure">Aventuras</a></li>	
-					<li><a href="/chronicle">Crónica</a></li>	
+					<li><a href="/chronicle">Crónica</a></li>
+					<li><a href="/spell" >Conjuros</a></li>
+					<li><a href="/rule" >Reglas</a></li>
+					<li><a href="/fanart" >Fan Art</a></li>
 					<li><a href="/send_info">Enviar info</a></li>	
 					<li><a href="/contact">Contacto</a></li>
         		</ul>
@@ -26,30 +29,6 @@
 				La recopilación de todo el conocimiento sobre la Marca del Este.
 			</div><!-- fin logo -->
 			
-			<div id="busqueda-simple">
-				<div id="form-busqueda-simple">
-				<form action="/search/" METHOD=GET>
-					<select name="option">					  
-						<option value="all">Todo</option>
-						<option value="character">Personaje</option>
-						<option value="creature">Bestiario</option>
-						<option value="location"  selected>Lugar</option>
-						<option value="object">Objeto</option>
-						<option value="adventure">Aventura</option>
-						<option value="chronicle">Crónica</option>					   
-					</select>
-					
-					<input class="barra_busqueda" type="text" name="searchterm" value="" />
-					
-					<input class="boton_buscar" type="submit" value="Buscar" />
-				</form>
-				</div>
-				<div id="ir-busqueda-avanzada"><a href="/advancedsearch">Búsqueda<br/>avanzada</a></div>
-			</div><!-- fin busqueda-simple -->
-			
-			
-			
-		</div><!-- fin cabecera -->
 {% endblock %}
 
 {% block content %}			
@@ -140,7 +119,7 @@
 <!-- Separador-->	<div style="clear: both"><br/></div>
 					
 				<h2 class="titulo-formulario-avanzado">	
-                    
+
 							<input type="hidden" name="option" value="location">
 										Evaluación:						
 										</h2>
@@ -161,7 +140,7 @@
 											 {% for align in LOC_STATUS_CHOICES %}
                                               <option value={{align.0}}>{{align.1}}</option>
                                               {% endfor %}
-											 </select> 
+											 </select>
 										</div>
 <!-- Separador-->	<div style="clear: both"><br/></div>
 										<h2 class="titulo-formulario-avanzado">	
@@ -173,7 +152,7 @@
 											{% for align in LOC_TYPE_CHOICES %}
                                               <option value={{align.0}}>{{align.1}}</option>
                                               {% endfor %}
-											 </select> 
+											 </select>
 										</div>
 																						
 										<h2 class="titulo-formulario-avanzado">			
@@ -185,7 +164,7 @@
 											  {% for align in ALIGN_CHOICES %}
                                               <option value={{align.0}}>{{align.1}}</option>
                                               {% endfor %}
-											 </select> 
+											 </select>
 										</div>
 										
 <!-- Separador-->	<div style="clear: both"><br/></div>
