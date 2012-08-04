@@ -177,7 +177,7 @@
 </span>						
 </h2>
 {% if object.thumbnail %}
-<a href="/{{object.objecttype}}/{{object.slug}}"><img class="detalles-listado-ima" src="{{MEDIA_URL}}{{object.thumbnail.image.name}}" alt="Fan Art"></a>
+<a href="/{{object.objecttype}}/{{object.slug}}"><img class="detalles-listado-ima-horizontal" src="{{MEDIA_URL}}{{object.thumbnail.image.name}}" alt="Fan Art"></a>
 {% endif %}
 <p class="detalles-listado">
 <b>Categoría:</b> {{object.get_chosencategory_display}} - <b>Tipo:</b> {{object.get_chosentype_display}} - <b>Licencia:</b> {{object.get_chosenlicense_display}} -  <b>Autor:</b> {% for author in object.author.all %}{{author.name}}{% endfor %}
