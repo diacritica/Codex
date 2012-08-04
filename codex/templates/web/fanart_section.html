@@ -1,0 +1,227 @@
+{% extends "basebasic.html" %}
+{% block title %}
+<title>Codex de la Marca del Este - Conjuros</title>
+{% endblock %}
+{% block navigation %}
+    <div id="cabecera">
+    <div id="menu">
+    <ul>
+    <li><a href="/">El Codex</a></li>	
+    <li><a href="/character">Personajes</a></li>
+    <li><a href="/creature">Bestiario</a></li>	
+    <li><a href="/location">Lugares</a></li>
+    <li><a href="/object">Objetos</a></li>	
+    <li><a href="/adventure">Aventuras</a></li>	
+    <li><a href="/chronicle">Crónica</a></li>
+    <li><a href="/spell">Conjuros</a></li>
+    <li><a href="/rule">Reglas</a></li>
+    <li><a href="/fanart" class="seleccion" >Fan Art</a></li>
+    <li><a href="/send_info">Enviar info</a></li>	
+    <li><a href="/contact">Contacto</a></li>
+    </ul>
+    </div><!-- fin menu -->
+    <div id="logo">
+    <a href="/"><img src="/ima/codex-logo.jpg" alt="Codex de Aventuras de la Marca del Este." /></a>
+    </div><!-- fin logo -->
+
+    <div id="slogan">
+    La recopilación de todo el conocimiento sobre la Marca del Este.
+    </div><!-- fin logo -->
+
+{% endblock %}
+
+{% block content %}
+
+<div id="contenido" >
+<div id="contenido-articulos" >	
+
+<div id="columna-izq_portada" style="padding-top:0px;">
+<div id="volver">
+<span>
+<a href="/">Volver a inicio</a>
+&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;
+</span>
+Fan Art
+</div>
+				
+<div id="quote">Esta sección es una compilación de las obras artísticas de todo tipo realizadas con La Marca del Este como fuente de inspiración.
+Son bienvenidos ilustraciones, lienzos, fotografías, esculturas y cualquier expresión artística.</div>
+<p>
+Os presentamos los últimos tres fan arts que fueron añadidas al Codex, un fan art destacado de entre
+un subconjunto del total y el buscador avanzado para que sea sencillo encontrar exactamente lo que uno
+necesita. Los fan arts pueden disponer de material adicional de descarga aparte de mostrar un tipo, una
+ categoría y una licencia escogidos por el autor.
+</p>
+<div id="novedades-categorias">
+Novedades
+</div>
+<div class="elemento-portada-categoria">
+{% for object in results|slice:":3" %}
+<h2><img src="/ima/ico-portada-fanart.png" alt="Fan Art"/><a href="/fanart/{{object.slug}}">{{object.name}}</a></h2>
+				<p class="sub-text">{{object.last_updated.date}}. Canon: {{object.get_canon_level_display}}</p>
+				
+                                    <p class="intro">
+                                    {% for image in object.image.all %}
+                                        {% if forloop.first %}
+					<a href="/fanart/{{object.slug}}"><img width="290px"     alt="icono" src="{{ MEDIA_URL }}{{image.image.name}}" /></a>
+					<div style="clear: both"><br/></div>
+                                        {% endif %}
+                                    {% endfor %}
+				
+				</p>
+                {% endfor %}
+                <div style="clear: both"><br/></div>
+				
+
+				<p class="ver"><a href="/fanart/all">Ver todas [+]</a></p>
+				</div>
+				
+			</div><!-- fin columna-izq_portada -->
+
+			<div id="columna-der_portada" style="padding-top:0px;">
+				<div>
+					<img src="/ima/banner-categoria-fanart.jpg" alt="fanart"  style="float:none;"/>
+					<br/><br/>
+				</div>
+				
+
+				<div>
+				<h1>Destacado</h1>
+				</div>
+				<div class="elemento-portada-categoria">					
+				<h2>
+				<img alt="fanart" src="/ima/ico-portada-fanart.png" />
+				<a href="/fanart/{{highlightedresult.slug}}">{{highlightedresult.name}}</a>
+				</h2>
+				<p class="sub-text">{{highlightedresult.last_updated.date}}. Canon: {{highlightedresult.get_canon_level_display}}</p>
+				<p class="intro">
+                                    {% for image in highlightedresult.image.all %}
+                                        {% if forloop.first %}
+					<a href="#"><img width="290px"     alt="icono" src="{{ MEDIA_URL }}{{image.image.name}}" /></a>
+                                        {% endif %}
+                                    {% endfor %}
+				{{highlightedresult.description|safe|truncatewords:200}}
+				</p>
+				
+
+								
+								
+				<p class="ver"><a href="/fanart/{{highlightedresult.slug}}">Seguir leyendo [+]</a></p>
+				</div>			
+				
+				<div style="clear: both"></div>
+				
+				<div>
+				<h1>Búsqueda avanzada</h1>
+				</div>
+				
+				    <!-- FAN ART -->
+
+    <div id="elemento-formulario-categoria">
+    <form action="/resadvancedsearch/" METHOD=GET>
+    <!-- Separador-->   <div style="clear: both"><br/></div>
+
+    <input type="hidden" name="option" value="fanart">
+     <h2 class="titulo-formulario-avanzado" >
+                        Palabras clave:
+                    </h2>
+
+                    <div class="formulario-avanzado" >
+                        <input style="padding: 5px 5px; font-size:16px;width:380px;" type="text" name="searchterm" />
+                    </div>
+
+
+
+                                        <div style="clear: both"><br/></div>
+                                       <h2 class="titulo-formulario-avanzado">
+                                       Autor:
+                                       </h2>
+                                       <div class="formulario-avanzado-1-columnas">
+                                       <select name="author">
+                                       <option value="ALL">Todos</option>
+                                        {% for author in fanart_authors %}
+                                              <option value={{author.id}}>{{author.name}}</option>
+                                        {% endfor %}
+                                       </select>
+                                        </div>
+                                    <!-- Separador-->	<div style="clear: both"><br/></div>
+                                        <h2 class="titulo-formulario-avanzado">
+                                        Tipo:
+                                        </h2>
+                                        <div class="formulario-avanzado-2-columnas" >
+                                            <select name="chosentype">
+                                            <option value="ALL">Cualquiera</option>
+                                        {% for type in FANART_TYPE_CHOICES %}
+                                              <option value={{type.0}}>{{type.1}}</option>
+                                        {% endfor %}
+                                             </select>
+                                        </div>
+                                         <h2 class="titulo-formulario-avanzado">
+                                        Categoría:
+                                        </h2>
+                                        <div class="formulario-avanzado-2-columnas" >
+                                            <select name="chosencategory">
+                                              <option value="ALL">Cualquiera</option>
+                                              {% for category in FANART_CATEGORY_CHOICES %}
+                                              <option value={{category.0}}>{{category.1}}</option>
+                                        {% endfor %}
+                                             </select>
+                                        </div>
+                                        <div style="clear: both">&nbsp;</div>
+
+										<h2 class="titulo-formulario-avanzado">
+                                        Licencia:
+                                        </h2>
+                                        <div class="formulario-avanzado-2-columnas" >
+                                            <select name="chosenlicense">
+                                              <option value="ALL">Cualquiera</option>
+                                              {% for license in FANART_LICENSE_CHOICES %}
+                                              <option value={{license.0}}>{{license.1}}</option>
+                                        {% endfor %}
+                                             </select>
+                                        </div>
+                                        <h2 class="titulo-formulario-avanzado">
+                                       Evaluación:	</h2>
+						<div class="formulario-avanzado-2-columnas">
+						<select name="canon_level">
+	    					  <option value="ALL">Cualquiera</option>
+	    					  <option value="NEW">Nuevo</option>
+	    					  <option value="AP">Apócrifo</option>
+	    					  <option value="APC">En estudio</option>
+	    					  <option value="C">Canon</option>
+	    				</select> </div>
+
+                                        <div style="clear: both">&nbsp;</div>
+
+
+    <div style="clear: both; text-align: center">
+    <input class="boton_buscar" type="submit" value="Buscar" style="font-size: 22px;height: 38px;"/>
+    </div>
+
+    </form>
+
+
+    <!-- END FANART -->
+
+
+            </div> <!-- fin elemento-formulario-categoria  -->
+			</div><!-- fin columna-der_portada  -->
+	</div><!-- fin contenido-artuculos -->
+		</div><!-- fin contenido -->
+		
+		
+		
+
+		<div id="pie">
+				<div id="validaciones">	
+					Aventuras de la Marca del este 2011 - Validación: <a
+href="http://validator.w3.org/check?uri=referer">XHTML</a> | <a
+href="http://jigsaw.w3.org/css-validator/validator?uri=http://?????/css/estilo.css">CSS</a>
+					<br/><br/>
+					<span style="font-size: 10px"> Desarrollo y mantenimiento: Angela
+Rivera Campos @ghilbrae y Pablo Ruiz Múzquiz @diacritica	 - Diseño: <a
+href="http://jagvalverde.com/">Jose Valverde</a></span>
+				</div><!-- fin validaciones -->
+		</div><!-- fin pie -->
+	</div><!-- fin contenedor -->
+{% endblock %}		
