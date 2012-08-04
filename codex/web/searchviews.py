@@ -279,7 +279,7 @@ def ResultsAdvancedSearchView(request):
 
     if objecttype == 'spell':
 
-        classrace = request.GET.get('classrace') or None
+        affectedclass = request.GET.get('affectedclass') or None
 
         level = request.GET.get('level') or None
         reversible = request.GET.get('reversible') or None #FIXME!
@@ -287,8 +287,8 @@ def ResultsAdvancedSearchView(request):
 
         objects = Spell.objects.all()
 
-        if classrace!="ALL" and classrace:
-            objects = objects.filter(affectedclassrace=classrace)
+        if affectedclass!="ALL" and affectedclass:
+            objects = objects.filter(affectedclassrace=affectedclass)
 
         if level!="ALL" and level:
             objects = objects.filter(level=level)
