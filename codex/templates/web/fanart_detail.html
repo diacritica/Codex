@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block title %}
+<title>Codex de la Marca del Este - Fan Art - {{object.name}}</title>
+{% endblock %}
+{% block navigation %}
+      <div id="cabecera">
+         <div id="menu">
+            <ul>
+               <li><a href="/">El Codex</a></li>
+               <li><a href="/character">Personajes</a></li>
+               <li><a href="/creature">Bestiario</a></li>
+               <li><a href="/location">Lugares</a></li>
+               <li><a href="/object">Objetos</a></li>
+               <li><a href="/adventure">Aventuras</a></li>
+               <li><a href="/chronicle">Crónica</a></li>
+               <li><a href="/spell">Conjuros</a></li>
+               <li><a href="/rule">Reglas</a></li>
+               <li><a href="/fanart"  class="seleccion">Fan Art</a></li>
+               <li><a href="/send_info">Enviar info</a></li>
+               <li><a href="/contact">Contacto</a></li>
+              </ul>
+         </div><!-- fin menu -->
+
+         <div id="logo">
+            <a href="/"><img src="/ima/codex-logo.jpg" alt="Codex de las aventuras de la Marca del Este." /></a>
+         </div><!-- fin logo -->
+
+         <div id="slogan">
+            La recopilación de todo el conocimiento sobre la Marca del Este.
+         </div><!-- fin logo -->
+
+{% endblock %}
+{% block leftcontent %}
+
+<div id="contenido" >
+<div id="contenido-articulos" >
+<div id="columna-izq">
+<div id="volver"><span><a href="/">Volver a inicio</a>&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;</span> <a href="/fanart">Fan Art</a></div>
+
+<h1><img src="/ima/ico-portada-fanart.png" alt="fanart"/> {{object.name}}
+{% if user.is_authenticated and user.is_staff %}
+<a href="/scriptorium/web/fanart/{{object.id}}">[editar]</a>
+{% endif %}</h1>
+
+{% if object.image.all %}
+{% for image in object.image.all %}
+ {% if forloop.first %}
+ <p><img src="{{ MEDIA_URL }}{{image.image.name}}" alt="icono" width="500px"/></p>
+ {% endif %}
+{% endfor %}
+{% endif %}
+
+{% if object.description %}
+<p>{{object.description|safe}}</p>
+{% endif %}
+
+{% if object.comments %}
+<h2>Nota del autor:</h2>
+<p>{{object.comments|safe}}</p>
+{% endif %}
+
+
+</div><!-- fin columna-izq -->
+{% endblock %}
+
+{% block rightcontent %}
+&nbsp;
+<h2>Más información:</h2>
+<div class="lista2columnas">
+
+<ul>
+<li><b>Tipo:</b> {{object.get_chosentype_display}}</li>
+<li><b>Categoría:</b> {{object.get_chosencategory_display}}</li>
+<li style="width: 320px"><b>Licencia:</b> {{object.get_chosenlicense_display}}</li>
+</ul>
+
+
+</div><!-- fin lista2columnas-->
+{% endblock %}
+
