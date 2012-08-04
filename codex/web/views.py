@@ -63,8 +63,16 @@ def IndexView(request):
     chronicles = Chronicle.objects.all().order_by('-last_updated')[:3]
     locations = Location.objects.exclude(deactivated=True).order_by('-last_updated')[:3]
     adventures = Adventure.objects.all().order_by('-last_updated')[:3]
-    index_list = {'characters':chars, 'objects':objects, 'creatures':creatures, 'chronicles':chronicles, 'locations':locations, 'adventures':adventures}
-    return render_to_response('web/index.html', {'index_list': index_list})
+    rules = Rule.objects.all().order_by('-last_updated')[:3]
+    spells = Spell.objects.all().order_by('-last_updated')[:3]
+    fanarts = FanArt.objects.all().order_by('-last_updated')[:3]
+
+
+
+    index_list = {'characters':chars, 'objects':objects, 'creatures':creatures,\
+     'chronicles':chronicles, 'locations':locations, 'adventures':adventures,\
+     'rules':rules,'spells':spells,'fanarts':fanarts}
+    return render_to_response('web/index.html', {'index_list': index_list,'MEDIA_URL':MEDIA_URL})
 
 def NotFoundView(request):
     return render_to_response('web/404.html')
@@ -391,6 +399,140 @@ def ChronicleDetailView(request, slug):
     return render_to_response('web/chronicle_detail.html', {
             "object": chronicle, "relatedobjectsbytags":relatedobjectsbytags,'MEDIA_URL':MEDIA_URL,'STATIC_URL':STATIC_URL,
     },context_instance=RequestContext(request))
+
+
+#--------------
+def SpellListingView(request):
+    allobjects = Spell.objects.all()
+
+    paginator = Paginator(allobjects, 10) # Show 10 contacts per page
+
+    page = request.GET.get('page')
+    try:
+        objects = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        objects = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        objects = paginator.page(paginator.num_pages)
+
+    #return render_to_response('list.html', {"contacts": contacts})
+
+
+    return render_to_response("web/spell_listing.html",{'results':objects})
+
+def SpellSectionView(request):
+    objects = Spell.objects.all()[:3]
+    highlightedresult = Spell.objects.filter(highlight=True).order_by('?')[0]
+    range_options = {"lownum": range(1,11),"highnum": range(1,26)}
+    spellSectionView_dict = {}
+    spellSectionView_dict.update(range_options)
+
+    spellSectionView_dict.update({'results':objects,'highlightedresult':highlightedresult,'affectedclasses':ClassRace.objects.all(),'MEDIA_URL':MEDIA_URL,'STATIC_URL':STATIC_URL})
+
+    return render_to_response("web/spell_section.html",spellSectionView_dict)
+
+def SpellDetailView(request, slug):
+    rule = get_object_or_404(Spell, slug=slug)
+
+
+    relatedobjectsbytags = getRelatedByTags(rule)
+
+    return render_to_response('web/spell_detail.html', {
+            "object": rule, "relatedobjectsbytags":relatedobjectsbytags,'MEDIA_URL':MEDIA_URL,'STATIC_URL':STATIC_URL,
+    },context_instance=RequestContext(request))
+
+#------------
+
+def RuleListingView(request):
+    allobjects = Rule.objects.all()
+
+    paginator = Paginator(allobjects, 10) # Show 10 contacts per page
+
+    page = request.GET.get('page')
+    try:
+        objects = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        objects = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        objects = paginator.page(paginator.num_pages)
+
+    #return render_to_response('list.html', {"contacts": contacts})
+
+
+    return render_to_response("web/rule_listing.html",{'results':objects})
+
+def RuleSectionView(request):
+    objects = Rule.objects.all()[:3]
+    highlightedresult = Rule.objects.filter(highlight=True).order_by('?')[0]
+    ruleSectionView_dict = {}
+
+    ruleSectionView_dict.update({'results':objects,'highlightedresult':highlightedresult,'rulesections':RuleSection.objects.all(),'MEDIA_URL':MEDIA_URL,'STATIC_URL':STATIC_URL})
+
+    return render_to_response("web/rule_section.html",ruleSectionView_dict)
+
+def RuleDetailView(request, slug):
+    rule = get_object_or_404(Rule, slug=slug)
+
+
+    relatedobjectsbytags = getRelatedByTags(rule)
+
+    return render_to_response('web/rule_detail.html', {
+            "object": rule, "relatedobjectsbytags":relatedobjectsbytags,'MEDIA_URL':MEDIA_URL,'STATIC_URL':STATIC_URL,
+    },context_instance=RequestContext(request))
+
+def FanArtListingView(request):
+    allobjects = FanArt.objects.all()
+
+    paginator = Paginator(allobjects, 10) # Show 10 contacts per page
+
+    page = request.GET.get('page')
+    try:
+        objects = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        objects = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        objects = paginator.page(paginator.num_pages)
+
+    #return render_to_response('list.html', {"contacts": contacts})
+
+
+    return render_to_response("web/fanart_listing.html",{'results':objects,'MEDIA_URL':MEDIA_URL})
+
+def FanArtDetailView(request, slug):
+    fanart = get_object_or_404(FanArt, slug=slug)
+
+
+    relatedobjectsbytags = getRelatedByTags(fanart)
+
+    return render_to_response('web/fanart_detail.html', {
+            "object": fanart, "relatedobjectsbytags":relatedobjectsbytags,'MEDIA_URL':MEDIA_URL,'STATIC_URL':STATIC_URL,
+    },context_instance=RequestContext(request))
+
+def FanArtSectionView(request):
+    objects = FanArt.objects.all()[:3]
+    highlightedresult = FanArt.objects.filter(highlight=True).order_by('?')[0]
+
+    fanartSectionView_dict = {}
+
+
+    fanart_options = {'fanarts':FanArt.objects.all(),"FANART_LICENSE_CHOICES":FANART_LICENSE_CHOICES,\
+    "FANART_CATEGORY_CHOICES":FANART_CATEGORY_CHOICES,\
+    "FANART_TYPE_CHOICES":FANART_TYPE_CHOICES}
+
+    fanart_authors = {'fanart_authors':Author.objects.all()}
+
+    fanartSectionView_dict.update(fanart_options)
+    fanartSectionView_dict.update(fanart_authors)
+    fanartSectionView_dict.update({'results':objects,'highlightedresult':highlightedresult,'MEDIA_URL':MEDIA_URL,'STATIC_URL':STATIC_URL})
+
+
+    return render_to_response("web/fanart_section.html",fanartSectionView_dict)
 
 
 def getObjectRelations(anObject):

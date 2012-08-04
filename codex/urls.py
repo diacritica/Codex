@@ -30,6 +30,7 @@ databrowse.site.register(Language)
 databrowse.site.register(Religion)
 databrowse.site.register(Adventure)
 databrowse.site.register(Chronicle)
+databrowse.site.register(Rule)
 #databrowse.site.register(Tags)
 #databrowse.site.register(TaggableManager)
 
@@ -38,10 +39,10 @@ admin.autodiscover()
 urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'codex.views.home', name='home'),
-#    url(r'^encounter/', include('codex.encounter.encounterurls')),
+    #url(r'^encounter/', include('codex.encounter.encounterurls')),
     url(r'^api/', include('codex.api.apiurls')),
-#    url(r'^mobile/', include('codex.mobile.mobileurls')),
-#    url(r'^map/', include('codex.codexmap.codexmapurls')),
+    #url(r'^mobile/', include('codex.mobile.mobileurls')),
+    url(r'^map/', include('codex.codexmap.codexmapurls')),
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
@@ -71,6 +72,19 @@ urlpatterns = patterns('',
     (r'^chronicle/(?P<slug>.+)/$',views.ChronicleDetailView),
     (r'^chronicle/$',views.ChronicleSectionView),
 
+    (r'^rule/all/$',views.RuleListingView),
+    (r'^rule/(?P<slug>.+)/$',views.RuleDetailView),
+    (r'^rule/$',views.RuleSectionView),
+
+    (r'^spell/all/$',views.SpellListingView),
+    (r'^spell/(?P<slug>.+)/$',views.SpellDetailView),
+    (r'^spell/$',views.SpellSectionView),
+
+    (r'^fanart/all/$',views.FanArtListingView),
+    (r'^fanart/(?P<slug>.+)/$',views.FanArtDetailView),
+    (r'^fanart/$',views.FanArtSectionView),
+
+
     (r'^object/all/$',views.ObjectListingView),
     (r'^object/(?P<slug>.+)/$',views.ObjectDetailView),
     (r'^object/$',views.ObjectSectionView),
@@ -78,9 +92,11 @@ urlpatterns = patterns('',
     (r'^search/all/$', redirect_to, {'url': '/advancedsearch/'}),
     (r'^search/$',views.SearchRedirectView),
     (r'^search/None/None/$',redirect_to, {'url': '/advancedsearch/'}),
-    (r'^search/(?P<searchfilter>all|object|character|creature|location|adventure|chronicle)/(?P<canonlvl>ALL|NEW|AP|APC|C)/(?P<searchterm>.*)/$',views.SimpleSearchView),
+
+#    (r'^search/(?P<searchfilter>all|object|character|creature|location|adventure|chronicle)/(?P<canonlvl>ALL|NEW|AP|APC|C)/(?P<searchterm>.*)/$',views.SimpleSearchView),
     (r'^search/(?P<searchfilter>all|object|character|creature|location|adventure|chronicle)/(?P<searchterm>.*)/$',views.SimpleSearchView),
     (r'^search/(?P<searchfilter>all|object|character|creature|location|adventure|chronicle)/$',views.SimpleSearchView),
+
     (r'^contact/$',views.ContactView),
     (r'^send_info/$',views.SendinfoView),
 
@@ -90,6 +106,7 @@ urlpatterns = patterns('',
 
     (r'^dicegen/$',views.DiceGeneratorView),
 
+
     (r'^$', views.IndexView),
     (r'^rss.xml$', LatestEntriesFeed()),
 
@@ -98,22 +115,22 @@ urlpatterns = patterns('',
 if settings.ENVIRONMENT=="TEST":
     urlpatterns += patterns('',
         url(r'^css/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': "/srv/codex_virtualenv/Codex.git/codex/templates/web/css/",
+            'document_root': "/home/elfo/GIT/CODEX/codex/templates/web/css/",
         }),
         url(r'^ima/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': "/srv/codex_virtualenv/Codex.git/codex/templates/web/ima/",
+            'document_root': "/home/elfo/GIT/CODEX/codex/templates/web/ima/",
         }),
         url(r'^js/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': "/srv/codex_virtualenv/Codex.git/codex/templates/web/js/",
+            'document_root': "/home/elfo/GIT/CODEX/codex/templates/web/js/",
         }),
         url(r'^rotativo/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': "/srv/codex_virtualenv/Codex.git/codex/templates/web/rotativo/",
+            'document_root': "/home/elfo/GIT/CODEX/codex/templates/web/rotativo/",
         }),
         url(r'^media/img/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': "/srv/codex_virtualenv/Codex.git/codex/media/img/",
+            'document_root': "/home/elfo/GIT/CODEX/codex/media/img/",
         }),
         url(r'^media/files/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': "/srv/codex_virtualenv/Codex.git/codex/media/files/",
+            'document_root': "/home/elfo/GIT/CODEX/codex/media/files/",
         }),
    )
 

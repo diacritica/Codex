@@ -1,12 +1,13 @@
 {% block header %}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+{% block head %}
 <head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 {% block title %}		<title></title> {% endblock %}
 		<meta name='title' content=''/>
 		<meta name='description' content=''/>
- 
+
 		<meta name="author" content=""/>
 		<meta name="language" content="spanish"/>
 		<meta name="revisit" content="10 day"/>
@@ -67,21 +68,25 @@ src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/jquery-ui.min.js"></scr
 
 
 	</head>
+    {% endblock %}
 {% endblock %}
 
-<body> 
+<body>
 <div id="contenedor">
 		{% block navigation %}
 		<div id="cabecera">
 			<div id="menu">
-				<ul>	     
+				<ul>
 					<li><a href="/" class="seleccion">El Codex</a></li>	
-					<li><a href="/character">Personajes</a></li>	 
+					<li><a href="/character">Personajes</a></li>
 					<li><a href="/creature">Bestiario</a></li>	
 					<li><a href="/location">Lugares</a></li>
 					<li><a href="/object">Objetos</a></li>	
 					<li><a href="/adventure">Aventuras</a></li>	
-					<li><a href="/chronicle">Crónicas</a></li>	
+					<li><a href="/chronicle">Crónicas</a></li>
+                                            <li><a href="/spell" >Conjuros</a></li>
+					<li><a href="/rule" >Reglas</a></li>
+					<li><a href="/fanart" >Fan Art</a></li>
 					<li><a href="/send_info">Enviar info</a></li>	
 					<li><a href="/contact">Contacto</a></li>
         		</ul>
@@ -94,18 +99,23 @@ src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/jquery-ui.min.js"></scr
 			<div id="slogan">
 				La recopilación de todo el conocimiento sobre la Marca del Este.
 			</div><!-- fin logo -->
+			{% endblock %}
 			
+			{% block simplesearch %}
 			<div id="busqueda-simple">
 				<div id="form-busqueda-simple">
 				<form action="/search/" method='get'>
-					<select name="option">					  
+					<select name="option">
 						<option value="all">Todo</option>
 						<option value="character">Personaje</option>
 						<option value="creature">Bestiario</option>
 						<option value="location">Lugar</option>
 						<option value="object">Objeto</option>
 						<option value="adventure">Aventura</option>
-						<option value="chronicle">Crónica</option>					   
+						<option value="chronicle">Crónica</option>
+						<option value="spell">Conjuro</option>
+						<option value="rule">Regla</option>
+						<option value="fanart">FanArt</option>
 					</select>
 					
 					<input class="barra_busqueda" type="text" name="searchterm" value="" />
@@ -122,7 +132,7 @@ src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/jquery-ui.min.js"></scr
 		
 		{% endblock %}
 
-		{% block content %}
+		{% block leftcontent %}
 		<div id="contenido" >
 			<div id="contenido-articulos" >
 			<div id="columna-izq">
@@ -135,13 +145,13 @@ src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/jquery-ui.min.js"></scr
 				
 				<div class="lista3columnas">
 					<ul>
-						<li><b>FUERZA:</b> 
+						<li><b>FUERZA:</b>
 						  {% if object.strengthstat %}
 						  {{object.strengthstat}}
 						  {% else %}-
 						  {% endif %}
 						</li>
-						<li><b>CONSTITUCIÓN:</b> 
+						<li><b>CONSTITUCIÓN:</b>
 						  {% if object.constitutionstat %}
 						  {{object.constitutionstat}}
 						  {% else %}-
@@ -193,7 +203,7 @@ src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/jquery-ui.min.js"></scr
 						
 						<li><b>Clase:</b> {{object.get_profession_display}}</li>
 						<li><b>Moral:</b> {{object.moral}}</li>
-						<li><b>Idiomas:</b> 
+						<li><b>Idiomas:</b>
 						  {% for language in object.languages.all %}
 						  {{language.name }},
 						  {% endfor %}
@@ -206,7 +216,7 @@ src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/jquery-ui.min.js"></scr
 						  {% endfor %}
 						</li>
 						<li><b>Puntos de golpe:</b> {{object.hitpoints}}</li>
-						<li style="width: 300px"><b>Lugares:</b> 
+						<li style="width: 300px"><b>Lugares:</b>
 						  {% for rlocation in object.relatedlocation.all %}
                                                   {{rlocation.name }},
                                                   {% endfor %}
@@ -230,14 +240,14 @@ src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/jquery-ui.min.js"></scr
 				
 
 			</div><!-- fin columna-izq -->
-			
+{% endblock %}
+{% block canonlightbox %}					
 			<div id="columna-der">
 				<div id="canon">
 					<div id="nivel-canon">Nivel de Canon</div>				
 					<div id="ima-canon"><img src="/ima/canon/canon-{{object.get_canon_level_display}}.jpg" alt="icono" height="68px" width="68px"/></div>				
 
 
-{% block canonlightbox %}
 <div id="denominacion-canon"> {{object.get_canon_level_display}} <div id="que"><button
 id="opener" >¿Qué es esto?</button><!-- <a href="#">¿Qué es
 esto?</a>--></div></div>
@@ -247,22 +257,14 @@ esto?</a>--></div></div>
 alt="icono" height="68px" width="68px" style="float: left;
 margin-right: 10px"/>
 		<span style="font-size: 18px">Canon</span>
-		<br/>  Integer sapien lectus, tempus quis iaculis ut, lobortis non velit.
-		Nam hendrerit enim bibendum leo tincidunt sollicitudin. Nulla quis
-feugiat felis.
-		Proin sed iaculis odio. Pellentesque dictum odio id diam gravida sed
-placerat lacus feugiat.
+		<br/>  Representa contenido de referencia oficial en La Marca del Este y puede ser empleado como tal en aventuras, relatos u obras artísticas. De este contenido responde, en último término, el equipo de autores de La Marca del Este.
 		</p>
 						
 		<p style="font-size: 12px"> <img
 src="/ima/dialogocanon/selloplata.png" alt="icono" height="68px"
 width="68px" style="float: left; margin-right: 10px"/>
 		<span style="font-size: 18px">Apócrifo</span>
-		<br/>  Integer sapien lectus, tempus quis iaculis ut, lobortis non velit.
-		Nam hendrerit enim bibendum leo tincidunt sollicitudin. Nulla quis
-feugiat felis.
-		Proin sed iaculis odio. Pellentesque dictum odio id diam gravida sed
-placerat lacus feugiat.
+		<br/>  Representa contenido que, tras un análisis, es perfectamente válido para ser publicado en el Codex de La Marca pero incumple alguna condición para ser considerado parte del canon. Usualmente, un contenido pasa a ser Aprócrifo cuando no hay un interés particular en dedicar el tiempo en hacerlo consonante con el corpus oficial. Con el tiempo, un contenido Apócrifo puede volver a pasar a un estado de "En estudio" si la circunstancias cambian o el contenido es revisado.
 		</p>
 
 
@@ -270,27 +272,20 @@ placerat lacus feugiat.
 src="/ima/dialogocanon/sello-nuevo.png" alt="icono" height="68px"
 width="68px" style="float: left; margin-right: 10px"/>
 		<span style="font-size: 18px">Nuevo</span>
-		<br/>  Integer sapien lectus, tempus quis iaculis ut, lobortis non velit.
-		Nam hendrerit enim bibendum leo tincidunt sollicitudin. Nulla quis
-feugiat felis.
-		Proin sed iaculis odio. Pellentesque dictum odio id diam gravida sed
-placerat lacus feugiat.
+		<br/>  Representa contenido recién dado de alta y que no ha sido aún analizado de ninguna forma. El objetivo del Codex de La Marca es que éste sea un estado de corta duración en todos los casos.
 		</p>
 
 		<p style="font-size: 12px"> <img
 src="/ima/dialogocanon/sello-nuevo.png" alt="icono" height="68px"
 width="68px" style="float: left; margin-right: 10px"/>
 		<span style="font-size: 18px">En estudio</span>
-		<br/>  Integer sapien lectus, tempus quis iaculis ut, lobortis non velit.
-		Nam hendrerit enim bibendum leo tincidunt sollicitudin. Nulla quis
-feugiat felis.
-		Proin sed iaculis odio. Pellentesque dictum odio id diam gravida sed
-placerat lacus feugiat.
+		<br/>  Representa un estado transitorio entre Nuevo y Canon/Apócrifo. El estudio sobre su adecuación o no al canon lo realizan los autores de La Marca del Este y pueden requerir de información complementaria al autor del contenido para resolver cualquier duda sobre su origen o sugerir algún cambio para poder adoptarlo como canon.
 		</p>
 	</div>			
 </div><!-- fin canon -->
-{% endblock %}
 
+{% endblock %}
+{% block rightcontent %}
 				<div id="expo-ima">
 					  {% for image in object.image.all %}
 					    {% if forloop.first %}
@@ -299,7 +294,7 @@ placerat lacus feugiat.
 						<a href="#"><img src="{{ MEDIA_URL }}{{image.image.name}}" alt="icono" height="230px" width="350px"/></a>
 						
 				</div>
-					<!-- 
+					<!--
 					<div id="ima-mini">
 						<a href="#"><img src="ima/ico-portada-item.jpg" alt="icono" height="50px" width="75px"/></a>
 						<a href="#"><img src="ima/ico-portada-item.jpg" alt="icono" height="50px" width="75px"/></a>
@@ -325,7 +320,7 @@ placerat lacus feugiat.
 					<ul>
 					  {% for relatedobject in object.relatedobject.all %}
 					  {% if relatedobject.rarity != "C" %}
-					  
+
 						<li>{{relatedobject.name}}</li>
 					{% endif %}
 					{% endfor %}
@@ -338,7 +333,7 @@ placerat lacus feugiat.
 				<p>
 					  {% for relatedobject in object.relatedobject.all %}
 					  {% if relatedobject.rarity == "C" %}
-					  
+
 						{{relatedobject.name}},
 					{% endif %}
 					{% endfor %}
@@ -405,7 +400,7 @@ placerat lacus feugiat.
 						<b>{{attach.name}}:</b> {{attach.description|default:""}} <a href="{{ MEDIA_URL }}{{attach.content.name}}">Descargar</a>.
 					</p>
                     {% endfor %}
-					 
+
 				</div>
                 {% endif %}
 
@@ -422,12 +417,12 @@ placerat lacus feugiat.
 						<b>Última actualización:</b> {{object.last_updated.date}}
 					</p>
 					<p>
-						<b>Autores:</b> 
+						<b>Autores:</b>
                     {% for author in object.author.all %}
                     {% if forloop.revcounter != 1 %}
-                     
-                     {% if forloop.first %} 
-                                        
+
+                     {% if forloop.first %}
+
                      {{author.name}}{% if author.url %} - <a href="{{author.url}}">{{author.url}}</a>{% endif %}
                      {% endif %}
                      {% if forloop.last %}
@@ -436,13 +431,13 @@ placerat lacus feugiat.
                      {% if not forloop.last and not forloop.first %}
                     , {{author.name}}{% if author.url %} - <a href="{{author.url}}">{{author.url}}</a>{% endif %}
                      {% endif %}
-                     
+
                     {% else %}
                      {{author.name}}{% if author.url %} - <a href="{{author.url}}">{{author.url}}</a>{% endif %}
                     {% endif %}
                     {% endfor %}
-                    
-					 
+
+
 					</p>
 				</div>
 {% endblock %}		
