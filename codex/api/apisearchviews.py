@@ -17,7 +17,7 @@ def SimpleSearchView(request, searchfilter, searchterm=""):
     results = []
     allobjects = {}
 
-    validsearchfilters = ["object","location","character","creature","adventure","chronicle"]
+    validsearchfilters = ["object","location","character","creature","adventure","chronicle","rule","spell"]
 
     if searchfilter in validsearchfilters:
 
