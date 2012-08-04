@@ -979,6 +979,12 @@ hr {
 	width: 250px; 
 }
 
+.detalles-listado-ima-horizontal {
+    float:left;
+    width: 250px;
+    padding: 0px 10px 0px 0px;
+}
+
 .fanart-listado {
 	float:left;
 	width: 275px;
