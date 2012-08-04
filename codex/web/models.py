@@ -13,8 +13,6 @@ from django.utils.translation import ugettext_lazy as _
 from taggit.managers import TaggableManager
 from twitter import Api
 
-from django.utils.encoding import force_unicode
-
 from django.utils import simplejson
 
 # Create your models here.
@@ -250,7 +248,7 @@ SPECIES_CHOICES = (
         ('Ele', _(u'Elemental')),
         ('Elf', _(u'Elfo')),
         ('Dwf', _(u'Enano')),
-        ('Gnm',  _(u'Gnomo')),
+        ('Gnm', _(u'Gnomo')),
         ('Hfg', _(u'Halfling')),
         ('Fae', _(u'Hada')),
         ('Skm', _(u'Hombre serpiente')),
@@ -337,7 +335,7 @@ LOC_TYPE_CHOICES = (
         ('Unk', _(u'Desconocido')),
 )
 
-CHARLOC_RELATIONSHIP_CHOICES =(
+CHARLOC_RELATIONSHIP_CHOICES = (
         ('1', _('Nivel 1')),
         ('2', _('Nivel 2')),
         ('3', _('Nivel 3')),
@@ -393,12 +391,17 @@ CHAR_RELATIONSHIP_CHOICES = (
         ('UNCLE', _(u'Tío')),
         ('GRAND', _(u'Abuelo')),
         ('CREATOR', _(u'Creador')),
+        ('STEPFATHER', _(u'Padrastro')),
+        ('STEPSON', _(u'Hijastro')),
+
 )
 
 CRE_RELATIONSHIP_CHOICES = (
         ('GROUP', _(u'Grupo')),
         ('NEMESIS', _(u'Némesis')),
         ('CREATOR', _(u'Creador')),
+        ('LEADER', _(u'Líder')),
+        ('UNDERLING', _(u'Esbirro')),
 )
 
 
@@ -413,36 +416,40 @@ OBJ_RELATIONSHIP_CHOICES = (
 
 CANON_LEVEL_CHOICES = (
     ('NEW', _(u'Nuevo')),
-    ('AP',_(u'Apócrifo')),
-    ('APC',_(u'En estudio')),
-    ('C',_(u'Canon')),
+    ('AP', _(u'Apócrifo')),
+    ('APC', _(u'En estudio')),
+    ('C', _(u'Canon')),
 )
 
 PRICE_RANGES = (
     ('FREE', _(u'Gratis')),
-    ('1-10',_(u'1-10')),
-    ('11-20',_(u'11-20')),
-    ('21-30',_(u'21-30')),
-    ('31-40',_(u'31-40')),
-    ('41-50',_(u'41-50')),
-    ('51-60',_(u'51-60')),
-    ('60+',_(u'60+')),
-    ('N/A',_(u'N/A')),
+    ('1-10', _(u'1-10')),
+    ('11-20', _(u'11-20')),
+    ('21-30', _(u'21-30')),
+    ('31-40', _(u'31-40')),
+    ('41-50', _(u'41-50')),
+    ('51-60', _(u'51-60')),
+    ('60+', _(u'60+')),
+    ('N/A', _(u'N/A')),
 )
-
-
-
 
 
 class Character(models.Model):
 
-    name = models.CharField(max_length=100, blank=False, null=False, verbose_name=_('Nombre completo'))
-    gender = models.CharField(max_length=2, blank=True, null=True, choices=GENDER_CHOICES, verbose_name=_('Sexo'))
-    level = models.CharField(max_length=3, blank=True, null=True, choices=LEVEL_CHOICES, verbose_name=_('Nivel'))
-    age = models.CharField(max_length=10, blank=True, null=True, verbose_name=_('Edad'))
-    AC = models.CharField(max_length=100, blank=True, null=True, verbose_name=_('CA'))
-    move = models.CharField(max_length=100, blank=True, null=True, verbose_name=_('Movimiento'))
-    moral = models.CharField(max_length=2, blank=True, null=True, choices=MORAL_CHOICES, verbose_name=_('Moral'))
+    name = models.CharField(max_length=100, blank=False, null=False,
+        verbose_name=_('Nombre completo'))
+    gender = models.CharField(max_length=2, blank=True, null=True,
+        choices=GENDER_CHOICES, verbose_name=_('Sexo'))
+    level = models.CharField(max_length=3, blank=True, null=True,
+        choices=LEVEL_CHOICES, verbose_name=_('Nivel'))
+    age = models.CharField(max_length=10, blank=True, null=True,
+        verbose_name=_('Edad'))
+    AC = models.CharField(max_length=100, blank=True, null=True,
+        verbose_name=_('CA'))
+    move = models.CharField(max_length=100, blank=True, null=True,
+        verbose_name=_('Movimiento'))
+    moral = models.CharField(max_length=2, blank=True, null=True,
+        choices=MORAL_CHOICES, verbose_name=_('Moral'))
     saveroll = models.CharField(max_length=20, blank=True, null=True, choices=SAVE_CHOICES, verbose_name=_('Tirada de salvacion'))
     hitpoints = models.CharField(max_length=100, blank=True, null=True, verbose_name=_('Puntos de golpe'))
     alignment = models.CharField(max_length=3, blank=True, null=True, choices=ALIGN_CHOICES, verbose_name=_('Alineamiento'))
@@ -551,7 +558,7 @@ class Creature(models.Model):
     hitdice = models.CharField(max_length=100, blank=True, null=True, verbose_name=_('Dados de golpe'))
     AC = models.CharField(max_length=10,blank=True, null=True, verbose_name=_('CA'))
     treasurevalue = models.CharField(max_length=100, blank=True, null=True, verbose_name=_('Tesoro'))
-    XPvalue = models.SmallIntegerField(blank=True, null=True, verbose_name=_('Valor PX'))
+    XPvalue = models.IntegerField(blank=True, null=True, verbose_name=_('Valor PX'))
     move = models.CharField(max_length=100, blank=True, null=True, verbose_name=_('Movimiento'))
     moral = models.CharField(max_length=2, blank=True, null=True, choices=MORAL_CHOICES, verbose_name=_('Moral'))
     saveroll = models.CharField(max_length=20, blank=True, null=True, choices=SAVE_CHOICES, verbose_name=_('TS'))
@@ -583,6 +590,37 @@ class Creature(models.Model):
     send_tweet = models.BooleanField(blank=True, verbose_name=_('Tweet nueva criatura'))
     creation_date = models.DateTimeField(null=True, verbose_name=_('Creation date'))
     last_updated = models.DateTimeField(null=True, verbose_name=_('Last updated'))
+
+    def getAllRelationTitles(self, title='ALL'):
+        # Get all the creatures that are related to self
+        creatures_with_relation = self.relatedcreature.all()
+        if len(creatures_with_relation) == 0: return None
+        # Create a dictionary to store all the information
+        creature_query = {} #hacer un set?
+        # List of the CreatureRelationship objects relating self with others
+
+        for creature in creatures_with_relation:
+            creaturerelationlist1 = CreatureRelationship.objects.filter(creature1__name = self.name, creature2__name = creature.name)
+            creaturerelationlist2 = CreatureRelationship.objects.filter(creature1__name = creature.name, creature2__name = self.name)
+
+        # Elaborate the dictionary
+        for crearelationship in creaturerelationlist1:
+            # for each relation the first in the tuple is the one who "is" the relation from the other
+            if crearelationship.relation12 in creature_query.keys():
+                creature_query[crearelationship.relation12].append((self, crearelationship.creature2))
+            else:
+                creature_query[crearelationship.relation12] = [(self, crearelationship.creature2)]
+        for crearelationship in creaturerelationlist2:
+            # for each relation the first in the tuple is the one who "is" the relation from the other
+            if crearelationship.relation21 in creature_query.keys():
+                creature_query[crearelationship.relation21].append((crearelationship.creature1, self))
+            else:
+                creature_query[crearelationship.relation21] = [(crearelationship.creature1, self)]
+
+        if title == 'ALL':
+            return creature_query
+        else:
+            return creature_query[title] # modificar para que puedan ser varios?
 
     def toJSON(self):
         d = vars(self)
@@ -1047,6 +1085,275 @@ class Chronicle(models.Model):
         #unique_together = ('name', 'parent')
 
 
+class RuleSection(models.Model):
+    name = models.CharField(max_length='100', blank=False, null=False, verbose_name=_('Sections name'))
+    description =  models.TextField(blank=True, null=True, verbose_name=_('Description'))
+
+    #Generic to all objects
+
+    slug = models.SlugField(blank=True,null=True,max_length=200,help_text="A short label, generally used in URLs. AUTOMATICALLY ADDED!")
+
+    comments = models.TextField(blank=True, null=True, verbose_name=_('Comments'))
+    author = models.ManyToManyField("Author", blank=True, null=True,  verbose_name=_("Image's authorship"))
+    canon_level = models.CharField(max_length=5, blank=True, null=True, choices=CANON_LEVEL_CHOICES, verbose_name=_('Canon Level'))
+    date = models.DateField(verbose_name=_('Creation date'))
+
+    def __unicode__(self):
+        return unicode(u"%s" % (self.name,))
+    class Meta:
+        verbose_name = _(u'rulesection')
+        get_latest_by = 'order_name'
+        ordering = ['-name']
+        #unique_together = ('name', 'parent')
+
+class Rule(models.Model):
+
+    name = models.CharField(max_length='100', blank=False, null=False, verbose_name=_('Nombre completo'))
+    description =  models.TextField(blank=True, null=True, verbose_name=_('Descripcion'))
+    url =  models.URLField(blank=True, null=True, verify_exists=False, max_length=200, verbose_name=_('URL'))
+    affectedsections = models.ManyToManyField('RuleSection', blank=True, null=True,  related_name=_("Rule's target sections"))
+    attachments = models.ManyToManyField('AttachFile', blank=True, null=True,  related_name=_("Rule's attachments"))
+    image = models.ManyToManyField('Image', blank=True, null=True,  related_name=_("Rule's photos"))
+    tags = TaggableManager(blank=True)
+
+    #Generic to all objects
+
+    slug = models.SlugField(blank=True,null=True,max_length=200,help_text="A short label, generally used in URLs. AUTOMATICALLY ADDED!")
+
+    comments = models.TextField(blank=True, null=True, verbose_name=_('Comments'))
+    author = models.ManyToManyField("Author", blank=True, null=True,  verbose_name=_("Rule's authorship"))
+    canon_level = models.CharField(max_length=5, blank=True, null=True, choices=CANON_LEVEL_CHOICES, verbose_name=_('Canon Level'))
+    highlight = models.BooleanField(blank=True, verbose_name=_(u'Destacado en categoría'))
+    send_tweet = models.BooleanField(blank=True, verbose_name=_(u'Tweet nueva crónica'))
+    creation_date = models.DateTimeField(null=True, verbose_name=_('Creation date'))
+    last_updated = models.DateTimeField(null=True, verbose_name=_('Last updated'))
+
+    def toJSON(self):
+        d = vars(self)
+        authorlist =  [g.name for g in self.author.all()]
+        d["author"]=authorlist
+        d.pop("_state")
+        d.pop("last_updated")
+        d.pop("creation_date")
+        d.pop("send_tweet")
+        result = simplejson.dumps(d, sort_keys=True, indent=4)
+        return result
+
+
+    def save(self, *args, **kwargs):
+        unique_slug(self, slug_source='name', slug_field='slug')
+        if self.send_tweet:
+            twitter_config = TwitterConfig.objects.filter(isActive=True)
+            for tc in twitter_config:
+                text = tc.createTweet(self)
+                status = tc.sendTweet(text)
+        self.send_tweet = False
+
+        super(Rule, self).save(*args, **kwargs)
+
+    def searchText(self):
+        return unicode(u"%s %s %s" % (self.name, self.description, self.comments))
+
+    def __unicode__(self):
+        return unicode(u"%s" % (self.name,))
+    def get_absolute_url(self):
+        return unicode(u"%s/%s"%(u"/rule",self.slug))
+    class Meta:
+#        db_table = u'author'
+        verbose_name = _(u'Rule')
+        get_latest_by = 'order_name'
+        ordering = ['-last_updated','id']
+        #unique_together = ('name', 'parent')
+
+
+class ClassRace(models.Model):
+    name = models.CharField(max_length='100', blank=False, null=False, verbose_name=_('Class Race name'))
+    description =  models.TextField(blank=True, null=True, verbose_name=_('Description'))
+
+    #Generic to all objects
+
+    slug = models.SlugField(blank=True,null=True,max_length=200,help_text="A short label, generally used in URLs. AUTOMATICALLY ADDED!")
+
+    comments = models.TextField(blank=True, null=True, verbose_name=_('Comments'))
+    author = models.ManyToManyField("Author", blank=True, null=True,  verbose_name=_("ClassRace's authorship"))
+    canon_level = models.CharField(max_length=5, blank=True, null=True, choices=CANON_LEVEL_CHOICES, verbose_name=_('Canon Level'))
+    date = models.DateField(verbose_name=_('Creation date'))
+
+    def __unicode__(self):
+        return unicode(u"%s" % (self.name,))
+    class Meta:
+        verbose_name = _(u'classrace')
+        get_latest_by = 'order_name'
+        ordering = ['-name']
+        #unique_together = ('name', 'parent')
+
+class Spell(models.Model):
+
+    name = models.CharField(max_length='100', blank=False, null=False, verbose_name=_('Nombre del hechizo'))
+    description =  models.TextField(blank=True, null=True, verbose_name=_('Descripcion'))
+    level = models.SmallIntegerField(blank=True, null=True,verbose_name=_('Spell level'))
+
+    duration = models.CharField(max_length='200', blank=False, null=False, verbose_name=_('Duration'))
+    reach = models.CharField(max_length='200', blank=False, null=False, verbose_name=_('Alcance'))
+    reversible = models.BooleanField(blank=True, verbose_name=_(u'Reversible'))
+
+    affectedclassrace = models.ManyToManyField('ClassRace', blank=True, null=True,  related_name=_("ClassRace target sections"))
+    attachments = models.ManyToManyField('AttachFile', blank=True, null=True,  related_name=_("Spell's attachments"))
+    image = models.ManyToManyField('Image', blank=True, null=True,  related_name=_("Spell's photos"))
+    tags = TaggableManager(blank=True)
+
+    #Generic to all objects
+
+    slug = models.SlugField(blank=True,null=True,max_length=200,help_text="A short label, generally used in URLs. AUTOMATICALLY ADDED!")
+
+    comments = models.TextField(blank=True, null=True, verbose_name=_('Comments'))
+    author = models.ManyToManyField("Author", blank=True, null=True,  verbose_name=_("Spell's authorship"))
+    canon_level = models.CharField(max_length=5, blank=True, null=True, choices=CANON_LEVEL_CHOICES, verbose_name=_('Canon Level'))
+    highlight = models.BooleanField(blank=True, verbose_name=_(u'Destacado en categoría'))
+    send_tweet = models.BooleanField(blank=True, verbose_name=_(u'Tweet nueva crónica'))
+    creation_date = models.DateTimeField(null=True, verbose_name=_('Creation date'))
+    last_updated = models.DateTimeField(null=True, verbose_name=_('Last updated'))
+
+    def toJSON(self):
+        d = vars(self)
+        authorlist =  [g.name for g in self.author.all()]
+        d["author"]=authorlist
+        d.pop("_state")
+        d.pop("last_updated")
+        d.pop("creation_date")
+        d.pop("send_tweet")
+        result = simplejson.dumps(d, sort_keys=True, indent=4)
+        return result
+
+
+    def save(self, *args, **kwargs):
+        unique_slug(self, slug_source='name', slug_field='slug')
+        if self.send_tweet:
+            twitter_config = TwitterConfig.objects.filter(isActive=True)
+            for tc in twitter_config:
+                text = tc.createTweet(self)
+                status = tc.sendTweet(text)
+        self.send_tweet = False
+
+        super(Spell, self).save(*args, **kwargs)
+
+    def searchText(self):
+        return unicode(u"%s %s %s" % (self.name, self.description, self.comments))
+
+    def __unicode__(self):
+        return unicode(u"%s" % (self.name,))
+    def get_absolute_url(self):
+        return unicode(u"%s/%s"%(u"/rule",self.slug))
+    class Meta:
+#        db_table = u'author'
+        verbose_name = _(u'Spell')
+        get_latest_by = 'order_name'
+        ordering = ['-last_updated','id']
+        #unique_together = ('name', 'parent')
+
+
+FANART_LICENSE_CHOICES = (
+        ('R', _(u'All rights reserved')),
+        ('CCBY', _(u'CC BY')),
+        ('CCBYSA', _(u'CC BY SA')),
+        ('CCBYSANC', _(u'CC BY SA NC')),
+        ('N/A', _(u'N/A')),
+)
+
+FANART_CATEGORY_CHOICES = (
+        ('Scn', _(u'Paisaje')),
+        ('Prs', _(u'Personas')),
+        ('Cre', _(u'Criaturas')),
+        ('Obj', _(u'Objeto')),
+        ('Bld', _(u'Edificio')),
+        ('Evn', _(u'Evento')),
+        ('N/A', _(u'N/A')),
+)
+
+FANART_TYPE_CHOICES = (
+        ('Drw', _(u'Ilustración')),
+        ('Pnt', _(u'Pintura')),
+        ('Ph', _(u'Fotografía')),
+        ('Scp', _(u'Escultura')),
+        ('Hm', _(u'Manualidad')),
+        ('Oth', _(u'Otros')),
+        ('N/A', _(u'N/A')),
+)
+
+
+class FanArt(models.Model):
+
+    name = models.CharField(max_length='200', blank=False, null=False,
+        verbose_name=_(u'Título de la obra'))
+    description =  models.TextField(blank=True, null=True, verbose_name=_('Descripcion'))
+
+    chosenlicense = models.CharField(max_length=10, blank=True, null=True,
+        choices=FANART_LICENSE_CHOICES, verbose_name=_('License'))
+    chosencategory = models.CharField(max_length=10, blank=True, null=True,
+        choices=FANART_CATEGORY_CHOICES, verbose_name=_('Category'))
+    chosentype = models.CharField(max_length=10, blank=True, null=True,
+        choices=FANART_TYPE_CHOICES, verbose_name=_('Type'))
+
+    attachments = models.ManyToManyField('AttachFile', blank=True, null=True,
+        related_name=_("FanArt's attachments"))
+    image = models.ManyToManyField('Image', blank=True, null=True,
+        related_name=_("FanArt's photos"))
+    thumbnail = models.ForeignKey('ThumbnailImage', blank=True, null=True,
+        verbose_name=_(u'FanArt thumbnail'))
+    tags = TaggableManager(blank=True)
+
+    #Generic to all objects
+
+    slug = models.SlugField(blank=True,null=True,max_length=200,help_text="A short label, generally used in URLs. AUTOMATICALLY ADDED!")
+
+    comments = models.TextField(blank=True, null=True, verbose_name=_('Comments'))
+    author = models.ManyToManyField("Author", blank=True, null=True,
+        verbose_name=_("FanArt's authorship"))
+    canon_level = models.CharField(max_length=5, blank=True, null=True, choices=CANON_LEVEL_CHOICES, verbose_name=_('Canon Level'))
+    highlight = models.BooleanField(blank=True, verbose_name=_(u'Destacado en categoría'))
+    send_tweet = models.BooleanField(blank=True, verbose_name=_(u'Tweet nueva crónica'))
+    creation_date = models.DateTimeField(null=True, verbose_name=_('Creation date'))
+    last_updated = models.DateTimeField(null=True, verbose_name=_('Last updated'))
+
+    def toJSON(self):
+        d = vars(self)
+        authorlist =  [g.name for g in self.author.all()]
+        d["author"]=authorlist
+        d.pop("_state")
+        d.pop("last_updated")
+        d.pop("creation_date")
+        d.pop("send_tweet")
+        result = simplejson.dumps(d, sort_keys=True, indent=4)
+        return result
+
+
+    def save(self, *args, **kwargs):
+        unique_slug(self, slug_source='name', slug_field='slug')
+        if self.send_tweet:
+            twitter_config = TwitterConfig.objects.filter(isActive=True)
+            for tc in twitter_config:
+                text = tc.createTweet(self)
+                status = tc.sendTweet(text)
+        self.send_tweet = False
+
+        super(FanArt, self).save(*args, **kwargs)
+
+    def searchText(self):
+        return unicode(u"%s %s %s" % (self.name, self.description, self.comments))
+
+    def __unicode__(self):
+        return unicode(u"%s" % (self.name,))
+    def get_absolute_url(self):
+        return unicode(u"%s/%s"%(u"/rule",self.slug))
+    class Meta:
+#        db_table = u'author'
+        verbose_name = _(u'FanArt')
+        get_latest_by = 'order_name'
+        ordering = ['-last_updated','id']
+        #unique_together = ('name', 'parent')
+
+
+
 class Language(models.Model):
         name = models.CharField(max_length='100', blank=False, null=False, verbose_name=_('Nombre del idioma'))
         description =  models.TextField(blank=True, null=True, verbose_name=_('Descripcion'))
@@ -1116,6 +1423,33 @@ class Image(models.Model):
         get_latest_by = 'order_name'
         ordering = ['-name']
         #unique_together = ('name', 'parent')
+
+class ThumbnailImage(models.Model):
+    name = models.CharField(max_length='100', blank=False, null=False,
+        verbose_name=_('Nombre del thumbnail'))
+    description =  models.TextField(blank=True, null=True,
+        verbose_name=_('Descripcion'))
+    image = models.ImageField(upload_to='img/thumbnail/', blank=True, null=True
+    , verbose_name=_("Image field"))
+
+    #Generic to all objects
+
+    slug = models.SlugField(blank=True,null=True,max_length=200,help_text="A short label, generally used in URLs. AUTOMATICALLY ADDED!")
+
+    comments = models.TextField(blank=True, null=True, verbose_name=_('Comments'))
+    author = models.ManyToManyField("Author", blank=True, null=True,  verbose_name=_("ThumbnailImage's authorship"))
+    canon_level = models.CharField(max_length=5, blank=True, null=True, choices=CANON_LEVEL_CHOICES, verbose_name=_('Canon Level'))
+    date = models.DateField(verbose_name=_('Creation date'))
+
+    def __unicode__(self):
+        return unicode(u"%s" % (self.name,))
+    class Meta:
+        db_table = u'thumbnailimage'
+        verbose_name = _(u'thumbnailimage')
+        get_latest_by = 'order_name'
+        ordering = ['-name']
+        #unique_together = ('name', 'parent')
+
 
 class AttachFile(models.Model):
     name = models.CharField(max_length='100', blank=False, null=False, verbose_name=_('Nombre del fichero'))
