@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+{% block title %}
+<title>Codex de la Marca del Este - Conjuro - {{object.name}}</title>
+{% endblock %}
+{% block navigation %}
+      <div id="cabecera">
+         <div id="menu">
+            <ul>
+               <li><a href="/">El Codex</a></li>
+               <li><a href="/character">Personajes</a></li>
+               <li><a href="/creature">Bestiario</a></li>
+               <li><a href="/location">Lugares</a></li>
+               <li><a href="/object">Objetos</a></li>
+               <li><a href="/adventure">Aventuras</a></li>
+               <li><a href="/chronicle">Crónica</a></li>
+               <li><a href="/spell" class="seleccion">Conjuros</a></li>
+               <li><a href="/rule">Reglas</a></li>
+               <li><a href="/fanart" >Fan Art</a></li>
+               <li><a href="/send_info">Enviar info</a></li>
+               <li><a href="/contact">Contacto</a></li>
+              </ul>
+         </div><!-- fin menu -->
+
+         <div id="logo">
+            <a href="/"><img src="/ima/codex-logo.jpg" alt="Codex de las aventuras de la Marca del Este." /></a>
+         </div><!-- fin logo -->
+
+         <div id="slogan">
+            La recopilación de todo el conocimiento sobre la Marca del Este.
+         </div><!-- fin logo -->
+
+{% endblock %}
+{% block leftcontent %}
+
+<div id="contenido" >
+<div id="contenido-articulos" >
+<div id="columna-izq">
+<div id="volver"><span><a href="/">Volver a inicio</a>&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;</span> <a href="/rule">Conjuro</a></div>
+
+<h1><img src="/ima/ico-portada-conjuros.png" alt="conjuro"/> {{object.name}}
+{% if user.is_authenticated and user.is_staff %}
+<a href="/scriptorium/web/spell/{{object.id}}">[editar]</a>
+{% endif %}</h1>
+<div class="lista2columnas-izq">
+<ul>
+ <li><b>Nivel:</b>{{object.level}}</li>
+ <li><b>Alcance: </b>{{object.reach}}</li>
+ <li><b>Duración: </b>{{object.duration}}</li>
+ <li><b>Permitido:</b>
+ {% if object.affectedclassrace.all %}
+ {% for classrace in object.affectedclassrace.all %}
+   {% if forloop.first %}
+   {{classrace.name}}
+   {% endif %}
+   {% if forloop.last and forloop.last != forloop.first %}
+   y {{classrace.name}}
+   {% endif %}
+   {% if not forloop.last and not forloop.first %}
+   , {{classrace.name}}{% endif %}
+   {% endfor %}
+   {% else %}
+   --
+   {% endif %}
+ </li>
+ <li><b>Reversible:</b> {% if object.reversible %}Sí{% else %}No{% endif %}</li>
+</ul>
+</div>
+{% if object.description %}
+<p>{{object.description|safe}}</p>
+{% endif %}
+
+{% if object.comments %}
+<h2>Nota del autor:</h2>
+<p>{{object.comments|safe}}</p>
+{% endif %}
+
+</div><!-- fin columna-izq -->
+{% endblock %}
+
+{% block rightcontent %}
+{% if object.image.all %}
+<div id="expo-ima">
+{% for image in object.image.all %}
+ {% if forloop.first %}
+ <div id="ima-grande">
+ <img src="{{ MEDIA_URL }}{{image.image.name}}" alt="icono" height="230px" width="350px"/>
+ </div>
+
+</div><!-- fin expo-ima -->
+
+<div id="firma-ima">
+{% if image.author.all %}
+<b>Autor(es) de la ilustración</b>:
+{% for author in image.author.all%}
+ {% if forloop.first %}
+ <a href="{{author.url}}">{{author.name}}</a>
+ {% endif %}
+ {% if forloop.last and forloop.last != forloop.first %}
+ y <a href="{{author.url}}">{{author.name}}</a>
+ {% endif %}
+ {% if not forloop.last and not forloop.first %}
+ , <a href="{{author.url}}">{{author.name}}</a>
+ {% endif %}
+{% endfor %}
+{% endif %}
+</div><!-- fin expo-ima -->
+{% endif %}
+
+{% endfor %}
+{% endif %}
+<div class="lista2columnas">
+</div><!-- fin lista2columnas-->
+{% endblock %}
+
