@@ -119,6 +119,11 @@ class ImageAdmin(admin.ModelAdmin):
      list_display = ('name', 'description')
      Media = CommonMedia
 
+class ThumbnailImageAdmin(admin.ModelAdmin):
+     list_display = ('name', 'description')
+     Media = CommonMedia
+
+
 class AttachFileAdmin(admin.ModelAdmin):
      list_display = ('name', 'description')
      Media = CommonMedia
@@ -141,6 +146,7 @@ admin.site.register(Chronicle, ChronicleAdmin)
 admin.site.register(Language, LanguageAdmin)
 admin.site.register(Religion, ReligionAdmin)
 admin.site.register(Image, ImageAdmin)
+admin.site.register(ThumbnailImage, ThumbnailImageAdmin)
 admin.site.register(AttachFile, AttachFileAdmin)
 admin.site.register(TwitterConfig, TwitterConfigAdmin)
 admin.site.register(Rule, RuleAdmin)

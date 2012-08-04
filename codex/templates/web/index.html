@@ -240,7 +240,13 @@ href="/fanart"><img src="/rotativo/banner-fanart.jpg" alt="fanart"
                 {% for object in index_list.fanarts %}				
                 <p><a href="/fanart/{{object.slug}}">{{object.name}}</a></p>
                 {% if forloop.first %}
-				<p class="intro">{{object.description|safe|truncatechars:100}} </p>
+				<p class="intro"><a href="/fanart/{{object.slug}}">
+				    {% if object.thumbnail %}
+				    <img src="{{MEDIA_URL}}{{object.thumbnail.image.name}}" alt="Fan art">
+				     {% else %}
+				     {{object.description|safe|truncatechars:100}}
+				    {% endif %}
+				      </p>
                 {% endif %}
                 <hr/>
                 {% endfor %}

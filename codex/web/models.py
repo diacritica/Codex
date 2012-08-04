@@ -558,7 +558,7 @@ class Creature(models.Model):
     hitdice = models.CharField(max_length=100, blank=True, null=True, verbose_name=_('Dados de golpe'))
     AC = models.CharField(max_length=10,blank=True, null=True, verbose_name=_('CA'))
     treasurevalue = models.CharField(max_length=100, blank=True, null=True, verbose_name=_('Tesoro'))
-    XPvalue = models.SmallIntegerField(blank=True, null=True, verbose_name=_('Valor PX'))
+    XPvalue = models.IntegerField(blank=True, null=True, verbose_name=_('Valor PX'))
     move = models.CharField(max_length=100, blank=True, null=True, verbose_name=_('Movimiento'))
     moral = models.CharField(max_length=2, blank=True, null=True, choices=MORAL_CHOICES, verbose_name=_('Moral'))
     saveroll = models.CharField(max_length=20, blank=True, null=True, choices=SAVE_CHOICES, verbose_name=_('TS'))

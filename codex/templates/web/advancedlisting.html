@@ -206,30 +206,27 @@
 					</p>
                     {% endif %}
 
+<!-- Resultado fanart -->
+{% if objecttype == "fanart" %}
+<h2>
+<img src="/ima/ico-portada-fanart.png" alt="{{objecttype}}"/><a href="/{{objecttype}}/{{object.slug}}">{{object.name}}</a>
+<span>
+<br/>
+<b>Canon:</b> {{object.get_canon_level_display}} - Publicado en <a href="/{{objecttype}}">Fan Art</a>. {{object.last_updated.date}}.
+</span>						
+</h2>
+{% if object.thumbnail %}
+<a href="/{{objecttype}}/{{object.slug}}"><img class="detalles-listado-ima" src="{{MEDIA_URL}}{{object.thumbnail.image.name}}" alt="Fan Art"></a>
+{% endif %}
+<p class="detalles-listado">
+<b>Categoría:</b> {{object.get_chosencategory_display}} - <b>Tipo:</b> {{object.get_chosentype_display}} - <b>Licencia:</b> {{object.get_chosenlicense_display}} -  <b>Autor:</b> {% for author in object.author.all %}{{author.name}}{% endfor %}
+</p>
+					<p>
+						{{object.description|safe|truncatewords:100}}
+					</p>
 
- <!-- Resultado Fan Art -->
-	        	{% if objecttype == "fanart" %}
-					<h2>
-					
-               <img src="/ima/ico-portada-fanart.png" alt="fanart"/><a href="/fanart/{{object.slug}}">{{object.name}}</a>
-               <span>
-               	<br/>
-               	<b>Canon:</b> {{object.get_canon_level_display}} - Publicado en <a href="/fanart/">Fan Art</a>. {{object.last_updated.date}}.
-               </span>
-          	</h2>
-          	<p class="detalles-listado">
-
-                        <b>Tipo:</b> {{object.get_chosentype_display}} - <b>Categoría:</b> {{object.get_chosencategory_display}} -
-                        <b>Licencia:</b> {{object.get_chosenlicense_display}}
-
-                    </p>
-                    <p>
-
-                    {{object.description|safe|truncatewords:100}}
-                     </p>
-                    {% endif %}
-
-
+				<div style="clear: both"></div>
+{% endif %}
 {% endfor %}								
 					
 					

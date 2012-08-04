@@ -12,7 +12,7 @@ body {
     font-family: Georgia, Arial, Helvetica, sans-serif;
     color: #34110d; /* original #4b1a14;*/
     /*letter-spacing: -0.5px;
-     font-size:11px;*/
+     font-size:18px;*/
 }
 
 h1 {
@@ -127,7 +127,7 @@ hr {
 
  
  #menu ul {
- font-size: 12px;
+
  margin: 0px 0px 0px 30px;
  padding: 0px;
  text-align: center;
@@ -151,6 +151,9 @@ hr {
  display: block;
  padding: 0px;
  text-align: center;
+  font-size: 12px;
+  font-weight: 100;
+
  }
 
 
@@ -291,6 +294,12 @@ hr {
     font-weight: 100;
     font-size: 11px;
     margin: 10px 0px 0px 0px;
+}
+#columna-der_portada .elemento-portada .intro  img {
+    
+	width: 160px;
+	height:inherit;
+	float: none;
 }
 
 #columna-der_portada .elemento-portada .ver {
@@ -701,7 +710,7 @@ hr {
     text-align: center;
     margin: 20px 20px 0px 0px;
 }
-.boton-cronica { /* botones genÃ©ricos */
+.boton-cronica { /* botones genéricos */
     background: url(/ima/boton_off.jpg) no-repeat right top;
     display: inline-block;
     padding: 25px 0px 0px 20px;
@@ -723,7 +732,7 @@ hr {
     top: 1px;
 }
 
-.boton-aventura { /* botones genÃ©ricos */
+.boton-aventura { /* botones genéricos */
     background: url(/ima/boton_off.jpg) no-repeat right top;
     display: inline-block;
     padding: 20px 0px 0px 40px;
@@ -745,7 +754,7 @@ hr {
 .boton-aventura:active {  /* el efecto click */
     top: 1px;
 }
-.boton-aventura span { /* botones genÃ©ricos */
+.boton-aventura span { /* botones genéricos */
 
     font-size: 12px;
 }
@@ -853,7 +862,6 @@ hr {
     font-size: 24px;
     font-weight: 100;
 }
-
 #resultado-generador p {
     padding-left: 45px;
 }
@@ -965,6 +973,20 @@ hr {
     margin-right: 45px;
     margin-bottom: 5px;
 }
+.detalles-listado-ima {
+	
+	float:left;
+	width: 250px; 
+}
+
+.fanart-listado {
+	float:left;
+	width: 275px;
+	}
+
+.fanart-listado p{
+	font-size: 12px;
+	}
 
 /*navegacion resultado*/
 
