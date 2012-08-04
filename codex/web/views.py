@@ -487,7 +487,7 @@ def RuleDetailView(request, slug):
 def FanArtListingView(request):
     allobjects = FanArt.objects.all()
 
-    paginator = Paginator(allobjects, 10) # Show 10 contacts per page
+    paginator = Paginator(allobjects, 12) # Show 12 contacts per page
 
     page = request.GET.get('page')
     try:
