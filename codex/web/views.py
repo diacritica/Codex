@@ -72,7 +72,7 @@ def IndexView(request):
     index_list = {'characters':chars, 'objects':objects, 'creatures':creatures,\
      'chronicles':chronicles, 'locations':locations, 'adventures':adventures,\
      'rules':rules,'spells':spells,'fanarts':fanarts}
-    return render_to_response('web/index.html', {'index_list': index_list})
+    return render_to_response('web/index.html', {'index_list': index_list,'MEDIA_URL':MEDIA_URL})
 
 def NotFoundView(request):
     return render_to_response('web/404.html')
@@ -502,7 +502,7 @@ def FanArtListingView(request):
     #return render_to_response('list.html', {"contacts": contacts})
 
 
-    return render_to_response("web/fanart_listing.html",{'results':objects})
+    return render_to_response("web/fanart_listing.html",{'results':objects,'MEDIA_URL':MEDIA_URL})
 
 def FanArtDetailView(request, slug):
     fanart = get_object_or_404(FanArt, slug=slug)

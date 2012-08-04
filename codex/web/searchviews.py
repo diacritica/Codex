@@ -2,7 +2,7 @@
 from django.http import HttpResponseRedirect
 
 from codex.web.models import *
-
+from codex.settings import MEDIA_URL, STATIC_URL
 import tools.stopwords
 import re
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -70,7 +70,7 @@ def SimpleSearchView(request, searchfilter="", searchterm=""):
     else: sresults = allobjects.items()
 
     object_list = sresults
-    paginator = Paginator(object_list, 10) # Show 10 contacts per page
+    paginator = Paginator(object_list, 12) # Show 12 item per page
 
     page = request.GET.get('page')
     try:
@@ -85,7 +85,7 @@ def SimpleSearchView(request, searchfilter="", searchterm=""):
     #return render_to_response('list.html', {"contacts": contacts})
 
 
-    return render_to_response("web/listado.html",{'keywords':keywords,'results':objects})
+    return render_to_response("web/listado.html",{'keywords':keywords,'results':objects,'MEDIA_URL':MEDIA_URL})
 
 
 def split_query_into_keywords(query):
@@ -629,4 +629,4 @@ def ResultsAdvancedSearchView(request):
 
 
 
-    return render_to_response("web/advancedlisting.html",{'objecttype':objecttype,'keywords':keywords,'results':results})
+    return render_to_response("web/advancedlisting.html",{'objecttype':objecttype,'keywords':keywords,'results':results,'MEDIA_URL':MEDIA_URL})
