@@ -42,7 +42,7 @@ urlpatterns = patterns('',
     #url(r'^encounter/', include('codex.encounter.encounterurls')),
     url(r'^api/', include('codex.api.apiurls')),
     #url(r'^mobile/', include('codex.mobile.mobileurls')),
-    url(r'^map/', include('codex.codexmap.codexmapurls')),
+     #url(r'^map/', include('codex.codexmap.codexmapurls')),
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 

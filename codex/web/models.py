@@ -1256,6 +1256,7 @@ FANART_LICENSE_CHOICES = (
         ('R', _(u'All rights reserved')),
         ('CCBY', _(u'CC BY')),
         ('CCBYSA', _(u'CC BY SA')),
+        ('CCBYNDNC', _(u'CC BY ND NC')),
         ('CCBYSANC', _(u'CC BY SA NC')),
         ('N/A', _(u'N/A')),
 )

@@ -13,7 +13,7 @@ class LatestEntriesFeed(Feed):
     def items(self):
 
         objects = sorted(
-            chain(Object.objects.all() , Character.objects.all() , Creature.objects.all() , Chronicle.objects.all() , Adventure.objects.all() , Location.objects.all()),key=lambda instance: instance.last_updated)
+            chain(Object.objects.all() , Character.objects.all() , Creature.objects.all() , Chronicle.objects.all() , Adventure.objects.all() , Location.objects.all(), FanArt.objects.all(), Spell.objects.all(), Rule.objects.all()),key=lambda instance: instance.last_updated)
         objects.reverse()
         return objects[:10]
 

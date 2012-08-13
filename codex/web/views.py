@@ -355,8 +355,11 @@ def getRelatedByTags(anObject):
     adv_related_by_tags = Adventure.objects.filter(tags__name__in=anObject.tags.values_list('name',flat=True)).exclude(id=anObject.id).distinct()
     loc_related_by_tags = Location.objects.filter(tags__name__in=anObject.tags.values_list('name',flat=True)).exclude(id=anObject.id).distinct()
     chr_related_by_tags = Chronicle.objects.filter(tags__name__in=anObject.tags.values_list('name',flat=True)).exclude(id=anObject.id).distinct()
+    fa_related_by_tags = FanArt.objects.filter(tags__name__in=anObject.tags.values_list('name',flat=True)).exclude(id=anObject.id).distinct()
+    rul_related_by_tags = Rule.objects.filter(tags__name__in=anObject.tags.values_list('name',flat=True)).exclude(id=anObject.id).distinct()
+    spe_related_by_tags = Spell.objects.filter(tags__name__in=anObject.tags.values_list('name',flat=True)).exclude(id=anObject.id).distinct()
 
-    relatedobjects = {"characters":char_related_by_tags,"objects":obj_related_by_tags,"adventures":adv_related_by_tags,"locations":loc_related_by_tags, "chronicles":chr_related_by_tags}
+    relatedobjects = {"characters":char_related_by_tags,"objects":obj_related_by_tags,"adventures":adv_related_by_tags,"locations":loc_related_by_tags, "chronicles":chr_related_by_tags,"fanarts":fa_related_by_tags,"rules":rul_related_by_tags,"spells":spe_related_by_tags}
     return relatedobjects
 
 def LocationDetailView(request, slug):

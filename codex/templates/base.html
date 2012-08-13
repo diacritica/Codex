@@ -443,7 +443,7 @@ width="68px" style="float: left; margin-right: 10px"/>
 {% endblock %}		
 
 {% block tagrelated %}	
-                {% if relatedobjectsbytags.characters or relatedobjectsbytags.objects or relatedobjectsbytags.locations or relatedobjectsbytags.adventures or relatedobjectsbytags.chronicles %}
+                {% if relatedobjectsbytags.characters or relatedobjectsbytags.objects or relatedobjectsbytags.locations or relatedobjectsbytags.adventures or relatedobjectsbytags.chronicles or relatedobjectsbytags.fanarts or relatedobjectsbytags.rules or relatedobjectsbytags.spells %}
 				<div class="resaltado">Lecturas relacionadas:</div>
 				<div class="resaltado-cont">
 				{% for char in relatedobjectsbytags.characters %}
@@ -476,6 +476,12 @@ width="68px" style="float: left; margin-right: 10px"/>
 					  </p>
 					  {% endfor %}
 
+                        {% for fa in relatedobjectsbytags.fanarts %}
+                       <p>
+						<img src="/ima/ico-fanart.png" alt="fanart" /> <a href="/fanart/{{fa.slug}}">{{fa.name}}.</a>
+					  </p>
+					  {% endfor %}
+ 
 
 				</div>	
 				
