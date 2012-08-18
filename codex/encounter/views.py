@@ -136,7 +136,7 @@ def Encounter(request, canon, align, players_level, chosen_difficulty):
                 found = True
 
                 # generate an encounter with a party leader
-                if numcreatures > 2 and randint(0,4) < 1:
+                if numcreatures > 2 and randint(0,4) < 3:
                     #print "Tenemos que buscar un lider"
                     encounter_with_leader = getParty(encounter)
                     if encounter_with_leader:
