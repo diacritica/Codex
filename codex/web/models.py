@@ -564,6 +564,7 @@ class Creature(models.Model):
     attacks = models.TextField(blank=True, null=True, verbose_name=_('Ataques'))
 
     relatedlocation = models.ManyToManyField('Location', blank=True, null=True, related_name=_('Ubicacion de la criatura'))
+    relatedencountersetting = models.ManyToManyField('EncounterSetting', blank=True, null=True, related_name=_('Tipo de terreno'))
     relatedobject = models.ManyToManyField('Object', blank=True, null=True, related_name=_('Objetos de la criatura'))
 
     deactivated = models.BooleanField(blank=True,  verbose_name=_('Desactivado'))
@@ -595,12 +596,7 @@ class Creature(models.Model):
         if len(creatures_with_relation) == 0: return None
         # Create a dictionary to store all the information
         creature_query = {} #hacer un set?
-        # List of the CreatureRelationship objects relating self with others
-
-        #for creature in creatures_with_relation:
-        #    creaturerelationlist1 = CreatureRelationship.objects.filter(creature1__name = self.name, creature2__name = creature.name)
-        #    creaturerelationlist2 = CreatureRelationship.objects.filter(creature1__name = creature.name, creature2__name = self.name)
-            
+        # List of the CreatureRelationship objects relating self with others          
         # Elaborate the dictionary
         for crearelationship in creatures_with_relation:
             # for each relation the first in the tuple is the one who "is" the relation from the other
@@ -836,8 +832,54 @@ class CharacterLocationRelationship(models.Model):
         get_latest_by = 'order_character'
         ordering = ['-character']
         unique_together = ('character', 'location')
+        
+class EncounterSetting(models.Model):
+    # Setting for an encounter eg. desert. wood, village, dungeon.
+    name = models.CharField(max_length='100', blank=False, null=False, verbose_name=_('Nombre completo'))
+    description = models.TextField(blank=True, null=True, verbose_name=_('Descripcion'))
 
+    deactivated = models.BooleanField(blank=True, verbose_name=_('Desactivado'))
 
+    #Generic to all objects
+
+    slug = models.SlugField(blank=True,null=True,max_length=200,help_text="A short label, generally used in URLs. AUTOMATICALLY ADDED!")
+
+    comments = models.TextField(blank=True, null=True, verbose_name=_('Comments'))
+    author = models.ManyToManyField("Author", blank=True, null=True,  verbose_name=_("Location's authroship"))
+    canon_level = models.CharField(max_length=5, blank=True, null=True, choices=CANON_LEVEL_CHOICES, verbose_name=_('Canon Level'))
+    highlight = models.BooleanField(blank=True, verbose_name=_(u'Destacado en categoría'))
+    send_tweet = models.BooleanField(blank=True, verbose_name=_(u'Tweet nueva localización'))
+    creation_date = models.DateTimeField(null=True, verbose_name=_('Creation date'))
+    last_updated = models.DateTimeField(null=True, verbose_name=_('Last updated'))
+
+    def save(self, *args, **kwargs):
+        unique_slug(self, slug_source='name', slug_field='slug')
+        super(EncounterSetting, self).save(*args, **kwargs)
+
+    def searchText(self):
+        return unicode(u"%s %s %s" % (self.name, self.description, self.comments))
+
+    def toJSON(self):
+        d = vars(self)
+
+        d.pop("_state")
+        d.pop("last_updated")
+        d.pop("creation_date")
+        d.pop("send_tweet")
+        result = simplejson.dumps(d, sort_keys=True, indent=4)
+        return result
+
+    def __unicode__(self):
+        return unicode(u"%s -%s-%s-%s" % (self.name))
+    class Meta:
+        db_table = u'encountersetting'
+        verbose_name = _(u"EncounterSetting")
+        get_latest_by = 'order_name'
+        ordering = ['-last_updated','id']
+        #unique_together = ('name')
+
+        
+        
 class Object(models.Model):
     name = models.CharField(max_length='100', blank=False, null=False, verbose_name=_('Nombre completo'))
     description = models.TextField(blank=True, null=True, verbose_name=_('Descripcion'))
