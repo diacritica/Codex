@@ -43,6 +43,7 @@ def getParty(encounter):
             new_encounter = creatureleaderrelation[randint(0, len(creatureleaderrelation) - 1)]
             return new_encounter
         else:
+            print "GETPARTY FALSE LEGAL>>"
             return False
     except Exception, e:
         print "exception ", e
@@ -134,8 +135,10 @@ def EncounterTest(request, canon, align, players_level, chosen_difficulty):
                 leader = False
                 # generate an encounter with a party leader
                 if numcreatures > 2 and randint(0,4) < 5:
+                    print "GETPARTY>>"
                     encounter_with_leader = getParty(encounter)
                     if encounter_with_leader:
+                        print "AFTER GETPARTY>>"
                         numcreatures -= 1
                         leader = True
                         encounter = encounter_with_leader

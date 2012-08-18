@@ -20,7 +20,7 @@ class CharacterAdmin(admin.ModelAdmin):
      Media = CommonMedia
 
 class CreatureAdmin(admin.ModelAdmin):
-     filter_horizontal = ("relatedobject","relatedlocation","image","attachments", "author",)
+     filter_horizontal = ("relatedobject","relatedencountersetting","relatedlocation","image","attachments", "author",)
      list_display = ('name', 'hitdice','XPvalue','alignment','canon_level','deactivated')
      list_filter = ('hitdice','XPvalue','alignment','canon_level','author','deactivated')
      Media = CommonMedia
@@ -40,6 +40,12 @@ class ObjectAdmin(admin.ModelAdmin):
 class AuthorAdmin(admin.ModelAdmin):
      list_display = ('name', 'nickname')
      list_filter = ('name', 'nickname')
+     Media = CommonMedia
+
+class EncounterSettingAdmin(admin.ModelAdmin):
+     filter_horizontal = ("author",)
+     list_display = ('name','canon_level','deactivated')
+     list_filter = ('name','canon_level','deactivated','author')
      Media = CommonMedia
 
 class AdventureAdmin(admin.ModelAdmin):
@@ -154,3 +160,4 @@ admin.site.register(RuleSection, RuleSectionAdmin)
 admin.site.register(Spell, SpellAdmin)
 admin.site.register(ClassRace, ClassRaceAdmin)
 admin.site.register(FanArt, FanArtAdmin)
+admin.site.register(EncounterSetting, EncounterSettingAdmin)
