@@ -588,29 +588,31 @@ class Creature(models.Model):
 
     def getAllRelationTitles(self, title='ALL'):
         # Get all the creatures that are related to self
-        creatures_with_relation = self.relatedcreature.all()
+        #creatures_with_relation = self.relatedcreature.all()
+
+        creatures_with_relation = CreatureRelationship.objects.filter(creature1=self)|CreatureRelationship.objects.filter(creature2=self)
+
         if len(creatures_with_relation) == 0: return None
         # Create a dictionary to store all the information
         creature_query = {} #hacer un set?
         # List of the CreatureRelationship objects relating self with others
 
-        for creature in creatures_with_relation:
-            creaturerelationlist1 = CreatureRelationship.objects.filter(creature1__name = self.name, creature2__name = creature.name)
-            creaturerelationlist2 = CreatureRelationship.objects.filter(creature1__name = creature.name, creature2__name = self.name)
+        #for creature in creatures_with_relation:
+        #    creaturerelationlist1 = CreatureRelationship.objects.filter(creature1__name = self.name, creature2__name = creature.name)
+        #    creaturerelationlist2 = CreatureRelationship.objects.filter(creature1__name = creature.name, creature2__name = self.name)
             
         # Elaborate the dictionary
-        for crearelationship in creaturerelationlist1:
+        for crearelationship in creatures_with_relation:
             # for each relation the first in the tuple is the one who "is" the relation from the other
             if crearelationship.relation12 in creature_query.keys():
-                creature_query[crearelationship.relation12].append((self, crearelationship.creature2))
+                creature_query[crearelationship.relation12].append((crearelationship.creature1, crearelationship.creature2))
             else:
-                creature_query[crearelationship.relation12] = [(self, crearelationship.creature2)]
-        for crearelationship in creaturerelationlist2:
-            # for each relation the first in the tuple is the one who "is" the relation from the other
+                creature_query[crearelationship.relation12] = [(crearelationship.creature1, crearelationship.creature2)]
+                
             if crearelationship.relation21 in creature_query.keys():
-                creature_query[crearelationship.relation21].append((crearelationship.creature1, self))
+                creature_query[crearelationship.relation21].append((crearelationship.creature1, crearelationship.creature2))
             else:
-                creature_query[crearelationship.relation21] = [(crearelationship.creature1, self)]
+                creature_query[crearelationship.relation21] = [(crearelationship.creature1, crearelationship.creature2)]
         
         if title == 'ALL':
             return creature_query

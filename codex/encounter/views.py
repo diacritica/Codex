@@ -17,13 +17,13 @@ def EncounterIndex(request):
         align = request.GET['align']
         players_level = request.GET['players_level']
         chosen_difficulty = request.GET['chosen_difficulty']
-        return HttpResponseRedirect('/encounter/test/%s/%s/%s/%s' % (canon, align, players_level, chosen_difficulty))
+        return HttpResponseRedirect('/encounter/%s/%s/%s/%s' % (canon, align, players_level, chosen_difficulty))
     except:    
         return render_to_response('encounter/encounter_index.html')
 
 def getCreature(creature_list, hitdice):
     new_creature_list = creature_list.filter(hitdice = hitdice)
-    print hitdice, new_creature_list
+    #print hitdice, new_creature_list
     if len(new_creature_list) > 0:
         return new_creature_list[randint(0, len(new_creature_list)-1)]
     else:
@@ -38,6 +38,7 @@ def getParty(encounter):
     try:
         # get all the creatures with a leadership relation 
         creatureleaderrelation = encounter.getAllRelationTitles('LEADER')
+        #print "Lista de líderes asociadas", creatureleaderrelation
         # prev returns a tuple where creature1 is LEADER of creature2
         if creatureleaderrelation:
             new_encounter = creatureleaderrelation[randint(0, len(creatureleaderrelation) - 1)]
@@ -45,11 +46,12 @@ def getParty(encounter):
         else:
             return False
     except Exception, e:
-        print "exception ", e
+        #print "exception ", e
         return False
 
 
-def EncounterTest(request, canon, align, players_level, chosen_difficulty):
+def Encounter(request, canon, align, players_level, chosen_difficulty):
+    #def EncounterTest(canon, align, players_level, chosen_difficulty):
     # Store the values of the incoming request to populate the form with the current search
     form = {'canon': canon, 'align': align, 'players_level': str(players_level), 'chosen_difficulty': str(chosen_difficulty)}
     
@@ -92,7 +94,7 @@ def EncounterTest(request, canon, align, players_level, chosen_difficulty):
             encounterHD = base_encounterHD * difficulty["one"][chosen_difficulty]
         else:
             encounterHD = base_encounterHD * difficulty["n"][chosen_difficulty]
-        print "encounterHD/ncreatures: ", encounterHD, ncreatures
+        #print "encounterHD/ncreatures: ", encounterHD, ncreatures
         hitdice = int(round(encounterHD/ncreatures)) #rounded, two ints
         # To ensure that for low levels it does not continue
         if hitdice >= 1:
@@ -106,17 +108,17 @@ def EncounterTest(request, canon, align, players_level, chosen_difficulty):
     # Check if there is something inside the encounter_list
     # (important for low level characters)
 
-    print "encounter_list: ", encounter_list
+    #print "encounter_list: ", encounter_list
 
     if encounter_list.keys():
-        probs = dungeon_probs.keys() #FIXME!
+        probs = region.keys() #FIXME!
         probs.sort()
         found = False
     
         while found == False:
             # Select range for number of creatures
             selection = randint(1,100)
-            print 'selection: ', selection
+            #print 'selection: ', selection
             i = 0
             for k in probs:
                 if selection < k:
@@ -134,6 +136,7 @@ def EncounterTest(request, canon, align, players_level, chosen_difficulty):
                 leader = False
                 # generate an encounter with a party leader
                 if numcreatures > 2 and randint(0,4) < 1:
+                    #print "Tenemos que buscar un lider"
                     encounter_with_leader = getParty(encounter)
                     if encounter_with_leader:
                         numcreatures -= 1
@@ -147,7 +150,7 @@ def EncounterTest(request, canon, align, players_level, chosen_difficulty):
         # if the encounters list is empty. Might happen (feature)
         numcreatures = False
         encounter = ''
-    print 'encounter: ', numcreatures, encounter, leader
+#    print 'encounter: ', numcreatures, encounter, leader
     if leader:
         return render_to_response('encounter/encounter_gen.html', {'numcreatures': numcreatures, 'leader': encounter[0], 'encounter':encounter[1], 'form':form})
     else:
