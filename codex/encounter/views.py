@@ -16,7 +16,7 @@ def EncounterIndex(request):
         canon = request.GET['canon']
         align = request.GET['align']
         players_level = request.GET['players_level']
-        chosen_difficulty = request.GET['chosen_difficulty']]
+        chosen_difficulty = request.GET['chosen_difficulty']
         return HttpResponseRedirect('/encounter/%s/%s/%s/%s' % (canon, align, players_level, chosen_difficulty))
     except:    
         return render_to_response('encounter/encounter_index.html')
