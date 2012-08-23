@@ -2,55 +2,7 @@
 {% block title %}
 <title>Codex de la Marca del Este - 500 - Error de sistema</title>
 {% endblock %}
-{% block navigation %}
-		<div id="cabecera">
-			<div id="menu">
-				<ul>	     
-					<li><a href="/">El Codex</a></li>	
-					<li><a href="/character">Personajes</a></li>	 
-					<li><a href="/creature">Bestiario</a></li>	
-					<li><a href="/location">Lugares</a></li>
-					<li><a href="/object">Objetos</a></li>	
-					<li><a href="/adventure">Aventuras</a></li>	
-					<li><a href="/chronicle">Crónica</a></li>	
-					<li><a href="/send_info">Enviar info</a></li>	
-					<li><a href="/contact">Contacto</a></li>
-        		</ul>
-			</div><!-- fin menu -->
-			
-			<div id="logo">
-				<a href="/"><img src="/ima/codex-logo.jpg" alt="Codex de las aventuras de la Marca del Este." /></a>
-			</div><!-- fin logo -->
-			
-			<div id="slogan">
-				La recopilación de todo el conocimiento sobre la Marca del Este.
-			</div><!-- fin logo -->
-			
-			<div id="busqueda-simple">
-				<div id="form-busqueda-simple">
-				<form action="/search/" METHOD=GET>
-					<select name="option">					  
-						<option value="all">Todo</option>
-						<option value="character">Personaje</option>
-						<option value="creature">Bestiario</option>
-						<option value="location">Lugar</option>
-						<option value="object">Objeto</option>
-						<option value="adventure" selected>Aventura</option>
-						<option value="chronicle">Crónica</option>					   
-					</select>
-					
-					<input class="barra_busqueda" type="text" name="searchterm" value="" />
-					
-					<input class="boton_buscar" type="submit" value="Buscar" />
-				</form>
-				</div>
-				<div id="ir-busqueda-avanzada"><a href="/advancedsearch">Búsqueda<br/>avanzada</a></div>
-			</div><!-- fin busqueda-simple -->
-			
-			
-			
-		</div><!-- fin cabecera -->
-{% endblock %}
+
 
 {% block content %}			
 		
