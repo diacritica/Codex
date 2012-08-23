@@ -24,7 +24,7 @@ def EncounterIndex(request):
         return render_to_response('encounter/encounter_index.html', {'settings_list': settings_list})
 
 def getCreature(creature_list, hitdice):
-    new_creature_list = creature_list.filter(hitdice = hitdice)
+    new_creature_list = creature_list.filter(hitdice__regex=r'^%s(\+\w)*$'%(hitdice)) #expresión regular que da OK con 1+1, 12, etc 
     #print hitdice, new_creature_list
     if len(new_creature_list) > 0:
         return new_creature_list[randint(0, len(new_creature_list)-1)]
@@ -55,7 +55,8 @@ def getParty(encounter):
 def Encounter(request, canon, align, setting, players_level, chosen_difficulty):
     #def EncounterTest(canon, align, players_level, chosen_difficulty):
     # Store the values of the incoming request to populate the form with the current search
-    form = {'canon': canon, 'align': align, 'setting': setting, 'players_level': str(players_level), 'chosen_difficulty': str(chosen_difficulty)}
+
+    form = {'canon': canon, 'align': align, 'setting': int(setting), 'players_level': str(players_level), 'chosen_difficulty': str(chosen_difficulty)}
     
     players_level = int(players_level)
     chosen_difficulty = int(chosen_difficulty)
@@ -77,7 +78,7 @@ def Encounter(request, canon, align, setting, players_level, chosen_difficulty):
     creature_list = Creature.objects.all()
 
     # 1. filter available creatures by setting
-    if setting == 'ALL':
+    if setting == '0':
         pass
     else:
         creature_list = creature_list.filter(relatedencountersetting = setting)
@@ -165,6 +166,7 @@ def Encounter(request, canon, align, setting, players_level, chosen_difficulty):
         numcreatures = False
         encounter = ''
 #    print 'encounter: ', numcreatures, encounter, leader
+
     if leader:
         return render_to_response('encounter/encounter_gen.html', {'numcreatures': numcreatures, 'leader': encounter[0], 'encounter':encounter[1], 'form':form, 'settings_list': settings_list})
     else:

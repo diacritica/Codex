@@ -498,7 +498,8 @@ def ResultsAdvancedSearchView(request):
         if crea_ac!="ALL" and crea_ac:
             objects = objects.filter(AC__icontains=crea_ac)
         if crea_hitdice!="ALL" and crea_hitdice:
-            objects = objects.filter(hitdice__icontains=crea_hitdice)
+            creahitdiceplus = int(crea_hitdice)+10
+            objects = objects.filter(hitdice__regex=r'^%s(\+\w)*$'%(crea_hitdice))
         if crea_minpx!="ALL" and crea_minpx:
             objects = objects.filter(XPvalue__gte=crea_minpx)
         if crea_alignment!="ALL" and crea_alignment:
