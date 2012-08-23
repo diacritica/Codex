@@ -1,0 +1,120 @@
+{% extends "basebasic.html" %}
+{% block title %}
+    <title>Codex de la Marca del Este - Generador de Encuentros</title>
+    {% endblock %}
+        
+        {% block content %}
+
+        <div id="contenido" >
+            <div id="contenido-listados" >          
+            <div id="columna-der-listados">
+
+                <div id="volver"><span><a href="/">Volver a inicio</a>&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;</span> <a href="/encounter">Encuentros<!-- nombre de la categoria si es un resultado de listado de categoria O  palabra "Busqueda" e incluir el H1 de Resultado de busqueda de "El termino que busco"--></a></div> 
+
+                <div id="central">
+                <form action="/encounter">   
+
+                        <div id="generador-encuentros">
+                            <p>Te presentamos el generador de encuentros de Aventuras en La Marca del Este. En su versión preliminar, permite introducir la suma de niveles de los AJs, un nivel de dificultad, el criterio de canon y el alineamiento aceptado para las criaturas del encuentro. Se trata de una herramienta perfecta para los Dungeon Masters que quieran introducir cierta sorpresa en las aventuras de sus jugadores. En breve, incorporaremos un selector de terrenos o zonas (cueva, desierto, bosque, camino, asentamiento, etc) y tendremos en cuenta las relaciones de liderazgo entre criaturas (Orco y Jefe Orco, por ejemplo). A medio plazo, está previsto también un generador de tesoros.</p>
+
+                            <div style="clear: both">&nbsp;</div>
+
+                                        <h2 class="titulo-formulario-avanzado" >            
+                                            Suma nivel AJs: 
+                                        </h2>
+
+                                        <div class="formulario-avanzado-2-columnas">
+                                        <input style="padding: 5px 5px; font-size:16px;width:110px;" value = 10 type="text" name="players_level" />
+                                        </div>
+
+
+                                        <h2 class="titulo-formulario-avanzado">         
+                                        Dificultad:                     
+                                        </h2>
+
+                                        <div class="formulario-avanzado-2-columnas">
+                                            <select  name="chosen_difficulty">
+                                            <option value="0">Fácil</option>
+                                            <option value="1">Normal</option>
+                                            <option value="2">Difícil</option>
+                                            <option value="3">Épico</option>
+                                             </select> 
+                                        </div>
+
+                                        <div style="clear: both">&nbsp;</div>             
+
+                                        <h2 class="titulo-formulario-avanzado">         
+                                        Evaluación:                     
+                                        </h2>
+
+                                        <div class="formulario-avanzado-2-columnas">
+                                            <select  name="canon">
+                                              <option value="ALL">Cualquiera</option>
+                                              <option value="C">Canon</option>
+                                              <option value="AP">Apócrifo</option>
+                                              <option value="APC">En Estudio</option>
+                                              <option value="NEW">Nuevo</option>
+                                             </select> 
+                                        </div>
+
+                                        <h2 class="titulo-formulario-avanzado">         
+                                        Alineamiento:                       
+                                        </h2>
+
+                                        <div class="formulario-avanzado-2-columnas">
+                                            <select name="align">
+                                              <option value="ALL">Todos</option>
+                                              <option value="L">Legal</option>
+                                              <option value="N">Neutral</option>
+                                              <option value="C">Caótico</option>
+                                             </select> 
+                                        </div>
+
+                                        <div style="clear: both">&nbsp;</div>  
+
+                                        <h2 class="titulo-formulario-avanzado">         
+                                        Tipo de terreno:
+                                        </h2>
+
+                                        <div class="formulario-avanzado-2-columnas">
+                                            <select name="setting">
+                                              <option value="0">Todos</option>
+                                             {% for setting in settings_list %}
+                                              <option value="{{setting.id}}">{{setting.name}}</option>
+                                             {% endfor %}
+                                             </select> 
+                                        </div>
+
+                                     <div style="clear: both">&nbsp;</div>
+                    </div>  
+
+                    <div style="clear: both; text-align: center; width:820px; ">
+                        <input class="boton_buscar" type="submit" value="Generar encuentro" style="font-size: 22px;height: 38px;"/>
+                    </div>                   
+
+                    </form>                    
+
+
+                    <div style="clear: both"><br/>&nbsp;</div>
+                    </div><!-- fin central -->
+                    </div><!-- fin columna-der-listados -->   
+ 
+            </div><!-- fin contenido-articulos -->
+
+        </div><!-- fin contenido -->
+        
+        <div id="pie">
+        <div id="validaciones"> 
+        Aventuras de la Marca del este 2011 - Validación: <a
+        href="http://validator.w3.org/check?uri=referer">XHTML</a> | <a
+        href="http://jigsaw.w3.org/css-validator/validator?uri=http://?????/css/estilo.css">CSS</a>
+        <br/><br/>
+        <span style="font-size: 10px"> Desarrollo y mantenimiento: Angela
+        Rivera Campos @ghilbrae y Pablo Ruiz Múzquiz @diacritica     - Diseño: <a
+        href="http://jagvalverde.com/">Jose Valverde</a></span>
+        </div><!-- fin validaciones -->
+        </div><!-- fin pie -->
+        </div><!-- fin contenedor -->
+        {% endblock %}  
+
+        
