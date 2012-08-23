@@ -12,14 +12,16 @@ from django.template import Context, Template, RequestContext
 from random import randint
 
 def EncounterIndex(request):
+    settings_list = EncounterSetting.objects.filter(deactivated=False)
     try:
         canon = request.GET['canon']
         align = request.GET['align']
+        setting = request.GET['setting']
         players_level = request.GET['players_level']
         chosen_difficulty = request.GET['chosen_difficulty']
-        return HttpResponseRedirect('/encounter/%s/%s/%s/%s' % (canon, align, players_level, chosen_difficulty))
+        return HttpResponseRedirect('/encounter/%s/%s/%s/%s/%s' % (canon, align, setting, players_level, chosen_difficulty))
     except:    
-        return render_to_response('encounter/encounter_index.html')
+        return render_to_response('encounter/encounter_index.html', {'settings_list': settings_list})
 
 def getCreature(creature_list, hitdice):
     new_creature_list = creature_list.filter(hitdice = hitdice)
@@ -50,10 +52,10 @@ def getParty(encounter):
         return False
 
 
-def Encounter(request, canon, align, players_level, chosen_difficulty):
+def Encounter(request, canon, align, setting, players_level, chosen_difficulty):
     #def EncounterTest(canon, align, players_level, chosen_difficulty):
     # Store the values of the incoming request to populate the form with the current search
-    form = {'canon': canon, 'align': align, 'players_level': str(players_level), 'chosen_difficulty': str(chosen_difficulty)}
+    form = {'canon': canon, 'align': align, 'setting': setting, 'players_level': str(players_level), 'chosen_difficulty': str(chosen_difficulty)}
     
     players_level = int(players_level)
     chosen_difficulty = int(chosen_difficulty)
@@ -62,24 +64,35 @@ def Encounter(request, canon, align, players_level, chosen_difficulty):
     # Difficulty is based on the number of creatures
     difficulty = {"one": [0.5, 1, 1.5, 2], "n": [1, 1.5, 2, 3]}
     
+    # This should get the probs from the setting object.
     dungeon_probs = {20:{'numrange':(1,1)}, 30:{'numrange':(2,2)}, 45:{'numrange':(3,3)}, 70:{'numrange':(4,4)}, 85:{'numrange':(5,5)}, \
                                    96:{'numrange':(6,7)}, 100:{'numrange':(8,20)}}
 
     region = dungeon_probs
 
+    # A list of all the available settings must be sent to the HTML to generate the drop down list
+    settings_list = EncounterSetting.objects.filter(deactivated=False)
+
     # Create a list with all the creatures available:
     creature_list = Creature.objects.all()
-    # 1. filter available creatures by canon level
+
+    # 1. filter available creatures by setting
+    if setting == 'ALL':
+        pass
+    else:
+        creature_list = creature_list.filter(relatedencountersetting = setting)
+
+    # 2. filter available creatures by canon level
     if canon == 'ALL':
         pass
     else:
         creature_list = creature_list.filter(canon_level = canon)
-    # 2. filter available creatures by alignment
+    # 3. filter available creatures by alignment
     if align == 'ALL':
         pass
     else:
         creature_list = creature_list.filter(alignment = align)
-  
+      
     # We first create a list of the possible encounters. The reason is to
     # have the list ready not to repeat everything if the roll yields an
     # invalid encounter
@@ -153,7 +166,7 @@ def Encounter(request, canon, align, players_level, chosen_difficulty):
         encounter = ''
 #    print 'encounter: ', numcreatures, encounter, leader
     if leader:
-        return render_to_response('encounter/encounter_gen.html', {'numcreatures': numcreatures, 'leader': encounter[0], 'encounter':encounter[1], 'form':form})
+        return render_to_response('encounter/encounter_gen.html', {'numcreatures': numcreatures, 'leader': encounter[0], 'encounter':encounter[1], 'form':form, 'settings_list': settings_list})
     else:
-        return render_to_response('encounter/encounter_gen.html', {'numcreatures': numcreatures, 'leader': False, 'encounter':encounter, 'form':form})
+        return render_to_response('encounter/encounter_gen.html', {'numcreatures': numcreatures, 'leader': False, 'encounter':encounter, 'form':form, 'settings_list': settings_list})
 

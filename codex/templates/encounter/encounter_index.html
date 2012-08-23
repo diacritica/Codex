@@ -70,6 +70,21 @@
                                              </select> 
                                         </div>
 
+                                        <div style="clear: both">&nbsp;</div>  
+
+                                        <h2 class="titulo-formulario-avanzado">         
+                                        Tipo de terreno:
+                                        </h2>
+
+                                        <div class="formulario-avanzado-2-columnas">
+                                            <select name="setting">
+                                              <option value="ALL">Todos</option>
+                                             {% for setting in settings_list %}
+                                              <option value="{{setting.id}}">{{setting.name}}</option>
+                                             {% endfor %}
+                                             </select> 
+                                        </div>
+
                                      <div style="clear: both">&nbsp;</div>
                     </div>  
 

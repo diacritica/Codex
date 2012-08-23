@@ -5,5 +5,5 @@ from encounter import views as encounterviews
 
 urlpatterns = patterns('',
     (r'^$', encounterviews.EncounterIndex),
-    (r'^(?P<canon>.+)/(?P<align>.+)/(?P<players_level>.+)/(?P<chosen_difficulty>.+)/$',encounterviews.Encounter),
+    (r'^(?P<canon>.+)/(?P<align>.+)/(?P<setting>.+)/(?P<players_level>.+)/(?P<chosen_difficulty>.+)/$',encounterviews.Encounter),
     )

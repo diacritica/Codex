@@ -843,6 +843,7 @@ class CharacterLocationRelationship(models.Model):
 
 class EncounterSetting(models.Model):
     # Setting for an encounter eg. desert. wood, village, dungeon.
+    # To add the encounter probabilities for a setting
     name = models.CharField(max_length='100', blank=False, null=False, verbose_name=_('Nombre completo'))
     description = models.TextField(blank=True, null=True, verbose_name=_('Descripcion'))
 
