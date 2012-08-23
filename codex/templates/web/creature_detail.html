@@ -158,12 +158,12 @@
 					<ul>
 						
 					  {% for relation in relatedcreatures2 %}
-					  {% if relation.relation21 in "GROUPSONFATHERBROTHERSUBDITFRIENDMASTERAPPRENTICEFAMILIAREMPLOYEE" %}
+					  {% if relation.relation21 in "GROUPSONFATHERBROTHERSUBDITFRIENDMASTERAPPRENTICEFAMILIAREMPLOYEELEADERUNDERLING" %}
 						<li>{{relation.get_relation21_display}} de <a href="/creature/{{relation.creature1.slug}}">{{relation.creature1.name}}</a></li>
 						{% endif %}
 					{% endfor %}
 	 				 {% for relation in relatedcreatures1 %}
-					  	{% if relation.relation21 in "GROUPSONFATHERBROTHERSUBDITFRIENDMASTERAPPRENTICEFAMILIAREMPLOYEE" %}
+					  	{% if relation.relation21 in "GROUPSONFATHERBROTHERSUBDITFRIENDMASTERAPPRENTICEFAMILIAREMPLOYEELEADERUNDERLING" %}
 						<li>{{relation.get_relation12_display}} de <a href="/creature/{{relation.creature2.slug}}">{{relation.creature2.name}}</a></li>
 						{% endif %}
 
@@ -177,12 +177,12 @@
 				<div class="lista2columnas">
 					<ul>
 					  {% for relation in relatedcreatures2 %}
-					  {% if relation.relation21 not in "GROUPSONFATHERBROTHERSUBDITFRIENDMASTERAPPRENTICEFAMILIAREMPLOYEE" %}
+					  {% if relation.relation21 not in "GROUPSONFATHERBROTHERSUBDITFRIENDMASTERAPPRENTICEFAMILIAREMPLOYEELEADERUNDERLING" %}
 						<li>{{relation.get_relation21_display}} de <a href="/creature/{{relation.creature1.slug}}">{{relation.creature1.name}}</a></li>
 						{% endif %}
 					{% endfor %}
 					  {% for relation in relatedcreatures1 %}
-					  	{% if relation.relation21 not in "GROUPSONFATHERBROTHERSUBDITFRIENDMASTERAPPRENTICEFAMILIAREMPLOYEE" %}
+					  	{% if relation.relation21 not in "GROUPSONFATHERBROTHERSUBDITFRIENDMASTERAPPRENTICEFAMILIAREMPLOYEELEADERUNDERLING" %}
 						<li>{{relation.get_relation12_display}} de <a href="/creature/{{relation.creature2.slug}}">{{relation.creature2.name}}</a></li>
 						{% endif %}
 
