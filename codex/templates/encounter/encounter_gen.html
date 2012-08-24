@@ -123,7 +123,7 @@
                                     <p><b>Ataque</b>: {{leader.attacks|safe}}  </p> 
                                     {% endif %}
                                     <p>
-                                    {{leader.description|safe}}
+                                    {{leader.description|safe|truncatewords:200}}
                                     </p>
                                 {% endif %}
                                 <h3>{{ encounter.name }}  [<a href="/creature/{{encounter.slug}}">+ info</a>] </h3>
@@ -133,7 +133,7 @@
                                     <p><b>Ataque</b>: {{encounter.attacks|safe}}  </p> 
                                     {% endif %}
                                 <p>
-                                {{encounter.description|safe}}
+                                {{encounter.description|safe|truncatewords:200}}
                                 </p>
                             {% else %}
                             <p>No hay encuentro, los aventureros pueden vivir unas horas más.</p>

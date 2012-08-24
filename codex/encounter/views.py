@@ -24,7 +24,7 @@ def EncounterIndex(request):
         return render_to_response('encounter/encounter_index.html', {'settings_list': settings_list})
 
 def getCreature(creature_list, hitdice):
-    new_creature_list = creature_list.filter(hitdice__regex=r'^%s(\+\w)*$'%(hitdice)) #expresión regular que da OK con 1+1, 12, etc 
+    new_creature_list = creature_list.filter(hitdice__regex=r'^%s(\+\w|\/(\w)*)*$'%(hitdice)) #expresión regular que da OK con 1+1, 12, etc 
     #print hitdice, new_creature_list
     if len(new_creature_list) > 0:
         return new_creature_list[randint(0, len(new_creature_list)-1)]
