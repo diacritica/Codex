@@ -1289,7 +1289,7 @@ class Spell(models.Model):
     def __unicode__(self):
         return unicode(u"%s" % (self.name,))
     def get_absolute_url(self):
-        return unicode(u"%s/%s"%(u"/rule",self.slug))
+        return unicode(u"%s/%s"%(u"/spell",self.slug))
     class Meta:
 #        db_table = u'author'
         verbose_name = _(u'Spell')
@@ -1357,7 +1357,7 @@ class FanArt(models.Model):
         verbose_name=_("FanArt's authorship"))
     canon_level = models.CharField(max_length=5, blank=True, null=True, choices=CANON_LEVEL_CHOICES, verbose_name=_('Canon Level'))
     highlight = models.BooleanField(blank=True, verbose_name=_(u'Destacado en categoría'))
-    send_tweet = models.BooleanField(blank=True, verbose_name=_(u'Tweet nueva crónica'))
+    send_tweet = models.BooleanField(blank=True, verbose_name=_(u'Tweet nuevo Fan Art'))
     creation_date = models.DateTimeField(null=True, verbose_name=_('Creation date'))
     last_updated = models.DateTimeField(null=True, verbose_name=_('Last updated'))
 
@@ -1390,7 +1390,7 @@ class FanArt(models.Model):
     def __unicode__(self):
         return unicode(u"%s" % (self.name,))
     def get_absolute_url(self):
-        return unicode(u"%s/%s"%(u"/rule",self.slug))
+        return unicode(u"%s/%s"%(u"/fanart",self.slug))
     class Meta:
 #        db_table = u'author'
         verbose_name = _(u'FanArt')
