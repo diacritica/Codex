@@ -112,7 +112,7 @@ urlpatterns = patterns('',
 
 )
 
-if settings.ENVIRONMENT=="TEST":
+if settings.ENVIRONMENT=="DEV":
     urlpatterns += patterns('',
         url(r'^css/(?P<path>.*)$', 'django.views.static.serve', {
             'document_root': "/home/elfo/GIT/CODEX/codex/templates/web/css/",
