@@ -36,6 +36,17 @@ databrowse.site.register(Rule)
 
 admin.autodiscover()
 
+
+#Tastypie
+from tastypie.api import Api
+from web.formstp import AdventureResource
+
+
+v1_formstp = Api(api_name='v1')
+v1_formstp.register(AdventureResource())
+
+
+
 urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'codex.views.home', name='home'),
@@ -109,6 +120,9 @@ urlpatterns = patterns('',
 
     (r'^$', views.IndexView),
     (r'^rss.xml$', LatestEntriesFeed()),
+
+    #Tastypie forms support
+    (r'^tp/', include(v1_formstp.urls)),
 
 )
 
