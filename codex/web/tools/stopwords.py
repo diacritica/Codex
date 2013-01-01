@@ -9,7 +9,7 @@ if settings.ENVIRONMENT=="DEVELFO":
 elif settings.ENVIRONMENT=="DEVELWEN":
     os.chdir("/home/CORTEX-ELWEN/git/Codex/codex/web/tools/")  # FIXME
 elif settings.ENVIRONMENT=="PRO":
-    os.chdir("/srv/codex_virtualenv/Codex.git/codex/web/tools/")  # FIXME
+    os.chdir("/srv/CODEX/codex/web/tools/")  # FIXME
 else:
     os.chdir("/srv/codex/Codex.git/codex/web/tools/")  # FIXME
 
