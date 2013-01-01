@@ -112,7 +112,7 @@ urlpatterns = patterns('',
 
 )
 
-if settings.ENVIRONMENT=="TEST":
+if settings.ENVIRONMENT=="DEVELFO":
     urlpatterns += patterns('',
         url(r'^css/(?P<path>.*)$', 'django.views.static.serve', {
             'document_root': "/home/elfo/GIT/CODEX/codex/templates/web/css/",
@@ -131,6 +131,27 @@ if settings.ENVIRONMENT=="TEST":
         }),
         url(r'^media/files/(?P<path>.*)$', 'django.views.static.serve', {
             'document_root': "/home/elfo/GIT/CODEX/codex/media/files/",
+        }),
+   )
+elif settings.ENVIRONMENT=="DEVELWEN":
+    urlpatterns += patterns('',
+        url(r'^css/(?P<path>.*)$', 'django.views.static.serve', {
+            'document_root': "/home/CORTEX-ELWEN/git/Codex/codex/templates/web/css/",
+        }),
+        url(r'^ima/(?P<path>.*)$', 'django.views.static.serve', {
+            'document_root': "/home/CORTEX-ELWEN/git/Codex/codex/templates/web/ima/",
+        }),
+        url(r'^js/(?P<path>.*)$', 'django.views.static.serve', {
+            'document_root': "/home/CORTEX-ELWEN/git/Codex/codex/templates/web/js/",
+        }),
+        url(r'^rotativo/(?P<path>.*)$', 'django.views.static.serve', {
+            'document_root': "/home/CORTEX-ELWEN/git/Codex/codex/templates/web/rotativo/",
+        }),
+        url(r'^media/img/(?P<path>.*)$', 'django.views.static.serve', {
+            'document_root': "/home/CORTEX-ELWEN/git/Codex/codex/media/img/",
+        }),
+        url(r'^media/files/(?P<path>.*)$', 'django.views.static.serve', {
+            'document_root': "/home/CORTEX-ELWEN/git/Codex/codex/media/files/",
         }),
    )
 

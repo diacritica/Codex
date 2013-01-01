@@ -2,8 +2,18 @@
 # -*- coding: utf-8 -*-
 
 import os
+from django.conf import settings
 
-os.chdir("/srv/codex_virtualenv/Codex.git/codex/web/tools/")  # FIXME
+if settings.ENVIRONMENT=="DEVELFO":
+    os.chdir("/home/elfo/GIT/CODEX/codex/web/tools/")  # FIXME
+elif settings.ENVIRONMENT=="DEVELWEN":
+    os.chdir("/home/CORTEX-ELWEN/git/Codex/codex/web/tools/")  # FIXME
+elif settings.ENVIRONMENT=="PRO":
+    os.chdir("/srv/codex_virtualenv/Codex.git/codex/web/tools/")  # FIXME
+else:
+    os.chdir("/srv/codex/Codex.git/codex/web/tools/")  # FIXME
+
+
 stop_words_file = open("stopwords.txt", "r")
 stop_words_list = [word.strip() for word in stop_words_file.readlines()]
 
