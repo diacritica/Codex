@@ -34,6 +34,7 @@ def SimpleSearchView(request, searchfilter="", searchterm=""):
 
 
     elif searchfilter == "fanart": allobjects["fanart"] = FanArt.objects.all() #OH PLEASE FIX THIS MESS!
+
     elif searchfilter == "all":
 
         allobjects = {'object':Object.objects.all(),'character':Character.objects.all(), \
@@ -82,8 +83,6 @@ def SimpleSearchView(request, searchfilter="", searchterm=""):
         # If page is out of range (e.g. 9999), deliver last page of results.
         objects = paginator.page(paginator.num_pages)
 
-    #return render_to_response('list.html', {"contacts": contacts})
-
 
     return render_to_response("web/listado.html",{'keywords':keywords,'results':objects,'MEDIA_URL':MEDIA_URL})
 
@@ -111,6 +110,7 @@ def split_query_into_keywords(query):
 
 
 def AdvancedSearchView(request):
+
     choices_dict = {}
     locations_options = {'locations': Location.objects.all()}
     character_options = {"ALIGN_CHOICES": ALIGN_CHOICES, "PROFESSION_CHOICES":PROFESSION_CHOICES, "SPECIES_CHOICES":SPECIES_CHOICES, "LEVEL_CHOICES":LEVEL_CHOICES}
@@ -123,7 +123,7 @@ def AdvancedSearchView(request):
     rules_options = {'rulesections':RuleSection.objects.all()}
     spell_options = {'classraces':ClassRace.objects.all()}
     fanart_options = {'fanart_authors':Author.objects.all(),"FANART_LICENSE_CHOICES":FANART_LICENSE_CHOICES,\
-    "FANART_CATEGORY_CHOICES":FANART_CATEGORY_CHOICES, "FANART_TYPE_CHOICES":FANART_TYPE_CHOICES}
+                          "FANART_CATEGORY_CHOICES":FANART_CATEGORY_CHOICES, "FANART_TYPE_CHOICES":FANART_TYPE_CHOICES}
 
     choices_dict.update(character_options)
     choices_dict.update(creature_options)
@@ -144,7 +144,6 @@ def ResultsAdvancedSearchView(request):
 
     from itertools import chain
 
-    #searchfilter = request.GET.get('option') #HERE WE WILL KNOW THE SPECIFIC OBJECT TYPE
     searchterm = request.GET.get('searchterm') #FIXME cuando null
     keywords = split_query_into_keywords(searchterm) or []
     objects = Location.objects.all()
@@ -155,16 +154,13 @@ def ResultsAdvancedSearchView(request):
     if objecttype == 'ALL':
 
         if objectcanon=="ALL":
-
             objects = sorted(
-
             chain(Object.objects.all() , Character.objects.all() , Creature.objects.all() , Chronicle.objects.all() , Adventure.objects.all() , Location.objects.all(), Rule.objects.all(), FanArt.objects.all()), key=lambda instance: instance.last_updated)
 
             objects.reverse()
+
         else:
-
             objects = sorted(
-
             chain(Object.objects.filter(canon_level=objectcanon) , Character.objects.filter(canon_level=objectcanon) , Creature.objects.filter(canon_level=objectcanon) , Chronicle.objects.filter(canon_level=objectcanon) , Adventure.objects.filter(canon_level=objectcanon) , Location.objects.filter(canon_level=objectcanon),Rule.objects.filter(canon_level=objectcanon),FanArt.objects.filter(canon_level=objectcanon)),key=lambda instance: instance.last_updated)
 
 
@@ -173,7 +169,7 @@ def ResultsAdvancedSearchView(request):
             for ob in objects:
                 ks = 0
                 for keyword in keywords:
-                    if keyword.lower() in ob.searchText().lower():#.split(" "):
+                    if keyword.lower() in ob.searchText().lower():
                         ks+=5
                         ks+=ob.searchText().lower().count(keyword.lower())
 
@@ -227,13 +223,9 @@ def ResultsAdvancedSearchView(request):
                  ob.objecttype = objecttype
                  results.append(ob)
 
-
-
-
         return render_to_response("web/listado.html",{'objecttype':'none','keywords':keywords,'results':results})
 
     if objecttype == 'fanart':
-
 
         chosencategory = request.GET.get('chosencategory') or None
         chosentype = request.GET.get('chosentype') or None
@@ -251,31 +243,11 @@ def ResultsAdvancedSearchView(request):
         if author!="ALL" and author:
             objects = objects.filter(author=author)
 
-
         if objectcanon!="ALL" and objectcanon:
             objects = objects.filter(canon_level=objectcanon)
 
-#        for f,ft in filterdict.items():
-#            if ft!=None: objects = objects.filter(f=ft)
+        results = getWeightedResults(keywords,objects,objecttype="fanart")
 
-        if len(keywords) != 0:
-            results = []
-            for ob in objects:
-                ks = 0
-                for keyword in keywords:
-                    if keyword.lower() in ob.searchText().lower():#.split(" "):
-                        ks+=5
-                        ks+=ob.searchText().lower().count(keyword.lower())
-
-                    if ks>0:
-                        if ob in results:
-                            ob.hits += ks
-                        else:
-                            ob.hits = ks
-                            ob.objecttype = objecttype
-                            results.append(ob)
-
-        else: results = objects
 
     if objecttype == 'spell':
 
@@ -283,7 +255,6 @@ def ResultsAdvancedSearchView(request):
 
         level = request.GET.get('level') or None
         reversible = request.GET.get('reversible') or None #FIXME!
-
 
         objects = Spell.objects.all()
 
@@ -300,27 +271,8 @@ def ResultsAdvancedSearchView(request):
         if objectcanon!="ALL" and objectcanon:
             objects = objects.filter(canon_level=objectcanon)
 
-#        for f,ft in filterdict.items():
-#            if ft!=None: objects = objects.filter(f=ft)
+        results = getWeightedResults(keywords,objects,objecttype="spell")
 
-        if len(keywords) != 0:
-            results = []
-            for ob in objects:
-                ks = 0
-                for keyword in keywords:
-                    if keyword.lower() in ob.searchText().lower():#.split(" "):
-                        ks+=5
-                        ks+=ob.searchText().lower().count(keyword.lower())
-
-                    if ks>0:
-                        if ob in results:
-                            ob.hits += ks
-                        else:
-                            ob.hits = ks
-                            ob.objecttype = objecttype
-                            results.append(ob)
-
-        else: results = objects
 
     if objecttype == 'rule':
 
@@ -334,27 +286,8 @@ def ResultsAdvancedSearchView(request):
         if objectcanon!="ALL" and objectcanon:
             objects = objects.filter(canon_level=objectcanon)
 
-#        for f,ft in filterdict.items():
-#            if ft!=None: objects = objects.filter(f=ft)
 
-        if len(keywords) != 0:
-            results = []
-            for ob in objects:
-                ks = 0
-                for keyword in keywords:
-                    if keyword.lower() in ob.searchText().lower():#.split(" "):
-                        ks+=5
-                        ks+=ob.searchText().lower().count(keyword.lower())
-
-                    if ks>0:
-                        if ob in results:
-                            ob.hits += ks
-                        else:
-                            ob.hits = ks
-                            ob.objecttype = objecttype
-                            results.append(ob)
-
-        else: results = objects
+        results = getWeightedResults(keywords,objects,objecttype="rule")
 
     if objecttype == 'chronicle':
 
@@ -368,27 +301,7 @@ def ResultsAdvancedSearchView(request):
         if objectcanon!="ALL" and objectcanon:
             objects = objects.filter(canon_level=objectcanon)
 
-#        for f,ft in filterdict.items():
-#            if ft!=None: objects = objects.filter(f=ft)
-
-        if len(keywords) != 0:
-            results = []
-            for ob in objects:
-                ks = 0
-                for keyword in keywords:
-                    if keyword.lower() in ob.searchText().lower():#.split(" "):
-                        ks+=5
-                        ks+=ob.searchText().lower().count(keyword.lower())
-
-                    if ks>0:
-                        if ob in results:
-                            ob.hits += ks
-                        else:
-                            ob.hits = ks
-                            ob.objecttype = objecttype
-                            results.append(ob)
-
-        else: results = objects
+        results = getWeightedResults(keywords,objects,objecttype="chronicle")
 
 
     if objecttype == 'adventure':
@@ -414,27 +327,8 @@ def ResultsAdvancedSearchView(request):
         if objectcanon!="ALL" and objectcanon:
             objects = objects.filter(canon_level=objectcanon)
 
-#        for f,ft in filterdict.items():
-#            if ft!=None: objects = objects.filter(f=ft)
+        results = getWeightedResults(keywords,objects,objecttype="adventure")
 
-        if len(keywords) != 0:
-            results = []
-            for ob in objects:
-                ks = 0
-                for keyword in keywords:
-                    if keyword.lower() in ob.searchText().lower():#.split(" "):
-                        ks+=5
-                        ks+=ob.searchText().lower().count(keyword.lower())
-
-                    if ks>0:
-                        if ob in results:
-                            ob.hits += ks
-                        else:
-                            ob.hits = ks
-                            ob.objecttype = objecttype
-                            results.append(ob)
-
-        else: results = objects
 
 
     if objecttype == 'object':
@@ -462,27 +356,8 @@ def ResultsAdvancedSearchView(request):
         if objectcanon!="ALL" and objectcanon:
             objects = objects.filter(canon_level=objectcanon)
 
-#        for f,ft in filterdict.items():
-#            if ft!=None: objects = objects.filter(f=ft)
+        results = getWeightedResults(keywords,objects,objecttype="object")
 
-        if len(keywords) != 0:
-            results = []
-            for ob in objects:
-                ks = 0
-                for keyword in keywords:
-                    if keyword.lower() in ob.searchText().lower():#.split(" "):
-                        ks+=5
-                        ks+=ob.searchText().lower().count(keyword.lower())
-
-                    if ks>0:
-                        if ob in results:
-                            ob.hits += ks
-                        else:
-                            ob.hits = ks
-                            ob.objecttype = objecttype
-                            results.append(ob)
-
-        else: results = objects
 
     if objecttype == 'creature':
 
@@ -509,28 +384,7 @@ def ResultsAdvancedSearchView(request):
         if objectcanon!="ALL" and objectcanon:
             objects = objects.filter(canon_level=objectcanon)
 
-#        for f,ft in filterdict.items():
-#            if ft!=None: objects = objects.filter(f=ft)
-
-        if len(keywords) != 0:
-            results = []
-            for ob in objects:
-                ks = 0
-                for keyword in keywords:
-                    if keyword.lower() in ob.searchText().lower():#.split(" "):
-                        ks+=5
-                        ks+=ob.searchText().lower().count(keyword.lower())
-
-                    if ks>0:
-                        if ob in results:
-                            ob.hits += ks
-                        else:
-                            ob.hits = ks
-                            ob.objecttype = objecttype
-                            results.append(ob)
-
-        else: results = objects
-
+        results = getWeightedResults(keywords,objects,objecttype="creature")
 
 
     if objecttype == 'character':
@@ -560,27 +414,9 @@ def ResultsAdvancedSearchView(request):
         if objectcanon!="ALL" and objectcanon:
             objects = objects.filter(canon_level=objectcanon)
 
-#        for f,ft in filterdict.items():
-#            if ft!=None: objects = objects.filter(f=ft)
 
-        if len(keywords) != 0:
-            results = []
-            for ob in objects:
-                ks = 0
-                for keyword in keywords:
-                    if keyword.lower() in ob.searchText().lower():#.split(" "):
-                        ks+=5
-                        ks+=ob.searchText().lower().count(keyword.lower())
 
-                    if ks>0:
-                        if ob in results:
-                            ob.hits += ks
-                        else:
-                            ob.hits = ks
-                            ob.objecttype = objecttype
-                            results.append(ob)
-
-        else: results = objects
+        results = getWeightedResults(keywords,objects,objecttype="character")
 
 
     if objecttype == 'location':
@@ -605,28 +441,31 @@ def ResultsAdvancedSearchView(request):
         if objectcanon!="ALL" and objectcanon:
             objects = objects.filter(canon_level=objectcanon)
 
-#        for f,ft in filterdict.items():
-#            if ft!=None: objects = objects.filter(f=ft)
-
-        if len(keywords) != 0:
-            results = []
-            for ob in objects:
-                ks = 0
-                for keyword in keywords:
-                    if keyword.lower() in ob.searchText().lower():#.split(" "):
-                        ks+=5
-                        ks+=ob.searchText().lower().count(keyword.lower())
-
-                    if ks>0:
-                        if ob in results:
-                            ob.hits += ks
-                        else:
-                            ob.hits = ks
-                            ob.objecttype = objecttype
-                            results.append(ob)
-
-        else: results = objects
+        results = getWeightedResults(keywords,objects,objecttype="location")
 
 
 
     return render_to_response("web/advancedlisting.html",{'objecttype':objecttype,'keywords':keywords,'results':results,'MEDIA_URL':MEDIA_URL})
+
+
+def getWeightedResults(keywords, objectsList, objecttype):
+
+    if len(keywords) != 0:
+        results = []
+        for ob in objectsList:
+            ks = 0
+            for keyword in keywords:
+                if keyword.lower() in ob.searchText().lower():
+                    ks+=5
+                    ks+=ob.searchText().lower().count(keyword.lower())
+                    
+                if ks>0:
+                    if ob in results:
+                        ob.hits += ks
+                    else:
+                        ob.hits = ks
+                        ob.objecttype = objecttype
+                        results.append(ob)
+        return results
+
+    else: return objectsList
