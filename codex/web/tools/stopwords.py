@@ -4,8 +4,10 @@
 import os
 from django.conf import settings
 
-if settings.ENVIRONMENT=="DEV":
+if settings.ENVIRONMENT=="DEVELFO":
     os.chdir("/home/elfo/GIT/CODEX/codex/web/tools/")  # FIXME
+elif settings.ENVIRONMENT=="DEVELWEN":
+    os.chdir("/home/CORTEX-ELWEN/git/Codex/codex/web/tools/")  # FIXME
 else:
     os.chdir("/srv/codex_virtualenv/Codex.git/codex/web/tools/")  # FIXME
 
