@@ -1,6 +1,6 @@
 # Django settings for codex project.
 import os
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -45,12 +45,12 @@ USE_L10N = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = '/srv/codex/codex_hg/codex/media/'
+MEDIA_ROOT = '/srv/codex/Codex.git/codex/media/'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = 'http://codex.ithilien.eu/media/'
+MEDIA_URL = 'http://codex.ithilien.eu:8080/media/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
@@ -67,7 +67,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    '/srv/django_svn/django-trunk/django/contrib/admin/static/admin/',
+    '/srv/codex/Codex.git/env/lib/python2.7/site-packages/django/contrib/admin/static/admin/',
 )
 
 # List of finder classes that know how to find static files in
@@ -104,7 +104,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    "/srv/codex/codex_hg/codex/templates/",
+    "/srv/codex/Codex.git/codex/templates/",
 )
 
 INSTALLED_APPS = (
