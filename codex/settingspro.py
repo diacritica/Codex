@@ -3,6 +3,8 @@ import os
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
+ALLOWED_HOSTS = ['www.codexdelamarca.com','codexdelamarca.com']
+
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
@@ -13,8 +15,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': 'codexdb',                      # Or path to database file if using sqlite3.
-        'USER': 'codex',                      # Not used with sqlite3.
-        'PASSWORD': 'codex',                  # Not used with sqlite3.
+        'USER': 'django',                      # Not used with sqlite3.
+        'PASSWORD': 'Iny3ty3m3l3,cor',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     }
@@ -45,7 +47,7 @@ USE_L10N = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = '/srv/CODEX/codex/media/'
+MEDIA_ROOT = '/srv/GHILBRAE/CODEX/codex/media/'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -64,10 +66,10 @@ STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
-    # Put strings here, like "/home/html/static" or "C:/www/django/static".
+    # Put strings here, like "/home/html/static" or "C:/GHILBRAE/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    '/srv/CODEX/env/lib/python2.7/site-packages/django/contrib/admin/static/admin/',
+    '/srv/GHILBRAE/CODEX/venv/lib/python2.7/site-packages/django/contrib/admin/static/admin/',
 )
 
 # List of finder classes that know how to find static files in
@@ -101,10 +103,10 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'codex.urls'
 
 TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
+    # Put strings here, like "/home/html/django_templates" or "C:/GHILBRAE/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    "/srv/CODEX/codex/templates/",
+    "/srv/GHILBRAE/CODEX/codex/templates/",
 )
 
 INSTALLED_APPS = (
@@ -133,31 +135,6 @@ INSTALLED_APPS = (
 # the site admins on every HTTP 500 error when DEBUG=False.
 # See http://docs.djangoproject.com/en/dev/topics/logging for
 # more details on how to customize your logging configuration.
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'filters': {
-        'require_debug_false': {
-            '()': 'django.utils.log.CallbackFilter',
-            'callback': lambda r: not DEBUG
-        }
-    },
-    'handlers': {
-        'mail_admins': {
-            'level': 'ERROR',
-            'filters': ['require_debug_false'],
-            'class': 'django.utils.log.AdminEmailHandler'
-        }
-    },
-    'loggers': {
-        'django.request': {
-            'handlers': ['mail_admins'],
-            'level': 'ERROR',
-            'propagate': True,
-        },
-    }
-}
-
 
 #ADMIN_MEDIA_PREFIX = STATIC_URL + "grappelli/"
 

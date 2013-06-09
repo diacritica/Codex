@@ -676,7 +676,7 @@ class Author(models.Model):
     name = models.CharField(max_length='100', blank=False, null=False, verbose_name=_('Nombre completo'))
     nickname =  models.CharField(max_length='100', blank=True, null=True, verbose_name=_('Pseudonimo'))
     otherdata =  models.TextField(blank=True, null=True, verbose_name=_('Otros datos'))
-    url =  models.URLField(blank=True, null=True, verify_exists=False, max_length=200, verbose_name=_("Author's web page"))
+    url =  models.URLField(blank=True, null=True,  max_length=200, verbose_name=_("Author's web page"))
     photo = models.ManyToManyField('Image', blank=True, null=True,  related_name=_("Author's photos"))
 
     slug = models.SlugField(blank=True,null=True,max_length=200,help_text="A short label, generally used in URLs. AUTOMATICALLY ADDED!")
@@ -1004,7 +1004,7 @@ class Adventure(models.Model):
 
     name = models.CharField(max_length='100', blank=False, null=False, verbose_name=_('Nombre completo'))
     description =  models.TextField(blank=True, null=True, verbose_name=_('Descripcion'))
-    url =  models.URLField(blank=True, null=True, verify_exists=False, max_length=200, verbose_name=_('URL'))
+    url =  models.URLField(blank=True, null=True,  max_length=200, verbose_name=_('URL'))
     price = models.CharField(max_length='50', blank=True, null=True, choices=PRICE_RANGES, verbose_name=_('Price'))
     sessions = models.SmallIntegerField(blank=True, null=True,verbose_name=_('Game sessions'))
     minnumplayers = models.SmallIntegerField(blank=True, null=True,verbose_name=_('Minimum number of players'))
@@ -1072,7 +1072,7 @@ class Chronicle(models.Model):
 
     name = models.CharField(max_length='100', blank=False, null=False, verbose_name=_('Nombre completo'))
     description =  models.TextField(blank=True, null=True, verbose_name=_('Descripcion'))
-    url =  models.URLField(blank=True, null=True, verify_exists=False, max_length=200, verbose_name=_('URL'))
+    url =  models.URLField(blank=True, null=True,  max_length=200, verbose_name=_('URL'))
     adventure = models.ForeignKey("Adventure", blank=True, null=True,  verbose_name=_("Related Adventure"))
 
     attachments = models.ManyToManyField('AttachFile', blank=True, null=True,  related_name=_("Chronicle's attachments"))
@@ -1156,7 +1156,7 @@ class Rule(models.Model):
 
     name = models.CharField(max_length='100', blank=False, null=False, verbose_name=_('Nombre completo'))
     description =  models.TextField(blank=True, null=True, verbose_name=_('Descripcion'))
-    url =  models.URLField(blank=True, null=True, verify_exists=False, max_length=200, verbose_name=_('URL'))
+    url =  models.URLField(blank=True, null=True,  max_length=200, verbose_name=_('URL'))
     affectedsections = models.ManyToManyField('RuleSection', blank=True, null=True,  related_name=_("Rule's target sections"))
     attachments = models.ManyToManyField('AttachFile', blank=True, null=True,  related_name=_("Rule's attachments"))
     image = models.ManyToManyField('Image', blank=True, null=True,  related_name=_("Rule's photos"))
