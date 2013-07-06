@@ -12,6 +12,7 @@ from django.utils.translation import ugettext_lazy as _
 #from djangoratings.fields import RatingField
 from taggit.managers import TaggableManager
 from twitter import Api
+from twython import Twython
 
 from django.utils import simplejson
 
@@ -1542,7 +1543,7 @@ class TwitterConfig(models.Model):
 
     def validate(self):
         try:
-            return Api(consumer_key=self.consumer_key, consumer_secret=self.consumer_secret, access_token_key=self.access_token_key, access_token_secret=self.access_token_secret)
+            return Twython(self.consumer_key, self.consumer_secret, self.access_token_key, self.access_token_secret)
         except Exception, e:
             return e
 
@@ -1554,7 +1555,7 @@ class TwitterConfig(models.Model):
         api = self.validate()
 
         try:
-            status = api.PostUpdate(tweet_text)
+            status = api.update_status(status=tweet_text)
         except Exception, e:
             status = e
         return status
