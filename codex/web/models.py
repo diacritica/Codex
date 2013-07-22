@@ -249,6 +249,7 @@ SPECIES_CHOICES = (
         ('Ele', _(u'Elemental')),
         ('Elf', _(u'Elfo')),
         ('Dwf', _(u'Enano')),
+        ('HDwf', _(u'Semin-Enano')),
         ('Gnm', _(u'Gnomo')),
         ('Hfg', _(u'Halfling')),
         ('Fae', _(u'Hada')),
@@ -270,6 +271,8 @@ PROFESSION_CHOICES = (
         ('Wr', _(u'Guerrero')),
         ('Hf', _(u'Halfling')),
         ('El', _(u'Elfo')),
+        ('Dwf', _(u'Enano')),
+        ('HDwf', _(u'Semi-Enano')),
         ('NA', _(u'N/A')),
 )
 
