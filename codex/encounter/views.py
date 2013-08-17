@@ -31,20 +31,39 @@ def getCreature(creature_list, hitdice):
     else:
         return False
 
-def getTreasure():
-    pass
+def getTreasure(encounter):
+    treasure = ''
+    for creature in encounter:
+        print encounter, creature
+        creatreasure = creature[1].treasurevalue
+        if creatreasure == '':
+            treasure = ''
+        else:
+            factor = randint(0,15)/10.
+            if factor != 0.0:
+                factor = str(factor * creature[0]) # factor x numcreatures
+                tmp = creatreasure + ' x ' + factor
+                if treasure != '':
+                    treasure = tmp + ' + ' + treasure
+                else:
+                    treasure = tmp
+                print 'getTreasure', treasure
+    if treasure != '':
+        return treasure
+    else: return False
 
-def getParty(encounter):
+def getParty(encounter, relation='LEADER'):
     # Two possibilities: the chosen creature is a leader or it is leader
     # no difference in treatment
     try:
         # get all the creatures with a leadership relation 
-        creatureleaderrelation = encounter.getAllRelationTitles('LEADER')
+        creatureleaderrelation = encounter.getAllRelationTitles(relation)
         #print "Lista de líderes asociadas", creatureleaderrelation
         # prev returns a tuple where creature1 is LEADER of creature2
         if creatureleaderrelation:
             new_encounter = creatureleaderrelation[randint(0, len(creatureleaderrelation) - 1)]
-            return new_encounter
+            leader = [1, new_encounter[0]] #form a list with numcreatures (leader =1) and the creature
+            return leader
         else:
             return False
     except Exception, e:
@@ -137,7 +156,7 @@ def Encounter(request, canon, align, setting, players_level, chosen_difficulty):
             for k in probs:
                 if selection < k:
                     selected = region[probs[i-1]]
-                    break
+                    break 
                 elif selection == k:
                     selected = region[probs[i]]
                     break
@@ -146,29 +165,34 @@ def Encounter(request, canon, align, setting, players_level, chosen_difficulty):
             numcreatures = randint(selected['numrange'][0], selected['numrange'][-1])
             try:
                 
-                encounter = encounter_list[numcreatures][1]
+                final_encounter = [[numcreatures, encounter_list[numcreatures][1]]]
                 found = True
 
                 # generate an encounter with a party leader
                 if numcreatures > 2 and randint(0,4) < 3:
                     #print "Tenemos que buscar un lider"
-                    encounter_with_leader = getParty(encounter)
+                    encounter_with_leader = getParty(final_encounter[0][1]) #get the leader in a tuple with the number of leaders (1)
                     if encounter_with_leader:
                         numcreatures -= 1
                         leader = True
-                        encounter = encounter_with_leader
-                #print 'encounter: ', encounter
+                        final_encounter.insert(0, encounter_with_leader) #insert leader
+                        final_encounter[1][0] = numcreatures
+                        
+                
+                treasure = getTreasure(final_encounter)
+
             except:
                 #print 'Except'
                 pass
     else:
         # if the encounters list is empty. Might happen (feature)
         numcreatures = False
-        encounter = ''
+        final_encounter = ''
+        treasure = False
 #    print 'encounter: ', numcreatures, encounter, leader
 
     if leader:
-        return render_to_response('encounter/encounter_gen.html', {'numcreatures': numcreatures, 'leader': encounter[0], 'encounter':encounter[1], 'form':form, 'settings_list': settings_list})
+        return render_to_response('encounter/encounter_gen.html', {'numcreatures': numcreatures, 'leader': final_encounter[0][1], 'encounter':final_encounter[-1][1], 'treasure': treasure, 'form':form, 'settings_list': settings_list})
     else:
-        return render_to_response('encounter/encounter_gen.html', {'numcreatures': numcreatures, 'leader': False, 'encounter':encounter, 'form':form, 'settings_list': settings_list})
+        return render_to_response('encounter/encounter_gen.html', {'numcreatures': numcreatures, 'leader': False, 'encounter':final_encounter[-1][1], 'treasure':treasure, 'form':form, 'settings_list': settings_list})
 

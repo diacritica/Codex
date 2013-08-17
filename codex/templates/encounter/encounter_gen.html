@@ -135,6 +135,12 @@
                                 <p>
                                 {{encounter.description|safe|truncatewords:200}}
                                 </p>
+				<h2>Tesoro</h2>
+				{% if treasure %}
+				<p>{{treasure}}</p>
+				{% else %}
+				<p>No hay tesoro en este encuentro, ¡tanto esfuerzo para nada!</p>
+				{% endif %}
                             {% else %}
                             <p>No hay encuentro, los aventureros pueden vivir unas horas más.</p>
                             <p>...o revisa tus criterios de selección.</p>
