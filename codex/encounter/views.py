@@ -45,13 +45,6 @@ def getTreasure(encounter):
                 factor = str(factor * creature[0]) # factor x numcreatures
                 tmp = creatreasure + ' x ' + factor
                 treasure.append(tmp)
-                #if treasure != []:
-                    ##treasure = tmp + ' + ' + treasure
-                    #treasure.append(tmp)
-                #else:
-                    ##treasure = tmp
-                    #treasure.append(tmp)
-                print 'getTreasure', treasure
     if treasure != []:
         return treasure
     else: return False
