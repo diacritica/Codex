@@ -4,18 +4,104 @@
 from django.db import models
 
 from django.utils.translation import ugettext_lazy as _
-#from django.utils.translation import ugettext
-#from django.contrib.auth.models import User, UserManager
-#from django.template.defaultfilters import slugify
-#from tagging.fields import TagField
-#from tagging.utils import parse_tag_input
-#from djangoratings.fields import RatingField
 from taggit.managers import TaggableManager
 from twitter import Api
 
 from django.utils import simplejson
 
 # Create your models here.
+
+class MainEntity(models.Model):
+    """
+    Valid for the main classes such as Character, Location, Creature, etc.
+    """
+    
+    name = models.CharField(max_length=100, blank=False, null=False,                            verbose_name=_('Full name'))
+    description = models.TextField(blank=True, null=True, verbose_name=_('Description'))
+    
+    image = models.ManyToManyField('Image', blank=True, null=True,  related_name=_("Image"))
+    attachments = models.ManyToManyField('AttachFile', blank=True, null=True,  related_name=_("Entity attachments"))
+    
+    tags = TaggableManager(blank=True)
+    slug = models.SlugField(blank=True, null=True, max_length=200, help_text="A short label, generally used in URLs. AUTOMATICALLY ADDED!")
+    
+    comments = models.TextField(blank=True, null=True, verbose_name=_('Comments'))
+    author = models.ManyToManyField("Author", blank=True, null=True,  verbose_name=_("Entity's authorship"))
+    canon_level = models.CharField(max_length=5, blank=True, null=True, choices=CANON_LEVEL_CHOICES, verbose_name=_('Canon Level'))
+    highlight = models.BooleanField(blank=True, verbose_name=_(u'Highlight'))
+    send_tweet = models.BooleanField(blank=True, verbose_name=_('Tweet new entity'))
+    
+    creation_date = models.DateTimeField(null=True, verbose_name=_('Creation date'))
+    last_updated = models.DateTimeField(null=True, verbose_name=_('Last updated'))
+    
+    def save(self, *args, **kwargs):
+        unique_slug(self, slug_source='name', slug_field='slug')
+        send_tweet()
+        super(MainEntity, self).save(*args, **kwargs) #FIXME
+                
+    def searchText(self):
+        return unicode("%s %s %s" % (self.name, self.description, self.comments))
+                
+    #def __unicode__(self):
+        #return unicode("%s -%s-%s-%s-%s" % (self.slug, self.name))
+                
+    #def get_absolute_url(self):
+        #return unicode(u"%s/%s"%(u"/class.__name___",self.slug))
+                
+    #class Meta:
+        #db_table = u'class.__name__'
+        #verbose_name = _(u'class.__name__')
+        #get_latest_by = 'last_updated'
+        #ordering = ['-last_updated','id']
+    
+
+class AuxiliaryEntity(models.Model):
+    """
+    Valid for auxiliary classes such as Image, Language, Religion, etc.
+    """
+    
+    name = models.CharField(max_length=100, blank=False, null=False,                            verbose_name=_('Full name'))
+    description = models.TextField(blank=True, null=True, verbose_name=_('Description'))
+    image = models.ManyToManyField('Image', blank=True, null=True,  related_name=_("Image"))
+    tags = TaggableManager(blank=True)
+    slug = models.SlugField(blank=True, null=True, max_length=200, help_text="A short label, generally used in URLs. AUTOMATICALLY ADDED!")
+    comments = models.TextField(blank=True, null=True, verbose_name=_('Comments'))
+    author = models.ManyToManyField("Author", blank=True, null=True,  verbose_name=_("Entity's authorship"))
+    canon_level = models.CharField(max_length=5, blank=True, null=True, choices=CANON_LEVEL_CHOICES, verbose_name=_('Canon Level'))
+
+    #def __unicode__(self):
+        #return unicode("%s -%s-%s-%s-%s" % (self.slug, self.name, self.gender, self.level, self.pncorpc))
+    
+    #def get_absolute_url(self):
+        #return unicode(u"%s/%s"%(u"/character",self.slug))
+    
+    #class Meta:
+        #db_table = u'class.__name__'
+        #verbose_name = _(u'class.__name__')
+        #get_latest_by = 'last_updated'
+        #ordering = ['-last_updated','id']
+    
+
+class Author(models.Model):
+    
+    name = models.CharField(max_length='100', blank=False, null=False, verbose_name=_('Full name'))
+    nickname =  models.CharField(max_length='100', blank=True, null=True, verbose_name=_('Nickname'))
+    otherdata =  models.TextField(blank=True, null=True, verbose_name=_('Other data'))
+    url =  models.URLField(blank=True, null=True, verify_exists=False, max_length=200, verbose_name=_("Author's web page"))
+    photo = models.ManyToManyField('Image', blank=True, null=True,  related_name=_("Author's photos"))
+    slug = models.SlugField(blank=True,null=True,max_length=200,help_text="A short label, generally used in URLs. AUTOMATICALLY ADDED!")
+    
+    def __unicode__(self):
+        return unicode("%s -%s-" % (self.name, self.nickname))
+
+    class Meta:
+        verbose_name = _(u'Author')
+        get_latest_by = 'order_name'
+        ordering = ['-name']
+        
+
+
+# ----- # OLD # ----- #
 
 GENDER_CHOICES = (
         ('F', _('Femenino')),
