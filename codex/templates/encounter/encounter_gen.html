@@ -15,7 +15,7 @@
                 <form action="/encounter">   
 
                         <div id="generador-encuentros">
-                            <p>Te presentamos el generador de encuentros de Aventuras en La Marca del Este. En su versión actual, tiene en cuenta las relaciones de liderazgo entre criaturas, permite introducir la suma de niveles de los AJs, un nivel de dificultad, el criterio de canon, tipo de terreno y el alineamiento aceptado para las criaturas del encuentro. Se trata de una herramienta perfecta para los Dungeon Masters que quieran introducir cierta sorpresa en las aventuras de sus jugadores. A medio plazo, está previsto también un generador de tesoros.</p>
+                            <p>Te presentamos el generador de encuentros de Aventuras en La Marca del Este. En su versión actual, tiene en cuenta las relaciones de liderazgo entre criaturas, permite introducir la suma de niveles de los AJs, un nivel de dificultad, el criterio de canon, tipo de terreno y el alineamiento aceptado para las criaturas del encuentro. Se trata de una herramienta perfecta para los Dungeon Masters que quieran introducir cierta sorpresa en las aventuras de sus jugadores. <!--A medio plazo, está previsto también un generador de tesoros.--></p>
                             <div style="clear: both">&nbsp;</div>
 
                                         <h2 class="titulo-formulario-avanzado" >            
@@ -137,7 +137,12 @@
                                 </p>
 				<h2>Tesoro</h2>
 				{% if treasure %}
-				<p>{{treasure}}</p>
+                    <p>El tesoro se divide por tipo de criatura del encuentro y se multiplica por un número que tiene en cuenta el número de criaturas de cada tipo y añadiendo además un factor aleatorio. El resultado es: <b>tesoro x factor</b>.</p>
+                    <p>¡Esto es una sugerencia de tesoro para este encuentro!</p>
+                    {% for result in treasure %}
+                        <p>- {{result}}</p>
+                    {% endfor %}
+                    </ul>
 				{% else %}
 				<p>No hay tesoro en este encuentro, ¡tanto esfuerzo para nada!</p>
 				{% endif %}

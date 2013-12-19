@@ -12,6 +12,7 @@ from django.utils.translation import ugettext_lazy as _
 #from djangoratings.fields import RatingField
 from taggit.managers import TaggableManager
 from twitter import Api
+from twython import Twython
 
 from django.utils import simplejson
 
@@ -248,6 +249,7 @@ SPECIES_CHOICES = (
         ('Ele', _(u'Elemental')),
         ('Elf', _(u'Elfo')),
         ('Dwf', _(u'Enano')),
+        ('HDwf', _(u'Semin-Enano')),
         ('Gnm', _(u'Gnomo')),
         ('Hfg', _(u'Halfling')),
         ('Fae', _(u'Hada')),
@@ -269,6 +271,8 @@ PROFESSION_CHOICES = (
         ('Wr', _(u'Guerrero')),
         ('Hf', _(u'Halfling')),
         ('El', _(u'Elfo')),
+        ('Dwf', _(u'Enano')),
+        ('HDwf', _(u'Semi-Enano')),
         ('NA', _(u'N/A')),
 )
 
@@ -676,7 +680,7 @@ class Author(models.Model):
     name = models.CharField(max_length='100', blank=False, null=False, verbose_name=_('Nombre completo'))
     nickname =  models.CharField(max_length='100', blank=True, null=True, verbose_name=_('Pseudonimo'))
     otherdata =  models.TextField(blank=True, null=True, verbose_name=_('Otros datos'))
-    url =  models.URLField(blank=True, null=True, verify_exists=False, max_length=200, verbose_name=_("Author's web page"))
+    url =  models.URLField(blank=True, null=True,  max_length=200, verbose_name=_("Author's web page"))
     photo = models.ManyToManyField('Image', blank=True, null=True,  related_name=_("Author's photos"))
 
     slug = models.SlugField(blank=True,null=True,max_length=200,help_text="A short label, generally used in URLs. AUTOMATICALLY ADDED!")
@@ -1004,7 +1008,7 @@ class Adventure(models.Model):
 
     name = models.CharField(max_length='100', blank=False, null=False, verbose_name=_('Nombre completo'))
     description =  models.TextField(blank=True, null=True, verbose_name=_('Descripcion'))
-    url =  models.URLField(blank=True, null=True, verify_exists=False, max_length=200, verbose_name=_('URL'))
+    url =  models.URLField(blank=True, null=True,  max_length=200, verbose_name=_('URL'))
     price = models.CharField(max_length='50', blank=True, null=True, choices=PRICE_RANGES, verbose_name=_('Price'))
     sessions = models.SmallIntegerField(blank=True, null=True,verbose_name=_('Game sessions'))
     minnumplayers = models.SmallIntegerField(blank=True, null=True,verbose_name=_('Minimum number of players'))
@@ -1072,7 +1076,7 @@ class Chronicle(models.Model):
 
     name = models.CharField(max_length='100', blank=False, null=False, verbose_name=_('Nombre completo'))
     description =  models.TextField(blank=True, null=True, verbose_name=_('Descripcion'))
-    url =  models.URLField(blank=True, null=True, verify_exists=False, max_length=200, verbose_name=_('URL'))
+    url =  models.URLField(blank=True, null=True,  max_length=200, verbose_name=_('URL'))
     adventure = models.ForeignKey("Adventure", blank=True, null=True,  verbose_name=_("Related Adventure"))
 
     attachments = models.ManyToManyField('AttachFile', blank=True, null=True,  related_name=_("Chronicle's attachments"))
@@ -1156,7 +1160,7 @@ class Rule(models.Model):
 
     name = models.CharField(max_length='100', blank=False, null=False, verbose_name=_('Nombre completo'))
     description =  models.TextField(blank=True, null=True, verbose_name=_('Descripcion'))
-    url =  models.URLField(blank=True, null=True, verify_exists=False, max_length=200, verbose_name=_('URL'))
+    url =  models.URLField(blank=True, null=True,  max_length=200, verbose_name=_('URL'))
     affectedsections = models.ManyToManyField('RuleSection', blank=True, null=True,  related_name=_("Rule's target sections"))
     attachments = models.ManyToManyField('AttachFile', blank=True, null=True,  related_name=_("Rule's attachments"))
     image = models.ManyToManyField('Image', blank=True, null=True,  related_name=_("Rule's photos"))
@@ -1542,7 +1546,7 @@ class TwitterConfig(models.Model):
 
     def validate(self):
         try:
-            return Api(consumer_key=self.consumer_key, consumer_secret=self.consumer_secret, access_token_key=self.access_token_key, access_token_secret=self.access_token_secret)
+            return Twython(self.consumer_key, self.consumer_secret, self.access_token_key, self.access_token_secret)
         except Exception, e:
             return e
 
@@ -1554,7 +1558,7 @@ class TwitterConfig(models.Model):
         api = self.validate()
 
         try:
-            status = api.PostUpdate(tweet_text)
+            status = api.update_status(status=tweet_text)
         except Exception, e:
             status = e
         return status

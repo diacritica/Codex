@@ -5,11 +5,10 @@ from django.contrib import admin, databrowse
 
 from web.models import *
 from web import views
-from django.views.generic import  DetailView, ListView
+from django.views.generic import  DetailView, ListView, RedirectView
 from django.views.generic.edit import FormView
 
-from django.views.generic.simple import direct_to_template
-from django.views.generic.simple import redirect_to
+#from django.views.generic.simple import redirect_to
 
 from web.feeds import LatestEntriesFeed
 from django.conf import settings
@@ -35,17 +34,6 @@ databrowse.site.register(Rule)
 #databrowse.site.register(TaggableManager)
 
 admin.autodiscover()
-
-
-#Tastypie
-from tastypie.api import Api
-from web.formstp import AdventureResource
-
-
-v1_formstp = Api(api_name='v1')
-v1_formstp.register(AdventureResource())
-
-
 
 urlpatterns = patterns('',
     # Examples:
@@ -100,9 +88,11 @@ urlpatterns = patterns('',
     (r'^object/(?P<slug>.+)/$',views.ObjectDetailView),
     (r'^object/$',views.ObjectSectionView),
 
-    (r'^search/all/$', redirect_to, {'url': '/advancedsearch/'}),
+    (r'^search/all/$', RedirectView.as_view(url='/advancedsearch/')),
+    (r'^search/None/None/$',RedirectView.as_view(url='/advancedsearch/')),
+
     (r'^search/$',views.SearchRedirectView),
-    (r'^search/None/None/$',redirect_to, {'url': '/advancedsearch/'}),
+
 
 #    (r'^search/(?P<searchfilter>all|object|character|creature|location|adventure|chronicle)/(?P<canonlvl>ALL|NEW|AP|APC|C)/(?P<searchterm>.*)/$',views.SimpleSearchView),
     (r'^search/(?P<searchfilter>all|object|character|creature|location|adventure|chronicle)/(?P<searchterm>.*)/$',views.SimpleSearchView),
@@ -121,51 +111,48 @@ urlpatterns = patterns('',
     (r'^$', views.IndexView),
     (r'^rss.xml$', LatestEntriesFeed()),
 
-    #Tastypie forms support
-    (r'^tp/', include(v1_formstp.urls)),
-
 )
 
 if settings.ENVIRONMENT=="DEVELFO":
     urlpatterns += patterns('',
         url(r'^css/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': "/home/elfo/GIT/CODEX/codex/templates/web/css/",
+            'document_root': "/srv/GHILBRAE/CODEX/codex/templates/web/css/",
         }),
         url(r'^ima/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': "/home/elfo/GIT/CODEX/codex/templates/web/ima/",
+            'document_root': "/srv/GHILBRAE/CODEX/codex/templates/web/ima/",
         }),
         url(r'^js/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': "/home/elfo/GIT/CODEX/codex/templates/web/js/",
+            'document_root': "/srv/GHILBRAE/CODEX/codex/templates/web/js/",
         }),
         url(r'^rotativo/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': "/home/elfo/GIT/CODEX/codex/templates/web/rotativo/",
+            'document_root': "/srv/GHILBRAE/CODEX/codex/templates/web/rotativo/",
         }),
         url(r'^media/img/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': "/home/elfo/GIT/CODEX/codex/media/img/",
+            'document_root': "/srv/GHILBRAE/CODEX/codex/media/img/",
         }),
         url(r'^media/files/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': "/home/elfo/GIT/CODEX/codex/media/files/",
+            'document_root': "/srv/GHILBRAE/CODEX/codex/media/files/",
         }),
    )
-elif settings.ENVIRONMENT=="DEVELWEN":
+elif settings.ENVIRONMENT=="DEV":
     urlpatterns += patterns('',
         url(r'^css/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': "/home/CORTEX-ELWEN/git/Codex/codex/templates/web/css/",
+            'document_root': "/home/ghilbrae/Software/git/Codex/codex/templates/web/css/",
         }),
         url(r'^ima/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': "/home/CORTEX-ELWEN/git/Codex/codex/templates/web/ima/",
+            'document_root': "/home/ghilbrae/Software/git/Codex/codex/templates/web/ima/",
         }),
         url(r'^js/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': "/home/CORTEX-ELWEN/git/Codex/codex/templates/web/js/",
+            'document_root': "/home/ghilbrae/Software/git/Codex/codex/templates/web/js/",
         }),
         url(r'^rotativo/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': "/home/CORTEX-ELWEN/git/Codex/codex/templates/web/rotativo/",
+            'document_root': "/home/ghilbrae/Software/git/Codex/codex/templates/web/rotativo/",
         }),
         url(r'^media/img/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': "/home/CORTEX-ELWEN/git/Codex/codex/media/img/",
+            'document_root': "/home/ghilbrae/Software/git/Codex/codex/media/img/",
         }),
         url(r'^media/files/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': "/home/CORTEX-ELWEN/git/Codex/codex/media/files/",
+            'document_root': "/home/ghilbrae/Software/git/Codex/codex/media/files/",
         }),
    )
 

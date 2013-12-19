@@ -32,23 +32,27 @@ def getCreature(creature_list, hitdice):
         return False
 
 def getTreasure(encounter):
-    treasure = ''
+    #Generate treasure for an encounter
+    treasure = []
     for creature in encounter:
-        print encounter, creature
+        #The encounter is a dict with numcreatures and type of creature
         creatreasure = creature[1].treasurevalue
         if creatreasure == '':
-            treasure = ''
+            treasure = []
         else:
             factor = randint(0,15)/10.
             if factor != 0.0:
                 factor = str(factor * creature[0]) # factor x numcreatures
                 tmp = creatreasure + ' x ' + factor
-                if treasure != '':
-                    treasure = tmp + ' + ' + treasure
-                else:
-                    treasure = tmp
+                treasure.append(tmp)
+                #if treasure != []:
+                    ##treasure = tmp + ' + ' + treasure
+                    #treasure.append(tmp)
+                #else:
+                    ##treasure = tmp
+                    #treasure.append(tmp)
                 print 'getTreasure', treasure
-    if treasure != '':
+    if treasure != []:
         return treasure
     else: return False
 
