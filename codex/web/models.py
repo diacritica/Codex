@@ -249,7 +249,7 @@ SPECIES_CHOICES = (
         ('Ele', _(u'Elemental')),
         ('Elf', _(u'Elfo')),
         ('Dwf', _(u'Enano')),
-        ('HDwf', _(u'Semin-Enano')),
+        ('HDwf', _(u'Semi-Enano')),
         ('Gnm', _(u'Gnomo')),
         ('Hfg', _(u'Halfling')),
         ('Fae', _(u'Hada')),
