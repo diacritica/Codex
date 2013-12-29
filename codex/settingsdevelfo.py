@@ -124,7 +124,6 @@ INSTALLED_APPS = (
     'django_extensions',
     'south',
     'taggit',
-    'tastypie',
 #    'haystack',
 
 )
