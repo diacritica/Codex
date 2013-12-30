@@ -43,20 +43,15 @@ class MainEntity(models.Model):
         #FIXME - Send tweet goes here 
         super(MainEntity, self).save(*args, **kwargs) #FIXME
                 
-    def searchText(self):
-        return unicode("{name - description - comments}".format(name=self.name, description=self.description, comments=self.comments))
-                
     def __unicode__(self):
-        #return unicode("%s -%s-%s-%s-%s" % (self.slug, self.name))
         return unicode("{slug}: {name}".format(slug=self.slug, name=self.name))
-                
+    
     def get_absolute_url(self):
-        #return unicode(u"%s/%s"%(u"/class.__name___",self.slug))
-        return unicode("{ctype}/{slug}".format(ctype="/"+class.__name__.lower(),slug=self.slug))
-        
+        return unicode("/{ctype}/{slug}".format(ctype=self.__class__.__name__.lower(),slug=self.slug))
+    
     class Meta:
-        db_table = class.__name__
-        verbose_name = _(class.__name__)
+        # db_table = 'model_name'
+        # # verbose_name = _('model_name')
         get_latest_by = 'last_updated'
         ordering = ['-last_updated','id']
         abstract = True
@@ -68,7 +63,6 @@ class AuxiliaryEntity(models.Model):
     
     name = models.CharField(max_length=100, blank=False, null=False,                            verbose_name=_('Full name'))
     description = models.TextField(blank=True, null=True, verbose_name=_('Description'))
-    date = models.DateField(verbose_name=_('Creation date'))
     image = models.ManyToManyField('Image', blank=True, null=True,  related_name=_("%(class)s Image"))
     tags = TaggableManager(blank=True)
     comments = models.TextField(blank=True, null=True, verbose_name=_('Comments'))
@@ -80,17 +74,45 @@ class AuxiliaryEntity(models.Model):
     last_updated = models.DateTimeField(null=True, verbose_name=_('Last updated'))
 
     def __unicode__(self):
-        return unicode("{slug}: {name}".format(slug=self.slug, name=self.name))
+        return unicode("{id}: {name}".format(id=self.id, name=self.name))
     
     def get_absolute_url(self):
-        return unicode("{ctype}/{slug}".format(ctype="/"+class.__name__.lower(),slug=self.slug))
+        return unicode("/{ctype}/{id}".format(ctype=self.__class__.__name__.lower(),id=self.id))
     
     class Meta:
-        db_table = class.__name__
-        verbose_name = _(class.__name__)
+        # db_table = 'model_name'
+        # verbose_name = _('model_name')
         get_latest_by = 'last_updated'
         ordering = ['-last_updated','id']
         abstract = True
+
+class ImageEntity(models.Model):
+
+    name = models.CharField(max_length=100, blank=False, null=False,                            verbose_name=_('Full name'))
+    description = models.TextField(blank=True, null=True, verbose_name=_('Description'))
+    image = models.ImageField(upload_to='img/', blank=True, null=True,  verbose_name=_("Image field"))
+    tags = TaggableManager(blank=True)
+    comments = models.TextField(blank=True, null=True, verbose_name=_('Comments'))
+    author = models.ManyToManyField("Author", blank=True, null=True,  verbose_name=_("Entity's authorship"))
+    canon_level = models.CharField(max_length=5, blank=True, null=True, choices=mc.CANON_LEVEL_CHOICES, verbose_name=_('Canon Level'))
+
+    deactivated = models.BooleanField(blank=True, verbose_name=_('Deactivated'))
+    creation_date = models.DateTimeField(null=True, verbose_name=_('Creation date'))
+    last_updated = models.DateTimeField(null=True, verbose_name=_('Last updated'))
+
+    def __unicode__(self):
+        return unicode("{id}: {name}".format(id=self.id, name=self.name))
+    
+    def get_absolute_url(self):
+        return unicode("/{ctype}/{id}".format(ctype=self.__class__.__name__.lower(),id=self.id))
+    
+    class Meta:
+        # db_table = 'model_name'
+        # verbose_name = _('model_name')
+        get_latest_by = 'last_updated'
+        ordering = ['-last_updated','id']
+        abstract = True
+
 
 class RelationEntity(models.Model):
 
@@ -102,8 +124,8 @@ class RelationEntity(models.Model):
         return unicode("{id}".format(id=self.id))
     
     class Meta:
-        db_table = class.__name__
-        verbose_name = _(class.__name__)
+        # db_table = 'model_name'
+        # verbose_name = _('model_name')
         get_latest_by = 'last_updated'
         ordering = ['-last_updated','id']
         abstract = True
@@ -126,7 +148,7 @@ class Author(models.Model):
         return unicode("%s -%s-" % (self.name, self.nickname))
 
     class Meta:
-        db_table = class.__name__
+        # db_table = 'model_name'
         verbose_name = _(u'Author')
         get_latest_by = 'order_name'
         ordering = ['-name']
@@ -245,6 +267,7 @@ class Location(MainEntity):
     relatedobject = models.ManyToManyField('Object', blank=True, null=True, related_name=_('Objetos en la localizacion'))
     relatedencountersetting = models.ManyToManyField('EncounterSetting', blank=True, null=True, related_name=_('Location Encounter Setting'))
     relatedcharacter = models.ManyToManyField("Character", blank=True, null=True,  verbose_name=_("Character Relationship"), through='CharacterLocationRelationship')
+    containedlocation = models.ManyToManyField('Location', blank=True, null=True, related_name=_('Contained Locations'))
 
 
 class Object(MainEntity):
@@ -327,13 +350,6 @@ class Language(AuxiliaryEntity):
 class Religion(AuxiliaryEntity):
     pass
 
-class Image(AuxiliaryEntity):
-    pass
-
-class ThumbnailImage(models.Model):
-    image = models.ImageField(upload_to='img/thumbnail/', blank=True, null=True
-                              , verbose_name=_("Image field"))
-
 class RuleSection(AuxiliaryEntity):
     pass
 
@@ -343,8 +359,14 @@ class EncounterSetting(AuxiliaryEntity):
     pass
 
 
-class AttachFile(models.Model):
+class AttachFile(AuxiliaryEntity):
     content = models.FileField(upload_to='files/', blank=True, null=True,  verbose_name=_("Content field"))
+
+class Image(ImageEntity):
+    pass
+
+class ThumbnailImage(ImageEntity):
+    pass
 
 
 ## Relation Entities 
@@ -357,8 +379,8 @@ class CharacterRelationship(RelationEntity):
     relation21 = models.CharField(max_length=10, blank=True, null=True, choices=mc.CHAR_RELATIONSHIP_CHOICES, verbose_name=_(u'Relationship 2 -> 1'))
 
     class Meta:
-        db_table = class.__name__
-        verbose_name = _(class.__name__)
+        # db_table = 'model_name'
+        # verbose_name = _('model_name')
         get_latest_by = 'order_character1'
         ordering = ['-character1']
         unique_together = (u'character1', u'character2')
@@ -372,8 +394,8 @@ class CreatureRelationship(RelationEntity):
     relation21 = models.CharField(max_length=10, blank=True, null=True, choices=mc.CRE_RELATIONSHIP_CHOICES, verbose_name=_('Relationship 2 -> 1'))
 
     class Meta:
-        db_table = class.__name__
-        verbose_name = _(class.__name__)
+        # db_table = 'model_name'
+        # verbose_name = _('model_name')
         get_latest_by = 'order_creature1'
         ordering = ['-creature1']
         unique_together = ('creature1', 'creature2')
@@ -385,8 +407,8 @@ class CharacterLocationRelationship(RelationEntity):
     relation = models.CharField(max_length=10, blank=True, null=True, choices=mc.CHARLOC_RELATIONSHIP_CHOICES, verbose_name=_('CharLocRelationship'))
 
     class Meta:
-        db_table = class.__name__
-        verbose_name = _(class.__name__)
+        # db_table = 'model_name'
+        # verbose_name = _('model_name')
         get_latest_by = 'order_character'
         ordering = ['-character']
         unique_together = ('character', 'location')
@@ -401,8 +423,8 @@ class ObjectRelationship(RelationEntity):
 
 
     class Meta:
-        db_table = class.__name__
-        verbose_name = _(class.__name__)
+        # db_table = 'model_name'
+        # verbose_name = _('model_name')
         get_latest_by = 'order_object1'
         ordering = ['-object1']
         unique_together = ('object1', 'object2')

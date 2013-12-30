@@ -65,7 +65,7 @@ def IndexView(request):
     adventures = Adventure.objects.all().order_by('-last_updated')[:3]
     rules = Rule.objects.all().order_by('-last_updated')[:3]
     spells = Spell.objects.all().order_by('-last_updated')[:3]
-    fanarts = FanArt.objects.all().order_by('-last_updated')[:3]
+    fanarts = Fanart.objects.all().order_by('-last_updated')[:3]
 
 
 
@@ -280,7 +280,7 @@ def AdventureSectionView(request):
 
     adventureSectionView_dict = {}
 
-    adventure_options = {"PRICE_RANGES":PRICE_RANGES}
+    adventure_options = {"PRICE_RANGES":mc.PRICE_RANGES}
     range_options = {"lownum":range(1,11),"highnum":range(1,26)}
     adventures_options = {'adventures':Adventure.objects.all()}
 
@@ -355,7 +355,7 @@ def getRelatedByTags(anObject):
     adv_related_by_tags = Adventure.objects.filter(tags__name__in=anObject.tags.values_list('name',flat=True)).exclude(id=anObject.id).distinct()
     loc_related_by_tags = Location.objects.filter(tags__name__in=anObject.tags.values_list('name',flat=True)).exclude(id=anObject.id).distinct()
     chr_related_by_tags = Chronicle.objects.filter(tags__name__in=anObject.tags.values_list('name',flat=True)).exclude(id=anObject.id).distinct()
-    fa_related_by_tags = FanArt.objects.filter(tags__name__in=anObject.tags.values_list('name',flat=True)).exclude(id=anObject.id).distinct()
+    fa_related_by_tags = Fanart.objects.filter(tags__name__in=anObject.tags.values_list('name',flat=True)).exclude(id=anObject.id).distinct()
     rul_related_by_tags = Rule.objects.filter(tags__name__in=anObject.tags.values_list('name',flat=True)).exclude(id=anObject.id).distinct()
     spe_related_by_tags = Spell.objects.filter(tags__name__in=anObject.tags.values_list('name',flat=True)).exclude(id=anObject.id).distinct()
 
@@ -487,8 +487,8 @@ def RuleDetailView(request, slug):
             "object": rule, "relatedobjectsbytags":relatedobjectsbytags,'MEDIA_URL':MEDIA_URL,'STATIC_URL':STATIC_URL,
     },context_instance=RequestContext(request))
 
-def FanArtListingView(request):
-    allobjects = FanArt.objects.all()
+def FanartListingView(request):
+    allobjects = Fanart.objects.all()
 
     paginator = Paginator(allobjects, 12) # Show 12 contacts per page
 
@@ -507,8 +507,8 @@ def FanArtListingView(request):
 
     return render_to_response("web/fanart_listing.html",{'results':objects,'MEDIA_URL':MEDIA_URL})
 
-def FanArtDetailView(request, slug):
-    fanart = get_object_or_404(FanArt, slug=slug)
+def FanartDetailView(request, slug):
+    fanart = get_object_or_404(Fanart, slug=slug)
 
 
     relatedobjectsbytags = getRelatedByTags(fanart)
@@ -517,14 +517,14 @@ def FanArtDetailView(request, slug):
             "object": fanart, "relatedobjectsbytags":relatedobjectsbytags,'MEDIA_URL':MEDIA_URL,'STATIC_URL':STATIC_URL,
     },context_instance=RequestContext(request))
 
-def FanArtSectionView(request):
-    objects = FanArt.objects.all()[:3]
-    highlightedresult = FanArt.objects.filter(highlight=True).order_by('?')[0]
+def FanartSectionView(request):
+    objects = Fanart.objects.all()[:3]
+    highlightedresult = Fanart.objects.filter(highlight=True).order_by('?')[0]
 
     fanartSectionView_dict = {}
 
 
-    fanart_options = {'fanarts':FanArt.objects.all(),"FANART_LICENSE_CHOICES":FANART_LICENSE_CHOICES,\
+    fanart_options = {'fanarts':Fanart.objects.all(),"FANART_LICENSE_CHOICES":FANART_LICENSE_CHOICES,\
     "FANART_CATEGORY_CHOICES":FANART_CATEGORY_CHOICES,\
     "FANART_TYPE_CHOICES":FANART_TYPE_CHOICES}
 

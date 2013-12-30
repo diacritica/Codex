@@ -79,9 +79,9 @@ urlpatterns = patterns('',
     (r'^spell/(?P<slug>.+)/$',views.SpellDetailView),
     (r'^spell/$',views.SpellSectionView),
 
-    (r'^fanart/all/$',views.FanArtListingView),
-    (r'^fanart/(?P<slug>.+)/$',views.FanArtDetailView),
-    (r'^fanart/$',views.FanArtSectionView),
+    (r'^fanart/all/$',views.FanartListingView),
+    (r'^fanart/(?P<slug>.+)/$',views.FanartDetailView),
+    (r'^fanart/$',views.FanartSectionView),
 
 
     (r'^object/all/$',views.ObjectListingView),
