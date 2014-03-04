@@ -15,7 +15,7 @@ m = __import__("web")
 
 def GenericDetailView(request, category, slug):
 
-    validcategories = ["object","location","character","creature","adventure","chronicle"]
+    validcategories = ["object","location","character","creature","adventure","chronicle","spell","rule"]
     
     if category in validcategories:
 
