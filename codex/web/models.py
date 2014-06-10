@@ -1268,6 +1268,8 @@ class Spell(models.Model):
         d = vars(self)
         authorlist =  [g.name for g in self.author.all()]
         d["author"]=authorlist
+        affectedclassracelist =  [g.name for g in self.affectedclassrace.all()]
+        d["affectedclassrace"]=affectedclassracelist
         d.pop("_state")
         d.pop("last_updated")
         d.pop("creation_date")
