@@ -12,7 +12,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'codexdb',                      # Or path to database file if using sqlite3.
+        'NAME': 'codex',                      # Or path to database file if using sqlite3.
         'USER': 'codex',                      # Not used with sqlite3.
         'PASSWORD': 'codex',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
@@ -50,7 +50,7 @@ MEDIA_ROOT = '/home/CORTEX-ELWEN/git/Codex/codex/media/'
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = 'http://192.168.10.170:8000/media/'
+MEDIA_URL = 'http://127.0.0.1:8000/media/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
@@ -67,7 +67,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    '/home/CORTEX-ELWEN/git/Codex/env/lib/python2.7/site-packages/django/contrib/admin/static/admin/',
+    '/home/elwen/.virtualenvs/codex/lib/python2.7/site-packages/django/contrib/admin/static/admin/',
 )
 
 # List of finder classes that know how to find static files in
