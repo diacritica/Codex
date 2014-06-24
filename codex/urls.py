@@ -134,29 +134,27 @@ if settings.ENVIRONMENT=="DEVELFO":
             'document_root': "/home/elfo/GIT/CODEX/codex/media/files/",
         }),
    )
-elif settings.ENVIRONMENT=="DEV":
+elif settings.ENVIRONMENT=="DEVELWEN":
     urlpatterns += patterns('',
         url(r'^css/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': "/home/ghilbrae/Software/git/Codex/codex/templates/web/css/",
+            'document_root': "/home/elwen/cortex-elwen/git/Codex/codex/templates/web/css/",
         }),
         url(r'^ima/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': "/home/ghilbrae/Software/git/Codex/codex/templates/web/ima/",
+            'document_root': "/home/elwen/cortex-elwen/git/Codex/codex/templates/web/ima/",
         }),
         url(r'^js/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': "/home/ghilbrae/Software/git/Codex/codex/templates/web/js/",
+            'document_root': "/home/elwen/cortex-elwen/git/Codex/codex/templates/web/js/",
         }),
         url(r'^rotativo/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': "/home/ghilbrae/Software/git/Codex/codex/templates/web/rotativo/",
+            'document_root': "/home/elwen/cortex-elwen/git/Codex/codex/templates/web/rotativo/",
         }),
         url(r'^media/img/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': "/home/ghilbrae/Software/git/Codex/codex/media/img/",
+            'document_root': "/home/elwen/cortex-elwen/git/Codex/codex/media/img/",
         }),
         url(r'^media/files/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': "/home/ghilbrae/Software/git/Codex/codex/media/files/",
+            'document_root': "/home/elwen/cortex-elwen/git/Codex/codex/media/files/",
         }),
    )
 
 handler404 = 'codex.web.views.NotFoundView'
 handler500 = 'codex.web.views.InternalErrorView'
-
-

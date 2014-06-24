@@ -48,11 +48,20 @@ SAVE_CHOICES = ( (profession[0] , "{0}: level {1}".format(profession[1][0],level
                  for level in range(MINLEVEL,profession[1][1]+1) 
 )
 
+CRE_SAVE_CHOICES = ( (profession[0] , "{0}: level {1}".format(profession[1][0],level) ) 
+
+
+                 for profession in PROFESSION_DESCRIPTOR.items()
+                 for level in range(MINLEVEL,profession[1][1]+1) 
+)
+
+
 MINMORAL = 1
 MAXMORAL = 12
 
-MORAL_CHOICES = (('{moral}'.format(moral=moral) ,'{moral}'.format(moral=moral)) for moral in range(MINMORAL,MAXMORAL+1)  )
+MORALE_CHOICES = (('{moral}'.format(moral=moral) ,'{moral}'.format(moral=moral)) for moral in range(MINMORAL,MAXMORAL+1)  )
 
+CRE_MORALE_CHOICES = (('{moral}'.format(moral=moral) ,'{moral}'.format(moral=moral)) for moral in range(MINMORAL,MAXMORAL+1)  )
 
 ALIGN_CHOICES = (
         ('L', _(u'Legal')),

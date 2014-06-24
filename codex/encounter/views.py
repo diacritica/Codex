@@ -92,10 +92,10 @@ def Encounter(request, canon, align, setting, players_level, chosen_difficulty):
 
     # A list of all the available settings must be sent to the HTML to generate the drop down list
     settings_list = EncounterSetting.objects.filter(deactivated=False)
-
+    
     # Create a list with all the creatures available:
     creature_list = Creature.objects.all()
-
+    
     # 1. filter available creatures by setting
     if setting == '0':
         pass
@@ -107,6 +107,7 @@ def Encounter(request, canon, align, setting, players_level, chosen_difficulty):
         pass
     else:
         creature_list = creature_list.filter(canon_level = canon)
+        
     # 3. filter available creatures by alignment
     if align == 'ALL':
         pass
@@ -119,7 +120,7 @@ def Encounter(request, canon, align, setting, players_level, chosen_difficulty):
     
     # 3. Possible encounters
     encounter_list = {}
-    base_encounterHD = players_level/arbitrary_num
+    base_encounterHD = players_level / arbitrary_num
     
     for ncreatures in range(1,20):
         
@@ -127,21 +128,21 @@ def Encounter(request, canon, align, setting, players_level, chosen_difficulty):
             encounterHD = base_encounterHD * difficulty["one"][chosen_difficulty]
         else:
             encounterHD = base_encounterHD * difficulty["n"][chosen_difficulty]
-        #print "encounterHD/ncreatures: ", encounterHD, ncreatures
+        print "encounterHD/ncreatures: ", encounterHD, ncreatures
         hitdice = int(round(encounterHD/ncreatures)) #rounded, two ints
         # To ensure that for low levels it does not continue
         if hitdice >= 1:
             creature = getCreature(creature_list, hitdice)
             if creature:
-                encounter_list[ncreatures] = [hitdice,creature]
-            #print "encounter_list: ", encounter_list
+                encounter_list[ncreatures] = [hitdice, creature]
+            print "encounter_list: ", encounter_list
         else:
             break
 
     # Check if there is something inside the encounter_list
     # (important for low level characters)
 
-    #print "encounter_list: ", encounter_list
+    print "encounter_list: ", encounter_list
     leader = False
     if encounter_list.keys():
         probs = region.keys() #FIXME!
@@ -189,10 +190,10 @@ def Encounter(request, canon, align, setting, players_level, chosen_difficulty):
         numcreatures = False
         final_encounter = ''
         treasure = False
-#    print 'encounter: ', numcreatures, encounter, leader
 
     if leader:
         return render_to_response('encounter/encounter_gen.html', {'numcreatures': numcreatures, 'leader': final_encounter[0][1], 'encounter':final_encounter[-1][1], 'treasure': treasure, 'form':form, 'settings_list': settings_list})
+    elif numcreatures == False:
+        return render_to_response('encounter/encounter_gen.html', {'numcreatures': numcreatures, 'leader': False, 'encounter':final_encounter, 'treasure':treasure, 'form':form, 'settings_list': settings_list})
     else:
         return render_to_response('encounter/encounter_gen.html', {'numcreatures': numcreatures, 'leader': False, 'encounter':final_encounter[-1][1], 'treasure':treasure, 'form':form, 'settings_list': settings_list})
-

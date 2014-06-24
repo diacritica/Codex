@@ -169,7 +169,7 @@ class Character(MainEntity):
     move = models.CharField(max_length=100, blank=True, null=True,
         verbose_name=_('Movement'))
     moral = models.CharField(max_length=2, blank=True, null=True,
-        choices=mc.MORAL_CHOICES, verbose_name=_('Moral'))
+        choices=mc.MORALE_CHOICES, verbose_name=_('Morale'))
     saveroll = models.CharField(max_length=20, blank=True, null=True, choices=mc.SAVE_CHOICES, verbose_name=_('Save roll'))
     hitpoints = models.CharField(max_length=100, blank=True, null=True, verbose_name=_('Hitpoints'))
     alignment = models.CharField(max_length=3, blank=True, null=True, choices=mc.ALIGN_CHOICES, verbose_name=_('Alignment'))
@@ -205,14 +205,14 @@ class Character(MainEntity):
 
 class Creature(MainEntity):
 
-    gender = models.CharField(max_length=2, blank=True, null=True, choices=mc.GENDER_CHOICES, verbose_name=_('Sexo'))
-    hitdice = models.CharField(max_length=100, blank=True, null=True, verbose_name=_('Dados de golpe'))
-    AC = models.CharField(max_length=10,blank=True, null=True, verbose_name=_('CA'))
-    treasurevalue = models.CharField(max_length=100, blank=True, null=True, verbose_name=_('Tesoro'))
-    XPvalue = models.IntegerField(blank=True, null=True, verbose_name=_('Valor PX'))
-    move = models.CharField(max_length=100, blank=True, null=True, verbose_name=_('Movimiento'))
-    moral = models.CharField(max_length=2, blank=True, null=True, choices=mc.MORAL_CHOICES, verbose_name=_('Moral'))
-    saveroll = models.CharField(max_length=20, blank=True, null=True, choices=mc.SAVE_CHOICES, verbose_name=_('TS'))
+    gender = models.CharField(max_length=2, blank=True, null=True, choices=mc.GENDER_CHOICES, verbose_name=_('Gender'))
+    hitdice = models.CharField(max_length=100, blank=True, null=True, verbose_name=_('Hit dice'))
+    AC = models.CharField(max_length=10,blank=True, null=True, verbose_name=_('AC'))
+    treasurevalue = models.CharField(max_length=100, blank=True, null=True, verbose_name=_('Treasure'))
+    XPvalue = models.IntegerField(blank=True, null=True, verbose_name=_('XP Value'))
+    move = models.CharField(max_length=100, blank=True, null=True, verbose_name=_('Movement'))
+    moral = models.CharField(max_length=2, blank=True, null=True, choices=mc.CRE_MORALE_CHOICES, verbose_name=_('Morale'))
+    saveroll = models.CharField(max_length=20, blank=True, null=True, choices=mc.CRE_SAVE_CHOICES, verbose_name=_('Save roll'))
     alignment = models.CharField(max_length=3, blank=True, null=True, choices=mc.CRE_ALIGN_CHOICES, verbose_name=_('Alineamiento'))
     languages = models.ManyToManyField("Language", blank=True, null=True, related_name=_('Known languages'))
 

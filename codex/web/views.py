@@ -5,6 +5,7 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.http import Http404
 
 from codex.web.models import *
+from codex.web.modelschoices import *
 
 from django.utils.translation import ugettext_lazy as _
 
@@ -102,7 +103,10 @@ def CharacterDetailView(request, slug):
 
 def CharacterSectionView(request):
     objects = Character.objects.exclude(deactivated=True)[:3]
-    highlightedresult = Character.objects.filter(highlight=True).order_by('?')[0]
+    try:
+        highlightedresult = Character.objects.filter(highlight=True).order_by('?')[0]
+    except:
+        highlightedresult = None
 
     characterSectionView_dict = {}
     locations_options = {'locations':Location.objects.exclude(deactivated=True)}
@@ -162,7 +166,10 @@ def CreatureDetailView(request, slug):
 
 def CreatureSectionView(request):
     objects = Creature.objects.exclude(deactivated=True)[:3]
-    highlightedresult = Creature.objects.filter(highlight=True).order_by('?')[0]
+    try:
+        highlightedresult = Creature.objects.filter(highlight=True).order_by('?')[0]
+    except:
+        highlightedresult = None
 
     creatureSectionView_dict = {}
     locations_options = {'locations':Location.objects.exclude(deactivated=True)}
@@ -201,7 +208,10 @@ def CreatureListingView(request):
 
 def LocationSectionView(request):
     objects = Location.objects.exclude(deactivated=True)[:3]
-    highlightedresult = Location.objects.filter(highlight=True).order_by('?')[0]
+    try:
+        highlightedresult = Location.objects.filter(highlight=True).order_by('?')[0]
+    except:
+        highlightedresult = None
 
     locationSectionView_dict = {}
     locations_options = {'locations':Location.objects.exclude(deactivated=True)}
@@ -240,7 +250,10 @@ def LocationListingView(request):
 
 def ObjectSectionView(request):
     objects = Object.objects.exclude(deactivated=True)[:3]
-    highlightedresult = Object.objects.filter(highlight=True).order_by('?')[0]
+    try:
+        highlightedresult = Object.objects.filter(highlight=True).order_by('?')[0]
+    except:
+        highlightedresult = None    
 
     objectSectionView_dict = {}
     object_options = {"OBJ_STATUS_CHOICES":OBJ_STATUS_CHOICES,"ALIGN_CHOICES":ALIGN_CHOICES,"OBJ_RARITY_CHOICES":OBJ_RARITY_CHOICES,"OBJ_TYPE_CHOICES":OBJ_TYPE_CHOICES}
@@ -276,8 +289,10 @@ def ObjectListingView(request):
 
 def AdventureSectionView(request):
     objects = Adventure.objects.all()[:3]
-    highlightedresult = Adventure.objects.filter(highlight=True).order_by('?')[0]
-
+    try:
+        highlightedresult = Adventure.objects.filter(highlight=True).order_by('?')[0]
+    except:
+        highlightedresult = None
     adventureSectionView_dict = {}
 
     adventure_options = {"PRICE_RANGES":mc.PRICE_RANGES}
@@ -315,7 +330,10 @@ def AdventureListingView(request):
 
 def ChronicleSectionView(request):
     objects = Chronicle.objects.all()[:3]
-    highlightedresult = Chronicle.objects.filter(highlight=True).order_by('?')[0]
+    try:
+        highlightedresult = Chronicle.objects.filter(highlight=True).order_by('?')[0]
+    except:
+        highlightedresult = None
 
     chronicleSectionView_dict = {}
     range_options = {"lownum":range(1,11),"highnum":range(1,26)}
@@ -427,7 +445,10 @@ def SpellListingView(request):
 
 def SpellSectionView(request):
     objects = Spell.objects.all()[:3]
-    highlightedresult = Spell.objects.filter(highlight=True).order_by('?')[0]
+    try:
+        highlightedresult = Spell.objects.filter(highlight=True).order_by('?')[0]
+    except:
+        highlightedresult = None     
     range_options = {"lownum": range(1,11),"highnum": range(1,26)}
     spellSectionView_dict = {}
     spellSectionView_dict.update(range_options)
@@ -438,8 +459,6 @@ def SpellSectionView(request):
 
 def SpellDetailView(request, slug):
     rule = get_object_or_404(Spell, slug=slug)
-
-
     relatedobjectsbytags = getRelatedByTags(rule)
 
     return render_to_response('web/spell_detail.html', {
@@ -470,7 +489,10 @@ def RuleListingView(request):
 
 def RuleSectionView(request):
     objects = Rule.objects.all()[:3]
-    highlightedresult = Rule.objects.filter(highlight=True).order_by('?')[0]
+    try:
+      highlightedresult = Rule.objects.filter(highlight=True).order_by('?')[0]
+    except:
+      highlightedresult = None
     ruleSectionView_dict = {}
 
     ruleSectionView_dict.update({'results':objects,'highlightedresult':highlightedresult,'rulesections':RuleSection.objects.all(),'MEDIA_URL':MEDIA_URL,'STATIC_URL':STATIC_URL})
@@ -519,8 +541,10 @@ def FanartDetailView(request, slug):
 
 def FanartSectionView(request):
     objects = Fanart.objects.all()[:3]
-    highlightedresult = Fanart.objects.filter(highlight=True).order_by('?')[0]
-
+    try:
+        highlightedresult = Fanart.objects.filter(highlight=True).order_by('?')[0]
+    except:
+        highlightedresult = None
     fanartSectionView_dict = {}
 
 
