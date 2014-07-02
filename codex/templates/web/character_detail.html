@@ -6,27 +6,27 @@
 		<div id="cabecera">
 			<div id="menu">
 				<ul>
-					<li><a href="/">El Codex</a></li>	
-					<li><a href="/character" class="seleccion">Personajes</a></li>
-					<li><a href="/creature">Bestiario</a></li>	
-					<li><a href="/location">Lugares</a></li>
-					<li><a href="/object">Objetos</a></li>	
-					<li><a href="/adventure">Aventuras</a></li>	
-					<li><a href="/chronicle">Crónicas</a></li>
-					<li><a href="/spell" >Conjuros</a></li>
-					<li><a href="/rule" >Reglas</a></li>
+					<li><a href="/">The Codex</a></li>	
+					<li><a href="/character" class="seleccion">Characters</a></li>
+					<li><a href="/creature">Bestiary</a></li>	
+					<li><a href="/location">Locations</a></li>
+					<li><a href="/object">Objects</a></li>	
+					<li><a href="/adventure">Adventures</a></li>	
+					<li><a href="/chronicle">Chronicles</a></li>
+					<li><a href="/spell" >Spells</a></li>
+					<li><a href="/rule" >Rules</a></li>
 					<li><a href="/fanart" >Fan Art</a></li>
-					<li><a href="/send_info">Enviar info</a></li>	
-					<li><a href="/contact">Contacto</a></li>
+					<li><a href="/send_info">Send entry</a></li>	
+					<li><a href="/contact">Contact</a></li>
         		</ul>
 			</div><!-- fin menu -->
 			
 			<div id="logo">
-				<a href="/"><img src="/ima/codex-logo.jpg" alt="Codex de las aventuras de la Marca del Este." /></a>
+				<a href="/"><img src="/ima/codex-logo.jpg" alt="Adventures of the East Mark Codex." /></a>
 			</div><!-- fin logo -->
 			
 			<div id="slogan">
-				La recopilación de todo el conocimiento sobre la Marca del Este.
+				A compilation of the knowledge of the East Mark.
 			</div><!-- fin logo -->
 			
 		
@@ -36,7 +36,7 @@
 		<div id="contenido" >
 			<div id="contenido-articulos" >
 			<div id="columna-izq">
-				<div id="volver"><span><a href="/">Volver a inicio</a>&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;</span> <a href="/character">Personaje</a></div>
+				<div id="volver"><span><a href="/">Home</a>&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;</span> <a href="/character">Character</a></div>
 				
 				<h1><img src="/ima/ico-portada-personaje.png" alt="personaje"/>{{object.name}}
                 {% if user.is_authenticated and user.is_staff %}
@@ -50,41 +50,41 @@
 				</p>
 
                 {% if object.strengthstat %}
-				<h2>Características:</h2>
+				<h2>Characteristics:</h2>
 				
 				<div class="lista3columnas">
 					<ul>
-						<li><b>FUERZA:</b>
+						<li><b>STRENGTH:</b>
 						  {% if object.strengthstat %}
 						  {{object.strengthstat}}
 						  {% else %}-
 						  {% endif %}
 						</li>
-						<li><b>CONSTITUCIÓN:</b>
+						<li><b>CONSTITUTION:</b>
 						  {% if object.constitutionstat %}
 						  {{object.constitutionstat}}
 						  {% else %}-
 						  {% endif %}
 						</li>
-						<li><b>SABIDURÍA:</b>
+						<li><b>WISDOM:</b>
 						  {% if object.wisdomstat %}
 						  {{object.wisdomstat}}
 						  {% else %}-
 						  {% endif %}
 						  </li>
-						<li><b>DESTREZA:</b>
+						<li><b>DEXTERITY:</b>
 						   {% if object.dexteritystat %}
 						  {{object.dexteritystat}}
 						  {% else %}-
 						  {% endif %}
 						  </li>
-						<li><b>INTELIGENCIA:</b>
+						<li><b>INTELLIGENCE:</b>
 						  {% if object.intelligencestat %}
 						  {{object.intelligencestat}}
 						  {% else %}-
 						  {% endif %}
 						  </li>
-						<li><b>CARISMA:</b>
+						<li><b>CHARISMA:</b>
 						  {% if object.charismastat %}
 						  {{object.charismastat}}
 						  {% else %}-
@@ -95,23 +95,23 @@
 				</div><!-- fin caract-->
 				{% endif %}
 
-				<h2>Detalles:</h2>
+				<h2>Details:</h2>
 
 				<div class="lista3columnas" id="list-detalle">
 					<ul>
-						<li><b>Sexo:</b> {{object.get_gender_display|default_if_none:"--"}}</li>
-						<li><b>Nivel:</b> {{object.level|default_if_none:"--"}}</li>
-						<li><b>Aparición:</b> {{object.startdate|default_if_none:"--"}}</li>
-						<li><b>Edad:</b> {{object.age|default:"--"}}</li>
-						<li><b>CA:</b> {{object.AC|default:"--"}}</li>
-						<li><b>Estado:</b> {{object.get_status_display|default_if_none:"--"}}</li>
-						<li><b>Especie:</b> {{object.get_species_display|default_if_none:"--"}}	</li>
-						<li><b>Movimiento:</b> {{object.move|default:"--"}}</li>
-						<li><b>Tipo:</b> {{object.get_pncorpc_display|default_if_none:"--"}}</li>
+						<li><b>Sex:</b> {{object.get_gender_display|default_if_none:"--"}}</li>
+						<li><b>Level:</b> {{object.level|default_if_none:"--"}}</li>
+						<li><b>First appearance:</b> {{object.startdate|default_if_none:"--"}}</li>
+						<li><b>Age:</b> {{object.age|default:"--"}}</li>
+						<li><b>AC:</b> {{object.AC|default:"--"}}</li>
+						<li><b>Status:</b> {{object.get_status_display|default_if_none:"--"}}</li>
+						<li><b>Species:</b> {{object.get_species_display|default_if_none:"--"}}	</li>
+						<li><b>Movement:</b> {{object.move|default:"--"}}</li>
+						<li><b>Type:</b> {{object.get_pncorpc_display|default_if_none:"--"}}</li>
 						
-						<li><b>Clase:</b> {{object.get_profession_display|default_if_none:"--"}}</li>
-						<li><b>Moral:</b> {{object.moral|default_if_none:"--"}}</li>
-						<li><b>Idiomas:</b>
+						<li><b>Class:</b> {{object.get_profession_display|default_if_none:"--"}}</li>
+						<li><b>Morale:</b> {{object.moral|default_if_none:"--"}}</li>
+						<li><b>Languages:</b>
                           {% if object.languages.all%}
        					  {% for language in object.languages.all %}
     					   {% if forloop.first %}
@@ -127,14 +127,14 @@
                             --
                         {% endif %}
 						</li>
-						<li><b>TS:</b> {{object.get_saveroll_display|default_if_none:"--"}}</li>
-						<li><b>Alineamiento:</b> {{object.get_alignment_display|default_if_none:"--"}}	</li>
+						<li><b>ST:</b> {{object.get_saveroll_display|default_if_none:"--"}}</li>
+						<li><b>Alingment:</b> {{object.get_alignment_display|default_if_none:"--"}}	</li>
 						<!--<li><b>Religión:</b>
 						  {% for religion in object.religion.all %}
 						  {{religion.name }},
 						  {% endfor %}
 						</li>-->
-						<li><b>Puntos de golpe:</b> {{object.hitpoints|default:"--"}}</li>
+						<li><b>Hit points:</b> {{object.hitpoints|default:"--"}}</li>
 						<li style="width: 300px"><b>Lugares:</b>&nbsp;
                         {% if object.relatedlocation.all %}
     					  {% for rlocation in object.relatedlocation.all %}
@@ -156,11 +156,11 @@
 				</div><!-- fin caract-->
 				
 				{% if object.weapons %}				
-				<h2>Ataques:</h2>
+				<h2>Attacks:</h2>
 				<p>{{object.weapons|safe}}</p>
 				{% endif %}
                 {% if object.comments %}				
-                <h2>Nota del autor:</h2>
+                <h2>Comments:</h2>
                 <p>{{object.comments|safe}}</p>		
 				{% endif %}
 				
@@ -192,7 +192,7 @@
 				<div id="firma-ima">
 
                     {% if image.author.all %}
-					<b>Autor de la ilustración</b>:
+					<b>Image author</b>:
                     {% for author in image.author.all%}
 					   {% if forloop.first %}
                         <a href="{{author.url}}">{{author.name}}</a>
@@ -217,7 +217,7 @@
 				{% endif %}
                 <div style="clear: both"></div>
                 {% if object.relatedobject.all %}
-				<h2>Equipo especial:</h2>
+				<h2>Special items:</h2>
 
 
 
@@ -234,7 +234,7 @@
 		
 
                 {% if object.relatedobject.all %}
-       				<h2>Equipo:</h2>
+       				<h2>Equipment:</h2>
        				
 				<div class="lista2columnas">
 
@@ -249,7 +249,7 @@
 
 
 				 {% if object.treasurevalue %}
-				<h2>Dinero y gemas:</h2>
+				<h2>Money and gems:</h2>
 				<p>
 
 						  {{object.treasurevalue}}
@@ -259,7 +259,7 @@
 				 {% endif %}
 
                 {% if relatedcharacters2 or relatedcharacters1 %}
-				<h2>Aliados y familiares:</h2>
+				<h2>Allies and family:</h2>
 				<div class="lista2columnas">
 					<ul>
 					  {% for relation in relatedcharacters2 %}
@@ -279,7 +279,7 @@
                 {% endif %}
 				
                 {% if relatedcharacters2 or relatedcharacters1 %}
-				<h2>Enemigos:</h2>
+				<h2>Enemies:</h2>
 				<div class="lista2columnas">
 					<ul>
 					  {% for relation in relatedcharacters2 %}
@@ -297,4 +297,5 @@
 					</ul>
 				</div><!-- fin lista2columnas-->
                 {% endif %}
+</div><!-- fin contenedor -->
 {% endblock %}		

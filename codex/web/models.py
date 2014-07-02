@@ -49,6 +49,9 @@ class MainEntity(models.Model):
     def get_absolute_url(self):
         return unicode("/{ctype}/{slug}".format(ctype=self.__class__.__name__.lower(),slug=self.slug))
     
+    def searchText(self):
+        return unicode("%s %s %s" % (self.name, self.description, self.comments))
+    
     class Meta:
         # db_table = 'model_name'
         # # verbose_name = _('model_name')
@@ -201,7 +204,7 @@ class Character(MainEntity):
     relatedobject = models.ManyToManyField('Object', blank=True, null=True, related_name=_('Objects'))
 
     relatedcharacter = models.ManyToManyField("Character", blank=True, null=True,  verbose_name=_("Character Relationship"), through='CharacterRelationship')
-
+    
 
 class Creature(MainEntity):
 

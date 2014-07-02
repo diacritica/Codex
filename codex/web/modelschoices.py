@@ -82,23 +82,22 @@ CRE_ALIGN_CHOICES = (
         ('NA', _(u'N/A')),
 )
 
-#FIXME translate
 SPECIES_CHOICES = (
         ('Spd', _(u'Spider')),
         ('Bsk', _(u'Basilisk')),
         ('Gd', _(u'God')),
         ('Drg', _(u'Dragon')),
         ('Ele', _(u'Elemental')),
-        ('Elf', _(u'Elfo')),
-        ('Dwf', _(u'Enano')),
-        ('Gnm', _(u'Gnomo')),
+        ('Elf', _(u'Elf')),
+        ('Dwf', _(u'Dwarf')),
+        ('Gnm', _(u'Gnom')),
         ('Hfg', _(u'Halfling')),
-        ('Fae', _(u'Hada')),
-        ('Skm', _(u'Hombre serpiente')),
-        ('Cbm', _(u'Hombre cobra')),
-        ('Hum', _(u'Humano')),
-        ('Lch', _(u'Liche')),
-        ('Orc', _(u'Orco')),
+        ('Fae', _(u'Fairy')),
+        ('Skm', _(u'Serpent men')),
+        ('Cbm', _(u'Cobra men')),
+        ('Hum', _(u'Human')),
+        ('Lch', _(u'Lich')),
+        ('Orc', _(u'Orc')),
         ('NA', _(u'N/A')),
 )
 
@@ -111,142 +110,136 @@ CHAR_STATUS_CHOICES = (
         ('OPl', _(u'In other plane')),
 )
 
-#FIXME translate
 LOC_STATUS_CHOICES = (
         ('Ac', _(u'Active')),
         ('R', _(u'Ruins')),
         ('D', _(u'Destroyed')),
-        ('A', _(u'Abandonado')),
-        ('RC', _(u'En reconstrucción')),
-        ('Ds', _(u'Desaparecido')),
+        ('A', _(u'Derelict')),
+        ('RC', _(u'Being rebuilded')),
+        ('Ds', _(u'Disappeared')),
         ('NA', _(u'N/A')),
 )
-#FIXME translate
+
 OBJ_STATUS_CHOICES = (
-        ('D', _(u'Destruido')),
-        ('Ds', _(u'Desconocido')),
-        ('Cr', _(u'Correcto')),
-        ('Fg', _(u'Fragmentado')),
+        ('D', _(u'Destroyed')),
+        ('Ds', _(u'Unknown')),
+        ('Cr', _(u'Good condition')),
+        ('Fg', _(u'Fragmented')),
         ('NA', _(u'N/A')),
 )
-#FIXME translate
+
 PNJ_CHOICES = (
         ('NA', _(u'N/A')),
-        ('NPC', _(u'ANJ')),
-        ('PC', _(u'AJ')),
+        ('NPC', _(u'NPC')),
+        ('PC', _(u'PC')),
 )
-#FIXME translate
+
 LOC_TYPE_CHOICES = (
-        ('Co', _(u'Continente')),
-        ('Tv', _(u'Taberna')),
-        ('Inn', _(u'Posada')),
-        ('Vg', _(u'Pueblo')),
-        ('C', _(u'Ciudad')),
-        ('K', _(u'Reino')),
-        ('Cy', _(u'País')),
-        ('T', _(u'Templo')),
-        ('Cs', _(u'Castillo')),
-        ('FB', _(u'Fortaleza')),
-        ('PB', _(u'Edifico Público')),
-        ('Op', _(u'Puesto avanzado')),
-        ('Pl', _(u'Palacio')),
-        ('Mn', _(u'Mina')),
-        ('Lk', _(u'Lago')),
-        ('Sw', _(u'Pantano')),
-        ('Mn', _(u'Montaña')),
-        ('Wl', _(u'Muralla')),
-        ('Cp', _(u'Ciudad Capital')),
-        ('Rv', _(u'Río')),
-        ('Is', _(u'Isla')),
-        ('Wd', _(u'Bosque')),
-        ('Shp', _(u'Comercio')),
-        ('Hm', _(u'Vivienda')),
-        ('Prt', _(u'Puerto')),
-        ('Scn', _(u'Paraje')),
-        ('Unk', _(u'Desconocido')),
+        ('Co', _(u'Continent')),
+        ('Tv', _(u'Tavern')),
+        ('Inn', _(u'Inn')),
+        ('Vg', _(u'Village')),
+        ('C', _(u'City')),
+        ('K', _(u'Kingdom')),
+        ('Cy', _(u'Country')),
+        ('T', _(u'Temple')),
+        ('Cs', _(u'Castle')),
+        ('FB', _(u'Fortress')),
+        ('PB', _(u'Public building')),
+        ('Op', _(u'Outpost')),
+        ('Pl', _(u'Palace')),
+        ('Mn', _(u'Mine')),
+        ('Lk', _(u'Lake')),
+        ('Sw', _(u'Swamp')),
+        ('Mn', _(u'Mountain')),
+        ('Wl', _(u'Wall')),
+        ('Cp', _(u'Capital city')),
+        ('Rv', _(u'River')),
+        ('Is', _(u'Island')),
+        ('Wd', _(u'Wood')),
+        ('Shp', _(u'Shop')),
+        ('Hm', _(u'Home')),
+        ('Prt', _(u'Port')),
+        ('Scn', _(u'Scenery')),
+        ('Dng', _(u'Dungeon')),
+        ('Unk', _(u'Unknown')),
 )
 
-#FIXME needes?
 CHARLOC_RELATIONSHIP_CHOICES = (
-        ('1', _('Nivel 1')),
-        ('2', _('Nivel 2')),
-        ('3', _('Nivel 3')),
+        ('1', _('Level 1')),
+        ('2', _('Level 2')),
+        ('3', _('Level 3')),
 )
 
-#FIXME translate
 OBJ_TYPE_CHOICES = (
-        ('W', _(u'Arma')),
-        ('S', _(u'Pergamino')),
-        ('A', _(u'Armadura')),
-        ('J', _(u'Joya')),
-        ('C', _(u'Moneda')),
-        ('Fr', _(u'Mobiliario')),
-        ('Trp', _(u'Transporte')),
-        ('Fd', _(u'Comida')),
-        ('Dk', _(u'Bebida')),
-        ('Hrb', _(u'Hierba')),
-        ('Tls', _(u'Herramienta')),
-        ('Clt', _(u'Tela/Vestimenta')),
-        ('Ven', _(u'Veneno')),
-        ('Pot', _(u'Poción')),
+        ('W', _(u'Weapon')),
+        ('S', _(u'Parchment')),
+        ('A', _(u'Armor')),
+        ('J', _(u'Jewel')),
+        ('C', _(u'Coin')),
+        ('Fr', _(u'Furniture')),
+        ('Trp', _(u'Transport')),
+        ('Fd', _(u'Food')),
+        ('Dk', _(u'Drink')),
+        ('Hrb', _(u'Herb')),
+        ('Tls', _(u'Tool')),
+        ('Clt', _(u'Cloth/Clothing')),
+        ('Ven', _(u'Poison')),
+        ('Pot', _(u'Potion')),
         ('Ani', _(u'Animal')),
-        ('Rcp', _(u'Recipiente')),
+        ('Rcp', _(u'Recipient')),
         ('N/A', _(u'N/A')),
 
 )
 
-#FIXME translate
 OBJ_RARITY_CHOICES = (
-        ('C', _(u'Común')),
-        ('R', _(u'Raro')),
-        ('U', _(u'Único')),
-        ('L', _(u'Legendario')),
+        ('C', _(u'Common')),
+        ('R', _(u'Rare')),
+        ('U', _(u'Unique')),
+        ('L', _(u'Legendary')),
         ('N/A', _(u'N/A')),
 )
 
-#FIXME translate
 CHAR_RELATIONSHIP_CHOICES = (
-        ('SON', _(u'Hijo')),
-        ('FATHER', _(u'Padre')),
-        ('BROTHER', _(u'Hermano')),
-        ('SUBDIT', _(u'Súbdito')),
-        ('GROUP', _(u'Grupo')),
-        ('FELLOW', _(u'Compañero')),
-        ('NEMESIS', _(u'Némesis')),
-        ('ENEMY', _(u'Enemigo')),
-        ('FRIEND', _(u'Amigo')),
-        ('MASTER', _(u'Maestro')),
-        ('APPRENTICE', _(u'Aprendiz')),
+        ('SON', _(u'Child')),
+        ('FATHER', _(u'Parent')),
+        ('BROTHER', _(u'Sibling')),
+        ('SUBDIT', _(u'Subject')),
+        ('GROUP', _(u'Gruop')),
+        ('FELLOW', _(u'Fellow')),
+        ('NEMESIS', _(u'Nemesis')),
+        ('ENEMY', _(u'Enemy')),
+        ('FRIEND', _(u'Friend')),
+        ('MASTER', _(u'Master')),
+        ('APPRENTICE', _(u'Apprentice')),
         ('FAMILIAR', _(u'Familiar (animal)')),
-        ('EMPLOYEE', _(u'Empleado')),
-        ('LORD', _(u'Señor')),
-        ('UNDERLING', _(u'Subalterno')),
-        ('COUSIN', _(u'Primo')),
-        ('NEPHEW', _(u'Sobrino')),
-        ('UNCLE', _(u'Tío')),
-        ('GRAND', _(u'Abuelo')),
-        ('CREATOR', _(u'Creador')),
-        ('STEPFATHER', _(u'Padrastro')),
-        ('STEPSON', _(u'Hijastro')),
+        ('EMPLOYEE', _(u'Employee')),
+        ('LORD', _(u'Lord')),
+        ('UNDERLING', _(u'Underling')),
+        ('COUSIN', _(u'Cousin')),
+        ('NEPHEW', _(u'Niece/Nephew')),
+        ('UNCLE', _(u'Uncle/Aunt')),
+        ('GRAND', _(u'Grand')),
+        ('CREATOR', _(u'Creator')),
+        ('STEPFATHER', _(u'Stepparent')),
+        ('STEPSON', _(u'Stepchild')),
 
 )
 
-#FIXME translate
 CRE_RELATIONSHIP_CHOICES = (
-        ('GROUP', _(u'Grupo')),
-        ('NEMESIS', _(u'Némesis')),
-        ('CREATOR', _(u'Creador')),
-        ('LEADER', _(u'Líder')),
-        ('UNDERLING', _(u'Esbirro')),
+        ('GROUP', _(u'Gruop')),
+        ('NEMESIS', _(u'Nemesis')),
+        ('CREATOR', _(u'Creator')),
+        ('LEADER', _(u'Leader')),
+        ('UNDERLING', _(u'Minion')),
 )
 
-#FIXME translate
 OBJ_RELATIONSHIP_CHOICES = (
-        ('PAIR', _(u'Pareja')),
-        ('ORIGIN', _(u'Origen')),
-        ('NEMESIS', _(u'Némesis')),
-        ('PIECE', _(u'Fragmento')),
-        ('TREASURE', _(u'Tesoro')),
+        ('PAIR', _(u'Pair')),
+        ('ORIGIN', _(u'Origin')),
+        ('NEMESIS', _(u'Nemesis')),
+        ('PIECE', _(u'Fragment')),
+        ('TREASURE', _(u'Treasure')),
 
 )
 
@@ -277,24 +270,25 @@ FANART_LICENSE_CHOICES = (
         ('CCBYSANC', _(u'CC BY SA NC')),
         ('N/A', _(u'N/A')),
 )
-#FIXME translate
+
 FANART_CATEGORY_CHOICES = (
-        ('Scn', _(u'Paisaje')),
-        ('Prs', _(u'Personas')),
-        ('Cre', _(u'Criaturas')),
-        ('Obj', _(u'Objeto')),
-        ('Bld', _(u'Edificio')),
-        ('Evn', _(u'Evento')),
+        ('Scn', _(u'Scenery')),
+        ('Prs', _(u'People')),
+        ('Cre', _(u'Creatures')),
+        ('Obj', _(u'Object')),
+        ('Bld', _(u'Building')),
+        ('Evn', _(u'Event')),
         ('N/A', _(u'N/A')),
 )
-#FIXME translate
+
 FANART_TYPE_CHOICES = (
-        ('Drw', _(u'Ilustración')),
-        ('Pnt', _(u'Pintura')),
-        ('Ph', _(u'Fotografía')),
-        ('Scp', _(u'Escultura')),
-        ('Hm', _(u'Manualidad')),
-        ('Oth', _(u'Otros')),
+        ('Drw', _(u'Ilustration')),
+        ('Pnt', _(u'Painting')),
+        ('Ph', _(u'Photo')),
+        ('Scp', _(u'Sculpture')),
+        ('Hm', _(u'Craft')),
+        ('Oth', _(u'Other')),
+        ('Dgt', _(u'Digital art')),
         ('N/A', _(u'N/A')),
 )
 

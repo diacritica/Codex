@@ -9,7 +9,7 @@
 		<meta name='description' content=''/>
 
 		<meta name="author" content=""/>
-		<meta name="language" content="spanish"/>
+		<meta name="language" content="english"/>
 		<meta name="revisit" content="10 day"/>
 		<meta name="distribution" content="global"/>
 
@@ -77,18 +77,18 @@ src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/jquery-ui.min.js"></scr
 		<div id="cabecera">
 			<div id="menu">
 				<ul>
-					<li><a href="/" class="seleccion">El Codex</a></li>	
-					<li><a href="/character">Personajes</a></li>
-					<li><a href="/creature">Bestiario</a></li>	
-					<li><a href="/location">Lugares</a></li>
-					<li><a href="/object">Objetos</a></li>	
-					<li><a href="/adventure">Aventuras</a></li>	
-					<li><a href="/chronicle">Crónicas</a></li>
-                                            <li><a href="/spell" >Conjuros</a></li>
-					<li><a href="/rule" >Reglas</a></li>
+					<li><a href="/" class="seleccion">The Codex</a></li>	
+					<li><a href="/character">Characters</a></li>
+					<li><a href="/creature">Bestiary</a></li>	
+					<li><a href="/location">Locations</a></li>
+					<li><a href="/object">Objects</a></li>	
+					<li><a href="/adventure">Adventures</a></li>	
+					<li><a href="/chronicle">Chronicles</a></li>
+                                            <li><a href="/spell" >Spells</a></li>
+					<li><a href="/rule" >Rules</a></li>
 					<li><a href="/fanart" >Fan Art</a></li>
-					<li><a href="/send_info">Enviar info</a></li>	
-					<li><a href="/contact">Contacto</a></li>
+					<li><a href="/send_info">Send entry</a></li>	
+					<li><a href="/contact">Contact</a></li>
         		</ul>
 			</div><!-- fin menu -->
 			
@@ -97,7 +97,7 @@ src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/jquery-ui.min.js"></scr
 			</div><!-- fin logo -->
 			
 			<div id="slogan">
-				La recopilación de todo el conocimiento sobre la Marca del Este.
+				A compilation of the knowledge of the East Mark.
 			</div><!-- fin logo -->
 			{% endblock %}
 			
@@ -106,15 +106,15 @@ src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/jquery-ui.min.js"></scr
 				<div id="form-busqueda-simple">
 				<form action="/search/" method='get'>
 					<select name="option">
-						<option value="all">Todo</option>
-						<option value="character">Personaje</option>
-						<option value="creature">Bestiario</option>
-						<option value="location">Lugar</option>
-						<option value="object">Objeto</option>
-						<option value="adventure">Aventura</option>
-						<option value="chronicle">Crónica</option>
-						<option value="spell">Conjuro</option>
-						<option value="rule">Regla</option>
+						<option value="all">All</option>
+						<option value="character">Character</option>
+						<option value="creature">Creature</option>
+						<option value="location">Location</option>
+						<option value="object">Object</option>
+						<option value="adventure">Adventure</option>
+						<option value="chronicle">Chronicle</option>
+						<option value="spell">Spell</option>
+						<option value="rule">Rule</option>
 						<option value="fanart">FanArt</option>
 					</select>
 					
@@ -123,7 +123,7 @@ src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/jquery-ui.min.js"></scr
 					<input class="boton_buscar" type="submit" value="Buscar" />
 				</form>
 				</div>
-				<div id="ir-busqueda-avanzada"><a href="/advancedsearch">Búsqueda<br/>avanzada</a></div>
+				<div id="ir-busqueda-avanzada"><a href="/advancedsearch">Advanced<br/>search</a></div>
 			</div><!-- fin busqueda-simple -->
 			
 			
@@ -136,46 +136,46 @@ src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/jquery-ui.min.js"></scr
 		<div id="contenido" >
 			<div id="contenido-articulos" >
 			<div id="columna-izq">
-				<div id="volver"><span><a href="#">Volver a inicio</a>&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;</span> <a href="#">Personaje</a></div>
+				<div id="volver"><span><a href="#">Home</a>&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;</span> <a href="#">Character</a></div>
 				
 				<h1>{{object.name}}</h1>
 				<p>{{object.description|safe}}
 				</p>
-				<h2>Características:</h2>
+				<h2>Characteristics:</h2>
 				
 				<div class="lista3columnas">
 					<ul>
-						<li><b>FUERZA:</b>
+						<li><b>STRENGHT:</b>
 						  {% if object.strengthstat %}
 						  {{object.strengthstat}}
 						  {% else %}-
 						  {% endif %}
 						</li>
-						<li><b>CONSTITUCIÓN:</b>
+						<li><b>CONSTITUTION:</b>
 						  {% if object.constitutionstat %}
 						  {{object.constitutionstat}}
 						  {% else %}-
 						  {% endif %}
 						</li>
-						<li><b>SABIDURÍA:</b>
+						<li><b>WISDOM:</b>
 						  {% if object.wisdomstat %}
 						  {{object.wisdomstat}}
 						  {% else %}-
 						  {% endif %}
 						  </li>
-						<li><b>DESTREZA:</b>
+						<li><b>DEXTERITY:</b>
 						   {% if object.dexteritystat %}
 						  {{object.dexteritystat}}
 						  {% else %}-
 						  {% endif %}
 						  </li>
-						<li><b>INTELIGENCIA:</b>
+						<li><b>INTELLIGENCE:</b>
 						  {% if object.intelligencestat %}
 						  {{object.intelligencestat}}
 						  {% else %}-
 						  {% endif %}
 						  </li>
-						<li><b>CARISMA:</b>
+						<li><b>CHARISMA:</b>
 						  {% if object.charismastat %}
 						  {{object.charismastat}}
 						  {% else %}-
@@ -187,36 +187,36 @@ src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/jquery-ui.min.js"></scr
 				
 				
 				
-				<h2>Detalles:</h2>
+				<h2>Details:</h2>
 
 				<div class="lista3columnas" id="list-detalle">
 					<ul>
-						<li><b>Sexo:</b> {{object.get_gender_display}}</li>
-						<li><b>Nivel:</b> {{object.level}}</li>
-						<li><b>Aparición:</b> {{object.startdate}}</li>
-						<li><b>Edad:</b> {{object.age}}</li>
-						<li><b>CA:</b> {{object.AC}}</li>
-						<li><b>Estado:</b> {{object.get_status_display}}</li>
-						<li><b>Especie:</b> {{object.species}}	</li>
-						<li><b>Movimiento:</b> {{object.move}}</li>
-						<li><b>Tipo:</b> {{object.get_pncorpc_display}}</li>
+						<li><b>Sex:</b> {{object.get_gender_display}}</li>
+						<li><b>Level:</b> {{object.level}}</li>
+						<li><b>First ???:</b> {{object.startdate}}</li>
+						<li><b>Age:</b> {{object.age}}</li>
+						<li><b>AC:</b> {{object.AC}}</li>
+						<li><b>Status:</b> {{object.get_status_display}}</li>
+						<li><b>Species:</b> {{object.species}}	</li>
+						<li><b>Movement:</b> {{object.move}}</li>
+						<li><b>Type:</b> {{object.get_pncorpc_display}}</li>
 						
-						<li><b>Clase:</b> {{object.get_profession_display}}</li>
-						<li><b>Moral:</b> {{object.moral}}</li>
-						<li><b>Idiomas:</b>
+						<li><b>Class:</b> {{object.get_profession_display}}</li>
+						<li><b>Morale:</b> {{object.moral}}</li>
+						<li><b>Languages:</b>
 						  {% for language in object.languages.all %}
 						  {{language.name }},
 						  {% endfor %}
 						</li>
-						<li><b>TS:</b> {{object.get_saveroll_display}}</li>
-						<li><b>Alineamiento:</b> {{object.get_alignment_display}}	</li>
-						<li><b>Religión:</b>
+						<li><b>ST:</b> {{object.get_saveroll_display}}</li>
+						<li><b>Alingment:</b> {{object.get_alignment_display}}	</li>
+						<li><b>Religion:</b>
 						  {% for religion in object.religion.all %}
 						  {{religion.name }},
 						  {% endfor %}
 						</li>
-						<li><b>Puntos de golpe:</b> {{object.hitpoints}}</li>
-						<li style="width: 300px"><b>Lugares:</b>
+						<li><b>Hit points:</b> {{object.hitpoints}}</li>
+						<li style="width: 300px"><b>Locations:</b>
 						  {% for rlocation in object.relatedlocation.all %}
                                                   {{rlocation.name }},
                                                   {% endfor %}
@@ -248,11 +248,11 @@ src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/jquery-ui.min.js"></scr
 					<div id="ima-canon"><img src="/ima/canon/canon-{{object.get_canon_level_display}}.jpg" alt="icono" height="68px" width="68px"/></div>				
 
 
-<div id="denominacion-canon"> {{object.get_canon_level_display}} <div id="que"><button
-id="opener" >¿Qué es esto?</button><!-- <a href="#">¿Qué es
-esto?</a>--></div></div>
-										
-	<div id="dialog" title="Nivel de Canon" style="font-family: Georgia;">
+<div id="denominacion-canon"> {{object.get_canon_level_display}} <!-- <div id="que"><button
+id="opener" >¿Qué es esto?</button></div> --> </div>
+
+<!-- This will go in a FAQ section or link -->										
+	<!-- <div id="dialog" title="Nivel de Canon" style="font-family: Georgia;">
 		<p style="font-size: 12px"> <img src="/ima/dialogocanon/sellooro.png"
 alt="icono" height="68px" width="68px" style="float: left;
 margin-right: 10px"/>
@@ -282,7 +282,7 @@ width="68px" style="float: left; margin-right: 10px"/>
 		<br/>  Representa un estado transitorio entre Nuevo y Canon/Apócrifo. El estudio sobre su adecuación o no al canon lo realizan los autores de La Marca del Este y pueden requerir de información complementaria al autor del contenido para resolver cualquier duda sobre su origen o sugerir algún cambio para poder adoptarlo como canon.
 		</p>
 	</div>			
-</div><!-- fin canon -->
+</div> --> <!-- fin canon -->
 
 {% endblock %}
 {% block rightcontent %}
@@ -305,7 +305,7 @@ width="68px" style="float: left; margin-right: 10px"/>
 				</div><!-- fin expo-ima -->
 				
 				<div id="firma-ima">
-					<b>Autor de la ilustración</b>: {{image.author.all}} <a href="{{image.author.web_url}}">{{image.author.web_url}}</a>
+					<b>Image author</b>: {{image.author.all}} <a href="{{image.author.web_url}}">{{image.author.web_url}}</a>
 				</div><!-- fin expo-ima -->
 					{% endif %}
 
@@ -393,11 +393,11 @@ width="68px" style="float: left; margin-right: 10px"/>
 
 {% block attachments %}			
 				{% if object.attachments.all %}
-				<div class="resaltado">Material de descarga:</div>				
+				<div class="resaltado">Downloadble content:</div>				
 				<div class="resaltado-cont">
                     {% for attach in object.attachments.all %}
 					<p>
-						<b>{{attach.name}}:</b> {{attach.description|default:""}} <a href="{{ MEDIA_URL }}{{attach.content.name}}">Descargar</a>.
+						<b>{{attach.name}}:</b> {{attach.description|default:""}} <a href="{{ MEDIA_URL }}{{attach.content.name}}">Download</a>.
 					</p>
                     {% endfor %}
 
@@ -408,16 +408,16 @@ width="68px" style="float: left; margin-right: 10px"/>
 
 {% block about %}			
 				
-				<div class="resaltado">Sobre el artículo:</div>				
+				<div class="resaltado">About this entry:</div>
 				<div class="resaltado-cont">
 					<p>
-						<b>Fecha de creación:</b> {{object.creation_date.date}}
+						<b>Creation date:</b> {{object.creation_date.date}}
 					</p>
 					<p>
-						<b>Última actualización:</b> {{object.last_updated.date}}
+						<b>Last update:</b> {{object.last_updated.date}}
 					</p>
 					<p>
-						<b>Autores:</b>
+						<b>Authors:</b>
                     {% for author in object.author.all %}
                     {% if forloop.revcounter != 1 %}
 
@@ -444,7 +444,7 @@ width="68px" style="float: left; margin-right: 10px"/>
 
 {% block tagrelated %}	
                 {% if relatedobjectsbytags.characters or relatedobjectsbytags.objects or relatedobjectsbytags.locations or relatedobjectsbytags.adventures or relatedobjectsbytags.chronicles or relatedobjectsbytags.fanarts or relatedobjectsbytags.rules or relatedobjectsbytags.spells %}
-				<div class="resaltado">Lecturas relacionadas:</div>
+				<div class="resaltado">Read more:</div>
 				<div class="resaltado-cont">
 				{% for char in relatedobjectsbytags.characters %}
 					  <p>
@@ -495,11 +495,11 @@ width="68px" style="float: left; margin-right: 10px"/>
 		{% block footer %}
 		<div id="pie">
 				<div id="validaciones">	
-					Aventuras de la Marca del este 2011 - Validación: <a href="http://validator.w3.org/check?uri=referer">XHTML</a> | <a href="http://jigsaw.w3.org/css-validator/validator?uri=http://codexdelamarca.com/css/estilo.css">CSS</a>
+					Adventures in the East Mark 2014 - Validation: <a href="http://validator.w3.org/check?uri=referer">XHTML</a> | <a href="http://jigsaw.w3.org/css-validator/validator?uri=http://codexdelamarca.com/css/estilo.css">CSS</a>
 					<br/><br/>
 
-					<span style="font-size: 10px"> Desarrollo y mantenimiento: Angela
-Rivera Campos @ghilbrae y Pablo Ruiz Múzquiz @diacritica - Diseño: <a href="http://jagvalverde.com/">Jose Valverde</a></span>
+					<span style="font-size: 10px"> Development and maintenance: Angela
+Rivera Campos @ghilbrae and Pablo Ruiz Múzquiz @diacritica - Design: <a href="http://jagvalverde.com/">Jose Valverde</a></span>
 
 				</div><!-- fin validaciones -->
 		</div><!-- fin pie -->

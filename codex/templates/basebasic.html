@@ -78,18 +78,18 @@ src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/jquery-ui.min.js"></scr
 		<div id="cabecera">
 			<div id="menu">
 				<ul>
-					<li><a href="/" class="seleccion">El Codex</a></li>	
-					<li><a href="/character">Personajes</a></li>
-					<li><a href="/creature">Bestiarios</a></li>	
-					<li><a href="/location">Lugares</a></li>
-					<li><a href="/object">Objetos</a></li>	
-					<li><a href="/adventure">Aventuras</a></li>	
-					<li><a href="/chronicle">Crónicas</a></li>
-					<li><a href="/spell" >Conjuros</a></li>
-					<li><a href="/rule" >Reglas</a></li>
+					<li><a href="/" class="seleccion">The Codex</a></li>	
+					<li><a href="/character">Characters</a></li>
+					<li><a href="/creature">Bestiary</a></li>	
+					<li><a href="/location">Locations</a></li>
+					<li><a href="/object">Objects</a></li>	
+					<li><a href="/adventure">Adventures</a></li>	
+					<li><a href="/chronicle">Chronicles</a></li>
+					<li><a href="/spell" >Spells</a></li>
+					<li><a href="/rule" >Rules</a></li>
 					<li><a href="/fanart" >Fan Art</a></li>			
-					<li><a href="/send_info">Enviar info</a></li>	
-					<li><a href="/contact">Contacto</a></li>
+					<li><a href="/send_info">Send entry</a></li>	
+					<li><a href="/contact">Contact</a></li>
         		</ul>
 			</div><!-- fin menu -->
 			
@@ -98,7 +98,7 @@ src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/jquery-ui.min.js"></scr
 			</div><!-- fin logo -->
 			
 			<div id="slogan">
-				La recopilación de todo el conocimiento sobre la Marca del Este.
+				A compilation of the knowledge of the East Mark.
 			</div><!-- fin logo -->
 			{% endblock %}
 			
@@ -107,15 +107,15 @@ src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/jquery-ui.min.js"></scr
 				<div id="form-busqueda-simple">
 		                <form action="/search/" method='get'>
 					<select name="option">
-						<option value="all">Todo</option>
-						<option value="character">Personaje</option>
-						<option value="creature">Bestiario</option>
-						<option value="location">Lugar</option>
-						<option value="object">Objetos</option>
-						<option value="adventure">Aventura</option>
-						<option value="chronicle">Crónica</option>	
-						<option value="spell">Conjuro</option>
-						<option value="rule">Regla</option>
+						<option value="all">All</option>
+						<option value="character">Character</option>
+						<option value="creature">Creature</option>
+						<option value="location">Location</option>
+						<option value="object">Objects</option>
+						<option value="adventure">Adventure</option>
+						<option value="chronicle">Chronicle</option>	
+						<option value="spell">Spell</option>
+						<option value="rule">Rule</option>
 						<option value="fanart">FanArt</option>
 					</select>
 					
@@ -126,7 +126,7 @@ value="" />
 					<input class="boton_buscar" type="submit" value="Buscar" />
 				</form>
 				</div>
-				<div id="ir-busqueda-avanzada"><a href="/advancedsearch">Búsqueda<br/>avanzada</a></div>
+				<div id="ir-busqueda-avanzada"><a href="/advancedsearch">Advanced<br/>search</a></div>
 			</div><!-- fin busqueda-simple -->
 
 			
@@ -140,7 +140,7 @@ value="" />
 		<div id="contenido" >
 			<div id="contenido-articulos" >
 			<div id="columna-izq">
-				<div id="volver"><span><a href="/">Volver a inicio</a>&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;</span> <a href="#">Personaje</a></div>
+				<div id="volver"><span><a href="/">Home</a>&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;</span> <a href="#">Character</a></div>
 				
 				<h1>{{object.name}}</h1>
 				<p>{{object.description|safe}}
@@ -246,9 +246,9 @@ value="" />
 			
 			<div id="columna-der">
 				<div id="canon">
-					<div id="nivel-canon">Nivel de Canon</div>				
+					<div id="nivel-canon">Canon level</div>
 					<div id="ima-canon"><img src="/ima/canon/canon-{{object.get_canon_level_display}}.jpg" alt="icono" height="68px" width="68px"/></div>				
-					<div id="denominacion-canon">{{object.get_canon_level_display}}<div id="que"><a href="#">¿Qué es esto?</a></div></div>				
+					<div id="denominacion-canon">{{object.get_canon_level_display}}<!--<div id="que"><a href="#">¿Qué es esto?</a></div>--></div>				
 				</div><!-- fin canon -->
 				
 				<div id="expo-ima">
@@ -270,7 +270,7 @@ value="" />
 				</div><!-- fin expo-ima -->
 				
 				<div id="firma-ima">
-					<b>Autor de la ilustración</b>: {{image.author.all}} <a href="{{image.author.web_url}}">{{image.author.web_url}}</a>
+					<b>Image author</b>: {{image.author.all}} <a href="{{image.author.web_url}}">{{image.author.web_url}}</a>
 				</div><!-- fin expo-ima -->
 					{% endif %}
 
@@ -353,7 +353,23 @@ value="" />
 {% endblock %}
 
 
-	</div><!-- fin contenedor -->
+{% block footer %}
+                <div id="pie">
+                                <div id="validaciones"> 
+                                        Adventures in the East Mark 2014 - Validation: <a href="http://validator.w3.org/check?uri=referer">XHTML</a> | <a href="http://jigsaw.w3.org/css-validator/validator?uri=http://codexdelamarca.com/css/estilo.css">CSS</a>
+                                        <br/><br/>
+
+                                        <span style="font-size: 10px"> Development and maintenance: Angela
+Rivera Campos @ghilbrae and Pablo Ruiz Múzquiz @diacritica - Design: <a href="http://jagvalverde.com/">Jose Valverde</a></span>
+
+                                </div><!-- fin validaciones -->
+                </div><!-- fin pie -->
+
+                {% endblock %}
+{% block ending %}
+
+        </div><!-- fin contenedor -->
 </body>
-</html>		
+</html>         
+{% endblock %}	
 

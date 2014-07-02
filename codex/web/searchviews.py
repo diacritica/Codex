@@ -2,6 +2,7 @@
 from django.http import HttpResponseRedirect
 
 from codex.web.models import *
+from codex.web.modelschoices import *
 from codex.settings import MEDIA_URL, STATIC_URL
 import tools.stopwords
 import re
@@ -33,14 +34,14 @@ def SimpleSearchView(request, searchfilter="", searchterm=""):
         allobjects[searchfilter] = getattr(m.models,searchfilter.capitalize()).objects.all()
 
 
-    elif searchfilter == "fanart": allobjects["fanart"] = FanArt.objects.all() #OH PLEASE FIX THIS MESS!
+    elif searchfilter == "fanart": allobjects["fanart"] = Fanart.objects.all() #OH PLEASE FIX THIS MESS!
 
     elif searchfilter == "all":
 
         allobjects = {'object':Object.objects.all(),'character':Character.objects.all(), \
         'creature':Creature.objects.all(),'chronicle':Chronicle.objects.all(), \
         'adventure':Adventure.objects.all(),'location':Location.objects.all(),'rule':Rule.objects.all(),\
-        'spell':Spell.objects.all(),'fanart':FanArt.objects.all()}
+        'spell':Spell.objects.all(),'fanart':Fanart.objects.all()}
 
 
     if searchterm != "":
@@ -155,13 +156,13 @@ def ResultsAdvancedSearchView(request):
 
         if objectcanon=="ALL":
             objects = sorted(
-            chain(Object.objects.all() , Character.objects.all() , Creature.objects.all() , Chronicle.objects.all() , Adventure.objects.all() , Location.objects.all(), Rule.objects.all(), FanArt.objects.all()), key=lambda instance: instance.last_updated)
+            chain(Object.objects.all() , Character.objects.all() , Creature.objects.all() , Chronicle.objects.all() , Adventure.objects.all() , Location.objects.all(), Rule.objects.all(), Fanart.objects.all()), key=lambda instance: instance.last_updated)
 
             objects.reverse()
 
         else:
             objects = sorted(
-            chain(Object.objects.filter(canon_level=objectcanon) , Character.objects.filter(canon_level=objectcanon) , Creature.objects.filter(canon_level=objectcanon) , Chronicle.objects.filter(canon_level=objectcanon) , Adventure.objects.filter(canon_level=objectcanon) , Location.objects.filter(canon_level=objectcanon),Rule.objects.filter(canon_level=objectcanon),FanArt.objects.filter(canon_level=objectcanon)),key=lambda instance: instance.last_updated)
+            chain(Object.objects.filter(canon_level=objectcanon) , Character.objects.filter(canon_level=objectcanon) , Creature.objects.filter(canon_level=objectcanon) , Chronicle.objects.filter(canon_level=objectcanon) , Adventure.objects.filter(canon_level=objectcanon) , Location.objects.filter(canon_level=objectcanon),Rule.objects.filter(canon_level=objectcanon),Fanart.objects.filter(canon_level=objectcanon)),key=lambda instance: instance.last_updated)
 
 
         if len(keywords) != 0:
@@ -194,7 +195,7 @@ def ResultsAdvancedSearchView(request):
                                 objecttype="rule"
                             elif type(ob)==type(Spell()):
                                 objecttype="spell"
-                            elif type(ob)==type(FanArt()):
+                            elif type(ob)==type(Fanart()):
                                 objecttype="fanart"
                             ob.objecttype = objecttype
                             results.append(ob)
@@ -218,7 +219,7 @@ def ResultsAdvancedSearchView(request):
                             objecttype="rule"
                  elif type(ob)==type(Spell()):
                             objecttype="spell"
-                 elif type(ob)==type(FanArt()):
+                 elif type(ob)==type(Fanart()):
                             objecttype="fanart"
                  ob.objecttype = objecttype
                  results.append(ob)
@@ -232,7 +233,7 @@ def ResultsAdvancedSearchView(request):
         chosenlicense = request.GET.get('chosenlicense') or None
         author = request.GET.get('author') or None
 
-        objects = FanArt.objects.all()
+        objects = Fanart.objects.all()
 
         if chosencategory!="ALL" and chosencategory:
             objects = objects.filter(chosencategory=chosencategory)
@@ -441,7 +442,7 @@ def ResultsAdvancedSearchView(request):
         if objectcanon!="ALL" and objectcanon:
             objects = objects.filter(canon_level=objectcanon)
 
-        results = getWeightedResults(keywords,objects,objecttype="location")
+        results = getWeightedResults(keywords, objects, objecttype="location")
 
 
 
