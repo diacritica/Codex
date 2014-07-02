@@ -120,12 +120,11 @@
 				</div><!-- fin lista2columnas-->
 			    {% if object.rarity != "C" %}
 				<h2>Personajes relacionados:</h2>
-				
 				<div class="lista2columnas">
 					<ul>
-                        {% for character in object.Objetos.all %}
+                        {% for character in object.Objects.all %}
 						
-						{% if character.get_canon_level == "C" %}<li><a href="/character/{{character.slug}}">{{character.name}}</a></li>{% endif %}
+						{% if character.canon_level == "C" %}<li><a href="/character/{{character.slug}}">{{character.name}}</a></li>{% endif %}
                         {% endfor %}						
 					</ul>
 				</div><!-- fin lista2columnas-->
