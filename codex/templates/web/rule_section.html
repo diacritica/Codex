@@ -1,32 +1,32 @@
 {% extends "basebasic.html" %}
 {% block title %}
-<title>Codex de la Marca del Este - Reglas</title>
+<title>East Mark Codex - Rules</title>
 {% endblock %}
 {% block navigation %}
 		<div id="cabecera">
 			<div id="menu">
 				<ul>
-					<li><a href="/">El Codex</a></li>	
-					<li><a href="/character">Personajes</a></li>
-					<li><a href="/creature">Bestiario</a></li>	
-					<li><a href="/location">Lugares</a></li>
-					<li><a href="/object">Objetos</a></li>	
-					<li><a href="/adventure">Aventuras</a></li>	
-					<li><a href="/chronicle">Crónica</a></li>
-					<li><a href="/spell">Conjuros</a></li>
-					<li><a href="/rule" class="seleccion">Reglas</a></li>
-					<li><a href="/fanart" >Fan Art</a></li>
-					<li><a href="/send_info">Enviar info</a></li>	
-					<li><a href="/contact">Contacto</a></li>
+                                        <li><a href="/">The Codex</a></li>      
+                                        <li><a href="/character">Characters</a></li>
+                                        <li><a href="/creature">Bestiary</a></li>       
+                                        <li><a href="/location">Locations</a></li>
+                                        <li><a href="/object">Objects</a></li>  
+                                        <li><a href="/adventure">Adventures</a></li>    
+                                        <li><a href="/chronicle">Chronicles</a></li>
+                                        <li><a href="/spell" >Spells</a></li>
+                                        <li><a href="/rule" class="seleccion" >Rules</a></li>
+                                        <li><a href="/fanart" >Fan Art</a></li>
+                                        <li><a href="/send_info">Send entry</a></li>    
+                                        <li><a href="/contact">Contact</a></li>
         		</ul>
 			</div><!-- fin menu -->
 			
 			<div id="logo">
-				<a href="/"><img src="/ima/codex-logo.jpg" alt="Codex de Aventuras de la Marca del Este." /></a>
+				<a href="/"><img src="/ima/codex-logo.jpg" alt="Adventures in the East Mark Codex." /></a>
 			</div><!-- fin logo -->
 			
 			<div id="slogan">
-				La recopilación de todo el conocimiento sobre la Marca del Este.
+				A compilation of the knowledge of the East Mark.
 			</div><!-- fin logo -->
 			
 
@@ -41,34 +41,31 @@
 			<div id="columna-izq_portada" style="padding-top:0px;">
 					<div id="volver">
 					<span>
-					<a href="/">Volver a inicio</a>
+					<a href="/">Home</a>
 					&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;
 					</span>
-					Reglas
+					Rules
 					</div>
 				
-				<div id="quote">Esta sección contiene las reglas adicionales creadas por los aficionados a Aventuras en La Marca del Este. </div>
+				<div id="quote">This section contains aditional or "house" rules created by players. </div>
 				<p>
-					Os presentamos las últimas tres reglas que fueron añadidas al Codex, una regla destacada de entre
-                    un subconjunto del total y el buscador avanzado para que sea sencillo encontrar exactamente lo que uno
-                    necesita. Las reglas pueden contener toda la información en su descripción o hacer referencia a un documento
-                    o web externos. Las reglas tienen al menos una sección a la que afectan.
+					Here you can find the last three rules characters added to the Codex, a random rule selected from the best available and the advanced search. Each rule may affect one or more sections of the game. Each page may contain all the information related to the rule or point to an external URL or document where more details can be found.
 				</p>
 				<div id="novedades-categorias">
-					Novedades
+					Latest submissions
 				</div>
                 <div class="elemento-portada-categoria">
                 {% for object in results|slice:":3" %}
 
 				
-				<h2><img src="/ima/ico-portada-regla.png" alt="Regla"/><a href="/rule/{{object.slug}}">{{object.name}}</a></h2>
+				<h2><img src="/ima/ico-portada-regla.png" alt="Rule"/><a href="/rule/{{object.slug}}">{{object.name}}</a></h2>
 				<p class="sub-text">{{object.last_updated.date}}. Canon: {{object.get_canon_level_display}}</p>
 				<p class="intro">{{object.description|safe|truncatewords:70}}</p>
 
                 {% endfor %}
 				
 
-				<p class="ver"><a href="/rule/all">Ver todas [+]</a></p>
+				<p class="ver"><a href="/rule/all">See all [+]</a></p>
 				</div>
 				
 			</div><!-- fin columna-izq_portada -->
@@ -81,7 +78,7 @@
 				
 
 				<div>
-				<h1>Destacado</h1>
+				<h1>Featured</h1>
 				</div>
 				<div class="elemento-portada-categoria">					
 				<h2>
@@ -99,13 +96,13 @@
 				</p>
 								
 								
-				<p class="ver"><a href="/rule/{{highlightedresult.slug}}">Seguir leyendo [+]</a></p>
+				<p class="ver"><a href="/rule/{{highlightedresult.slug}}">Read more [+]</a></p>
 				</div>			
 				
 				<div style="clear: both"></div>
 				
 				<div>
-				<h1>Búsqueda avanzada</h1>
+				<h1>Advanced search</h1>
 				</div>
 				
 				    <!-- RULE -->
@@ -115,7 +112,7 @@
     <input type="hidden" name="option" value="rule">
     <div style="clear: both"><br/></div>
     <h2 class="titulo-formulario-avanzado" >
-    Palabras clave:
+    Keywords:
     </h2>
     <div class="formulario-avanzado" >
     <input style="padding: 5px 5px; font-size:16px;width:380px;" type="text" name="searchterm" />
@@ -123,27 +120,27 @@
     <div style="clear: both"><br/></div>
 
     <h2 class="titulo-formulario-avanzado">
-    Secciones:
+    Sections:
     </h2>
 
     <div class="formulario-avanzado-2-columnas">
     <select name="affectedsection">
-        <option value="ALL">Todas</option>
+        <option value="ALL">All</option>
         {% for section in rulesections %}
         <option value="{{section.id}}">{{section.name}}</option>
         {% endfor %}
     </select>
     </div>
     <h2 class="titulo-formulario-avanzado">
-    Evaluación:
+    Canon level:
     </h2>
     <div class="formulario-avanzado-2-columnas" >
     <select name="canon_level">
-        <option value="ALL">Cualquiera</option>
-        <option value="NEW">Nuevo</option>
-        <option value="AP">Apócrifo</option>
-        <option value="APC">En estudio</option>
-        <option value="C">Canon</option>
+                                                  <option value="ALL">All</option>
+                                                  <option value="NEW">New</option>
+                                                  <option value="AP">Apocryphal</option>
+                                                  <option value="APC">Under study</option>
+                                                  <option value="C">Canon</option>
     </select>
     </div>
 
@@ -152,7 +149,7 @@
     <div style="clear: both"><br/></div>
 
     <div style="clear: both; text-align: center">
-    <input class="boton_buscar" type="submit" value="Buscar" style="font-size: 22px;height: 38px;"/>
+    <input class="boton_buscar" type="submit" value="Search" style="font-size: 22px;height: 38px;"/>
     </div>
 
     </form>
@@ -168,17 +165,4 @@
 		
 		
 		
-
-		<div id="pie">
-				<div id="validaciones">	
-					Aventuras de la Marca del este 2011 - Validación: <a
-href="http://validator.w3.org/check?uri=referer">XHTML</a> | <a
-href="http://jigsaw.w3.org/css-validator/validator?uri=http://?????/css/estilo.css">CSS</a>
-					<br/><br/>
-					<span style="font-size: 10px"> Desarrollo y mantenimiento: Angela
-Rivera Campos @ghilbrae y Pablo Ruiz Múzquiz @diacritica	 - Diseño: <a
-href="http://jagvalverde.com/">Jose Valverde</a></span>
-				</div><!-- fin validaciones -->
-		</div><!-- fin pie -->
-	</div><!-- fin contenedor -->
 {% endblock %}		

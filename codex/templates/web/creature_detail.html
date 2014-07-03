@@ -6,18 +6,18 @@
 		<div id="cabecera">
 			<div id="menu">
 				<ul>
-					<li><a href="/">El Codex</a></li>	
-					<li><a href="/character">Personajes</a></li>
-					<li><a href="/creature" class="seleccion">Bestiario</a></li>	
-					<li><a href="/location">Lugares</a></li>
-					<li><a href="/object">Objetos</a></li>	
-					<li><a href="/adventure">Aventuras</a></li>	
-					<li><a href="/chronicle">Crónicas</a></li>
-					<li><a href="/spell" >Conjuros</a></li>
-					<li><a href="/rule" >Reglas</a></li>
-					<li><a href="/fanart" >Fan Art</a></li>
-					<li><a href="/send_info">Enviar info</a></li>	
-					<li><a href="/contact">Contacto</a></li>
+                                        <li><a href="/">The Codex</a></li>      
+                                        <li><a href="/character">Characters</a></li>
+                                        <li><a href="/creature" class="seleccion">Bestiary</a></li>       
+                                        <li><a href="/location">Locations</a></li>
+                                        <li><a href="/object">Objects</a></li>  
+                                        <li><a href="/adventure">Adventures</a></li>    
+                                        <li><a href="/chronicle">Chronicles</a></li>
+                                        <li><a href="/spell" >Spells</a></li>
+                                        <li><a href="/rule" >Rules</a></li>
+                                        <li><a href="/fanart" >Fan Art</a></li>
+                                        <li><a href="/send_info">Send entry</a></li>    
+                                        <li><a href="/contact">Contact</a></li>
         		</ul>
 			</div><!-- fin menu -->
 			
@@ -26,7 +26,7 @@
 			</div><!-- fin logo -->
 			
 			<div id="slogan">
-				La recopilación de todo el conocimiento sobre la Marca del Este.
+				A compilation of the knowledge of the East Mark.
 			</div><!-- fin logo -->
 			
 {% endblock %}
@@ -35,11 +35,11 @@
 		<div id="contenido" >
 			<div id="contenido-articulos" >
 			<div id="columna-izq">
-				<div id="volver"><span><a href="/">Volver a inicio</a>&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;</span> <a href="/creature">Bestiario</a></div>
+				<div id="volver"><span><a href="/">Home</a>&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;</span> <a href="/creature">Bestiary</a></div>
 				
 				<h1><img src="/ima/ico-portada-bestiario.png" alt="criatura"/>{{object.name}}
                  {% if user.is_authenticated and user.is_staff %}
-                <a href="/scriptorium/web/creature/{{object.id}}">[editar]</a>
+                <a href="/scriptorium/web/creature/{{object.id}}">[edit]</a>
                 {% endif %}
 
 
@@ -47,35 +47,35 @@
 				
 				<div class="lista3columnas" id="list-detalle">
 					<ul>					
-						<li><b>CA:</b> {{object.AC|default:"--"}}</li>
+						<li><b>AC:</b> {{object.AC|default:"--"}}</li>
 				
-						<li><b>TS:</b> {{object.get_saveroll_display|default_if_none:"--"}}</li>
+						<li><b>ST:</b> {{object.get_saveroll_display|default_if_none:"--"}}</li>
 						
-						<li><b>Valor PX:</b> {{object.XPvalue|default_if_none:"--"}}</li>
+						<li><b>XP Value:</b> {{object.XPvalue|default_if_none:"--"}}</li>
 						
-						<li><b>Dados de golpe:</b> {{object.hitdice|default:"--"}}</li>
+						<li><b>Hit dice:</b> {{object.hitdice|default:"--"}}</li>
 						
-						<li><b>Moral:</b> {{object.get_moral_display|default_if_none:"--"}}</li>
+						<li><b>Morale:</b> {{object.get_moral_display|default_if_none:"--"}}</li>
 										
-						<li><b>Movimiento:</b> {{object.move|default:"--"}}</li>
+						<li><b>Movement:</b> {{object.move|default:"--"}}</li>
 						
-						<li><b>Alineamiento:</b> {{object.get_alignment_display|default_if_none:"--"}}</li>
+						<li><b>Alignment:</b> {{object.get_alignment_display|default_if_none:"--"}}</li>
 						
 					</ul>
 				</div><!-- fin caract-->
 				{% if object.attacks %}				
-				<h2>Ataques:</h2>
+				<h2>Atacks:</h2>
 				<p>{{object.attacks|safe}}</p>
 				{% endif %}
 
                 {% if object.description %}
-				<h2>Descripción:</h2>
+				<h2>Description:</h2>
 				<p>
 					{{object.description|safe}}
 				</p>
                 {% endif %}
 		         {% if object.comments %}
-				<h2>Nota del autor:</h2>
+				<h2>Comments:</h2>
 				<p>
 					{{object.comments}}
 				</p>
@@ -108,7 +108,7 @@
 
 				<div id="firma-ima">
 					{% if image.author.all %}
-					<b>Autor(es) de la ilustración</b>:
+					<b>Image Author(s)</b>:
                     {% for author in image.author.all%}
 					   {% if forloop.first %}
                         <a href="{{author.url}}">{{author.name}}</a>
@@ -128,14 +128,14 @@
                 {% endif %}
 				<div style="clear: both"></div>
 				{% if object.treasurevalue %}
-				<h2>Valor de tesoros:</h2>	
+				<h2>Treasure value:</h2>	
 					<p>
 						{{object.treasurevalue}}
 						
 					</p>
 				{% endif %}
                 {% if object.relatedlocation.all %}
-				<h2>Lugares habituales:</h2>
+				<h2>Locations:</h2>
 				<div class="lista2columnas">
     				<ul>	  {% for rlocation in object.relatedlocation.all %}
     					   {% if forloop.first %}
@@ -153,18 +153,18 @@
 				</div><!-- fin lista2columnas-->
 				{% endif %}
                 {% if relatedcreatures2 or relatedcreatures1 %}
-				<h2>Aliados:</h2>
+				<h2>Allies:</h2>
 				<div class="lista2columnas">
 					<ul>
 						
 					  {% for relation in relatedcreatures2 %}
 					  {% if relation.relation21 in "GROUPSONFATHERBROTHERSUBDITFRIENDMASTERAPPRENTICEFAMILIAREMPLOYEELEADERUNDERLING" %}
-						<li>{{relation.get_relation21_display}} de <a href="/creature/{{relation.creature1.slug}}">{{relation.creature1.name}}</a></li>
+						<li>{{relation.get_relation21_display}} of <a href="/creature/{{relation.creature1.slug}}">{{relation.creature1.name}}</a></li>
 						{% endif %}
 					{% endfor %}
 	 				 {% for relation in relatedcreatures1 %}
 					  	{% if relation.relation21 in "GROUPSONFATHERBROTHERSUBDITFRIENDMASTERAPPRENTICEFAMILIAREMPLOYEELEADERUNDERLING" %}
-						<li>{{relation.get_relation12_display}} de <a href="/creature/{{relation.creature2.slug}}">{{relation.creature2.name}}</a></li>
+						<li>{{relation.get_relation12_display}} of <a href="/creature/{{relation.creature2.slug}}">{{relation.creature2.name}}</a></li>
 						{% endif %}
 
 					{% endfor %}
@@ -173,17 +173,17 @@
 				</div><!-- fin lista2columnas-->
 				{% endif %}
                 {% if relatedcreatures2 or relatedcreatures1 %}
-				<h2>Enemigos:</h2>
+				<h2>Enemies:</h2>
 				<div class="lista2columnas">
 					<ul>
 					  {% for relation in relatedcreatures2 %}
 					  {% if relation.relation21 not in "GROUPSONFATHERBROTHERSUBDITFRIENDMASTERAPPRENTICEFAMILIAREMPLOYEELEADERUNDERLING" %}
-						<li>{{relation.get_relation21_display}} de <a href="/creature/{{relation.creature1.slug}}">{{relation.creature1.name}}</a></li>
+						<li>{{relation.get_relation21_display}} of <a href="/creature/{{relation.creature1.slug}}">{{relation.creature1.name}}</a></li>
 						{% endif %}
 					{% endfor %}
 					  {% for relation in relatedcreatures1 %}
 					  	{% if relation.relation21 not in "GROUPSONFATHERBROTHERSUBDITFRIENDMASTERAPPRENTICEFAMILIAREMPLOYEELEADERUNDERLING" %}
-						<li>{{relation.get_relation12_display}} de <a href="/creature/{{relation.creature2.slug}}">{{relation.creature2.name}}</a></li>
+						<li>{{relation.get_relation12_display}} of <a href="/creature/{{relation.creature2.slug}}">{{relation.creature2.name}}</a></li>
 						{% endif %}
 
 					{% endfor %}
@@ -192,4 +192,5 @@
 				</div><!-- fin lista2columnas-->
 				{% endif %}
 				
+</div>
 {% endblock %}		

@@ -1,23 +1,23 @@
 {% extends "base.html" %}
 {% block title %}
-<title>Codex de la Marca del Este - Crónica - {{object.name}}</title>
+<title>East Mark Codex - Chronicles - {{object.name}}</title>
 {% endblock %}
 {% block navigation %}
 		<div id="cabecera">
 			<div id="menu">
 				<ul>
-					<li><a href="/">El Codex</a></li>	
-					<li><a href="/character">Personajes</a></li>
-					<li><a href="/creature">Bestiario</a></li>	
-					<li><a href="/location">Lugares</a></li>
-					<li><a href="/object">Objetos</a></li>	
-					<li><a href="/adventure">Aventuras</a></li>	
-					<li><a href="/chronicle" class="seleccion">Crónicas</a></li>
-					<li><a href="/spell" >Conjuros</a></li>
-					<li><a href="/rule" >Reglas</a></li>
-					<li><a href="/fanart" >Fan Art</a></li>
-					<li><a href="/send_info">Enviar info</a></li>	
-					<li><a href="/contact">Contacto</a></li>
+                                        <li><a href="/">The Codex</a></li>      
+                                        <li><a href="/character">Characters</a></li>
+                                        <li><a href="/creature">Bestiary</a></li>       
+                                        <li><a href="/location">Locations</a></li>
+                                        <li><a href="/object">Objects</a></li>  
+                                        <li><a href="/adventure">Adventures</a></li>    
+                                        <li><a href="/chronicle" class="seleccion">Chronicles</a></li>
+                                        <li><a href="/spell" >Spells</a></li>
+                                        <li><a href="/rule" >Rules</a></li>
+                                        <li><a href="/fanart" >Fan Art</a></li>
+                                        <li><a href="/send_info">Send entry</a></li>    
+                                        <li><a href="/contact">Contact</a></li>
         		</ul>
 			</div><!-- fin menu -->
 			
@@ -26,7 +26,7 @@
 			</div><!-- fin logo -->
 			
 			<div id="slogan">
-				La recopilación de todo el conocimiento sobre la Marca del Este.
+				A compilation of the knowledge of the East Mark.
 			</div><!-- fin logo -->
 			
 
@@ -37,11 +37,11 @@
 		<div id="contenido" >
 			<div id="contenido-articulos" >
 			<div id="columna-izq">
-				<div id="volver"><span><a href="/">Volver a inicio</a>&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;</span> <a href="/chronicle">Crónica</a></div>
+				<div id="volver"><span><a href="/">Home</a>&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;</span> <a href="/chronicle">Chronicle</a></div>
 				
 				<h1><img src="/ima/ico-portada-cronica.png" alt="crónica"/>{{object.name}}
                 {% if user.is_authenticated and user.is_staff %}
-                <a href="/scriptorium/web/chronicle/{{object.id}}">[editar]</a>
+                <a href="/scriptorium/web/chronicle/{{object.id}}">[edit]</a>
                 {% endif %}
 
 
@@ -80,7 +80,7 @@
 				
 				<div id="firma-ima">
                     {% if image.author.all %}
-					<b>Autor(es) de la ilustración</b>:
+					<b>Image Author(s)</b>:
                     {% for author in image.author.all%}
 					   {% if forloop.first %}
                         <a href="{{author.url}}">{{author.name}}</a>
@@ -104,15 +104,15 @@
 				{% if object.adventure %}
 				<div id="boton-gordo">
 					
-						<a href="/adventure/{{object.adventure.slug}}" class="boton-cronica"> Ver Aventura</a>
+						<a href="/adventure/{{object.adventure.slug}}" class="boton-cronica"> Go to Adventure</a>
 				
 				</div>
 				{% endif %}
-                <h2>Más información:</h2>
+                <h2>More info:</h2>
 				<div class="lista1columna">
 					<ul>						
 						
-						<li><b>Web de la crónica:</b>&nbsp;<a href="{{object.url}}" target="_blank">{{object.url|default:" desconocido"|truncatechars:30}}</a></li>
+						<li><b>Chronicle website:</b>&nbsp;<a href="{{object.url}}" target="_blank">{{object.url|default:" desconocido"|truncatechars:30}}</a></li>
 						
 					</ul>
 				</div><!-- fin lista2columnas-->
@@ -120,7 +120,7 @@
 				
 				
 					{% if object.chronicle_set.all %}
-					<h2>Crónicas sobre la aventura:</h2>
+					<h2>Other Chronicles for this adventure:</h2>
 				
 					<div class="lista1columna">
 					<ul>
@@ -136,6 +136,5 @@
 	
 				<!-- fin lista2columnas-->
 				
-
+</div>
 {% endblock %}
-

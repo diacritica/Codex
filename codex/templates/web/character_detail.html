@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block title %}
-<title>Codex de la Marca del Este - Personaje - {{object.name}}</title>
+<title>East Mark Codex - Character - {{object.name}}</title>
 {% endblock %}
 {% block navigation %}
 		<div id="cabecera">
@@ -22,7 +22,7 @@
 			</div><!-- fin menu -->
 			
 			<div id="logo">
-				<a href="/"><img src="/ima/codex-logo.jpg" alt="Adventures of the East Mark Codex." /></a>
+				<a href="/"><img src="/ima/codex-logo.jpg" alt="Adventures in the East Mark Codex." /></a>
 			</div><!-- fin logo -->
 			
 			<div id="slogan">
@@ -40,7 +40,7 @@
 				
 				<h1><img src="/ima/ico-portada-personaje.png" alt="personaje"/>{{object.name}}
                 {% if user.is_authenticated and user.is_staff %}
-                <a href="/scriptorium/web/character/{{object.id}}">[editar]</a>
+                <a href="/scriptorium/web/character/{{object.id}}">[edit]</a>
                 {% endif %}
                 </h1>
                 {% if object.quote %}

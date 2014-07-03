@@ -1,32 +1,32 @@
 {% extends "basebasic.html" %}
 {% block title %}
-<title>Codex de la Marca del Este - Aventuras</title>
+<title>East Mark Codex - Objects</title>
 {% endblock %}
 {% block navigation %}
 		<div id="cabecera">
 			<div id="menu">
 				<ul>
-					<li><a href="/">El Codex</a></li>	
-					<li><a href="/character">Personajes</a></li>
-					<li><a href="/creature">Bestiario</a></li>	
-					<li><a href="/location">Lugares</a></li>
-					<li><a href="/object"  class="seleccion">Objetos</a></li>	
-					<li><a href="/adventure">Aventuras</a></li>	
-					<li><a href="/chronicle">Crónica</a></li>
-					<li><a href="/spell" >Conjuros</a></li>
-					<li><a href="/rule" >Reglas</a></li>
-					<li><a href="/fanart" >Fan Art</a></li>
-					<li><a href="/send_info">Enviar info</a></li>	
-					<li><a href="/contact">Contacto</a></li>
+                                        <li><a href="/">The Codex</a></li>      
+                                        <li><a href="/character" >Characters</a></li>
+                                        <li><a href="/creature">Bestiary</a></li>       
+                                        <li><a href="/location">Locations</a></li>
+                                        <li><a href="/object" class="seleccion">Objects</a></li>  
+                                        <li><a href="/adventure">Adventures</a></li>    
+                                        <li><a href="/chronicle">Chronicles</a></li>
+                                        <li><a href="/spell" >Spells</a></li>
+                                        <li><a href="/rule" >Rules</a></li>
+                                        <li><a href="/fanart" >Fan Art</a></li>
+                                        <li><a href="/send_info">Send entry</a></li>    
+                                        <li><a href="/contact">Contact</a></li>
         		</ul>
 			</div><!-- fin menu -->
 			
 			<div id="logo">
-				<a href="/"><img src="/ima/codex-logo.jpg" alt="Codex de Aventuras de la Marca del Este." /></a>
+				<a href="/"><img src="/ima/codex-logo.jpg" alt="Adventures in the East Mark Codex." /></a>
 			</div><!-- fin logo -->
 			
 			<div id="slogan">
-				La recopilación de todo el conocimiento sobre la Marca del Este.
+				A compilation of the knowledge of the East Mark.
 			</div><!-- fin logo -->
 			
 
@@ -41,18 +41,18 @@
 			<div id="columna-izq_portada" style="padding-top:0px;">
 					<div id="volver">
 					<span>
-					<a href="/">Volver a inicio</a>
+					<a href="/">Home</a>
 					&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;
 					</span>
-					Objetos
+					Objects
 					</div>
 				
-				<div id="quote">Esta sección contiene los objetos creados o presentes en Aventuras en La Marca del Este. </div>
+				<div id="quote">All the objects existing within Adventures in the East Mark are here. </div>
 				<p>
-					Os presentamos los últimos tres objetos que fueron añadidos al Codex, un objeto destacado de entre un subconjunto del total y el buscador avanzado para que sea sencillo encontrar exactamente lo que uno necesita. Los objetos tiene propiedades, pueden estar relacionados con otros objetos y hasta con personajes.
+					Here you can find the last three objects added to the Codex, a random object selected from the best available, and the advanced search. Objects may have special properties, be related with other objects or characters.
 				</p>
 				<div id="novedades-categorias">
-					Novedades
+					Latest submissions
 				</div>
                 <div class="elemento-portada-categoria">
                 {% for object in results|slice:":3" %}
@@ -65,7 +65,7 @@
                 {% endfor %}
 				
 
-				<p class="ver"><a href="/object/all">Ver todos [+]</a></p>
+				<p class="ver"><a href="/object/all">See all [+]</a></p>
 				</div>
 				
 			</div><!-- fin columna-izq_portada -->
@@ -78,7 +78,7 @@
 				
 
 				<div>
-				<h1>Destacado</h1>
+				<h1>Featured</h1>
 				</div>
 				<div class="elemento-portada-categoria">					
 				<h2>
@@ -96,13 +96,13 @@
 				</p>
 								
 								
-				<p class="ver"><a href="/object/{{highlightedresult.slug}}">Seguir leyendo [+]</a></p>
+				<p class="ver"><a href="/object/{{highlightedresult.slug}}">Read more [+]</a></p>
 				</div>			
 				
 				<div style="clear: both"></div>
 				
 				<div>
-				<h1>Búsqueda avanzada</h1>
+				<h1>Advanced search</h1>
 				</div>
 				<div id="elemento-formulario-categoria">
 			<form action="/resadvancedsearch/" METHOD=GET>
@@ -110,7 +110,7 @@
 <!-- Separador-->	<div style="clear: both"><br/></div>
 
 				<h2 class="titulo-formulario-avanzado" >			
-						Palabras clave:						
+						Keywords:						
 					</h2>
 						
 					<div class="formulario-avanzado" >
@@ -122,23 +122,23 @@
 				<h2 class="titulo-formulario-avanzado">	
 
 							<input type="hidden" name="option" value="object">
-										Evaluación:						
+										Canon level:						
 										</h2>
 										<div class="formulario-avanzado-2-columnas">
 											<select name="canon_level">
-	    					  <option value="ALL">Cualquiera</option>
-	    					  <option value="NEW">Nuevo</option>
-	    					  <option value="AP">Apócrifo</option>
-	    					  <option value="APC">En estudio</option>
-	    					  <option value="C">Canon</option>
+                                                  <option value="ALL">All</option>
+                                                  <option value="NEW">New</option>
+                                                  <option value="AP">Apocryphal</option>
+                                                  <option value="APC">Under study</option>
+                                                  <option value="C">Canon</option>
 	    				</select>
 										</div>
 								<h2 class="titulo-formulario-avanzado" >			
-											Tipo:						
+											Type:						
 										</h2>
 										<div class="formulario-avanzado-2-columnas">
 											<select name="obj_type">
-											  <option value="ALL">Todas</option>
+											  <option value="ALL">All</option>
 											   {% for align in OBJ_TYPE_CHOICES %}
                                               <option value={{align.0}}>{{align.1}}</option>
                                               {% endfor %}
@@ -146,11 +146,11 @@
 										</div>
 <!-- Separador-->	<div style="clear: both"><br/></div>
 										<h2 class="titulo-formulario-avanzado" >			
-											Rareza:						
+											Rarity:						
 										</h2>
 										<div class="formulario-avanzado-2-columnas">
 										<select name="obj_rarity">
-											  <option value="ALL">Todas</option>
+											  <option value="ALL">All</option>
 											   {% for align in OBJ_RARITY_CHOICES %}
                                               <option value={{align.0}}>{{align.1}}</option>
                                               {% endfor %}
@@ -158,11 +158,11 @@
 										</div>
 										
 										<h2 class="titulo-formulario-avanzado">			
-										Alineamiento:						
+										Alignment:						
 										</h2>
 										<div class="formulario-avanzado-2-columnas">
 											<select name="loc_alignment">
-                                                <option value="ALL">Todas</option>
+                                                <option value="ALL">All</option>
 											  {% for align in ALIGN_CHOICES %}
                                               <option value={{align.0}}>{{align.1}}</option>
                                               {% endfor %}
@@ -170,11 +170,11 @@
 										</div>
 <!-- Separador-->	<div style="clear: both"><br/></div>
 										<h2 class="titulo-formulario-avanzado">			
-										Estado:						
+										Status:						
 										</h2>
 										<div class="formulario-avanzado-2-columnas">
 												<select name="obj_status">
-											  <option value="ALL">Todas</option>
+											  <option value="ALL">All</option>
 											   {% for align in OBJ_STATUS_CHOICES %}
                                               <option value={{align.0}}>{{align.1}}</option>
                                               {% endfor %}
@@ -183,7 +183,7 @@
 										
 <!-- Separador-->	<div style="clear: both"><br/></div>
 					<div style="text-align: center">
-						<input class="boton_buscar" type="submit" value="Buscar" style="font-size: 22px;height: 38px;"/>
+						<input class="boton_buscar" type="submit" value="Search" style="font-size: 22px;height: 38px;"/>
 					</div>
 				</form>
 			</div> <!-- fin elemento-formulario-categoria  -->
@@ -192,18 +192,5 @@
 		</div><!-- fin contenido -->
 		
 		
-		
 
-		<div id="pie">
-				<div id="validaciones">	
-					Aventuras de la Marca del este 2011 - Validación: <a
-href="http://validator.w3.org/check?uri=referer">XHTML</a> | <a
-href="http://jigsaw.w3.org/css-validator/validator?uri=http://?????/css/estilo.css">CSS</a>
-					<br/><br/>
-					<span style="font-size: 10px"> Desarrollo y mantenimiento: Angela
-Rivera Campos @ghilbrae y Pablo Ruiz Múzquiz @diacritica	 - Diseño: <a
-href="http://jagvalverde.com/">Jose Valverde</a></span>
-				</div><!-- fin validaciones -->
-		</div><!-- fin pie -->
-	</div><!-- fin contenedor -->
 {% endblock %}		

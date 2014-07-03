@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>El Codex de la Marca del Este</title>
+		<title>Adventures in the East Mark Codex</title>
 		<meta name='title' content=''/>
 		<meta name='description' content=''/>
 
@@ -89,7 +89,7 @@ href="/fanart"><img src="/rotativo/banner-fanart.jpg" alt="fanart"
 			<div id="columna-izq_portada">
 				<h1>The Codex</h1>
 				<p>
-					<img src="/ima/sello.jpg" alt="La Marca del Este" style="float: left;margin: 5px"/> <b>El Codex de la Marca del Este es un vademécum que recoge toda la información referente a la Marca creada tanto por sus autores originales como por todos los aficionados, colaboradores y amigos que han aportado su granito de arena para enriquecer este escenario de campaña. </b>
+					<img src="/ima/sello.jpg" alt="East Mark" style="float: left;margin: 5px"/> <b>El Codex de la Marca del Este es un vademécum que recoge toda la información referente a la Marca creada tanto por sus autores originales como por todos los aficionados, colaboradores y amigos que han aportado su granito de arena para enriquecer este escenario de campaña. </b>
 				</p>
 				<p>
 					En esta página, de forma compendiosa y detallada, podréis encontrar personajes, criaturas, objetos, reliquias, aventuras completas, crónicas de leyenda, localizaciones de campaña, y demás, todo ordenado, interrelacionado y clasificado por los autores de la Marca según su importancia y relevancia dentro del escenario.
@@ -102,12 +102,12 @@ href="/fanart"><img src="/rotativo/banner-fanart.jpg" alt="fanart"
 				<p>
 					<a href="http://www.holocubierta.com/index.php?page=shop.product_details&flypage=flypage.tpl&product_id=18&category_id=1&option=com_virtuemart&Itemid=88
 "><img src="/ima/banner-juego.gif" alt=""  /></a>
-					<a href="http://www.lamarcadeleste.com"><img src="/ima/banner-blog.gif" alt="Blog oficial de La Marca del Este"  /></a>
+					<a href="http://xdpublishing.com/blog/"><img src="/ima/banner-blog.gif" alt="Adventures in the East Mark Blog"  /></a>
 				</p>
 
 <p>
 <a href="/encounter">
-<img alt="Ir a generados de encuentros"
+<img alt="Go to encounter generator"
 src="/ima/banner-generador-encuentros.png">
 </a>
 </p>
@@ -124,9 +124,9 @@ src="/ima/banner-generador-encuentros.png">
 				    </a>
 				  </p>
 -->
-				<p>
+				<!--<p>
 				<b><a href="/static/codex_de_marca_banners.zip">Descarga los banners oficiales del Codex de La Marca</a></b>
-				</p>
+				</p>-->
 			</div><!-- fin columna-izq_portada -->
 {% endblock %}
 {% block canonlightbox %}{% endblock %}
@@ -136,7 +136,7 @@ src="/ima/banner-generador-encuentros.png">
 				<h1>Latest submissions</h1>
 				
 				<div class="elemento-portada">
-				<h2><img src="/ima/ico-portada-personaje.png" alt="Personajes"/><a href="/character/">Personajes</a></h2>
+				<h2><img src="/ima/ico-portada-personaje.png" alt="Personajes"/><a href="/character/">Characters</a></h2>
                 {% for object in index_list.characters %}				
                 <p><a href="/character/{{object.slug}}">{{object.name}}</a></p>
                 {% if forloop.first %}
@@ -146,11 +146,11 @@ src="/ima/banner-generador-encuentros.png">
                 {% endfor %}
 
 
-				<p class="ver"><a href="/character/">Ver categoría [+]</a></p>
+				<p class="ver"><a href="/character/">See more [+]</a></p>
 				</div>
 				
 				<div class="elemento-portada">
-				<h2><img src="/ima/ico-portada-bestiario.png" alt="Bestiario"/><a href="/creature">Bestiario</a></h2>
+				<h2><img src="/ima/ico-portada-bestiario.png" alt="Bestiario"/><a href="/creature">Bestiary</a></h2>
                 {% for object in index_list.creatures %}				
                 <p><a href="/creature/{{object.slug}}">{{object.name}}</a></p>
                 {% if forloop.first %}
@@ -159,11 +159,11 @@ src="/ima/banner-generador-encuentros.png">
 				<hr/>
                 {% endfor %}
 
-				<p class="ver"><a href="/creature">Ver categoría [+]</a></p>
+				<p class="ver"><a href="/creature">See more [+]</a></p>
 				</div>
 				
 				<div class="elemento-portada">
-				<h2><img src="/ima/ico-portada-lugar.png" alt="Lugares"/><a href="/location">Lugares</a></h2>
+				<h2><img src="/ima/ico-portada-lugar.png" alt="Lugares"/><a href="/location">Locations</a></h2>
                 {% for object in index_list.locations %}				
                 <p><a href="/location/{{object.slug}}">{{object.name}}</a></p>
                 {% if forloop.first %}
@@ -171,12 +171,12 @@ src="/ima/banner-generador-encuentros.png">
                 {% endif %}
                 <hr/>
                 {% endfor %}
-				<p class="ver"><a href="/location">Ver categoría [+]</a></p>
+				<p class="ver"><a href="/location">See more [+]</a></p>
 				</div>
 				<div style="clear: both"></div>
 
 				<div class="elemento-portada">
-				<h2><img src="/ima/ico-portada-objeto.png" alt="objetos"/><a href="/object">Objetos</a></h2>
+				<h2><img src="/ima/ico-portada-objeto.png" alt="objetos"/><a href="/object">Objects</a></h2>
                 {% for object in index_list.objects %}				
                 <p><a href="/object/{{object.slug}}">{{object.name}}</a></p>
                 {% if forloop.first %}
@@ -184,11 +184,11 @@ src="/ima/banner-generador-encuentros.png">
                 {% endif %}
                 <hr/>
                 {% endfor %}
-				<p class="ver"><a href="/object">Ver categoría [+]</a></p>
+				<p class="ver"><a href="/object">See more [+]</a></p>
 				</div>
 				
 				<div class="elemento-portada">
-				<h2><img src="/ima/ico-portada-aventura.png" alt="aventura"/><a href="/adventure">Aventuras</a></h2>
+				<h2><img src="/ima/ico-portada-aventura.png" alt="aventura"/><a href="/adventure">Adventures</a></h2>
                 {% for object in index_list.adventures %}				
                 <p><a href="/adventure/{{object.slug}}">{{object.name}}</a></p>
                 {% if forloop.first %}
@@ -197,11 +197,11 @@ src="/ima/banner-generador-encuentros.png">
                 <hr/>
                 {% endfor %}
 
-				<p class="ver"><a href="/adventure">Ver categoría [+]</a></p>
+				<p class="ver"><a href="/adventure">See more [+]</a></p>
 				</div>
 				
 				<div class="elemento-portada">
-				<h2><img src="/ima/ico-portada-cronica.png" alt="cronica"/><a href="/chronicle">Crónicas</a></h2>
+				<h2><img src="/ima/ico-portada-cronica.png" alt="cronica"/><a href="/chronicle">Chronicles</a></h2>
                 {% for object in index_list.chronicles %}				
                 <p><a href="/chronicle/{{object.slug}}">{{object.name}}</a></p>
                 {% if forloop.first %}
@@ -210,12 +210,12 @@ src="/ima/banner-generador-encuentros.png">
                 <hr/>
                 {% endfor %}
 
-				<p class="ver"><a href="/chronicle">Ver categoría [+]</a></p>
+				<p class="ver"><a href="/chronicle">See more [+]</a></p>
 				</div>
 				
 				<div style="clear: both"></div>
 				<div class="elemento-portada">
-				<h2><img src="/ima/ico-portada-conjuros.png" alt="spell"/><a href="/spell">Conjuros</a></h2>
+				<h2><img src="/ima/ico-portada-conjuros.png" alt="spell"/><a href="/spell">Spells</a></h2>
                 {% for object in index_list.spells %}				
                 <p><a href="/spell/{{object.slug}}">{{object.name}}</a></p>
                 {% if forloop.first %}
@@ -224,12 +224,12 @@ src="/ima/banner-generador-encuentros.png">
                 <hr/>
                 {% endfor %}
 
-				<p class="ver"><a href="/spell">Ver categoría [+]</a></p>
+				<p class="ver"><a href="/spell">See more [+]</a></p>
 				</div>
 
 				
 				<div class="elemento-portada">
-				<h2><img src="/ima/ico-portada-regla.png" alt="rule"/><a href="/rule">Reglas</a></h2>
+				<h2><img src="/ima/ico-portada-regla.png" alt="rule"/><a href="/rule">Rules</a></h2>
                 {% for object in index_list.rules %}				
                 <p><a href="/rule/{{object.slug}}">{{object.name}}</a></p>
                 {% if forloop.first %}
@@ -238,7 +238,7 @@ src="/ima/banner-generador-encuentros.png">
                 <hr/>
                 {% endfor %}
 
-				<p class="ver"><a href="/rule">Ver categoría [+]</a></p>
+				<p class="ver"><a href="/rule">See more [+]</a></p>
 				</div>
 				
 				
@@ -258,7 +258,7 @@ src="/ima/banner-generador-encuentros.png">
                 <hr/>
                 {% endfor %}
 
-				<p class="ver"><a href="/fanart">Ver categoría [+]</a></p>
+				<p class="ver"><a href="/fanart">See more [+]</a></p>
 				</div>
 				
 			</div><!-- fin columna-izq_portada  -->

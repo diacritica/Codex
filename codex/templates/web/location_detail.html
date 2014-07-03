@@ -1,23 +1,23 @@
 {% extends "base.html" %}
 {% block title %}
-<title>Codex de la Marca del Este - Lugar - {{object.name}}</title>
+<title>East Mark Codex - Location - {{object.name}}</title>
 {% endblock %}
 {% block navigation %}
 		<div id="cabecera">
 			<div id="menu">
 				<ul>
-					<li><a href="/">El Codex</a></li>	
-					<li><a href="/character">Personajes</a></li>
-					<li><a href="/creature">Bestiario</a></li>	
-					<li><a href="/location" class="seleccion">Lugares</a></li>
-					<li><a href="/object">Objetos</a></li>	
-					<li><a href="/adventure">Aventuras</a></li>	
-					<li><a href="/chronicle">Crónicas</a></li>
-					<li><a href="/spell" >Conjuros</a></li>
-					<li><a href="/rule" >Reglas</a></li>
-					<li><a href="/fanart" >Fan Art</a></li>
-					<li><a href="/send_info">Enviar info</a></li>	
-					<li><a href="/contact">Contacto</a></li>
+                                        <li><a href="/">The Codex</a></li>      
+                                        <li><a href="/character" >Characters</a></li>
+                                        <li><a href="/creature">Bestiary</a></li>       
+                                        <li><a href="/location" class="seleccion">Locations</a></li>
+                                        <li><a href="/object">Objects</a></li>  
+                                        <li><a href="/adventure">Adventures</a></li>    
+                                        <li><a href="/chronicle">Chronicles</a></li>
+                                        <li><a href="/spell" >Spells</a></li>
+                                        <li><a href="/rule" >Rules</a></li>
+                                        <li><a href="/fanart" >Fan Art</a></li>
+                                        <li><a href="/send_info">Send entry</a></li>    
+                                        <li><a href="/contact">Contact</a></li>
         		</ul>
 			</div><!-- fin menu -->
 			
@@ -26,7 +26,7 @@
 			</div><!-- fin logo -->
 			
 			<div id="slogan">
-				La recopilación de todo el conocimiento sobre la Marca del Este.
+				A compilation of the knowledge of the East Mark.
 			</div><!-- fin logo -->
 			
 		
@@ -36,17 +36,17 @@
 		<div id="contenido" >
 			<div id="contenido-articulos" >
 			<div id="columna-izq">
-				<div id="volver"><span><a href="/">Volver a inicio</a>&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;</span> <a href="/location">Lugar</a></div>
+				<div id="volver"><span><a href="/">Home</a>&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;</span> <a href="/location">Location</a></div>
 				
 				<h1><img src="/ima/ico-portada-lugar.png" alt="lugar"/>{{object.name}}
                  {% if user.is_authenticated and user.is_staff %}
-                <a href="/scriptorium/web/location/{{object.id}}">[editar]</a>
+                <a href="/scriptorium/web/location/{{object.id}}">[edit]</a>
                 {% endif %}
 
 
                 </h1>
 
-				<p><b>Localización: {{object.location|safe}}</b></p>
+				<p><b>Location: {{object.location|safe}}</b></p>
                 {% if object.description %}
 				<p>{{object.description|safe}}</p>
                 {% endif %}
@@ -81,7 +81,7 @@
 				
 				<div id="firma-ima">
                     {% if image.author.all %}
-					<b>Autor(es) de la ilustración</b>:
+					<b>Image Author(s)</b>:
                     {% for author in image.author.all%}
 					   {% if forloop.first %}
                         <a href="{{author.url}}">{{author.name}}</a>
@@ -102,23 +102,23 @@
 
 				{% endfor %}
 				  {% endif %}
-				<h2>Más información:</h2>
+				<h2>More info:</h2>
 				
 				<div class="lista2columnas">
 					<ul>
-					 <li><b>Tipo:</b> {{object.get_loctype_display|default_if_none:"--"}}</li>
-					  <li><b>Año aparición:</b> {{object.startdate|default_if_none:"--"}}</li>
+					 <li><b>Type:</b> {{object.get_loctype_display|default_if_none:"--"}}</li>
+					  <li><b>First appearance:</b> {{object.startdate|default_if_none:"--"}}</li>
 
-					    <li><b>Estado:</b> {{object.get_status_display|default_if_none:"--"}}</li>
-					 <li><b>Año de desaparición:</b> {{object.enddate|default_if_none:"--"}}</li>
-					<li><b>Población:</b> {{object.population|default_if_none:"--"}}</li>
-					  <li><b>Alineamiento:</b> {{object.get_alignment_display|default_if_none:"--"}}</li>
+					    <li><b>Status:</b> {{object.get_status_display|default_if_none:"--"}}</li>
+					 <li><b>Disappeared in:</b> {{object.enddate|default_if_none:"--"}}</li>
+					<li><b>Population:</b> {{object.population|default_if_none:"--"}}</li>
+					  <li><b>Alignment:</b> {{object.get_alignment_display|default_if_none:"--"}}</li>
 
 					
 					</ul>
 				</div><!-- fin lista2columnas-->
 			  {% if object.orderedchars|length > 0 %}
-				<h2>Personajes:</h2>
+				<h2>Characters:</h2>
 				<div class="lista2columnas">
 					<ul>
 					  {% for character in object.orderedchars %}
@@ -130,7 +130,7 @@
 
 			    {% for relatedobject in object.relatedobject.all %}
 					  {% if relatedobject.rarity != "C" %}
-        				<h2>Objetos:</h2>
+        				<h2>Objects:</h2>
         				<div class="lista2columnas">
         					<ul>
         						<li><a href="/object/{{relatedobject.slug}}">{{relatedobject.name}}</a></li>
@@ -139,5 +139,6 @@
 					{% endif %}
 					{% endfor %}
 				
-		
+
+</div>
 {% endblock %}		

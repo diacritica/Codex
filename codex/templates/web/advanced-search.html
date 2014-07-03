@@ -1,32 +1,32 @@
 {% extends "basebasic.html" %}
 {% block title %}
-<title>Codex de la Marca del Este - Búsqueda Avanzada</title>
+<title>East Mark Codex - Advanced search</title>
 {% endblock %}
 {% block navigation %}
 <div id="cabecera">
     <div id="menu">
     <ul>
-    <li><a href="/">El Codex</a></li>
-    <li><a href="/character">Personajes</a></li>
-    <li><a href="/creature">Bestiario</a></li>
-    <li><a href="/location">Lugares</a></li>
-    <li><a href="/object">Objetos</a></li>
-    <li><a href="/adventure" class="seleccion">Aventuras</a></li>
-    <li><a href="/chronicle">Crónica</a></li>
-    <li><a href="/spell" >Conjuros</a></li>
-    <li><a href="/rule" >Reglas</a></li>
-    <li><a href="/fanart" >Fan Art</a></li>
-    <li><a href="/send_info">Enviar info</a></li>
-    <li><a href="/contact">Contacto</a></li>
+                                        <li><a href="/">The Codex</a></li>      
+                                        <li><a href="/character">Characters</a></li>
+                                        <li><a href="/creature">Bestiary</a></li>       
+                                        <li><a href="/location">Locations</a></li>
+                                        <li><a href="/object">Objects</a></li>  
+                                        <li><a href="/adventure">Adventures</a></li>    
+                                        <li><a href="/chronicle">Chronicles</a></li>
+                                        <li><a href="/spell" >Spells</a></li>
+                                        <li><a href="/rule" >Rules</a></li>
+                                        <li><a href="/fanart" >Fan Art</a></li>
+                                        <li><a href="/send_info">Send entry</a></li>    
+                                        <li><a href="/contact">Contact</a></li>
     </ul>
     </div><!-- fin menu -->
 
     <div id="logo">
-    <a href="/"><img src="/ima/codex-logo.jpg" alt="Codex de Aventuras de la Marca del Este." /></a>
+    <a href="/"><img src="/ima/codex-logo.jpg" alt="Adventures in the East Mark Codex." /></a>
     </div><!-- fin logo -->
 
     <div id="slogan">
-    La recopilación de todo el conocimiento sobre la Marca del Este.
+    A compilation of the knowledge of the East Mark.
     </div><!-- fin slogan -->
 {% endblock %}
 
@@ -34,22 +34,22 @@
 <div id="contenido" >
     <div id="contenido-listados" >
     <div id="columna-der-listados">
-    <div id="volver"><span><a href="/">Volver a inicio</a>&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;</span> <a href="#">Búsqueda<!-- nombre de la categoria si es un resultado de listado de categoria O  palabra "Busqueda" e incluir el H1 de Resultado de busqueda de "El termino que busco"--></a></div>
+    <div id="volver"><span><a href="/">Home</a>&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;</span> <a href="#">Advanced search <!-- nombre de la categoria si es un resultado de listado de categoria O  palabra "Busqueda" e incluir el H1 de Resultado de busqueda de "El termino que busco"--></a></div>
 
     <div id="central">
 
     <div style="clear: both"></div>
     <div id="usual1" class="usual">
     <ul>
-    <li><a class="selected" href="#todo">Todo</a></li>
-    <li><a href="#personaje"><img alt="personajes" src="/ima/ico-personajes.png"/> Personaje</a></li>
-    <li><a href="#bestiario"><img alt="bestiario" src="/ima/ico-bestiario.png"/> Bestiario</a></li>
-    <li><a href="#lugar"><img alt="lugar" src="/ima/ico-lugar.png"/> Lugar</a></li>
-    <li><a href="#objetos"><img alt="objeto" src="/ima/ico-objetos.png"/> Objeto</a></li>
-    <li><a href="#aventura"><img alt="aventura" src="/ima/ico-aventura.png"/> Aventura</a></li>
-    <li><a href="#cronica"><img alt="cronica" src="/ima/ico-cronica.png"/> Crónica</a></li>
-    <li><a href="#conjuro"><img alt="conjuro" src="/ima/ico-conjuros.png"/> Conjuro</a></li>
-    <li><a href="#regla"><img alt="regla" src="/ima/ico-regla.png"/> Regla</a></li>
+    <li><a class="selected" href="#todo">All</a></li>
+    <li><a href="#personaje"><img alt="personajes" src="/ima/ico-personajes.png"/> Character</a></li>
+    <li><a href="#bestiario"><img alt="bestiario" src="/ima/ico-bestiario.png"/> Bestiary</a></li>
+    <li><a href="#lugar"><img alt="lugar" src="/ima/ico-lugar.png"/> Location</a></li>
+    <li><a href="#objetos"><img alt="objeto" src="/ima/ico-objetos.png"/> Object</a></li>
+    <li><a href="#aventura"><img alt="aventura" src="/ima/ico-aventura.png"/> Adventure</a></li>
+    <li><a href="#cronica"><img alt="cronica" src="/ima/ico-cronica.png"/> Chronicle</a></li>
+    <li><a href="#conjuro"><img alt="conjuro" src="/ima/ico-conjuros.png"/> Spell</a></li>
+    <li><a href="#regla"><img alt="regla" src="/ima/ico-regla.png"/> Rule</a></li>
     <li><a href="#fanart"><img alt="fanart" src="/ima/ico-fanart.png"/> Fan Art</a></li>
     </ul>
     <div style="clear: both"></div>
@@ -59,22 +59,22 @@
     <form action="/resadvancedsearch/" METHOD=GET>
         <input type="hidden" name="option" value="ALL">
         <h2 class="titulo-formulario-avanzado">
-        Evaluación:
+        Canon level:
         </h2>
         <div class="formulario-avanzado-2-columnas" >
         <select name="canon_level">
-            <option value="ALL">Cualquiera</option>
-            <option value="NEW">Nuevo</option>
-            <option value="AP">Apócrifo</option>
-            <option value="APC">En estudio</option>
-            <option value="C">Canon</option>
+                                                  <option value="ALL">All</option>
+                                                  <option value="NEW">New</option>
+                                                  <option value="AP">Apocryphal</option>
+                                                  <option value="APC">Under study</option>
+                                                  <option value="C">Canon</option>
         </select>
         </div>
 
         <div style="clear: both"></div>
 
         <h2 class="titulo-formulario-avanzado" >
-        Palabras clave:
+        Keywords:
         </h2>
         <div class="formulario-avanzado" >
         <input style="padding: 5px 5px; font-size:16px;width:458px;" type="text" name="searchterm" />
@@ -83,7 +83,7 @@
 
         <div style="clear: both"></div>
         <div style="clear: both; text-align: center">
-        <input class="boton_buscar" type="submit" value="Buscar" style="font-size: 22px;height: 38px;"/>
+        <input class="boton_buscar" type="submit" value="Search" style="font-size: 22px;height: 38px;"/>
         </div>
 
     </form>
@@ -97,12 +97,12 @@
     <div id="personaje">
     <form action="/resadvancedsearch/" METHOD=GET>
     <h2 class="titulo-formulario-avanzado" >
-    Especie:
+    Species:
     </h2>
     <input type="hidden" name="option" value="character">
     <div class="formulario-avanzado-2-columnas">
     <select name="char_species">
-        <option value="ALL">Todas</option>
+        <option value="ALL">All</option>
         {% for specie in SPECIES_CHOICES %}
         <option value={{specie.0}}>{{specie.1}}</option>
         {% endfor %}
@@ -110,11 +110,11 @@
     </div>
 
      <h2 class="titulo-formulario-avanzado" >
-    Nivel:
+    Level:
     </h2>
     <div class="formulario-avanzado-2-columnas">
     <select name="char_minlevel">
-        <option value="ALL">Todos</option>
+        <option value="ALL">All</option>
         {% for level in LEVEL_CHOICES %}
         <option value={{level.0}}>{{level.1}}</option>
         {% endfor %}
@@ -122,11 +122,11 @@
     </div>
     <div style="clear: both"></div>
     <h2 class="titulo-formulario-avanzado">
-    Profesión:
+    Class:
     </h2>
     <div class="formulario-avanzado-2-columnas">
     <select name="char_profession">
-        <option value="ALL">Todas</option>
+        <option value="ALL">All</option>
         {% for profession in PROFESSION_CHOICES %}
         <option value={{profession.0}}>{{profession.1}}</option>
         {% endfor %}
@@ -134,11 +134,11 @@
     </div>
 
     <h2 class="titulo-formulario-avanzado">
-    Alineamiento:
+    Alignment:
     </h2>
     <div class="formulario-avanzado-2-columnas">
     <select name="char_alignment">
-        <option value="ALL">Todos</option>
+        <option value="ALL">All</option>
         {% for align in ALIGN_CHOICES %}
         <option value={{align.0}}>{{align.1}}</option>
         {% endfor %}
@@ -146,11 +146,11 @@
     </div>
     <div style="clear: both"></div>
     <h2 class="titulo-formulario-avanzado">
-    Lugares:
+    Locations:
     </h2>
     <div class="formulario-avanzado-1-columnas">
     <select name="char_location">
-        <option value="ALL">Todos</option>
+        <option value="ALL">All</option>
         {% for location in locations %}
         <option value="{{location.id}}">{{location.name}}</option>
         {% endfor %}
@@ -158,22 +158,22 @@
     </div>
 
     <h2 class="titulo-formulario-avanzado">
-    Evaluación:
+    Canon level:
     </h2>
     <div class="formulario-avanzado-2-columnas" >
     <select name="canon_level">
-        <option value="ALL">Cualquiera</option>
-        <option value="NEW">Nuevo</option>
-        <option value="AP">Apócrifo</option>
-        <option value="APC">En estudio</option>
-        <option value="C">Canon</option>
+                                                  <option value="ALL">All</option>
+                                                  <option value="NEW">New</option>
+                                                  <option value="AP">Apocryphal</option>
+                                                  <option value="APC">Under study</option>
+                                                  <option value="C">Canon</option>
     </select>
     </div>
 
     <div style="clear: both"></div>
 
     <h2 class="titulo-formulario-avanzado" >
-    Palabras clave:
+    Keywords:
     </h2>
     <div class="formulario-avanzado" >
     <input style="padding: 5px 5px; font-size:16px;width:458px;" type="text" name="searchterm" />
@@ -182,7 +182,7 @@
 
     <div style="clear: both"></div>
     <div style="clear: both; text-align: center">
-    <input class="boton_buscar" type="submit" value="Buscar" style="font-size: 22px;height: 38px;"/>
+    <input class="boton_buscar" type="submit" value="Search" style="font-size: 22px;height: 38px;"/>
     </div>
 
     </form>
@@ -195,7 +195,7 @@
    <div id="bestiario">
                         <form action="/resadvancedsearch/" METHOD=GET>
   <h2 class="titulo-formulario-avanzado" >
-    Valor PX Mínimo:
+    Min XP Value:
   </h2>
                                         <input type="hidden" name="option" value="creature">
   <div class="formulario-avanzado-2-columnas">
@@ -203,25 +203,25 @@
   </div>
 
   <h2 class="titulo-formulario-avanzado" >
-    CA:
+    AC:
   </h2>
   <div class="formulario-avanzado-2-columnas">
     <input style="padding: 5px 5px; font-size:16px;width:110px;" type="text" name="crea_ac" />
   </div>
   <div style="clear: both"></div>
   <h2 class="titulo-formulario-avanzado">
-  DG:
+  HD:
   </h2>
   <div class="formulario-avanzado-2-columnas">
     <input style="padding: 5px 5px; font-size:16px;width:110px;" type="text" name="crea_hitdice" />
   </div>
 
   <h2 class="titulo-formulario-avanzado">
-  Alineamiento:
+  Alignment:
   </h2>
   <div class="formulario-avanzado-2-columnas">
     <select name="crea_alignment">
-       <option value="ALL">Todos</option>
+       <option value="ALL">All</option>
                                               {% for align in CRE_ALIGN_CHOICES %}
                                               <option value={{align.0}}>{{align.1}}</option>
                                               {% endfor %}
@@ -229,33 +229,33 @@
   </div>
   <div style="clear: both"></div>
   <h2 class="titulo-formulario-avanzado">
-  Lugares:
+  Locations:
   </h2>
   <div class="formulario-avanzado-1-columnas">
     <select name="crea_location">
-      <option value="ALL">Todos</option>
+      <option value="ALL">All</option>
                                               {% for location in locations %}
       <option value="{{location.id}}">{{location.name}}</option>
                                               {% endfor %}
      </select>
   </div>
                         <h2 class="titulo-formulario-avanzado">
-       Evaluación:
+       Canon level:
      </h2>
               <div class="formulario-avanzado-2-columnas" >
               <select name="canon_level">
-         <option value="ALL">Cualquiera</option>
-         <option value="NEW">Nuevo</option>
-         <option value="AP">Apócrifo</option>
-         <option value="APC">En estudio</option>
-         <option value="C">Canon</option>
+                                                  <option value="ALL">All</option>
+                                                  <option value="NEW">New</option>
+                                                  <option value="AP">Apocryphal</option>
+                                                  <option value="APC">Under study</option>
+                                                  <option value="C">Canon</option>
               </select>
               </div>
 
  <div style="clear: both"></div>
 
  <h2 class="titulo-formulario-avanzado" >
-   Palabras clave:
+   Keywords:
  </h2>
  <div class="formulario-avanzado" >
    <input style="padding: 5px 5px; font-size:16px;width:458px;" type="text" name="searchterm" />
@@ -264,7 +264,7 @@
 
  <div style="clear: both"></div>
  <div style="clear: both; text-align: center">
-   <input class="boton_buscar" type="submit" value="Buscar" style="font-size: 22px;height: 38px;"/>
+   <input class="boton_buscar" type="submit" value="Search" style="font-size: 22px;height: 38px;"/>
  </div>
 
  </form>
@@ -274,12 +274,12 @@
    <div id="lugar">
                         <form action="/resadvancedsearch/" METHOD=GET>
   <h2 class="titulo-formulario-avanzado">
-  Tipo:
+  Type:
   </h2>
                                         <input type="hidden" name="option" value="location">
   <div class="formulario-avanzado-2-columnas">
     <select name="loc_type">
-                                            <option value="ALL">Todos</option>
+                                            <option value="ALL">All</option>
     {% for align in LOC_TYPE_CHOICES %}
                                               <option value={{align.0}}>{{align.1}}</option>
                                               {% endfor %}
@@ -287,11 +287,11 @@
   </div>
 
   <h2 class="titulo-formulario-avanzado">
-  Estado:
+  Status:
   </h2>
   <div class="formulario-avanzado-2-columnas">
     <select name="loc_status">
-                                                <option value="ALL">Todos</option>
+                                                <option value="ALL">All</option>
      {% for align in LOC_STATUS_CHOICES %}
                                               <option value={{align.0}}>{{align.1}}</option>
                                               {% endfor %}
@@ -299,33 +299,33 @@
   </div>
 
   <h2 class="titulo-formulario-avanzado">
-  Alineamiento:
+  Alignment:
   </h2>
   <div class="formulario-avanzado-2-columnas">
     <select name="loc_alignment">
-                                                <option value="ALL">Todos</option>
+                                                <option value="ALL">All</option>
       {% for align in ALIGN_CHOICES %}
                                               <option value={{align.0}}>{{align.1}}</option>
                                               {% endfor %}
      </select>
   </div>
                         <h2 class="titulo-formulario-avanzado">
-       Evaluación:
+       Canon level:
      </h2>
               <div class="formulario-avanzado-2-columnas" >
               <select name="canon_level">
-         <option value="ALL">Cualquiera</option>
-         <option value="NEW">Nuevo</option>
-         <option value="AP">Apócrifo</option>
-         <option value="APC">En estudio</option>
-         <option value="C">Canon</option>
+                                                  <option value="ALL">All</option>
+                                                  <option value="NEW">New</option>
+                                                  <option value="AP">Apocryphal</option>
+                                                  <option value="APC">Under study</option>
+                                                  <option value="C">Canon</option>
               </select>
               </div>
 
  <div style="clear: both"></div>
 
  <h2 class="titulo-formulario-avanzado" >
-   Palabras clave:
+   Keywords:
  </h2>
  <div class="formulario-avanzado" >
    <input style="padding: 5px 5px; font-size:16px;width:458px;" type="text" name="searchterm" />
@@ -334,7 +334,7 @@
 
  <div style="clear: both"></div>
  <div style="clear: both; text-align: center">
-   <input class="boton_buscar" type="submit" value="Buscar" style="font-size: 22px;height: 38px;"/>
+   <input class="boton_buscar" type="submit" value="Search" style="font-size: 22px;height: 38px;"/>
  </div>
 
  </form>
@@ -345,12 +345,12 @@
    <div id="objetos">
                         <form action="/resadvancedsearch/" METHOD=GET>
   <h2 class="titulo-formulario-avanzado" >
-    Tipo:
+    Type:
   </h2>
                                         <input type="hidden" name="option" value="object">
   <div class="formulario-avanzado-2-columnas">
     <select name="obj_type">
-      <option value="ALL">Todos</option>
+      <option value="ALL">All</option>
        {% for align in OBJ_TYPE_CHOICES %}
                                               <option value={{align.0}}>{{align.1}}</option>
                                               {% endfor %}
@@ -358,11 +358,11 @@
   </div>
 
   <h2 class="titulo-formulario-avanzado" >
-    Rareza:
+    Rarity:
   </h2>
   <div class="formulario-avanzado-2-columnas">
     <select name="obj_rarity">
-      <option value="ALL">Todas</option>
+      <option value="ALL">All</option>
        {% for align in OBJ_RARITY_CHOICES %}
                                               <option value={{align.0}}>{{align.1}}</option>
                                               {% endfor %}
@@ -370,11 +370,11 @@
   </div>
   <div style="clear: both"></div>
   <h2 class="titulo-formulario-avanzado">
-  Alineamiento:
+  Alignment:
   </h2>
   <div class="formulario-avanzado-2-columnas">
     <select name="obj_alignment">
-      <option value="ALL">Todos</option>
+      <option value="ALL">All</option>
       {% for align in ALIGN_CHOICES %}
                                               <option value={{align.0}}>{{align.1}}</option>
                                               {% endfor %}
@@ -382,11 +382,11 @@
   </div>
 
   <h2 class="titulo-formulario-avanzado">
-  Estado:
+  Status:
   </h2>
   <div class="formulario-avanzado-2-columnas">
     <select name="obj_status">
-      <option value="ALL">Todos</option>
+      <option value="ALL">All</option>
        {% for align in OBJ_STATUS_CHOICES %}
                                               <option value={{align.0}}>{{align.1}}</option>
                                               {% endfor %}
@@ -404,22 +404,22 @@
      </select>
   </div>-->
                         <h2 class="titulo-formulario-avanzado">
-       Evaluación:
+       Canon level:
      </h2>
               <div class="formulario-avanzado-2-columnas" >
               <select name="canon_level">
-         <option value="ALL">Cualquiera</option>
-         <option value="NEW">Nuevo</option>
-         <option value="AP">Apócrifo</option>
-         <option value="APC">En estudio</option>
-         <option value="C">Canon</option>
+                                                  <option value="ALL">All</option>
+                                                  <option value="NEW">New</option>
+                                                  <option value="AP">Apocryphal</option>
+                                                  <option value="APC">Under study</option>
+                                                  <option value="C">Canon</option>
               </select>
               </div>
 
  <div style="clear: both"></div>
 
  <h2 class="titulo-formulario-avanzado" >
-   Palabras clave:
+   Keywords:
  </h2>
  <div class="formulario-avanzado" >
    <input style="padding: 5px 5px; font-size:16px;width:458px;" type="text" name="searchterm" />
@@ -428,7 +428,7 @@
 
  <div style="clear: both"></div>
  <div style="clear: both; text-align: center">
-   <input class="boton_buscar" type="submit" value="Buscar" style="font-size: 22px;height: 38px;"/>
+   <input class="boton_buscar" type="submit" value="Search" style="font-size: 22px;height: 38px;"/>
  </div>
 
  </form>
@@ -437,12 +437,12 @@
    <div id="aventura">
                         <form action="/resadvancedsearch/" METHOD=GET>
   <h2 class="titulo-formulario-avanzado" >
-    Nivel:
+    Level:
   </h2>
                                         <input type="hidden" name="option" value="adventure">
   <div class="formulario-avanzado-2-columnas">
     <select name="adv_level">
-      <option value="ALL">Todos</option>
+      <option value="ALL">All</option>
                                                 {% for i in highnum %}
       <option value="{{i}}">{{i}}</option>
                                                 {% endfor %}
@@ -450,11 +450,11 @@
   </div>
 
   <h2 class="titulo-formulario-avanzado" >
-    Nº jugadores:
+    Num players:
   </h2>
   <div class="formulario-avanzado-2-columnas">
     <select name="adv_numplayers">
-      <option value="ALL">Todos</option>
+      <option value="ALL">All</option>
        {% for i in lownum %}
       <option value="{{i}}">{{i}}</option>
      {% endfor %}
@@ -462,11 +462,11 @@
   </div>
   <div style="clear: both"></div>
   <h2 class="titulo-formulario-avanzado">
-  Precio:
+  Price:
   </h2>
   <div class="formulario-avanzado-2-columnas">
     <select name="adv_price">
-      <option value="ALL">Todos</option>
+      <option value="ALL">All</option>
      {% for align in PRICE_RANGES %}
                                               <option value={{align.0}}>{{align.1}}</option>
                                               {% endfor %}
@@ -474,33 +474,33 @@
   </div>
 
   <h2 class="titulo-formulario-avanzado">
-  Sesiones de juego:
+  Game sessions:
   </h2>
   <div class="formulario-avanzado-2-columnas">
     <select name="adv_numsessions">
-      <option value="ALL">Todos</option>
+      <option value="ALL">All</option>
        {% for i in highnum %}
       <option value="{{i}}">{{i}}</option>
                                                 {% endfor %}
      </select>
   </div>
                         <h2 class="titulo-formulario-avanzado">
-       Evaluación:
+       Canon level:
      </h2>
               <div class="formulario-avanzado-2-columnas" >
               <select name="canon_level">
-         <option value="ALL">Cualquiera</option>
-         <option value="NEW">Nuevo</option>
-         <option value="AP">Apócrifo</option>
-         <option value="APC">En estudio</option>
-         <option value="C">Canon</option>
+                                                  <option value="ALL">All</option>
+                                                  <option value="NEW">New</option>
+                                                  <option value="AP">Apocryphal</option>
+                                                  <option value="APC">Under study</option>
+                                                  <option value="C">Canon</option>
               </select>
               </div>
 
  <div style="clear: both"></div>
 
  <h2 class="titulo-formulario-avanzado" >
-   Palabras clave:
+   Keywords:
  </h2>
  <div class="formulario-avanzado" >
    <input style="padding: 5px 5px; font-size:16px;width:458px;" type="text" name="searchterm" />
@@ -509,7 +509,7 @@
 
  <div style="clear: both"></div>
  <div style="clear: both; text-align: center">
-   <input class="boton_buscar" type="submit" value="Buscar" style="font-size: 22px;height: 38px;"/>
+   <input class="boton_buscar" type="submit" value="Search" style="font-size: 22px;height: 38px;"/>
  </div>
 
  </form>
@@ -521,34 +521,34 @@
    <div id="cronica">
                         <form action="/resadvancedsearch/" METHOD=GET>
   <h2 class="titulo-formulario-avanzado">
-  Aventuras:
+  Adventures:
   </h2>
                                         <input type="hidden" name="option" value="chronicle">
   <div class="formulario-avanzado-1-columnas">
     <select name="chr_adventure">
-      <option value="ALL">Todas</option>
+      <option value="ALL">All</option>
                                               {% for adventure in adventures %}
       <option value="{{adventure.id}}">{{adventure.name}}</option>
                                               {% endfor %}
      </select>
   </div>
                         <h2 class="titulo-formulario-avanzado">
-       Evaluación:
+       Canon level:
      </h2>
               <div class="formulario-avanzado-2-columnas" >
               <select name="canon_level">
-         <option value="ALL">Cualquiera</option>
-         <option value="NEW">Nuevo</option>
-         <option value="AP">Apócrifo</option>
-         <option value="APC">En estudio</option>
-         <option value="C">Canon</option>
+                                                  <option value="ALL">All</option>
+                                                  <option value="NEW">New</option>
+                                                  <option value="AP">Apocryphal</option>
+                                                  <option value="APC">Under study</option>
+                                                  <option value="C">Canon</option>
               </select>
               </div>
 
  <div style="clear: both"></div>
 
  <h2 class="titulo-formulario-avanzado" >
-   Palabras clave:
+   Keywords:
  </h2>
  <div class="formulario-avanzado" >
    <input style="padding: 5px 5px; font-size:16px;width:458px;" type="text" name="searchterm" />
@@ -557,7 +557,7 @@
 
  <div style="clear: both"></div>
  <div style="clear: both; text-align: center">
-   <input class="boton_buscar" type="submit" value="Buscar" style="font-size: 22px;height: 38px;"/>
+   <input class="boton_buscar" type="submit" value="Search" style="font-size: 22px;height: 38px;"/>
  </div>
 
  </form>
@@ -571,22 +571,22 @@
  <form action="/resadvancedsearch/" METHOD=GET>
  <input type="hidden" name="option" value="spell">
  <h2 class="titulo-formulario-avanzado">
- Nivel:
+ Level:
  </h2>
  <div class="formulario-avanzado-2-columnas" >
                                             <select name="level">
-                                               <option value="ALL">Todos</option>
+                                               <option value="ALL">All</option>
                                                    {% for i in lownum %}
                                               <option value="{{i}}">{{i}}</option>
                                              {% endfor %}
                                              </select>
                                         </div>
                                          <h2 class="titulo-formulario-avanzado">
-                                        Clases:
+                                        Classes:
                                         </h2>
                                         <div class="formulario-avanzado-2-columnas" >
                                             <select name="classrace">
-                                              <option value="ALL">Todas</option>
+                                              <option value="ALL">All</option>
                                                 {% for class in classraces %}
                                                 <option value="{{class.id}}">{{class.name}}</option>
                                                 {% endfor %}
@@ -598,21 +598,21 @@
                                         </h2>
                                         <div class="formulario-avanzado-2-columnas" >
                                         <select name="reversible">
-                                              <option value="ALL">Indiferente</option>
-                                              <option value="1">Sí</option>
+                                              <option value="ALL">All</option>
+                                              <option value="1">Yes</option>
                                               <option value="0">No</option>
                                         </select>
                                         </div>
                                         <h2 class="titulo-formulario-avanzado">
-                                            Evaluación:
+                                            Canon level:
                                         </h2>
                                         <div class="formulario-avanzado-2-columnas" >
                                          <select name="canon_level">
-                                        <option value="ALL">Cualquiera</option>
-                                        <option value="NEW">Nuevo</option>
-                                        <option value="AP">Apócrifo</option>
-                                        <option value="APC">En estudio</option>
-                                        <option value="C">Canon</option>
+                                                  <option value="ALL">All</option>
+                                                  <option value="NEW">New</option>
+                                                  <option value="AP">Apocryphal</option>
+                                                  <option value="APC">Under study</option>
+                                                  <option value="C">Canon</option>
                                           </select>
                                         </div>
 
@@ -620,7 +620,7 @@
 
 
                                         <h2 class="titulo-formulario-avanzado" >
-                                            Palabras clave:
+                                            Keywords:
                                         </h2>
                                         <div class="formulario-avanzado" >
                                             <input style="padding: 5px 5px; font-size:16px;width:380px;" type="text" name="searchterm" />
@@ -629,7 +629,7 @@
 
                                          <div style="clear: both">&nbsp;</div>
                                         <div style="clear: both; text-align: center">
-                                            <input class="boton_buscar" type="submit" value="Buscar" style="font-size: 22px;height: 38px;"/>
+                                            <input class="boton_buscar" type="submit" value="Search" style="font-size: 22px;height: 38px;"/>
  </div></form>
 
 
@@ -646,35 +646,35 @@
     <div id="regla">
     <form action="/resadvancedsearch/" METHOD=GET>
     <h2 class="titulo-formulario-avanzado">
-    Secciones:
+    Sections:
     </h2>
     <input type="hidden" name="option" value="rule">
         <div class="formulario-avanzado-2-columnas" >
 
     <select name="affectedsection">
-        <option value="ALL">Todas</option>
+        <option value="ALL">All</option>
         {% for section in rulesections %}
         <option value="{{section.id}}">{{section.name}}</option>
         {% endfor %}
     </select>
     </div>
     <h2 class="titulo-formulario-avanzado">
-    Evaluación:
+    Canon level:
     </h2>
     <div class="formulario-avanzado-2-columnas" >
     <select name="canon_level">
-        <option value="ALL">Cualquiera</option>
-        <option value="NEW">Nuevo</option>
-        <option value="AP">Apócrifo</option>
-        <option value="APC">En estudio</option>
-        <option value="C">Canon</option>
+                                                  <option value="ALL">All</option>
+                                                  <option value="NEW">New</option>
+                                                  <option value="AP">Apocryphal</option>
+                                                  <option value="APC">Under study</option>
+                                                  <option value="C">Canon</option>
     </select>
     </div>
 
     <div style="clear: both"></div>
 
     <h2 class="titulo-formulario-avanzado" >
-    Palabras clave:
+    Keywords:
     </h2>
     <div class="formulario-avanzado" >
     <input style="padding: 5px 5px; font-size:16px;width:458px;" type="text" name="searchterm" />
@@ -683,7 +683,7 @@
 
     <div style="clear: both"></div>
     <div style="clear: both; text-align: center">
-    <input class="boton_buscar" type="submit" value="Buscar" style="font-size: 22px;height: 38px;"/>
+    <input class="boton_buscar" type="submit" value="Search" style="font-size: 22px;height: 38px;"/>
     </div>
 
     </form>
@@ -703,11 +703,11 @@
 
 
                                        <h2 class="titulo-formulario-avanzado">
-                                       Autor:
+                                       Author:
                                        </h2>
                                        <div class="formulario-avanzado-1-columnas">
                                        <select name="author">
-                                       <option value="ALL">Todos</option>
+                                       <option value="ALL">All</option>
                                         {% for author in fanart_authors %}
                                               <option value={{author.id}}>{{author.name}}</option>
                                         {% endfor %}
@@ -715,22 +715,22 @@
                                         </div>
                                     <!-- Separador-->	<div style="clear: both"><br/></div>
                                         <h2 class="titulo-formulario-avanzado">
-                                        Tipo:
+                                        Type:
                                         </h2>
                                         <div class="formulario-avanzado-2-columnas" >
                                             <select name="chosentype">
-                                            <option value="ALL">Cualquiera</option>
+                                            <option value="ALL">All</option>
                                         {% for type in FANART_TYPE_CHOICES %}
                                               <option value={{type.0}}>{{type.1}}</option>
                                         {% endfor %}
                                              </select>
                                         </div>
                                          <h2 class="titulo-formulario-avanzado">
-                                        Categoría:
+                                        Category:
                                         </h2>
                                         <div class="formulario-avanzado-2-columnas" >
                                             <select name="chosencategory">
-                                              <option value="ALL">Cualquiera</option>
+                                              <option value="ALL">All</option>
                                               {% for category in FANART_CATEGORY_CHOICES %}
                                               <option value={{category.0}}>{{category.1}}</option>
                                         {% endfor %}
@@ -739,30 +739,30 @@
                                         <div style="clear: both">&nbsp;</div>
 
 										<h2 class="titulo-formulario-avanzado">
-                                        Licencia:
+                                        License:
                                         </h2>
                                         <div class="formulario-avanzado-2-columnas" >
                                             <select name="chosenlicense">
-                                              <option value="ALL">Cualquiera</option>
+                                              <option value="ALL">All</option>
                                               {% for license in FANART_LICENSE_CHOICES %}
                                               <option value={{license.0}}>{{license.1}}</option>
                                         {% endfor %}
                                              </select>
                                         </div>
                                         <h2 class="titulo-formulario-avanzado">
-                                       Evaluación:	</h2>
+                                       Canon level:	</h2>
 						<div class="formulario-avanzado-2-columnas">
 						<select name="canon_level">
-	    					  <option value="ALL">Cualquiera</option>
-	    					  <option value="NEW">Nuevo</option>
-	    					  <option value="AP">Apócrifo</option>
-	    					  <option value="APC">En estudio</option>
-	    					  <option value="C">Canon</option>
+                                                  <option value="ALL">All</option>
+                                                  <option value="NEW">New</option>
+                                                  <option value="AP">Apocryphal</option>
+                                                  <option value="APC">Under study</option>
+                                                  <option value="C">Canon</option>
 	    				</select> </div>
 
                                         <div style="clear: both">&nbsp;</div>
                                              <h2 class="titulo-formulario-avanzado" >
-                        Palabras clave:
+                        Keywords:
                     </h2>
 
                     <div class="formulario-avanzado" >
@@ -771,7 +771,7 @@
 
 
     <div style="clear: both; text-align: center">
-    <input class="boton_buscar" type="submit" value="Buscar" style="font-size: 22px;height: 38px;"/>
+    <input class="boton_buscar" type="submit" value="Search" style="font-size: 22px;height: 38px;"/>
     </div>
 
     </form>
