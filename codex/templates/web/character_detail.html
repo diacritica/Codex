@@ -135,7 +135,7 @@
 						  {% endfor %}
 						</li>-->
 						<li><b>Hit points:</b> {{object.hitpoints|default:"--"}}</li>
-						<li style="width: 300px"><b>Lugares:</b>&nbsp;
+						<li style="width: 300px"><b>Locations:</b>&nbsp;
                         {% if object.relatedlocation.all %}
     					  {% for rlocation in object.relatedlocation.all %}
     					   {% if forloop.first %}
