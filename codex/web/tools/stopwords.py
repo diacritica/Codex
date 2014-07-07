@@ -5,7 +5,7 @@ import os
 from django.conf import settings
 
 if settings.ENVIRONMENT=="DEVELFO":
-    os.chdir("/home/elfo/GIT/CODEX/codex/web/tools/")  # FIXME
+    os.chdir("/home/diacritica/GIT/Codex/codex/web/tools/")  # FIXME
 elif settings.ENVIRONMENT=="DEVELWEN":
     os.chdir("/home/CORTEX-ELWEN/git/Codex/codex/web/tools/")  # FIXME
 elif settings.ENVIRONMENT=="PRO":

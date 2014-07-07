@@ -152,8 +152,8 @@
 										<div class="formulario-avanzado-2-columnas">
 											<select name="char_minlevel">
 											  <option value="ALL">All</option>
-                                              {% for level in LEVEL_CHOICES %}
-                                              <option value={{level.0}}>{{level.1}}</option>
+                                              {% for i in highnum %}
+  <option value="{{i}}">{{i}}</option>
                                               {% endfor %}
 											 </select>
 										</div>

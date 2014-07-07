@@ -14,6 +14,29 @@ MAXLEVEL = 20
 
 LEVEL_CHOICES = (('{level}'.format(level=level) ,'{level}'.format(level=level)) for level in range(MINLEVEL,MAXLEVEL+1)  )
 
+PROFESSION_CHOICES = (
+    ('Cl',u'Cleric'),
+    ('El',u'Elf'),
+    ('Dw',u'Dwarf'),
+    ('Ex',u'Explorer'),
+    ('Wr',u'Warrior'),
+    ('Hl',u'Halfling'),
+    ('Rg',u'Rogue'),
+    ('Mg',u'Mage'),
+    ('Pl',u'Paladin'),
+    ('As',u'Assassin'),
+    ('Br',u'Barbarian'),
+    ('Bd',u'Bard'),
+    ('Dr',u'Druid'),
+    ('De',u'Dark elf'),
+    ('Gn',u'Gnome'),
+    ('My',u'Mystic (Monk)'),
+    ('Ni',u'Ninja'),
+    ('Sa',u'Samurai'),
+    ('He',u'Half-elf'),
+    ('Ho',u'Half-orc'),
+)
+
 PROFESSION_DESCRIPTOR = {
     'Cl':(u'Cleric',20),
     'El':(u'Elf',10),
@@ -37,9 +60,9 @@ PROFESSION_DESCRIPTOR = {
     'Ho':(u'Half-orc',12),
 }
 
-PROFESSION_CHOICES = ( (profession[0],profession[1][0]) 
-                       for profession in PROFESSION_DESCRIPTOR.items()
-)
+#PROFESSION_CHOICES = ( (profession[0],profession[1][0]) 
+#                       for profession in PROFESSION_DESCRIPTOR.items()
+#)
 
 SAVE_CHOICES = ( (profession[0] , "{0}: level {1}".format(profession[1][0],level) ) 
 

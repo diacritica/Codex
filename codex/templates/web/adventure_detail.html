@@ -7,27 +7,28 @@
 		<div id="cabecera">
 			<div id="menu">
 				<ul>
-					<li><a href="/">El Codex</a></li>	
-					<li><a href="/character">Personajes</a></li>
-					<li><a href="/creature">Bestiario</a></li>	
-					<li><a href="/location">Lugares</a></li>
-					<li><a href="/object">Objetos</a></li>	
-					<li><a href="/adventure" class="seleccion">Aventuras</a></li>	
-					<li><a href="/chronicle">Crónicas</a></li>
-					<li><a href="/spell" >Conjuros</a></li>
-					<li><a href="/rule" >Reglas</a></li>
-					<li><a href="/fanart" >Fan Art</a></li>
-					<li><a href="/send_info">Enviar info</a></li>	
-					<li><a href="/contact">Contacto</a></li>
+                                        <li><a href="/">The Codex</a></li>      
+                                        <li><a href="/character" >Characters</a></li>
+                                        <li><a href="/creature">Bestiary</a></li>       
+                                        <li><a href="/location">Locations</a></li>
+                                        <li><a href="/object">Objects</a></li>  
+                                        <li><a href="/adventure" class="seleccion">Adventures</a></li> 
+                                        <li><a href="/chronicle">Chronicles</a></li>
+                                        <li><a href="/spell" >Spells</a></li>
+                                        <li><a href="/rule" >Rules</a></li>
+                                        <li><a href="/fanart" >Fan Art</a></li>
+                                        <li><a href="/send_info">Send entry</a></li>    
+                                        <li><a href="/contact">Contact</a></li>
+
         		</ul>
 			</div><!-- fin menu -->
 			
 			<div id="logo">
-				<a href="/"><img src="/ima/codex-logo.jpg" alt="Codex de las aventuras de la Marca del Este." /></a>
+				<a href="/"><img src="/ima/codex-logo.jpg" alt="East Mark Codex" /></a>
 			</div><!-- fin logo -->
 			
 			<div id="slogan">
-				La recopilación de todo el conocimiento sobre la Marca del Este.
+				A compilation of all the knowledge of the East Mark.
 			</div><!-- fin logo -->
 		
 		
@@ -37,11 +38,11 @@
 		<div id="contenido" >
 			<div id="contenido-articulos" >
 			<div id="columna-izq">
-				<div id="volver"><span><a href="/">Volver a inicio</a>&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;</span> <a href="/adventure">Aventura</a></div>
+				<div id="volver"><span><a href="/">Home</a>&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;</span> <a href="/adventure">Adventures</a></div>
 				
-				<h1><img src="/ima/ico-portada-aventura.png" alt="aventura"/>{{object.name}}
+				<h1><img src="/ima/ico-portada-aventura.png" alt="adventure"/>{{object.name}}
                  {% if user.is_authenticated and user.is_staff %}
-                <a href="/scriptorium/web/adventure/{{object.id}}">[editar]</a>
+                <a href="/scriptorium/web/adventure/{{object.id}}">[edit]</a>
                 {% endif %}
 
                 </h1>
@@ -50,7 +51,7 @@
 				</p>
                 {% endif %}
                  {% if object.comments %}				
-                <h2>Nota del autor:</h2>
+                <h2>Author's comments:</h2>
                 <p>{{object.comments|safe}}</p>		
 				{% endif %}
 
@@ -79,13 +80,13 @@
 				
 				<div id="firma-ima">
 	                    {% if image.author.all %}
-					<b>Autor(es) de la ilustración</b>:
+					<b>Image Author(s)</b>:
                     {% for author in image.author.all%}
 					   {% if forloop.first %}
                         <a href="{{author.url}}">{{author.name}}</a>
 						{% endif %}
 						{% if forloop.last and forloop.last != forloop.first %}
-						 y <a href="{{author.url}}">{{author.name}}</a>
+						 and <a href="{{author.url}}">{{author.name}}</a>
 						{% endif %}
 						{% if not forloop.last and not forloop.first %}
 						, <a href="{{author.url}}">{{author.name}}</a>
@@ -101,28 +102,28 @@
 				{% if object.url %}
 				<div id="boton-gordo">
 					
-						<a href="{{object.url}}" class="boton-aventura"> Ir a web de referencia</a>
+						<a href="{{object.url}}" class="boton-aventura"> Go to original source</a>
 				
 				</div>
 				{% endif %}
-				<h2>Más información:</h2>
+				<h2>More info:</h2>
 				
 				<div class="lista2columnas">
 					<ul>						
-						{% if object.price %}<li><b>Precio:</b> {{object.get_price_display}}</li>{% endif %}
+						{% if object.price %}<li><b>Price:</b> {{object.get_price_display}}</li>{% endif %}
 						
-						{% if object.minlevel or object.maxlevel %}<li><b>Nivel:</b> {{object.minlevel|default:"*"}} - {{object.maxlevel|default:"*"}}</li>{% endif %}
+						{% if object.minlevel or object.maxlevel %}<li><b>Level:</b> {{object.minlevel|default:"*"}} to {{object.maxlevel|default:"*"}}</li>{% endif %}
 
-						{% if object.sessions %}<li><b>Sesiones de juego:</b> {{object.sessions}}</li>{% endif %}
+						{% if object.sessions %}<li><b>Game sessions:</b> {{object.sessions}}</li>{% endif %}
 						
-						{% if object.minnumplayers or object.maxnumplayers %}<li><b>Nº Jugadores:</b> {{object.minnumplayers|default:"*"}} - {{object.maxnumplayers|default:"*"}}</li>{% endif %}
+						{% if object.minnumplayers or object.maxnumplayers %}<li><b>No. of players:</b> {{object.minnumplayers|default:"*"}} to {{object.maxnumplayers|default:"*"}}</li>{% endif %}
 					</ul>
 				</div><!-- fin lista2columnas-->
 				
 				
 				
 					{% if object.chronicle_set.all %}
-					<h2>Crónicas sobre la aventura:</h2>
+					<h2>Adventure's chronicles:</h2>
 				
 					<div class="lista1columna">
 					<ul>
@@ -138,6 +139,6 @@
 	
 				<!-- fin lista2columnas-->
 				
-
+</div>
 {% endblock %}
 
