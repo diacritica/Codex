@@ -224,11 +224,12 @@ OBJ_RARITY_CHOICES = (
 )
 
 CHAR_RELATIONSHIP_CHOICES = (
+        ('LOVER', _(u'Lover')),
         ('SON', _(u'Child')),
         ('FATHER', _(u'Parent')),
         ('BROTHER', _(u'Sibling')),
         ('SUBDIT', _(u'Subject')),
-        ('GROUP', _(u'Gruop')),
+        ('GROUP', _(u'Group')),
         ('FELLOW', _(u'Fellow')),
         ('NEMESIS', _(u'Nemesis')),
         ('ENEMY', _(u'Enemy')),

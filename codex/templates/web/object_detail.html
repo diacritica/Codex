@@ -124,7 +124,7 @@
 					<ul>
                         {% for character in object.Objects.all %}
 						
-						{% if character.canon_level == "C" %}<li><a href="/character/{{character.slug}}">{{character.name}}</a></li>{% endif %}
+						<li><a href="/character/{{character.slug}}">{{character.name}}</a></li>
                         {% endfor %}						
 					</ul>
 				</div><!-- fin lista2columnas-->

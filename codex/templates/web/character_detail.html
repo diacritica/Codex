@@ -263,13 +263,13 @@
 				<div class="lista2columnas">
 					<ul>
 					  {% for relation in relatedcharacters2 %}
-					  {% if relation.relation21 in "GROUPSONFATHERBROTHERSUBDITFRIENDMASTERAPPRENTICEFAMILIAREMPLOYEELORDUNDERLINGFELLOW" %}
-						<li>{{relation.get_relation21_display}} de <a href="/character/{{relation.character1.slug}}">{{relation.character1.name}}</a></li>
+					  {% if relation.relation21 in "LOVERSONFATHERBROTHERSUBDITGROUPFELLOWFRIENDMASTERAPPRENTICEFAMILIAREMPLOYEELORDUNDERLINGCOUSINNEPHEWUNCLEGRANDCREATORSTEPFATHERSTEPSON" %}
+						<li>{{relation.get_relation21_display}} of <a href="/character/{{relation.character1.slug}}">{{relation.character1.name}}</a></li>
 						{% endif %}
 					{% endfor %}
 	 				 {% for relation in relatedcharacters1 %}
-					  	{% if relation.relation21 in "GROUPSONFATHERBROTHERSUBDITFRIENDMASTERAPPRENTICEFAMILIAREMPLOYEELORDUNDERLINGFELLOW" %}
-						<li>{{relation.get_relation12_display}} de <a href="/character/{{relation.character2.slug}}">{{relation.character2.name}}</a></li>
+					  	{% if relation.relation21 in "LOVERSONFATHERBROTHERSUBDITGROUPFELLOWFRIENDMASTERAPPRENTICEFAMILIAREMPLOYEELORDUNDERLINGCOUSINNEPHEWUNCLEGRANDCREATORSTEPFATHERSTEPSON" %}
+						<li>{{relation.get_relation12_display}} of <a href="/character/{{relation.character2.slug}}">{{relation.character2.name}}</a></li>
 						{% endif %}
 
 					{% endfor %}
