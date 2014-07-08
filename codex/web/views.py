@@ -56,6 +56,9 @@ def SendinfoView(request):
 
     return render_to_response('web/sendinfo.html',{})
 
+def SendAdventureView(request):
+    
+    return render_to_response('web/send-info-adventure.html',{})
 
 def IndexView(request):
     chars = Character.objects.exclude(deactivated=True).order_by('-last_updated')[:3]
