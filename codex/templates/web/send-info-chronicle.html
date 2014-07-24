@@ -1,0 +1,208 @@
+<!DOCTY{% extends "basebasic.html" %}
+{% block title %}
+<title>East Mark Codex - Send entry</title>
+{% endblock %}
+{% block navigation %}
+        <div id="cabecera">
+            <div id="menu">
+                <ul>
+                                        <li><a href="/">The Codex</a></li>
+                                        <li><a href="/character">Characters</a></li>
+                                        <li><a href="/creature">Bestiary</a></li>
+                                        <li><a href="/location">Locations</a></li>
+                                        <li><a href="/object">Objects</a></li>
+                                        <li><a href="/adventure">Adventures</a></li>
+                                        <li><a href="/chronicle">Chronicles</a></li>
+                                        <li><a href="/spell" >Spells</a></li>
+                                        <li><a href="/rule" >Rules</a></li>
+                                        <li><a href="/fanart" >Fan Art</a></li>
+                                        <li><a href="/send_info" class="seleccion">Send entry</a></li>
+                                        <li><a href="/contact">Contact</a></li>
+                </ul>
+            </div><!-- fin menu -->
+
+            <div id="logo">
+                <a href="/"><img src="/ima/codex-logo.jpg" alt="Adventures in the East Mark Codex." /></a>
+            </div><!-- fin logo -->
+
+            <div id="slogan">
+                A compilation of the knowledge of the East Mark.
+            </div><!-- fin logo -->
+
+
+{% endblock %}
+
+
+{% block content %}
+    <div id="contenido" >
+        <div id="contenido-listados" >
+        <div id="columna-der-listados">
+
+
+
+        <div id="volver"><span><a href="#">Home</a>&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;</span> <a href="#">Send entry</a></div>
+
+        <div id="central">
+        <!-- send new chronicle -->
+        <!-- usual1 -->
+        <div id="usual1" class="usual">
+            <ul>
+            <li><a class="selected" href="#first_step">Step 1</a></li>
+            <li> ------------------- </li>
+            <li><a href="#second_step">Step 2</a></li>
+            </ul>
+
+            <form action="/send_info/send_form" method="post">{% csrf_token %}
+            <input type="hidden"  id="entry_type" name="entry_type" value="chronicle"/>
+
+                <!-- 1 -------------------------------------------------------- -->
+
+            <div id="first_step">
+
+                <h2 ><img alt="Chronicle" src="/ima/ico-portada-cronica.png" class="send-info"> Provide as much information as possible</h2>
+                <div style="clear: both">&nbsp;</div>
+                <h3 class="send-info">About the chronicle</h3>
+                <div style="clear: both">&nbsp;</div>
+
+                <h2 class="titulo-formulario-avanzado" >Name</h2>
+                <div class="formulario-avanzado" >
+                <input style="padding: 5px 5px; font-size:16px;width:458px;" type="text" id="chr_name" name="chr_name" />
+                </div>
+
+                <h2 class="titulo-formulario-avanzado" >Description</h2>
+                <div class="formulario-avanzado" >
+                <textarea type="text" id="chr_description" name="chr_description" ></textarea>
+                </div>
+
+                <!--<h2 class="titulo-formulario-avanzado" >Where to read it (URL)</h2>
+                <div class="formulario-avanzado" >
+                <input style="padding: 5px 5px; font-size:16px;width:458px;" type="text" id="chr_url" name="chr_url" />
+                </div>-->
+
+                <div style="clear: both">&nbsp;</div>
+
+                <ul class="send-info-menu">
+                <li><a href="#second_step">Next</a></li>
+                </ul>
+            </div>
+
+            <!-- 2 ------------------------------------------------------------------------ -->
+
+            <div id="second_step">
+
+                <h2 ><img alt="cr&oacute;nica" src="/ima/ico-portada-cronica.png" class="send-info"> Provide as much information as possible</h2>
+                <h3 class="send-info">Additional material or reference URL</h3>
+                <div style="clear: both">&nbsp;</div>
+                <p style="padding: 5px 5px; font-size:14px;">You can upload a file with the chronicle, provide a URL where others can get it or both. Please take into consideration that we will not host any copyrighted material.
+                </p>
+
+                <h2 class="titulo-formulario-avanzado" >File</h2>
+                <div class="formulario-avanzado" >
+                <input type="file" name="file" size="40" style="padding: 5px 5px; font-size:16px;width:458px;" id="chr_file" name="chr_file">
+                </div>
+
+
+                <h2 class="titulo-formulario-avanzado" >URL</h2>
+                <div class="formulario-avanzado" >
+                <input style="padding: 5px 5px; font-size:16px;width:458px;" type="text" id="chr_url" name="chr_url" />
+                </div>
+
+                <div style="clear: both">&nbsp;</div>
+                <h3 class="send-info">Associated image</h3>
+
+                <div style="clear: both">&nbsp;</div>
+                <p style="padding: 5px 5px; font-size:14px;">If you want to include an image in the ficha for your chronicle upload the file here (best resolution is)
+                </p>
+
+<!--                 <div style="clear: both">&nbsp;</div>  -->
+
+                <h2 class="titulo-formulario-avanzado" >Image file</h2>
+                <div class="formulario-avanzado" >
+                <input type="file" name="file" size="40" style="padding: 5px 5px; font-size:16px;width:458px;">
+                </div>
+
+                <h2 class="titulo-formulario-avanzado" >Image author</h2>
+                <div class="formulario-avanzado" >
+                <input style="padding: 5px 5px; font-size:16px;width:458px;" type="text" id="chr_image_author" name="chr_image_author" />
+                </div>
+
+                <h2 class="titulo-formulario-avanzado" >Image author URL</h2>
+                <div class="formulario-avanzado" >
+                <input style="padding: 5px 5px; font-size:16px;width:458px;" type="text" id="chr_image_url" name="chr_image_url" />
+                </div>
+
+                <div style="clear: both">&nbsp;</div>
+
+                <h3 class="send-info">Chronicle author</h3>
+
+                <div style="clear: both">&nbsp;</div>
+
+                <p style="padding: 5px 5px; font-size:14px;">Pick an existing author or introduce a new one.
+                </p>
+
+                <h2 class="titulo-formulario-avanzado" >Existing authors</h2>
+                <div class="formulario-avanzado" >
+                <select name="chr_author_list" id="chr_author_list">
+                        <option value='0'> ----- </option>
+                        {% for author in authors %}
+                        <option value={{author}}>{{author}}</option>
+                        {% endfor %}
+                </select>
+                </div>
+
+<!--                 <div style="clear: both">&nbsp;</div> -->
+
+                <h2 class="titulo-formulario-avanzado" >Name or alias</h2>
+                <div class="formulario-avanzado" >
+                <input style="padding: 5px 5px; font-size:16px;width:458px;" type="text" id="chr_author_name" name="chr_author_name" />
+                </div>
+
+
+                <h2 class="titulo-formulario-avanzado" >URL</h2>
+                <div class="formulario-avanzado" >
+                <input style="padding: 5px 5px; font-size:16px;width:458px;" type="text" id="chr_author_url" name="chr_author_url" />
+                </div>
+
+                <h2 class="titulo-formulario-avanzado" >E-mail</h2>
+                <div class="formulario-avanzado" >
+                <input style="padding: 5px 5px; font-size:16px;width:458px;" type="text" id="chr_email" name="chr_email" />
+                </div>
+
+                <div style="clear: both">&nbsp;</div>
+
+                <ul class="send-info-menu">
+
+                <li><a href="#first_step">Return</a></li>
+                <li>
+                <input class="boton_buscar" type="submit" value="Send" style="font-size: 22px;height: 38px;"/>
+                </li>
+                </ul>
+
+                <div style="clear: both">&nbsp;</div>
+        </div>
+
+</div>
+
+<!-- fin usual1 -->
+
+    <script type="text/javascript">
+        $("#usual1").idTabs(function(id,list,set){
+        $("a",set).removeClass("selected")
+        .filter("[href='"+id+"']",set).addClass("selected");
+        for(i in list)
+            $(list[i]).hide();
+            $(id).fadeIn();
+        return false;
+        });
+    </script>
+</form>
+
+<div style="clear:all;float:none; width:850px;">
+<br /><br />
+</div>
+</div><!-- fin central -->
+</div><!-- fin columna-der-listados -->
+</div><!-- fin contenido-articulos -->
+</div><!-- fin contenido -->
+
+{% endblock %}

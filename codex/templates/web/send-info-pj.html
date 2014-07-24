@@ -1,0 +1,530 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title></title>
+<meta name='title' content=''/>
+<meta name='description' content=''/>
+
+<meta name="author" content=""/>
+<meta name="language" content="spanish"/>
+<meta name="revisit" content="10 day"/>
+<meta name="distribution" content="global"/>
+
+<meta name="robots" content="All"/>
+<meta http-equiv="pragma" content="no-cache"/>
+<meta http-equiv="expires" content="-1"/>		
+<link rel="stylesheet" href="css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="css/estilo.css" type="text/css" media="screen" />
+<!-- jquery	-->	
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.idTabs.min.js"></script>
+<script type="text/javascript" src="js/funciones-send-info.js"></script>
+</head>
+<body> 
+<div id="contenedor">
+<div id="cabecera">
+<div id="menu">
+<ul>	      
+<li><a href="index.html">El Codex</a></li>	
+<li><a href="personaje.html">Personajes</a></li>	 
+<li><a href="bestiario.html" >Bestiario</a></li>	
+<li><a href="lugar.html">Lugares</a></li>
+<li><a href="objeto.html" >Objetos</a></li>    
+<li><a href="aventura.html" >Aventuras</a></li>						
+<li><a href="cronica.html" >Cr&oacute;nicas</a></li>
+<li><a href="conjuro.html" >Conjuros</a></li>
+<li><a href="regla.html" >Reglas</a></li>
+<li><a href="fanart.html" >Fan Art</a></li>										
+<li><a href="enviar-info.html" class="seleccion">Enviar info</a></li>	
+<li><a href="contactar.html">Contacto</a></li>
+</ul>
+</div><!-- fin menu -->	
+<div id="logo">
+<a href="#"><img src="ima/codex-logo.jpg" alt="Codex de las aventuras de la Marca del Este." /></a>
+</div><!-- fin logo -->	
+<div id="slogan">
+La recopilaci&oacute;n de todo el conocimiento sobre la Marca del Este.
+</div>
+<div id="busqueda-simple">
+<div id="form-busqueda-simple">
+<form action="">
+<select>					  
+<option value="todo">Todo</option>
+<option value="Personaje">Personaje</option>
+<option value="Bestiario">Bestiario</option>
+<option value="Lugar">Lugar</option>
+<option value="Aventura">Aventura</option>
+<option value="Objetos">Objetos</option>
+<option value="Cr&oacute;nicas" >Cr&oacute;nicas</option>
+<option value="Conjuros" >Conjuros</option>
+<option value="Reglas" >Reglas</option>
+<option value="Fan Art" >Fan Art</option>				   
+</select>			
+<input class="barra_busqueda" type="text" name="LastName" value="texto de ejemplo" />			
+<input class="boton_buscar" type="submit" value="Buscar" />
+</form>
+</div>
+<div id="ir-busqueda-avanzada"><a href="#">Busqueda<br/>avanzada</a></div>
+</div><!-- fin busqueda-simple -->	
+</div><!-- fin cabecera -->
+<div id="contenido" >
+<div id="contenido-listados" >			
+<div id="columna-der-listados">
+
+<div id="volver"><span><a href="#">Volver a inicio</a>&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;</span> <a href="#">Enviar info<!-- nombre de la categoria si es un resultado de listado de categoria O  palabra "Busqueda" e incluir el H1 de Resultado de busqueda de "El termino que busco"--></a></div> 
+
+<div id="central">
+<!-- enviar info pj -->
+<!-- usual1 --><div id="usual1" class="usual">
+<ul> 
+<li><a class="selected" href="#first_step">Paso 1</a></li> 
+<li> ------------------- </li> 
+<li><a href="#second_step">Paso 2</a></li>
+<li> ------------------- </li> 
+<li><a href="#third_step">Paso 3</a></li>
+<li> ------------------- </li> 
+<li><a href="#fourth_step">Paso 4</a></li>
+</ul>
+<form action="#" method="post">
+<!-- 1 -------------------------------------------------------- -->
+<div id="first_step">
+<h2 ><img alt="personaje" src="ima/ico-portada-personajes.png" class="send-info"> Enviando informaci&oacute;n sobre personajes. Paso 1 de 4.</h2>
+ <h2 class="send-info">Sobre el personaje</h2>  
+<div style="clear: both">&nbsp;</div>                
+<h2 class="titulo-formulario-avanzado" >Nombre:</h2>
+<div class="formulario-avanzado" >
+<input style="padding: 5px 5px; font-size:16px;width:458px;" type="text"  />
+</div>
+<h2 class="titulo-formulario-avanzado" >Lema:</h2>
+<div class="formulario-avanzado" >
+<input style="padding: 5px 5px; font-size:16px;width:458px;" type="text"  />
+</div>
+<h2 class="titulo-formulario-avanzado" >Descripci&oacute;n:</h2>
+<div class="formulario-avanzado" >
+<textarea type="text"  ></textarea>
+</div>
+<div style="clear: both">&nbsp;</div> 
+<h2 class="send-info">Caracter&iacute;sticas</h2>
+<div style="clear: both">&nbsp;</div> 
+<h2 class="titulo-formulario-avanzado">Fuerza:</h2>
+<div class="formulario-avanzado-2-columnas" >
+<select>
+<option selected="selected"> - </option>
+<option value="04">04</option>
+<option value="05">05</option>
+<option value="06">06</option>
+<option value="07">07</option>
+<option value="08">08</option>
+<option value="09">09</option>
+<option value="10">10</option>
+<option value="11">11</option>
+<option value="12">12</option>
+<option value="13">13</option>
+<option value="14">14</option>
+<option value="15">15</option>
+<option value="16">16</option>
+<option value="17">17</option>
+<option value="18">18</option>
+<option value="19">19</option>
+<option value="20">20</option>
+</select>
+</div>
+<h2 class="titulo-formulario-avanzado">Contituci&oacute;n:</h2>
+<div class="formulario-avanzado-2-columnas" >
+<select>
+<option selected="selected"> - </option>
+<option value="04">04</option>
+<option value="05">05</option>
+<option value="06">06</option>
+<option value="07">07</option>
+<option value="08">08</option>
+<option value="09">09</option>
+<option value="10">10</option>
+<option value="11">11</option>
+<option value="12">12</option>
+<option value="13">13</option>
+<option value="14">14</option>
+<option value="15">15</option>
+<option value="16">16</option>
+<option value="17">17</option>
+<option value="18">18</option>
+<option value="19">19</option>
+<option value="20">20</option>
+</select>
+</div> 
+<h2 class="titulo-formulario-avanzado">Destreza:</h2>
+<div class="formulario-avanzado-2-columnas" >
+<select>
+<option selected="selected"> - </option>
+<option value="04">04</option>
+<option value="05">05</option>
+<option value="06">06</option>
+<option value="07">07</option>
+<option value="08">08</option>
+<option value="09">09</option>
+<option value="10">10</option>
+<option value="11">11</option>
+<option value="12">12</option>
+<option value="13">13</option>
+<option value="14">14</option>
+<option value="15">15</option>
+<option value="16">16</option>
+<option value="17">17</option>
+<option value="18">18</option>
+<option value="19">19</option>
+<option value="20">20</option>
+</select>
+</div>
+<h2 class="titulo-formulario-avanzado">Inteligencia:</h2>
+<div class="formulario-avanzado-2-columnas" >
+<select>
+<option selected="selected"> - </option>
+<option value="04">04</option>
+<option value="05">05</option>
+<option value="06">06</option>
+<option value="07">07</option>
+<option value="08">08</option>
+<option value="09">09</option>
+<option value="10">10</option>
+<option value="11">11</option>
+<option value="12">12</option>
+<option value="13">13</option>
+<option value="14">14</option>
+<option value="15">15</option>
+<option value="16">16</option>
+<option value="17">17</option>
+<option value="18">18</option>
+<option value="19">19</option>
+<option value="20">20</option>
+</select>
+</div>
+<h2 class="titulo-formulario-avanzado">Sabidur&iacute;a:</h2>
+<div class="formulario-avanzado-2-columnas" >
+<select>
+<option selected="selected"> - </option>
+<option value="04">04</option>
+<option value="05">05</option>
+<option value="06">06</option>
+<option value="07">07</option>
+<option value="08">08</option>
+<option value="09">09</option>
+<option value="10">10</option>
+<option value="11">11</option>
+<option value="12">12</option>
+<option value="13">13</option>
+<option value="14">14</option>
+<option value="15">15</option>
+<option value="16">16</option>
+<option value="17">17</option>
+<option value="18">18</option>
+<option value="19">19</option>
+<option value="20">20</option>
+</select>
+</div>
+<h2 class="titulo-formulario-avanzado">Carisma:</h2>
+<div class="formulario-avanzado-2-columnas" >
+<select>
+<option selected="selected"> - </option>
+<option value="04">04</option>
+<option value="05">05</option>
+<option value="06">06</option>
+<option value="07">07</option>
+<option value="08">08</option>
+<option value="09">09</option>
+<option value="10">10</option>
+<option value="11">11</option>
+<option value="12">12</option>
+<option value="13">13</option>
+<option value="14">14</option>
+<option value="15">15</option>
+<option value="16">16</option>
+<option value="17">17</option>
+<option value="18">18</option>
+<option value="19">19</option>
+<option value="20">20</option>
+</select>
+</div> 
+<div style="clear: both">&nbsp;</div>  
+<ul class="send-info-menu"> 
+<li><a href="#second_step">Continuar</a></li>
+</ul>
+</div>
+<!-- 2 ------------------------------------------------------------------------ -->
+<div id="second_step">
+<h2 ><img alt="personaje" src="ima/ico-portada-personajes.png" class="send-info"> Enviando informaci&oacute;n sobre personajes. Paso 2 de 4.</h2>
+<h2 class="send-info">Informaci&oacute;n</h2>
+<div style="clear: both">&nbsp;</div> 
+<h2 class="titulo-formulario-avanzado">Nivel:</h2>
+<div class="formulario-avanzado-2-columnas" >
+<select>
+<option selected="selected"> - </option>
+<option value="00">00</option>
+<option value="01">01</option>
+<option value="02">02</option>
+<option value="03">03</option>
+<option value="04">04</option>
+<option value="05">05</option>
+<option value="06">06</option>
+<option value="07">07</option>
+<option value="08">08</option>
+<option value="09">09</option>
+<option value="10">10</option>
+<option value="11">11</option>
+<option value="12">12</option>
+<option value="13">13</option>
+<option value="14">14</option>
+<option value="15">15</option>
+<option value="16">16</option>
+<option value="17">17</option>
+<option value="18">18</option>
+<option value="19">19</option>
+<option value="20">20</option>
+</select>
+</div>
+<h2 class="titulo-formulario-avanzado">Clase:</h2>
+<div class="formulario-avanzado-2-columnas" >
+<select>
+<option selected="selected"> - </option>
+<option value="asesino">Asesino</option>
+<option value="barbaro">B&aacute;rbaro</option>
+<option value="bardo">Bardo</option>
+<option value="clerigo">Cl&eacute;rigo</option>
+<option value="druida">Druida</option>
+<option value="elfo">Elfo</option>
+<option value="elfo-oscuro">Elfo Oscuro</option>
+<option value="enano">Enano</option>
+<option value="explorador">Explorador</option>
+<option value="gnomo">Gnomo</option>
+<option value="guerrero">Guerrero</option>
+<option value="halfling">Halfling</option>
+<option value="ladron">Ladr&oacute;n</option>
+<option value="mago">Mago</option>
+<option value="mistico">M&iacute;stico</option>
+<option value="ninja">Ninja</option>
+<option value="paladin">Palad&iacute;n</option>
+<option value="samurai">Samur&aacute;i</option>
+<option value="semielfo">Semielfo</option>
+<option value="semiorco">Semiorco</option>
+<option value="otro">Otro</option>
+</select>
+</div>
+<h2 class="titulo-formulario-avanzado">DG:</h2>
+<div class="formulario-avanzado-2-columnas">
+<input style="padding: 5px 5px; font-size:16px;width:110px;" type="text"  />
+</div>
+<h2 class="titulo-formulario-avanzado">TS:</h2>
+<div class="formulario-avanzado-2-columnas">
+<input style="padding: 5px 5px; font-size:16px;width:110px;" type="text"  />
+</div>
+<h2 class="titulo-formulario-avanzado">CA:</h2>
+<div class="formulario-avanzado-2-columnas">
+<input style="padding: 5px 5px; font-size:16px;width:110px;" type="text"  />
+</div>
+<h2 class="titulo-formulario-avanzado">Movimiento:</h2>
+<div class="formulario-avanzado-2-columnas">
+<input style="padding: 5px 5px; font-size:16px;width:110px;" type="text"  />
+</div>
+<h2 class="titulo-formulario-avanzado">Especie:</h2>
+<div class="formulario-avanzado-2-columnas" >
+<select>
+<option selected="selected"> - </option>
+<option value="humano">Humano</option>
+<option value="elfo">Elfo</option>
+<option value="elfo-oscuro">Elfo Oscuro</option>
+<option value="gnomo">Gnomo</option>
+<option value="halfling">Halfling</option>
+<option value="semielfo">Semielfo</option>
+<option value="semiorco">Semiorco</option>
+<option value="????">????</option>
+</select>
+</div>
+<h2 class="titulo-formulario-avanzado">Sexo:</h2>
+<div class="formulario-avanzado-2-columnas" >
+<select>
+<option selected="selected"> - </option>
+<option value="femenino">Femenino</option>
+<option value="masculino">Masculino</option>
+<option value="halfling">Mucho</option>
+<option value="semielfo">Poco</option>
+</select>
+</div>
+<h2 class="titulo-formulario-avanzado">Moral:</h2>
+<div class="formulario-avanzado-2-columnas">
+<select>
+<option selected="selected"> - </option>
+<option value="01">01</option>
+<option value="02">02</option>
+<option value="03">03</option>
+<option value="04">04</option>
+<option value="05">05</option>
+<option value="06">06</option>
+<option value="07">07</option>
+<option value="08">08</option>
+<option value="09">09</option>
+<option value="10">10</option>
+<option value="11">11</option>
+<option value="12">12</option>
+</select> 
+</div>
+<h2 class="titulo-formulario-avanzado">Alineamiento:</h2>
+<div class="formulario-avanzado-2-columnas">
+<select>
+<option selected="selected"> - </option>
+<option value="legal">Legal</option>
+<option value="neutral">Neutral</option>
+<option value="caotico">Caotico</option>
+</select> 
+</div>
+<h2 class="titulo-formulario-avanzado" >Tipo:</h2>
+<div class="formulario-avanzado-2-columnas">
+<select>
+<option selected="selected"> - </option>
+<option value="anj">Aventurero no jugador</option>
+<option value="aj">Aventurero jugador</option>
+</select> 
+</div>
+<h2 class="titulo-formulario-avanzado">Estado:</h2>
+<div class="formulario-avanzado-2-columnas">
+<select>
+<option selected="selected"> - </option>
+<option value="activo">Activo</option>
+<option value="desaparecido">Desaparecido</option>
+<option value="muerto">Muerto</option>
+</select> 
+</div>
+<h2 class="titulo-formulario-avanzado">Edad:</h2>
+<div class="formulario-avanzado-2-columnas">
+<input style="padding: 5px 5px; font-size:16px;width:110px;" type="text"  />
+</div>
+<h2 class="titulo-formulario-avanzado">Año aparición:</h2>
+<div class="formulario-avanzado-2-columnas">
+<input style="padding: 5px 5px; font-size:16px;width:110px;" type="text"  />
+</div>
+<h2 class="titulo-formulario-avanzado" >Idiomas:</h2>
+<div class="formulario-avanzado" >
+<input style="padding: 5px 5px; font-size:16px;width:458px;" type="text"  />
+</div>
+<h2 class="titulo-formulario-avanzado" >Lugares:</h2>
+<div class="formulario-avanzado" >
+<input style="padding: 5px 5px; font-size:16px;width:458px;" type="text"  />
+</div>
+<h2 class="titulo-formulario-avanzado" >Ataques:</h2>
+<div class="formulario-avanzado" >
+<textarea type="text"  ></textarea>
+</div>
+<h2 class="titulo-formulario-avanzado" >Nota del autor:</h2>
+<div class="formulario-avanzado" >
+<textarea type="text"  ></textarea>
+</div>
+<div style="clear: both">&nbsp;</div>
+<ul class="send-info-menu">  
+<li><a href="#first_step">Volver</a></li> 
+<li><a href="#third_step">Continuar</a></li>
+</ul>
+</div>
+<!-- 3 -------------------------------------------------------------------------- -->
+<div id="third_step">
+<h2 ><img alt="personaje" src="ima/ico-portada-personajes.png" class="send-info"> Enviando informaci&oacute;n sobre personajes. Paso 3 de 4.</h2>
+<h2 class="send-info">Equipo</h2>
+<div style="clear: both">&nbsp;</div> 
+<h2 class="titulo-formulario-avanzado" >Equipo:</h2>
+<div class="formulario-avanzado" >
+<textarea type="text"  ></textarea>
+</div>
+<h2 class="titulo-formulario-avanzado" >Equipo especial:</h2>
+<div class="formulario-avanzado" >
+<textarea  type="text"  ></textarea>
+</div>
+<div style="clear: both">&nbsp;</div> 
+<h2 class="send-info">Relaciones</h2>
+<div style="clear: both">&nbsp;</div> 
+<h2 class="titulo-formulario-avanzado" >Aliados y familiares:</h2>
+<div class="formulario-avanzado" >
+<textarea type="text"  ></textarea>
+</div>
+<h2 class="titulo-formulario-avanzado" >Enemigos:</h2>
+<div class="formulario-avanzado" >
+<textarea type="text"  ></textarea>
+</div>
+<div style="clear: both">&nbsp;</div> 
+<ul class="send-info-menu">  
+<li><a href="#second_step">Volver</a></li> 
+<li><a href="#fourth_step">Continuar</a></li>
+</ul>
+</div>
+<!-- 4 -------------------------------------------------------------------------- --> 
+<div id="fourth_step">
+<h2 ><img alt="personaje" src="ima/ico-portada-personajes.png" class="send-info"> Enviando informaci&oacute;n sobre personajes. Paso 4 de 4.</h2>
+<h2 class="send-info">Imagen asociada</h2>
+<div style="clear: both">&nbsp;</div> 
+<h2 class="titulo-formulario-avanzado" >Archivo:</h2>
+<div class="formulario-avanzado" >
+<input type="file" name="datafile" size="40" style="padding: 5px 5px; font-size:16px;width:458px;">
+</div>
+<h2 class="titulo-formulario-avanzado" >Autor del arte:</h2>
+<div class="formulario-avanzado" >
+<input style="padding: 5px 5px; font-size:16px;width:458px;" type="text"  />
+</div>
+<h2 class="titulo-formulario-avanzado" >URL de autor:</h2>
+<div class="formulario-avanzado" >
+<input style="padding: 5px 5px; font-size:16px;width:458px;" type="text"  />
+</div>
+<div style="clear: both">&nbsp;</div> 
+<h2 class="send-info">Autor del personaje</h2>
+<div style="clear: both">&nbsp;</div> 
+<h2 class="titulo-formulario-avanzado" >Nombre o alias:</h2>
+<div class="formulario-avanzado" >
+<input style="padding: 5px 5px; font-size:16px;width:458px;" type="text"  />
+</div>
+<h2 class="titulo-formulario-avanzado" >URL:</h2>
+<div class="formulario-avanzado" >
+<input style="padding: 5px 5px; font-size:16px;width:458px;" type="text"  />
+</div>
+<h2 class="titulo-formulario-avanzado" >E-mail:</h2>
+<div class="formulario-avanzado" >
+<input style="padding: 5px 5px; font-size:16px;width:458px;" type="text"  />
+</div>
+<div style="clear: both">&nbsp;</div> 
+<ul class="send-info-menu">  
+<li><a href="#third_step">Volver</a></li>
+<li>
+<input class="boton_buscar" type="submit" value="Enviar" style="font-size: 22px;height: 38px;"/>
+</li>
+</ul>
+<div style="clear: both">&nbsp;</div> 
+</div>
+<!-- fin 4 -------------------------------------------------------------------------- -->
+</div> 
+<!-- fin usual1 -->	
+<script type="text/javascript"> 
+$("#usual1").idTabs(function(id,list,set){ 
+$("a",set).removeClass("selected") 
+.filter("[href='"+id+"']",set).addClass("selected"); 
+for(i in list) 
+$(list[i]).hide(); 
+$(id).fadeIn(); 
+return false; 
+}); 
+</script>
+</form>
+<div style="clear:all;float:none; width:850px;">
+<br /><br />
+</div> 				
+</div><!-- fin central -->
+</div><!-- fin columna-der-listados -->			
+</div><!-- fin contenido-articulos -->
+</div><!-- fin contenido -->
+<div id="pie">
+<div id="validaciones">	
+Aventuras de la Marca del este 2011 - Validaci&oacute;n: <a href="http://validator.w3.org/check?uri=referer">XHTML</a> | <a href="http://jigsaw.w3.org/css-validator/validator?uri=http://codexdelamarca.com/css/estilo.css">CSS</a>
+<br/><br/>
+<span style="font-size: 10px"> Desarrollo y mantenimiento: Angela
+Rivera Campos @ghilbrae y Pablo Ruiz M&uacute;zquiz @diacritica - Dise&ntilde;o: <a href="http://jagvalverde.com/">Jose Valverde</a></span>
+
+</div><!-- fin validaciones -->
+</div><!-- fin pie -->
+</div><!-- fin contenedor -->
+
+</body>
+</html>		
