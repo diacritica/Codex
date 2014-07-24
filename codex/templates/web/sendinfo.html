@@ -6,40 +6,40 @@
         <div id="cabecera">
             <div id="menu">
                 <ul>
-                                        <li><a href="/">The Codex</a></li>      
+                                        <li><a href="/">The Codex</a></li>
                                         <li><a href="/character">Characters</a></li>
-                                        <li><a href="/creature">Bestiary</a></li>       
+                                        <li><a href="/creature">Bestiary</a></li>
                                         <li><a href="/location">Locations</a></li>
-                                        <li><a href="/object">Objects</a></li>  
-                                        <li><a href="/adventure">Adventures</a></li>    
+                                        <li><a href="/object">Objects</a></li>
+                                        <li><a href="/adventure">Adventures</a></li>
                                         <li><a href="/chronicle">Chronicles</a></li>
                                         <li><a href="/spell" >Spells</a></li>
                                         <li><a href="/rule" >Rules</a></li>
                                         <li><a href="/fanart" >Fan Art</a></li>
-                                        <li><a href="/send_info" class="seleccion">Send entry</a></li>    
+                                        <li><a href="/send_info" class="seleccion">Send entry</a></li>
                                         <li><a href="/contact">Contact</a></li>
                 </ul>
             </div><!-- fin menu -->
-            
+
             <div id="logo">
                 <a href="/"><img src="/ima/codex-logo.jpg" alt="Adventures in the East Mark Codex." /></a>
             </div><!-- fin logo -->
-            
+
             <div id="slogan">
                 A compilation of the knowledge of the East Mark.
             </div><!-- fin logo -->
-            
-            
+
+
 {% endblock %}
 
 
 {% block content %}
 <div id="contenido" >
-    <div id="contenido-listados" >          
+    <div id="contenido-listados" >
     <div id="columna-der-listados">
-    
+
     <div id="volver"><span><a href="/">Home</a>&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;</span> Send entry</a></div>
-    
+
     <div id="central">
 
 <div class="formulario-avanzado-2-columnas" style="width: 800px;text-align: center">
@@ -106,48 +106,28 @@ Enviar Objeto.
 
 <div style="clear: both">&nbsp;</div>
 
-<div  style="margin: 20px 20px 0 0;text-align: center; display:inline;" >
+    <div  style="margin: 20px 20px 0 0;text-align: center; display:inline;" >
+    <a class="boton-aventura" href="/send_info/send_adventure">
+    Send adventure
+    <span>
+    </a>
+    </div>
 
-<a class="boton-aventura" href="/send_info/send_adventure">
+    <div  style="margin: 20px 20px 0 0;text-align: center; display:inline;" >
+    <a class="boton-aventura" href="/send_info/send_chronicle">
+    Send chronicle
+    <span>
+    </a>
+    </div>
 
-Send adventure
+    <div style="clear: both">&nbsp;</div>
 
-<span>
-
-</a>
-
-</div>
-
-
-
-<div  style="margin: 20px 20px 0 0;text-align: center; display:inline;" >
-
-<a class="boton-aventura" href="send-info-chronicle.html">
-
-Enviar Cr&oacute;nica.
-
-<span>
-
-</a>
-
-</div>
-
-
-
-<div style="clear: both">&nbsp;</div>
-
-<div  style="margin: 20px 20px 0 0;text-align: center;display:inline;" >
-
-<a class="boton-aventura" href="send-info-spell.html">
-
-Enviar Conjuro.
-
-<span>
-
-</a>
-
-</div>
-
+    <div  style="margin: 20px 20px 0 0;text-align: center;display:inline;" >
+        <a class="boton-aventura" href="/send_info/send_spell">
+            Send Spell
+            <span>
+        </a>
+    </div>
 
 
 <div  style="margin: 20px 20px 0 0;text-align: center;display:inline;" >
@@ -194,19 +174,17 @@ Enviar Fan Art.
 
 
 
-</div> 				
+</div>
 
 </div><!-- fin central -->
 
 
 
-</div><!-- fin columna-der-listados -->			
+</div><!-- fin columna-der-listados -->
 
 </div><!-- fin contenido-articulos -->
 
 </div><!-- fin contenido -->
 
-    
+
 {% endblock %}
-
-

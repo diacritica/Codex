@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from django.db import models
+from django import forms
 
 from django.utils.translation import ugettext_lazy as _
 from taggit.managers import TaggableManager
@@ -17,41 +18,41 @@ class MainEntity(models.Model):
     """
     Valid for the main classes such as Character, Location, Creature, etc.
     """
-    
+
     name = models.CharField(max_length=100, blank=False, null=False,                            verbose_name=_('Full name'))
     description = models.TextField(blank=True, null=True, verbose_name=_('Description'))
-    
+
     image = models.ManyToManyField('Image', blank=True, null=True,  related_name=_("%(class)s Image"))
     attachments = models.ManyToManyField('AttachFile', blank=True, null=True,  related_name=_("%(class)s attachments"))
-    
+
     tags = TaggableManager(blank=True)
     slug = models.SlugField(blank=True, null=True, max_length=200, help_text="A short label, generally used in URLs. AUTOMATICALLY ADDED!")
-    
+
     comments = models.TextField(blank=True, null=True, verbose_name=_('Comments'))
     author = models.ManyToManyField("Author", blank=True, null=True,  verbose_name=_("Entity's authorship"))
     canon_level = models.CharField(max_length=5, blank=True, null=True, choices=mc.CANON_LEVEL_CHOICES, verbose_name=_('Canon Level'))
     highlight = models.BooleanField(blank=True, verbose_name=_(u'Highlight'))
     send_tweet = models.BooleanField(blank=True, verbose_name=_('Tweet new entity'))
-    
+
     creation_date = models.DateTimeField(null=True, verbose_name=_('Creation date'))
     last_updated = models.DateTimeField(null=True, verbose_name=_('Last updated'))
 
     deactivated = models.BooleanField(blank=True, verbose_name=_('Deactivated'))
-    
+
     def save(self, *args, **kwargs):
         unique_slug(self, slug_source='name', slug_field='slug')
-        #FIXME - Send tweet goes here 
+        #FIXME - Send tweet goes here
         super(MainEntity, self).save(*args, **kwargs) #FIXME
-                
+
     def __unicode__(self):
         return unicode("{slug}: {name}".format(slug=self.slug, name=self.name))
-    
+
     def get_absolute_url(self):
         return unicode("/{ctype}/{slug}".format(ctype=self.__class__.__name__.lower(),slug=self.slug))
-    
+
     def searchText(self):
         return unicode("%s %s %s" % (self.name, self.description, self.comments))
-    
+
     class Meta:
         # db_table = 'model_name'
         # # verbose_name = _('model_name')
@@ -63,7 +64,7 @@ class AuxiliaryEntity(models.Model):
     """
     Valid for auxiliary classes such as Image, Language, Religion, etc.
     """
-    
+
     name = models.CharField(max_length=100, blank=False, null=False,                            verbose_name=_('Full name'))
     description = models.TextField(blank=True, null=True, verbose_name=_('Description'))
     image = models.ManyToManyField('Image', blank=True, null=True,  related_name=_("%(class)s Image"))
@@ -78,10 +79,10 @@ class AuxiliaryEntity(models.Model):
 
     def __unicode__(self):
         return unicode("{id}: {name}".format(id=self.id, name=self.name))
-    
+
     def get_absolute_url(self):
         return unicode("/{ctype}/{id}".format(ctype=self.__class__.__name__.lower(),id=self.id))
-    
+
     class Meta:
         # db_table = 'model_name'
         # verbose_name = _('model_name')
@@ -105,10 +106,10 @@ class ImageEntity(models.Model):
 
     def __unicode__(self):
         return unicode("{id}: {name}".format(id=self.id, name=self.name))
-    
+
     def get_absolute_url(self):
         return unicode("/{ctype}/{id}".format(ctype=self.__class__.__name__.lower(),id=self.id))
-    
+
     class Meta:
         # db_table = 'model_name'
         # verbose_name = _('model_name')
@@ -125,7 +126,7 @@ class RelationEntity(models.Model):
 
     def __unicode__(self):
         return unicode("{id}".format(id=self.id))
-    
+
     class Meta:
         # db_table = 'model_name'
         # verbose_name = _('model_name')
@@ -139,14 +140,14 @@ class RelationEntity(models.Model):
 # -------- Self contained classes -------- #
 
 class Author(models.Model):
-    
+
     name = models.CharField(max_length='100', blank=False, null=False, verbose_name=_('Full name'))
     nickname =  models.CharField(max_length='100', blank=True, null=True, verbose_name=_('Nickname'))
     otherdata =  models.TextField(blank=True, null=True, verbose_name=_('Other data'))
     url =  models.URLField(blank=True, null=True,  max_length=200, verbose_name=_("Author's web page"))
     photo = models.ManyToManyField('Image', blank=True, null=True,  related_name=_("Author's photos"))
     slug = models.SlugField(blank=True,null=True,max_length=200,help_text="A short label, generally used in URLs. AUTOMATICALLY ADDED!")
-    
+
     def __unicode__(self):
         return unicode("%s -%s-" % (self.name, self.nickname))
 
@@ -204,7 +205,7 @@ class Character(MainEntity):
     relatedobject = models.ManyToManyField('Object', blank=True, null=True, related_name=_('Objects'))
 
     relatedcharacter = models.ManyToManyField("Character", blank=True, null=True,  verbose_name=_("Character Relationship"), through='CharacterRelationship')
-    
+
 
 class Creature(MainEntity):
 
@@ -372,7 +373,7 @@ class ThumbnailImage(ImageEntity):
     pass
 
 
-## Relation Entities 
+## Relation Entities
 
 class CharacterRelationship(RelationEntity):
 
@@ -501,3 +502,7 @@ def unique_slug(item,slug_source,slug_field):
               counter += 1
       setattr(item,slug_field,slug)
 
+class UploadFileForm(forms.Form):
+    print 'MODELS HERE'
+    title = forms.CharField(max_length=50)
+    file  = forms.FileField()

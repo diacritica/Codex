@@ -14,6 +14,7 @@ from codex.settings import MEDIA_URL, STATIC_URL
 from decimal import *
 
 from django.template import RequestContext
+from django.core.context_processors import csrf
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
@@ -57,8 +58,139 @@ def SendinfoView(request):
     return render_to_response('web/sendinfo.html',{})
 
 def SendAdventureView(request):
-    
-    return render_to_response('web/send-info-adventure.html',{})
+    c = {}
+    c.update(csrf(request))
+    adventure_options = {"PRICE_RANGES":mc.PRICE_RANGES}
+    c.update(adventure_options)
+
+    # Get all authors to check if the author already exists
+    authors = Author.objects.all().order_by('-name')
+    c['authors'] = authors
+
+    return render_to_response('web/send-info-adventure.html', c)
+
+def SendChronicleView(request):
+    c = {}
+    c.update(csrf(request))
+
+    # Get all authors to check if the author already exists
+    authors = Author.objects.all().order_by('-name')
+    c['authors'] = authors
+
+    return render_to_response('web/send-info-chronicle.html', c)
+
+def SendSpellView(request):
+    c = {}
+    c.update(csrf(request))
+
+    # Get all authors to check if the author already exists
+    authors = Author.objects.all().order_by('-name')
+    c['authors'] = authors
+
+    return render_to_response('web/send-info-spell.html', c)
+
+def SendSuccess(request):
+    return render_to_response('web/send-info-ok.html', {})
+
+def SendFormView(request):
+    print request.POST
+    print request.FILES
+
+        # for adventure
+    if request.POST['entry_type'] == 'adventure':
+        addNewAdventure(request)
+    elif request.POST['entry_type'] == 'chronicle':
+        addNewChronicle(request)
+
+    if request.method == 'POST':
+        print 'HERE 0'
+        form = UploadFileForm(request.POST, request.FILES)
+        if form.is_valid():
+            print 'HERE 0.1'
+            handle_uploaded_file(request.FILES['file'])
+            print 'HERE 0.2'
+            return render_to_response('web/sendinfo.html',{}) #HttpResponseRedirect('/success/url/')
+    else:
+        print 'HERE 0.3'
+        form = UploadFileForm()
+    return render_to_response('web/sendinfo.html',{})
+
+def handle_uploaded_file(f):
+    print 'HERE 1'
+    destination = open('/home/elwen/name.pdf', 'wb+')
+    for chunk in f.chunks():
+        print 'HERE 2'
+        print chunk
+        destination.write(chunk)
+    destination.close()
+
+def addAuthor(name, url):
+    author = Author()
+    author.name = name
+    author.url = url
+    author.save()
+
+def addImage():
+    #FIXME cuando pueda subir archivos
+    image = Image()
+    ##image.name = request.POST[]
+    #image.image = ''
+    #image.author.add(img_author)
+    #image.canon_level = 'NEW'
+
+def addNewAdventure(request):
+
+    # Adv Author
+    adv_author = addAuthor(request.POST['adv_author_name'], request.POST['adv_author_url'])
+
+    # Image
+    # Image Author
+    img_author = addAuthor(request.POST['adv_image_author'], request.POST['adv_image_url'])
+    # Image
+    image = addImage()
+
+    adventure = Adventure()
+    adventure.deactivated = True
+    adventure.canon_level = 'NEW'
+    adventure.name = request.POST['adv_name']
+    adventure.description = request.POST['adv_description']
+    adventure.comments = request.POST['adv_comments']
+    adventure.price = request.POST['adv_price']
+    adventure.sessions = request.POST['adv_sessions']
+    adventure.minnumplayers = request.POST['adv_min_players']
+    adventure.maxnumplayers = request.POST['adv_max_players']
+    adventure.minlevel = request.POST['adv_min_level']
+    adventure.maxlevel = request.POST['adv_max_level']
+    adventure.maxlevel = request.POST['adv_max_level']
+    adventure.url = request.POST['adv_url']
+#     adventure.save()
+    adventure.author.add(author)
+    adventure.image.add(image)
+
+    print 'Adventure added'
+
+def addNewChronicle(request):
+    # Chr Author
+    chr_author = addAuthor(request.POST['chr_author_name'], request.POST['chr_author_url'])
+
+    # Image
+    # Image Author
+    img_author = addAuthor(request.POST['chr_image_author'], request.POST['chr_image_url'])
+    # Image
+    image = addImage()
+
+    chronicle = Chronicle()
+    chronicle.deactivated = True
+    chronicle.canon_level = 'NEW'
+    chronicle.name = request.POST['chr_name']
+    chronicle.description = request.POST['chr_description']
+    chronicle.comments = request.POST['chr_comments']
+    chronicle.url = request.POST['chr_url']
+#     chronicle.save()
+    chronicle.adventure.add(adventure)
+    chronicle.author.add(chr_author)
+    chronicle.image.add(image)
+
 
 def IndexView(request):
     chars = Character.objects.exclude(deactivated=True).order_by('-last_updated')[:3]
@@ -70,8 +202,6 @@ def IndexView(request):
     rules = Rule.objects.all().order_by('-last_updated')[:3]
     spells = Spell.objects.all().order_by('-last_updated')[:3]
     fanarts = Fanart.objects.all().order_by('-last_updated')[:3]
-
-
 
     index_list = {'characters':chars, 'objects':objects, 'creatures':creatures,\
      'chronicles':chronicles, 'locations':locations, 'adventures':adventures,\
@@ -256,7 +386,7 @@ def ObjectSectionView(request):
     try:
         highlightedresult = Object.objects.filter(highlight=True).order_by('?')[0]
     except:
-        highlightedresult = None    
+        highlightedresult = None
 
     objectSectionView_dict = {}
     object_options = {"OBJ_STATUS_CHOICES":OBJ_STATUS_CHOICES,"ALIGN_CHOICES":ALIGN_CHOICES,"OBJ_RARITY_CHOICES":OBJ_RARITY_CHOICES,"OBJ_TYPE_CHOICES":OBJ_TYPE_CHOICES}
@@ -291,7 +421,8 @@ def ObjectListingView(request):
     return render_to_response("web/object_listing.html",{'results':objects})
 
 def AdventureSectionView(request):
-    objects = Adventure.objects.all()[:3]
+    #objects = Adventure.objects.all()[:3]
+    objects = Adventure.objects.filter(deactivated = False)[:3]
     try:
         highlightedresult = Adventure.objects.filter(highlight=True).order_by('?')[0]
     except:
@@ -311,7 +442,8 @@ def AdventureSectionView(request):
     return render_to_response("web/adventure_section.html",adventureSectionView_dict)
 
 def AdventureListingView(request):
-    allobjects = Adventure.objects.all()
+    #allobjects = Adventure.objects.all()
+    allobjects = Adventure.objects.filter(deactivated = False)
 
     paginator = Paginator(allobjects, 10) # Show 10 contacts per page
 
@@ -340,7 +472,8 @@ def ChronicleSectionView(request):
 
     chronicleSectionView_dict = {}
     range_options = {"lownum":range(1,11),"highnum":range(1,26)}
-    adventures_options = {'adventures':Adventure.objects.all()}
+    #adventures_options = {'adventures':Adventure.objects.all()}
+    adventures_options = {'adventures':Adventure.objects.filter(deactivated = False)}
 
     chronicleSectionView_dict.update(range_options)
     chronicleSectionView_dict.update(adventures_options)
@@ -370,6 +503,8 @@ def ChronicleListingView(request):
     return render_to_response("web/chronicle_listing.html",{'results':objects})
 
 def getRelatedByTags(anObject):
+
+    #FIXME for deactivated objects
 
     char_related_by_tags = Character.objects.filter(tags__name__in=anObject.tags.values_list('name',flat=True)).exclude(id=anObject.id).distinct()
     obj_related_by_tags = Object.objects.filter(tags__name__in=anObject.tags.values_list('name',flat=True)).exclude(id=anObject.id).distinct()
@@ -451,7 +586,7 @@ def SpellSectionView(request):
     try:
         highlightedresult = Spell.objects.filter(highlight=True).order_by('?')[0]
     except:
-        highlightedresult = None     
+        highlightedresult = None
     range_options = {"lownum": range(1,11),"highnum": range(1,26)}
     spellSectionView_dict = {}
     spellSectionView_dict.update(range_options)
@@ -584,4 +719,3 @@ def ObjectDetailView(request, slug):
     relatedobjects = getObjectRelations(obj)
 
     return render_to_response("web/object_detail.html",{"object":obj, "relatedobjectsbytags":relatedobjectsbytags,"relatedobjects1":relatedobjects[0],"relatedobjects2":relatedobjects[1], 'MEDIA_URL':MEDIA_URL,'STATIC_URL':STATIC_URL,},context_instance=RequestContext(request))
-

@@ -6,51 +6,52 @@
         <div id="cabecera">
             <div id="menu">
                 <ul>
-                                        <li><a href="/">The Codex</a></li>      
+                                        <li><a href="/">The Codex</a></li>
                                         <li><a href="/character">Characters</a></li>
-                                        <li><a href="/creature">Bestiary</a></li>       
+                                        <li><a href="/creature">Bestiary</a></li>
                                         <li><a href="/location">Locations</a></li>
-                                        <li><a href="/object">Objects</a></li>  
-                                        <li><a href="/adventure">Adventures</a></li>    
+                                        <li><a href="/object">Objects</a></li>
+                                        <li><a href="/adventure">Adventures</a></li>
                                         <li><a href="/chronicle">Chronicles</a></li>
                                         <li><a href="/spell" >Spells</a></li>
                                         <li><a href="/rule" >Rules</a></li>
                                         <li><a href="/fanart" >Fan Art</a></li>
-                                        <li><a href="/send_info" class="seleccion">Send entry</a></li>    
+                                        <li><a href="/send_info" class="seleccion">Send entry</a></li>
                                         <li><a href="/contact">Contact</a></li>
                 </ul>
             </div><!-- fin menu -->
-            
+
             <div id="logo">
                 <a href="/"><img src="/ima/codex-logo.jpg" alt="Adventures in the East Mark Codex." /></a>
             </div><!-- fin logo -->
-            
+
             <div id="slogan">
                 A compilation of the knowledge of the East Mark.
             </div><!-- fin logo -->
-            
-            
+
+
 {% endblock %}
 
 
 {% block content %}
     <div id="contenido" >
-        <div id="contenido-listados" >			
+        <div id="contenido-listados" >
             <div id="columna-der-listados">
-            <div id="volver"><span><a href="#">Home</a>&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;</span> <a href="#">Send entry</a></div> 
-            
+            <div id="volver"><span><a href="#">Home</a>&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;</span> <a href="#">Send entry</a></div>
+
             <div id="central">
             <!-- send new adventure -->
             <!-- usual1 -->
             <div id="usual1" class="usual">
-                <ul> 
+                <ul>
                 <li><a class="selected" href="#first_step">Step 1</a></li>
-                <li> ------------------- </li> 
+                <li> ------------------- </li>
 
                 <li><a href="#second_step">Step 2</a></li>
                 </ul>
 
-                <form action="#" method="post">
+                <form action="/send_info/send_form" method="post" enctype="multipart/form-data">{% csrf_token %}
+                <input type="hidden"  id="entry_type" name="entry_type" value="adventure"/>
 
                 <!-- 1 -------------------------------------------------------- -->
 
@@ -58,66 +59,72 @@
 
                     <h2><img alt="Adventure" src="/ima/ico-portada-aventura.png" class="send-info"> Provide as much information as possible</h2>
                     <div style="clear: both">&nbsp;</div>
-                    <h3 class="send-info">About the adventure</h3>  
-                    <div style="clear: both">&nbsp;</div>                
+                    <h3 class="send-info">About the adventure</h3>
+                    <div style="clear: both">&nbsp;</div>
 
                     <h2 class="titulo-formulario-avanzado" >Name</h2>
                     <div class="formulario-avanzado" >
-                    <input style="padding: 5px 5px; font-size:16px;width:458px;" type="text"  />
+                    <input style="padding: 5px 5px; font-size:16px;width:458px;" type="text"  id="adv_name" name="adv_name"/>
                     </div>
 
                     <h2 class="titulo-formulario-avanzado" >Description</h2>
                     <div class="formulario-avanzado" >
-                    <textarea type="text"  ></textarea>
+                    <textarea type="text" id="adv_description" name="adv_description" ></textarea>
                     </div>
 
-                    <h2 class="titulo-formulario-avanzado">Price</h2> 
+                    <h2 class="titulo-formulario-avanzado">Price</h2>
                     <div class="formulario-avanzado-2-columnas">
-                    <input style="padding: 5px 5px; font-size:16px;width:110px;" type="text"  />
+                    <select name="adv_price" id="adv_price">
+                        {% for align in PRICE_RANGES %}
+                        <option value={{align.0}}>{{align.1}}</option>
+                        {% endfor %}
+                    </select>
                     </div>
 
-                    <h2 class="titulo-formulario-avanzado">Level</h2>
+                    <h2 class="titulo-formulario-avanzado">Game sessions</h2>
                     <div class="formulario-avanzado-2-columnas">
-                    <input style="padding: 5px 5px; font-size:16px;width:110px;" type="text"  />
-                    </div>
-    
-                    <h2 class="titulo-formulario-avanzado">Min Number of game sessions</h2>
-                    <div class="formulario-avanzado-2-columnas">
-                    <input style="padding: 5px 5px; font-size:16px;width:110px;" type="text"  />
-                    </div>
-                    
-                    <h2 class="titulo-formulario-avanzado">Max Number of game sessions</h2>
-                    <div class="formulario-avanzado-2-columnas">
-                    <input style="padding: 5px 5px; font-size:16px;width:110px;" type="text"  />
+                    <input style="padding: 5px 5px; font-size:16px;width:110px;" type="text" id="adv_sessions" name="adv_sessions"  />
                     </div>
 
                     <div style="clear: both">&nbsp;</div>
-                    
+
+                    <h2 class="titulo-formulario-avanzado">Min PC Level</h2>
+                    <div class="formulario-avanzado-2-columnas">
+                    <input style="padding: 5px 5px; font-size:16px;width:110px;" type="text"  id="adv_min_level" name="adv_min_level" />
+                    </div>
+
+                    <h2 class="titulo-formulario-avanzado">Max PC Level</h2>
+                    <div class="formulario-avanzado-2-columnas">
+                    <input style="padding: 5px 5px; font-size:16px;width:110px;" type="text" id="adv_max_level" name="adv_max_level"  />
+                    </div>
+
+                    <div style="clear: both">&nbsp;</div>
+
                     <h2 class="titulo-formulario-avanzado">Min Number of players</h2>
                     <div class="formulario-avanzado-2-columnas">
-                    <input style="padding: 5px 5px; font-size:16px;width:110px;" type="text"  />
+                    <input style="padding: 5px 5px; font-size:16px;width:110px;" type="text" id="adv_min_players" name="adv_min_players"  />
                     </div>
-                    
+
                     <h2 class="titulo-formulario-avanzado">Max Number of players</h2>
                     <div class="formulario-avanzado-2-columnas">
-                    <input style="padding: 5px 5px; font-size:16px;width:110px;" type="text"  />
+                    <input style="padding: 5px 5px; font-size:16px;width:110px;" type="text" id="adv_max_players" name="adv_max_players"  />
                     </div>
 
                     <div style="clear: both">&nbsp;</div>
 
                     <h2 class="titulo-formulario-avanzado" >Comments</h2>
                     <div class="formulario-avanzado" >
-                    <textarea type="text"  ></textarea>
+                    <textarea type="text" id="adv_comments" name="adv_comments"  ></textarea>
                     </div>
 
-                    <h2 class="titulo-formulario-avanzado" >URL</h2>
+<!--                    <h2 class="titulo-formulario-avanzado" >URL</h2>
                     <div class="formulario-avanzado" >
-                    <input style="padding: 5px 5px; font-size:16px;width:458px;" type="text"  />
-                    </div>
+                    <input style="padding: 5px 5px; font-size:16px;width:458px;" type="text" id="adv_" name="adv_description"  />
+                    </div>-->
 
-                    <div style="clear: both">&nbsp;</div>  
-                    
-                    <ul class="send-info-menu"> 
+                    <div style="clear: both">&nbsp;</div>
+
+                    <ul class="send-info-menu">
                     <li><a href="#second_step">Next</a></li>
                     </ul>
 
@@ -130,71 +137,87 @@
                 <h2 ><img alt="Aventura" src="/ima/ico-portada-aventura.png" class="send-info"> Provide as much information as possible</h2>
                 <div style="clear: both">&nbsp;</div>
                 <h3 class="send-info">Additional material or reference URL</h3>
-                <div style="clear: both">&nbsp;</div> 
+                <div style="clear: both">&nbsp;</div>
 
                 <p style="padding: 5px 5px; font-size:14px;">You can upload a file with the adventure, provide a URL where others can get it or both. Please take into consideration that we will not host any copyrighted material.
                 </p>
 
                 <h2 class="titulo-formulario-avanzado" >File</h2>
                 <div class="formulario-avanzado" >
-                <input type="file" name="datafile" size="40" style="padding: 5px 5px; font-size:16px;width:458px;">
+                <input type="file" name="file" size="40" style="padding: 5px 5px; font-size:16px;width:458px;" id="adv_file" name="adv_file">
                 </div>
 
                 <!--<p style="padding: 5px 5px; font-size:16px;">En caso de que ya las tengas alojadas en tu propio servidor y prefieres que hagamos referencia a donde descargarlo, indicanos a continuaci&oacute;n la URL de referencia donde esta accesible.
                 </p>-->
 
-                <h2 class="titulo-formulario-avanzado" >URL:</h2>
+                <h2 class="titulo-formulario-avanzado" >URL</h2>
                 <div class="formulario-avanzado" >
-                <input style="padding: 5px 5px; font-size:16px;width:458px;" type="text"  />
+                <input style="padding: 5px 5px; font-size:16px;width:458px;" type="text" id="adv_url" name="adv_url" />
                 </div>
 
-                <div style="clear: both">&nbsp;</div> 
+                <div style="clear: both">&nbsp;</div>
                 <h3 class="send-info">Associated image</h3>
-                
-                <div style="clear: both">&nbsp;</div> 
+
+                <div style="clear: both">&nbsp;</div>
                 <p style="padding: 5px 5px; font-size:14px;">If you want to include an image in the ficha for your adventure upload the file here (best resolution is)
                 </p>
-                
+
                 <h2 class="titulo-formulario-avanzado" >Image file</h2>
 
                 <div class="formulario-avanzado" >
-                <input type="file" name="datafile" size="40" style="padding: 5px 5px; font-size:16px;width:458px;">
+                <input type="file" name="datafile" size="40" style="padding: 5px 5px; font-size:16px;width:458px;" id="adv_image" name="adv_image" value='vacio'>
                 </div>
 
                 <h2 class="titulo-formulario-avanzado" >Image author</h2>
                 <div class="formulario-avanzado" >
-                <input style="padding: 5px 5px; font-size:16px;width:458px;" type="text"  />
+                <input style="padding: 5px 5px; font-size:16px;width:458px;" type="text" id="adv_image_author" name="adv_image_author" />
                 </div>
 
                 <h2 class="titulo-formulario-avanzado" >Image author URL</h2>
                 <div class="formulario-avanzado" >
-                <input style="padding: 5px 5px; font-size:16px;width:458px;" type="text"  />
+                <input style="padding: 5px 5px; font-size:16px;width:458px;" type="text" id="adv_image_url" name="adv_image_url" />
                 </div>
 
-                <div style="clear: both">&nbsp;</div> 
+                <div style="clear: both">&nbsp;</div>
 
                 <h3 class="send-info">Adventure author</h3>
-                
-                <div style="clear: both">&nbsp;</div> 
+
+                <div style="clear: both">&nbsp;</div>
+
+                <p style="padding: 5px 5px; font-size:14px;">Pick an existing author or introduce a new one.
+                </p>
+
+                <h2 class="titulo-formulario-avanzado" >Existing authors</h2>
+                <div class="formulario-avanzado" >
+                <select name="adv_author_list" id="adv_author_list">
+                        <option value='0'> ----- </option>
+                        {% for author in authors %}
+                        <option value={{author}}>{{author}}</option>
+                        {% endfor %}
+                </select>
+                </div>
+
+<!--                 <div style="clear: both">&nbsp;</div> -->
 
                 <h2 class="titulo-formulario-avanzado" >Name or alias</h2>
                 <div class="formulario-avanzado" >
-                <input style="padding: 5px 5px; font-size:16px;width:458px;" type="text"  />
+                <input style="padding: 5px 5px; font-size:16px;width:458px;" type="text" id="adv_author_name" name="adv_author_name" />
                 </div>
+
 
                 <h2 class="titulo-formulario-avanzado" >URL</h2>
                 <div class="formulario-avanzado" >
-                <input style="padding: 5px 5px; font-size:16px;width:458px;" type="text"  />
+                <input style="padding: 5px 5px; font-size:16px;width:458px;" type="text" id="adv_author_url" name="adv_author_url" />
                 </div>
 
                 <h2 class="titulo-formulario-avanzado" >E-mail</h2>
                 <div class="formulario-avanzado" >
-                <input style="padding: 5px 5px; font-size:16px;width:458px;" type="text"  />
+                <input style="padding: 5px 5px; font-size:16px;width:458px;" type="text" id="adv_email" name="adv_email" />
                 </div>
 
-                <div style="clear: both">&nbsp;</div> 
+                <div style="clear: both">&nbsp;</div>
 
-                <ul class="send-info-menu">  
+                <ul class="send-info-menu">
 
                 <li><a href="#first_step">Return</a></li>
                 <li>
@@ -202,23 +225,23 @@
                 </li>
                 </ul>
 
-                <div style="clear: both">&nbsp;</div> 
+                <div style="clear: both">&nbsp;</div>
         </div>
 
 
-</div> 
+</div>
 
-<!-- fin usual1 -->	
+<!-- fin usual1 -->
 
-    <script type="text/javascript"> 
-        $("#usual1").idTabs(function(id,list,set){ 
-        $("a",set).removeClass("selected") 
-        .filter("[href='"+id+"']",set).addClass("selected"); 
-        for(i in list) 
-            $(list[i]).hide(); 
-            $(id).fadeIn(); 
-        return false; 
-        }); 
+    <script type="text/javascript">
+        $("#usual1").idTabs(function(id,list,set){
+        $("a",set).removeClass("selected")
+        .filter("[href='"+id+"']",set).addClass("selected");
+        for(i in list)
+            $(list[i]).hide();
+            $(id).fadeIn();
+        return false;
+        });
     </script>
 </form>
 
@@ -226,7 +249,7 @@
 <br /><br />
 </div>
 </div><!-- fin central -->
-</div><!-- fin columna-der-listados -->			
+</div><!-- fin columna-der-listados -->
 </div><!-- fin contenido-articulos -->
 </div><!-- fin contenido -->
 {% endblock %}
