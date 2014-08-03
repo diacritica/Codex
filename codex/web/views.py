@@ -129,14 +129,37 @@ def addAuthor(name, url):
     author.name = name
     author.url = url
     author.save()
+    print("author id",author.id)
+    return author
 
-def addImage():
+def addAttachFile(request):
     #FIXME cuando pueda subir archivos
-    image = Image()
-    ##image.name = request.POST[]
+#    print("request.FILES",request.FILES)
+#    print(dir(request.FILES["datafile"]))
+    attachfile = AttachFile()
+#    image.save()
+    attachfile.name = request.FILES["file"].name
+    attachfile.content = request.FILES["file"]
     #image.image = ''
     #image.author.add(img_author)
     #image.canon_level = 'NEW'
+    attachfile.save()
+    return attachfile
+
+
+def addImage(request):
+    #FIXME cuando pueda subir archivos
+#    print("request.FILES",request.FILES)
+#    print(dir(request.FILES["datafile"]))
+    image = Image()
+#    image.save()
+    image.name = request.FILES["datafile"].name
+    image.image = request.FILES["datafile"]
+    #image.image = ''
+    #image.author.add(img_author)
+    #image.canon_level = 'NEW'
+    image.save()
+    return image
 
 def addNewAdventure(request):
 
@@ -147,7 +170,8 @@ def addNewAdventure(request):
     # Image Author
     img_author = addAuthor(request.POST['adv_image_author'], request.POST['adv_image_url'])
     # Image
-    image = addImage()
+    image = addImage(request)
+    attachfile = addAttachFile(request)
 
     adventure = Adventure()
     adventure.deactivated = True
@@ -163,10 +187,11 @@ def addNewAdventure(request):
     adventure.maxlevel = request.POST['adv_max_level']
     adventure.maxlevel = request.POST['adv_max_level']
     adventure.url = request.POST['adv_url']
-#     adventure.save()
-    adventure.author.add(author)
+    adventure.save()
+    adventure.author.add(adv_author)
     adventure.image.add(image)
-
+    adventure.attachments.add(attachfile)
+    adventure.save()
     print 'Adventure added'
 
 def addNewChronicle(request):
