@@ -57,9 +57,9 @@
 
                 <div id="first_step">
 
-                    <h2><img alt="Adventure" src="/ima/ico-portada-aventura.png" class="send-info"> Provide as much information as possible</h2>
+                    <h2><img alt="Adventure" src="/ima/ico-portada-aventura.png" class="send-info"> About the adventure</h2>
                     <div style="clear: both">&nbsp;</div>
-                    <h3 class="send-info">About the adventure</h3>
+                    <h3 class="send-info">Provide as much information as possible</h3>
                     <div style="clear: both">&nbsp;</div>
 
                     <h2 class="titulo-formulario-avanzado" >Name</h2>
@@ -134,9 +134,9 @@
 
             <div id="second_step">
 
-                <h2 ><img alt="Aventura" src="/ima/ico-portada-aventura.png" class="send-info"> Provide as much information as possible</h2>
+                <h2 ><img alt="Aventura" src="/ima/ico-portada-aventura.png" class="send-info"> Additional material, reference URL, author and images</h2>
                 <div style="clear: both">&nbsp;</div>
-                <h3 class="send-info">Additional material or reference URL</h3>
+                <!-- <h3 class="send-info">Provide as much information as possible</h3> -->
                 <div style="clear: both">&nbsp;</div>
 
                 <p style="padding: 5px 5px; font-size:14px;">You can upload a file with the adventure, provide a URL where others can get it or both. Please take into consideration that we will not host any copyrighted material.
@@ -168,14 +168,24 @@
                 <input type="file" name="datafile" size="40" style="padding: 5px 5px; font-size:16px;width:458px;" id="adv_image" name="adv_image" value='vacio'>
                 </div>
 
-                <h2 class="titulo-formulario-avanzado" >Image author</h2>
+                <h2 class="titulo-formulario-avanzado" >Existing authors</h2>
                 <div class="formulario-avanzado" >
-                <input style="padding: 5px 5px; font-size:16px;width:458px;" type="text" id="adv_image_author" name="adv_image_author" />
+                <select name="img_author_list" id="img_author_list">
+                        <option value='0'> ----- </option>
+                        {% for author in authors %}
+                        <option value={{author}}>{{author}}</option>
+                        {% endfor %}
+                </select>
+                </div>
+
+                <h2 class="titulo-formulario-avanzado" >New Image author</h2>
+                <div class="formulario-avanzado" >
+                <input style="padding: 5px 5px; font-size:16px;width:458px;" type="text" id="image_author" name="image_author" />
                 </div>
 
                 <h2 class="titulo-formulario-avanzado" >Image author URL</h2>
                 <div class="formulario-avanzado" >
-                <input style="padding: 5px 5px; font-size:16px;width:458px;" type="text" id="adv_image_url" name="adv_image_url" />
+                <input style="padding: 5px 5px; font-size:16px;width:458px;" type="text" id="image_author_url" name="image_author_url" />
                 </div>
 
                 <div style="clear: both">&nbsp;</div>
@@ -189,7 +199,7 @@
 
                 <h2 class="titulo-formulario-avanzado" >Existing authors</h2>
                 <div class="formulario-avanzado" >
-                <select name="adv_author_list" id="adv_author_list">
+                <select name="author_list" id="author_list">
                         <option value='0'> ----- </option>
                         {% for author in authors %}
                         <option value={{author}}>{{author}}</option>
@@ -201,13 +211,13 @@
 
                 <h2 class="titulo-formulario-avanzado" >Name or alias</h2>
                 <div class="formulario-avanzado" >
-                <input style="padding: 5px 5px; font-size:16px;width:458px;" type="text" id="adv_author_name" name="adv_author_name" />
+                <input style="padding: 5px 5px; font-size:16px;width:458px;" type="text" id="author_name" name="author_name" />
                 </div>
 
 
                 <h2 class="titulo-formulario-avanzado" >URL</h2>
                 <div class="formulario-avanzado" >
-                <input style="padding: 5px 5px; font-size:16px;width:458px;" type="text" id="adv_author_url" name="adv_author_url" />
+                <input style="padding: 5px 5px; font-size:16px;width:458px;" type="text" id="author_url" name="author_url" />
                 </div>
 
                 <h2 class="titulo-formulario-avanzado" >E-mail</h2>

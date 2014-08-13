@@ -76,6 +76,9 @@ def SendChronicleView(request):
     # Get all authors to check if the author already exists
     authors = Author.objects.all().order_by('-name')
     c['authors'] = authors
+    # Get all adventures in the codex
+    adventures = Adventure.objects.all().order_by('-name')
+    c['adventures'] = adventures
 
     return render_to_response('web/send-info-chronicle.html', c)
 
@@ -101,76 +104,74 @@ def SendFormView(request):
         addNewAdventure(request)
     elif request.POST['entry_type'] == 'chronicle':
         addNewChronicle(request)
-
-    if request.method == 'POST':
-        print 'HERE 0'
-        form = UploadFileForm(request.POST, request.FILES)
-        if form.is_valid():
-            print 'HERE 0.1'
-            handle_uploaded_file(request.FILES['file'])
-            print 'HERE 0.2'
-            return render_to_response('web/sendinfo.html',{}) #HttpResponseRedirect('/success/url/')
-    else:
-        print 'HERE 0.3'
-        form = UploadFileForm()
     return render_to_response('web/sendinfo.html',{})
 
-def handle_uploaded_file(f):
-    print 'HERE 1'
-    destination = open('/home/elwen/name.pdf', 'wb+')
-    for chunk in f.chunks():
-        print 'HERE 2'
-        print chunk
-        destination.write(chunk)
-    destination.close()
-
-def addAuthor(name, url):
+def addAuthor(request, category = 'main'):
+    if category == 'main':
+        if request.POST['author_list'] == 0:
+            try:
+                existing = Author.objects.get(name=request.POST['author_name'])
+                return existing
+            except:
+                name = request.POST['author_name']
+                url = request.POST['author_url']
+        else:
+            return Author.objects.get(name=request.POST['author_list'])
+    elif category == 'image':
+        if request.POST['image_author_list'] == 0:
+            try:
+                existing = Author.objects.get(name=request.POST['image_author'])
+                return existing
+            except:
+                name = request.POST['image_author']
+                url = request.POST['image_author_url']
+        else:
+            return Author.objects.get(name=request.POST['image_author_list'])
     author = Author()
     author.name = name
     author.url = url
     author.save()
-    print("author id",author.id)
+    print("author id", author.id)
     return author
 
 def addAttachFile(request):
-    #FIXME cuando pueda subir archivos
-#    print("request.FILES",request.FILES)
-#    print(dir(request.FILES["datafile"]))
-    attachfile = AttachFile()
-#    image.save()
-    attachfile.name = request.FILES["file"].name
-    attachfile.content = request.FILES["file"]
-    #image.image = ''
-    #image.author.add(img_author)
-    #image.canon_level = 'NEW'
-    attachfile.save()
-    return attachfile
-
+    try:
+        attachfile = AttachFile()
+        attachfile.name = request.FILES["file"].name
+        attachfile.content = request.FILES["file"]
+        attachfile.save()
+        return attachfile
+    except:
+        return None
 
 def addImage(request):
-    #FIXME cuando pueda subir archivos
-#    print("request.FILES",request.FILES)
-#    print(dir(request.FILES["datafile"]))
-    image = Image()
-#    image.save()
-    image.name = request.FILES["datafile"].name
-    image.image = request.FILES["datafile"]
-    #image.image = ''
-    #image.author.add(img_author)
-    #image.canon_level = 'NEW'
-    image.save()
-    return image
+    try:
+        image = Image()
+        image.name = request.FILES["datafile"].name
+        image.image = request.FILES["datafile"]
+        img_author = addAuthor(request, 'image')
+        image.save()
+        image.author.add(img_author)
+        image.save()
+        return image
+    except:
+        return None
+
+def addAdventure(request):
+    # Add adventure to a chronicle
+    if request.POST['adventure_list'] != 0:
+        existing = Adventure.objects.get(name=request.POST['adventure_list'])
+        return existing
+    else:
+        return None
+
 
 def addNewAdventure(request):
-
     # Adv Author
-    adv_author = addAuthor(request.POST['adv_author_name'], request.POST['adv_author_url'])
-
-    # Image
-    # Image Author
-    img_author = addAuthor(request.POST['adv_image_author'], request.POST['adv_image_url'])
+    adv_author = addAuthor(request)
     # Image
     image = addImage(request)
+    # Attachments
     attachfile = addAttachFile(request)
 
     adventure = Adventure()
@@ -189,20 +190,22 @@ def addNewAdventure(request):
     adventure.url = request.POST['adv_url']
     adventure.save()
     adventure.author.add(adv_author)
-    adventure.image.add(image)
-    adventure.attachments.add(attachfile)
+    if image != None:
+        adventure.image.add(image)
+    if attachfile != None:
+        adventure.attachments.add(attachfile)
     adventure.save()
     print 'Adventure added'
 
 def addNewChronicle(request):
     # Chr Author
-    chr_author = addAuthor(request.POST['chr_author_name'], request.POST['chr_author_url'])
-
+    chr_author = addAuthor(request)
     # Image
-    # Image Author
-    img_author = addAuthor(request.POST['chr_image_author'], request.POST['chr_image_url'])
-    # Image
-    image = addImage()
+    image = addImage(request)
+    # Adventure
+    adventure = addAdventure(request)
+    # Attachments
+    attachfile = addAttachFile(request)
 
     chronicle = Chronicle()
     chronicle.deactivated = True
@@ -211,10 +214,15 @@ def addNewChronicle(request):
     chronicle.description = request.POST['chr_description']
     chronicle.comments = request.POST['chr_comments']
     chronicle.url = request.POST['chr_url']
-#     chronicle.save()
-    chronicle.adventure.add(adventure)
+    chronicle.save()
     chronicle.author.add(chr_author)
-    chronicle.image.add(image)
+    if adventure != None:
+        chronicle.adventure.add(adventure)
+    if image != None:
+        chronicle.image.add(image)
+    if attachfile != None:
+        chronicle.attachments.add(attachfile)
+    chronicle.save()
 
 
 def IndexView(request):
